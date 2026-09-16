@@ -17,5 +17,6 @@ var namespacemnx_1_1part =
     [ "NonArpeggio", "classmnx_1_1part_1_1NonArpeggio.html", "classmnx_1_1part_1_1NonArpeggio" ],
     [ "Ottava", "classmnx_1_1part_1_1Ottava.html", "classmnx_1_1part_1_1Ottava" ],
     [ "PartTransposition", "classmnx_1_1part_1_1PartTransposition.html", "classmnx_1_1part_1_1PartTransposition" ],
-    [ "PositionedClef", "classmnx_1_1part_1_1PositionedClef.html", "classmnx_1_1part_1_1PositionedClef" ]
+    [ "PositionedClef", "classmnx_1_1part_1_1PositionedClef.html", "classmnx_1_1part_1_1PositionedClef" ],
+    [ "PositionedStaffConfig", "classmnx_1_1part_1_1PositionedStaffConfig.html", "classmnx_1_1part_1_1PositionedStaffConfig" ]
 ];

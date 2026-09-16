@@ -39,6 +39,7 @@ var namespacemnx =
     [ "Score", "classmnx_1_1Score.html", "classmnx_1_1Score" ],
     [ "Sequence", "classmnx_1_1Sequence.html", "classmnx_1_1Sequence" ],
     [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
+    [ "StaffConfig", "classmnx_1_1StaffConfig.html", "classmnx_1_1StaffConfig" ],
     [ "TimeSignature", "classmnx_1_1TimeSignature.html", "classmnx_1_1TimeSignature" ],
     [ "ErrorHandler", "namespacemnx.html#a1ecfb36b8c75b494f064bfd002c4c119", null ],
     [ "json", "namespacemnx.html#a1c2980125e66d525147bb9c34c8c7d30", null ],

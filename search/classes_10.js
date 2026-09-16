@@ -19,12 +19,13 @@ var searchData=
   ['staccatissimo_16',['Staccatissimo',['../classmnx_1_1sequence_1_1Staccatissimo.html',1,'mnx::sequence']]],
   ['staccato_17',['Staccato',['../classmnx_1_1sequence_1_1Staccato.html',1,'mnx::sequence']]],
   ['staff_18',['Staff',['../classmnx_1_1layout_1_1Staff.html',1,'mnx::layout']]],
-  ['staffkey_19',['StaffKey',['../structmnx_1_1util_1_1StaffKey.html',1,'mnx::util']]],
-  ['staffkeyhash_20',['StaffKeyHash',['../structmnx_1_1util_1_1StaffKeyHash.html',1,'mnx::util']]],
-  ['staffsource_21',['StaffSource',['../classmnx_1_1layout_1_1StaffSource.html',1,'mnx::layout']]],
-  ['stress_22',['Stress',['../classmnx_1_1sequence_1_1Stress.html',1,'mnx::sequence']]],
-  ['strongaccent_23',['StrongAccent',['../classmnx_1_1sequence_1_1StrongAccent.html',1,'mnx::sequence']]],
-  ['style_24',['Style',['../classmnx_1_1text_1_1Style.html',1,'mnx::text']]],
-  ['support_25',['Support',['../classmnx_1_1MnxMetaData_1_1Support.html',1,'mnx::MnxMetaData']]],
-  ['system_26',['System',['../classmnx_1_1score_1_1System.html',1,'mnx::score']]]
+  ['staffconfig_19',['StaffConfig',['../classmnx_1_1StaffConfig.html',1,'mnx']]],
+  ['staffkey_20',['StaffKey',['../structmnx_1_1util_1_1StaffKey.html',1,'mnx::util']]],
+  ['staffkeyhash_21',['StaffKeyHash',['../structmnx_1_1util_1_1StaffKeyHash.html',1,'mnx::util']]],
+  ['staffsource_22',['StaffSource',['../classmnx_1_1layout_1_1StaffSource.html',1,'mnx::layout']]],
+  ['stress_23',['Stress',['../classmnx_1_1sequence_1_1Stress.html',1,'mnx::sequence']]],
+  ['strongaccent_24',['StrongAccent',['../classmnx_1_1sequence_1_1StrongAccent.html',1,'mnx::sequence']]],
+  ['style_25',['Style',['../classmnx_1_1text_1_1Style.html',1,'mnx::text']]],
+  ['support_26',['Support',['../classmnx_1_1MnxMetaData_1_1Support.html',1,'mnx::MnxMetaData']]],
+  ['system_27',['System',['../classmnx_1_1score_1_1System.html',1,'mnx::score']]]
 ];

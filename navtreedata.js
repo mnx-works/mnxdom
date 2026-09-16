@@ -59,12 +59,12 @@ var NAVTREEINDEX =
 "BaseTypes_8h_source.html",
 "classmnx_1_1Global.html#af41ceaed4575702db1a65964f7ebe0ed",
 "classmnx_1_1Score.html#ad0b2e802742bb78f6babaab0a73138c2",
-"classmnx_1_1layout_1_1StaffSource.html#aa25b891efb653676d256ec81177543fb",
-"classmnx_1_1part_1_1PositionedClef.html#a4f14ef8451f270f0ef79569fe3a8c01b",
-"classmnx_1_1sequence_1_1MultiNoteTremolo.html#a4aa6b66de3fdca3a3a48df6042108e9e",
-"classmusic__theory_1_1Transposer.html#a68c73dcb6666ee81d28f3dce979e186f",
-"namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ab25cde1e74f3d27f678c2e309e06102e",
-"structmnx_1_1part_1_1MeasureRepeatCounter_1_1Required.html#aac1dfdef7d0d1457b2d497a63f2599e9"
+"classmnx_1_1layout_1_1StaffSource.html#a14d111b6b7baa4e37cfb43decc1102b7",
+"classmnx_1_1part_1_1PartTransposition.html#ac86f9e30f995bbda7970a39f383957c9",
+"classmnx_1_1sequence_1_1Grace.html#ad5e48d207f4017bee369c349d577a3d2",
+"classmnx_1_1util_1_1EntityMap.html#a5fc55190ceb406ff6fdbcb96f1e74d14",
+"namespacemnx.html#ad48565fded88559edcaeec446b9e1d8fa2dd4472245a696bc0b4b944db2a8b519",
+"structmnx_1_1part_1_1DynamicGradual_1_1Required.html#a6afbe691780d2bc3ce7f94bc711a925c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

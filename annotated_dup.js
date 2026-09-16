@@ -52,7 +52,8 @@ var annotated_dup =
         [ "NonArpeggio", "classmnx_1_1part_1_1NonArpeggio.html", "classmnx_1_1part_1_1NonArpeggio" ],
         [ "Ottava", "classmnx_1_1part_1_1Ottava.html", "classmnx_1_1part_1_1Ottava" ],
         [ "PartTransposition", "classmnx_1_1part_1_1PartTransposition.html", "classmnx_1_1part_1_1PartTransposition" ],
-        [ "PositionedClef", "classmnx_1_1part_1_1PositionedClef.html", "classmnx_1_1part_1_1PositionedClef" ]
+        [ "PositionedClef", "classmnx_1_1part_1_1PositionedClef.html", "classmnx_1_1part_1_1PositionedClef" ],
+        [ "PositionedStaffConfig", "classmnx_1_1part_1_1PositionedStaffConfig.html", "classmnx_1_1part_1_1PositionedStaffConfig" ]
       ] ],
       [ "scope", null, [
         [ "Default", "structmnx_1_1scope_1_1Default.html", null ],
@@ -153,6 +154,7 @@ var annotated_dup =
       [ "Score", "classmnx_1_1Score.html", "classmnx_1_1Score" ],
       [ "Sequence", "classmnx_1_1Sequence.html", "classmnx_1_1Sequence" ],
       [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
+      [ "StaffConfig", "classmnx_1_1StaffConfig.html", "classmnx_1_1StaffConfig" ],
       [ "TimeSignature", "classmnx_1_1TimeSignature.html", "classmnx_1_1TimeSignature" ]
     ] ],
     [ "music_theory", "namespacemusic__theory.html", [

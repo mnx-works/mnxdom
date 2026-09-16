@@ -1,0 +1,41 @@
+{
+    "mnx": {
+        "version": 1
+    },
+    "global": {
+        "measures": [
+            {
+                "id": "m1"
+            }
+        ]
+    },
+    "parts": [
+        {
+            "id": "P1",
+            "name": "Single Staff Part",
+            "staves": 1,
+            "measures": [
+                {
+                    "clefs": [
+                        {
+                            "staff": 1,
+                            "clef": {
+                                "sign": "G",
+                                "staffPosition": -2
+                            }
+                        }
+                    ],
+                    "sequences": [],
+                    "staffConfigs": [
+                        {
+                            "staff": 2,
+                            "config": {
+                                "lines": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

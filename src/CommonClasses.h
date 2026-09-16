@@ -28,6 +28,7 @@
 #include <type_traits>
 
 #include "BaseTypes.h"
+#include "BoilerplateMacros.h"
 #include "Enumerations.h"
 
 namespace mnx {
@@ -772,6 +773,18 @@ public:
     MNX_REQUIRED_CHILD(NoteValue, duration,
         (NoteValueBase, base), (unsigned, dots)); ///< duration unit
     MNX_REQUIRED_PROPERTY(unsigned, multiple);                  ///< quantity of duration units
+};
+
+/**
+ * @class StaffConfig
+ * @brief Represents a staff configuration
+ */
+class StaffConfig : public Object
+{
+public:
+    using Object::Object;
+
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(unsigned, lines, 5u);    ///< number of staff lines
 };
 
 /**

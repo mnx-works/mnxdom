@@ -441,6 +441,34 @@ public:
 };
 
 /**
+ * @class PositionedStaffConfig
+ * @brief Represents a positioned staff configuration for the measure
+ */
+class PositionedStaffConfig : public ArrayElementObject
+{
+public:
+    /// @brief Constructor for existing PositionedStaffConfig instances
+    PositionedStaffConfig(const std::shared_ptr<json>& root, json_pointer pointer)
+        : ArrayElementObject(root, pointer)
+    {
+    }
+
+    /// @brief Creates a new PositionedStaffConfig class as a child of a JSON element
+    /// @param parent The parent class instance
+    /// @param key The JSON key to use for embedding in parent.
+    PositionedStaffConfig(Base& parent, std::string_view key)
+        : ArrayElementObject(parent, key)
+    {
+        create_config();
+    }
+
+    MNX_REQUIRED_CHILD(StaffConfig, config);        ///< The staff configuration
+    MNX_OPTIONAL_CHILD(RhythmicPosition, position,
+        (const FractionValue&, position)); ///< location within the measure of the staff configuration change (default: start of measure)
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< the staff number (for multistaff parts)
+};
+
+/**
  * @class Measure
  * @brief Represents a single measure in a part in an MNX document. It contains the majority of the musical information in its sequences.
  */
@@ -468,6 +496,7 @@ public:
     MNX_OPTIONAL_CHILD(Array<NonArpeggio>, nonArpeggios);   ///< the non-arpeggios in this measure
     MNX_OPTIONAL_CHILD(Array<Ottava>, ottavas);             ///< the ottavas in this measure
     MNX_REQUIRED_CHILD(Array<Sequence>, sequences);         ///< sequences that contain all the musical details in each measure
+    MNX_OPTIONAL_CHILD(Array<PositionedStaffConfig>, staffConfigs);  ///< Staff config changes in this measure.
 
     /// @brief Returns the global measure for this part measure.
     /// @throws std::logic_error if the global measure does not exist.

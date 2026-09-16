@@ -706,6 +706,16 @@ void SemanticValidator::validateParts()
                     }
                 }
             }
+            if (auto staffConfigs = measure.staffConfigs()) {
+                for (const auto staffConfig : staffConfigs.value()) {
+                    const int staffNumber = staffConfig.staff();
+                    if (staffNumber < 1 || staffNumber > staffCount) {
+                        addError("Staff config references non-existent staff " + std::to_string(staffNumber) +
+                                     " in part " + part.id_or("<no-id>") + ".",
+                                 staffConfig);
+                    }
+                }
+            }
             auto measureTime = [&]() -> FractionValue {
                 if (auto time = measure.calcCurrentTime()) {
                     return time.value();

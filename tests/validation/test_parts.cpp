@@ -86,6 +86,14 @@ TEST(Parts, ClefInvalidStaff)
     expectSemanticError(doc, inputPath, "Clef references non-existent staff 2 in part P1.");
 }
 
+TEST(Parts, StaffConfigInvalidStaff)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "errors" / "staff_config_invalid_staff.json";
+    auto doc = mnx::Document::create(inputPath);
+    expectSemanticError(doc, inputPath, "Staff config references non-existent staff 2 in part P1.");
+}
+
 TEST(Parts, InvalidLyricsLineIds)
 {
     setupTestDataPaths();

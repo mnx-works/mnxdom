@@ -46,6 +46,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Orientation, orient, Orientation::Auto);                 ///< vertical placement of the fermata
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, pointing, MarkingUpDownAuto::Auto);   ///< direction of the fermata symbol
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(FermataSymbol, symbol, FermataSymbol::Normal);           ///< the style of symbol for the fermata
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "fermata";     ///< required for mapping
 };
 
 /**
@@ -541,6 +543,8 @@ public:
         (const FractionValue&, value)); ///< The metric position, where 1/4 is a quarter note.
     MNX_OPTIONAL_PROPERTY(unsigned, graceIndex);        ///< The grace note index of this position.
                                                         ///< (0 is the primary, and then count to the left.)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "rhythmic-position";     ///< required for mapping
 };
 
 /**
@@ -595,6 +599,8 @@ public:
     MNX_REQUIRED_CHILD(
         RhythmicPosition, position,
         (const FractionValue&, position)); ///< The metric position, where 1/4 is a quarter note.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "measure-rhythmic-position";     ///< required for mapping
 };
 
 /**
@@ -637,6 +643,8 @@ public:
 
     MNX_REQUIRED_PROPERTY(int, halfSteps);      ///< the number of 12-EDO chromatic halfsteps in the interval (negative is down)
     MNX_REQUIRED_PROPERTY(int, staffDistance);  ///< the number of diatonic steps in the interval (negative is down)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "interval";     ///< required for mapping
 };
 
 /**
@@ -676,6 +684,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY(std::string, color);                  ///< color to use when rendering the key signature
     MNX_REQUIRED_PROPERTY(int, fifths);                         ///< offset from signature with no accidentals
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "key";     ///< required for mapping
 };
 
 /**
@@ -726,6 +736,8 @@ public:
 
     /// @brief Calculates the number of flags or beams required by this note value
     [[nodiscard]] unsigned calcNumberOfFlags() const;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "note-value";     ///< required for mapping
 };
 
 /**
@@ -773,6 +785,8 @@ public:
     MNX_REQUIRED_CHILD(NoteValue, duration,
         (NoteValueBase, base), (unsigned, dots)); ///< duration unit
     MNX_REQUIRED_PROPERTY(unsigned, multiple);                  ///< quantity of duration units
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "note-value-quantity";     ///< required for mapping
 };
 
 /**
@@ -785,6 +799,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(unsigned, lines, 5u);    ///< number of staff lines
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staff-config";     ///< required for mapping
 };
 
 /**
@@ -833,6 +849,8 @@ public:
     MNX_REQUIRED_PROPERTY(int, count);                      ///< the number of beats (top number)
     MNX_OPTIONAL_PROPERTY(TimeSignatureDisplay, display);   ///< A special time signature glyph to use, e.g. for common time or cut time.
     MNX_REQUIRED_PROPERTY(TimeSignatureUnit, unit);         ///< the unit value (bottom number)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "time";     ///< required for mapping
 };
 
 } // namespace mnx

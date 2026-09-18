@@ -25,6 +25,7 @@
 
 #include "mnxdom.h"
 #include "music_theory/music_theory.hpp"
+#include "util/IdIndexer.h"
 #include "util/MusicTheoryConversions.h"
 
 namespace mnx {
@@ -132,6 +133,10 @@ void Document::buildEntityMap(EntityMapPolicies policies,
 {
     m_entityMapping.reset();
     m_entityMapping = std::make_shared<util::EntityMap>(root(), errorHandler);
+    // every id in the document, classified by the schema
+    util::detail::indexDocumentIds(*root(), getMnxSchemaJson(), [&](const util::detail::IndexedId& indexed) {
+        m_entityMapping->add(indexed.id, indexed.location, indexed.typeName);
+    });
     auto adaptGraceIndex = [&](std::optional<unsigned> value) -> std::optional<unsigned> {
         if (!policies.ottavasRespectGraceTargets) {
             return std::nullopt;
@@ -156,20 +161,14 @@ void Document::buildEntityMap(EntityMapPolicies policies,
     const auto globalMeasures = global().measures();
     std::vector<FractionValue> measureDurations(globalMeasures.size(), FractionValue(1, 1));
     for (const auto globalMeasure : globalMeasures) {
-        if (const auto globalMeasureId = globalMeasure.id()) {
-            m_entityMapping->add(globalMeasureId.value(), globalMeasure);
-        }
         FractionValue duration(1, 1);
         if (const auto time = globalMeasure.time()) {
             duration = static_cast<FractionValue>(*time);
         }
         measureDurations[globalMeasure.calcArrayIndex()] = duration;
     }
-    // parts, events, notes
+    // parts: ottava spans, event positions, lyric lines, and beams
     for (const auto part : parts()) {
-        if (part.id()) {
-            m_entityMapping->add(part.id().value(), part);
-        }
         struct OttavaSpan
         {
             int staff{ 1 };
@@ -279,23 +278,6 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                                     const FractionValue& startTime,
                                     const FractionValue&,
                                     util::SequenceWalkContext& ctx) -> bool {
-                    if (event.id()) {
-                        m_entityMapping->add(event.id().value(), event);
-                    }
-                    if (auto notes = event.notes()) {
-                        for (const auto note : notes.value()) {
-                            if (note.id()) {
-                                m_entityMapping->add(note.id().value(), note);
-                            }
-                        }
-                    }
-                    if (auto kitNotes = event.kitNotes()) {
-                        for (const auto kitNote : kitNotes.value()) {
-                            if (kitNote.id()) {
-                                m_entityMapping->add(kitNote.id().value(), kitNote);
-                            }
-                        }
-                    }
                     if (docLyricLines.empty()) {
                         if (const auto lyrics = event.lyrics()) {
                             if (const auto lines = lyrics->lines()) {
@@ -350,14 +332,6 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                     }
                     walkBeamLevels(beam, 1, walkBeamLevels);
                 }
-            }
-        }
-    }
-    // layouts
-    if (const auto layoutArray = layouts()) {
-        for (const auto layout : layoutArray.value()) {
-            if (layout.id().has_value()) {
-                m_entityMapping->add(layout.id().value(), layout);
             }
         }
     }

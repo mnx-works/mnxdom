@@ -78,6 +78,8 @@ public:
         return value() || !prefix_or({}).empty() || !suffix_or({}).empty()
             || (glyphs() && !glyphs().value().empty());
     }
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "dynamic-group";     ///< required for mapping
 };
 
 /**

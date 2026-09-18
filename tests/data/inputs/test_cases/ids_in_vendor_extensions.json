@@ -1,0 +1,41 @@
+{
+    "mnx": {"version": 1},
+    "global": {
+        "_x": {
+            "vendor": {"id": "P1", "nested": [{"id": "ev1"}]}
+        },
+        "measures": [
+            {
+                "id": "m1",
+                "barline": {"type": "regular"},
+                "time": {"count": 4, "unit": 4}
+            }
+        ]
+    },
+    "parts": [
+        {
+            "id": "P1",
+            "measures": [
+                {
+                    "clefs": [
+                        {"clef": {"sign": "G", "staffPosition": -2}}
+                    ],
+                    "sequences": [
+                        {
+                            "content": [
+                                {
+                                    "id": "ev1",
+                                    "_x": {"vendor": {"id": "m1"}},
+                                    "duration": {"base": "whole"},
+                                    "notes": [
+                                        {"pitch": {"step": "C", "octave": 4}}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

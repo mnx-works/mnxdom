@@ -92,6 +92,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< The staff number within the part.
     MNX_OPTIONAL_PROPERTY(StemDirection, stem);         ///< The stem direction for this staff source.
     MNX_OPTIONAL_PROPERTY(std::string, voice);          ///< The voice id to draw from.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staff-source";     ///< required for mapping
 };
 
 /**
@@ -119,6 +121,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LayoutSymbol, symbol, LayoutSymbol::NoSymbol); ///< The symbol down the left side.
 
     inline static constexpr std::string_view ContentTypeValue = "staff"; ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staff";     ///< required for mapping
 };
 
 /**
@@ -152,6 +156,8 @@ public:
     [[nodiscard]] StaffGroupBarlineOverride calcBarlineOverride() const;
 
     inline static constexpr std::string_view ContentTypeValue = "group"; ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staff-group";     ///< required for mapping
 };
 
 inline Group LayoutContent::appendGroup()

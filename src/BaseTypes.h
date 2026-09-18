@@ -55,6 +55,9 @@
  */
 namespace mnx {
 
+/// @brief Returns the parsed embedded MNX schema. It is parsed once per process.
+[[nodiscard]] const nlohmann::json& getMnxSchemaJson();
+
 /// @brief Returns the MNX schema id from the embedded schema.
 [[nodiscard]] const std::string& getMnxSchemaId();
 

@@ -285,3 +285,11 @@ TEST(Parts, DynamicsMissingRequiredAttributesByType)
         "Dynamic of type \"accent\" requires field \"value\"."
     });
 }
+
+TEST(Parts, SlurTargetIsNote)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "errors" / "slur_target_is_note.json";
+    auto doc = mnx::Document::create(inputPath);
+    expectSemanticError(doc, inputPath, "ID \"n2\" has type \"note\", but expected \"event\".");
+}

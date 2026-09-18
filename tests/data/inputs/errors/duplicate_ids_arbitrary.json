@@ -1,0 +1,67 @@
+{
+    "mnx": {"version": 1},
+    "id": "P1",
+    "global": {
+        "measures": [
+            {
+                "id": "m1",
+                "barline": {"type": "regular"},
+                "tempos": [{"id": "tempo1", "bpm": 120, "value": {"base": "quarter"}}],
+                "time": {"count": 4, "unit": 4}
+            }
+        ]
+    },
+    "layouts": [
+        {
+            "id": "layout1",
+            "content": [
+                {
+                    "type": "staff",
+                    "id": "layoutStaff1",
+                    "sources": [
+                        {"id": "tempo1", "part": "P1", "staff": 1}
+                    ]
+                }
+            ]
+        }
+    ],
+    "parts": [
+        {
+            "id": "P1",
+            "measures": [
+                {
+                    "clefs": [
+                        {"id": "m1", "clef": {"sign": "G", "staffPosition": -2}}
+                    ],
+                    "sequences": [
+                        {
+                            "id": "seq1",
+                            "content": [
+                                {
+                                    "id": "ev1",
+                                    "duration": {"base": "whole"},
+                                    "notes": [
+                                        {"pitch": {"step": "C", "octave": 4}}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "seq2",
+                            "voice": "v2",
+                            "content": [
+                                {
+                                    "id": "ev2",
+                                    "duration": {"base": "whole"},
+                                    "notes": [
+                                        {"id": "seq2", "pitch": {"step": "E", "octave": 4}}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -68,6 +68,8 @@ public:
     static Required make(BarlineType barlineType) { return { barlineType }; }
 
     MNX_REQUIRED_PROPERTY(BarlineType, type);  ///< the type of barline
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "barline";     ///< required for mapping
 };
 
 /**
@@ -109,6 +111,8 @@ public:
     MNX_REQUIRED_PROPERTY(int, duration);           ///< the type of barline
     MNX_OPTIONAL_CHILD(Array<int>, numbers);        ///< ending numbers
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, open, false);  ///< if this is an open (i.e., final) ending
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "ending";     ///< required for mapping
 };
 
 /**
@@ -149,6 +153,8 @@ public:
     MNX_OPTIONAL_PROPERTY(std::string, color);                  ///< color to use when rendering the fine direction
     MNX_REQUIRED_CHILD(RhythmicPosition, location,
         (const FractionValue&, position)); ///< the location of the fine direction
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "fine";     ///< required for mapping
 };
 
 /**
@@ -192,6 +198,8 @@ public:
     MNX_REQUIRED_PROPERTY(JumpType, type);                      ///< the JumpType
     MNX_REQUIRED_CHILD(RhythmicPosition, location,
         (const FractionValue&, position)); ///< the location of the jump
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "jump";     ///< required for mapping
 };
 
 /**
@@ -204,6 +212,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_PROPERTY(int, times);               ///< number of times to repeat
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "repeat-end";     ///< required for mapping
 };
 
 /**
@@ -215,6 +225,7 @@ class RepeatStart : public Object
 public:
     using Object::Object;
 
+    inline static constexpr std::string_view JsonSchemaTypeName = "repeat-start";     ///< required for mapping
 };
 
 /**
@@ -256,6 +267,8 @@ public:
     MNX_OPTIONAL_PROPERTY(std::string, glyph);      ///< the SMuFL glyph name to be used when rendering this segno.
     MNX_REQUIRED_CHILD(RhythmicPosition, location,
         (const FractionValue&, position)); ///< location
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "segno";     ///< required for mapping
 };
 
 /**
@@ -269,6 +282,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY(unsigned, midiNumber);  ///< MIDI pitch of the sound from 0-127, where middle C is 60.
     MNX_OPTIONAL_PROPERTY(std::string, name);     ///< The name of the sound (presentable to the user)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "sound";     ///< required for mapping
 };
 
 /**
@@ -314,6 +329,8 @@ public:
         (const FractionValue&, position)); ///< location within the measure of the tempo marking
     MNX_REQUIRED_CHILD(NoteValue, value,
         (NoteValueBase, base), (unsigned, dots)); ///< the note value for the tempo.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "tempo";     ///< required for mapping
 };
 
 /**
@@ -380,6 +397,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY(std::string, label);  ///< Human readable lable for this lyric line. This could be used in a software UI, for example.
     MNX_OPTIONAL_PROPERTY(std::string, lang);   ///< RFC5646 language code identifying the language of this line of lyrics.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "lyric-line-metadata";     ///< required for mapping
 };
 
 /**
@@ -393,6 +412,8 @@ public:
 
     MNX_OPTIONAL_CHILD(Dictionary<LyricLineMetadata>, lineMetadata); ///< Defines lyric line IDs and their metadata.
     MNX_OPTIONAL_CHILD(Array<std::string>, lineOrder);              ///< Lyric line IDs used in the document (e.g. verse numbers)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "lyrics-global";     ///< required for mapping
 };
 
 } // namespace global
@@ -418,6 +439,8 @@ public:
     MNX_OPTIONAL_CHILD(global::LyricsGlobal, lyrics);       ///< lyrics metadata
     MNX_REQUIRED_CHILD(Array<global::Measure>, measures);   ///< array of global measures.
     MNX_OPTIONAL_CHILD(Dictionary<global::Sound>, sounds);  ///< dictionary of sounds with user-defined keys
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "global";     ///< required for mapping
 };
 
 } // namespace mnx

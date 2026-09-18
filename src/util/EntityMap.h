@@ -58,6 +58,36 @@ struct JsonSchemaTypeNames<sequence::NoteBase>
     };
 };
 
+template <>
+struct JsonSchemaTypeNames<sequence::SequenceContentObject>
+{
+    static constexpr std::array<std::string_view, 5> value{
+        sequence::Event::JsonSchemaTypeName,
+        sequence::Grace::JsonSchemaTypeName,
+        sequence::Tuplet::JsonSchemaTypeName,
+        sequence::Space::JsonSchemaTypeName,
+        sequence::MultiNoteTremolo::JsonSchemaTypeName
+    };
+};
+
+template <>
+struct JsonSchemaTypeNames<layout::LayoutContentObject>
+{
+    static constexpr std::array<std::string_view, 2> value{
+        layout::Staff::JsonSchemaTypeName,
+        layout::Group::JsonSchemaTypeName
+    };
+};
+
+template <>
+struct JsonSchemaTypeNames<part::ArpeggioBase>
+{
+    static constexpr std::array<std::string_view, 2> value{
+        part::Arpeggio::JsonSchemaTypeName,
+        part::NonArpeggio::JsonSchemaTypeName
+    };
+};
+
 template <typename T>
 bool matchesTypeName(std::string_view typeName)
 {
@@ -102,8 +132,10 @@ class mapping_error : public std::runtime_error
  * @class EntityMap
  * @brief Provides type-safe ID-based lookup for elements in an MNX document.
  *
- * Constructed from an mnx::Document, the EntityMap scans the document to index
- * all identifiable elements by ID. Supports lookup by type.
+ * Constructed from an mnx::Document, the EntityMap indexes every object in the document
+ * that carries an `id`, classifying each one by the name of the MNX schema definition that
+ * describes it. Supports typed lookup (via each DOM class's `JsonSchemaTypeName`) as well as
+ * untyped lookup for ids on objects the DOM does not model or the schema cannot classify.
  */
 class EntityMap
 {
@@ -129,21 +161,30 @@ public:
         }
     };
 
-private:
-    /// @brief Adds a key to the mapping. If there is no error handler, it throws @ref mapping_error if there is a duplicate key.
-    /// @tparam T The type to add
-    /// @param id The ID to add.
-    /// @param value The value to index.
-    /// @throws mapping_error if the ID is a duplicate and there is no error handler.
-    template <typename T>
-    void add(const std::string& id, const T& value)
+    /// @brief Where an id lives in the document and what kind of object carries it.
+    struct IdEntry
     {
-        auto result = m_objectMap.emplace(id, MappedLocation{ value.pointer(), T::JsonSchemaTypeName });
+        json_pointer location;      ///< location of the object carrying the id
+        std::string typeName;       ///< MNX schema `$defs` name of the object, or empty if it could not be classified
+    };
+
+    /// @brief Placeholder used in messages for an id whose object type could not be classified.
+    static constexpr std::string_view UNKNOWN_TYPE_NAME = "<unknown>";
+
+private:
+    /// @brief Adds an id to the mapping. If there is no error handler, it throws @ref mapping_error if there is a duplicate id.
+    /// @param id The id to add.
+    /// @param location The location of the object that carries the id.
+    /// @param typeName The schema `$defs` name of the object, or empty if unknown.
+    /// @throws mapping_error if the id is a duplicate and there is no error handler.
+    void add(const std::string& id, const json_pointer& location, std::string typeName)
+    {
+        auto result = m_objectMap.emplace(id, IdEntry{ location, std::move(typeName) });
         if (!result.second) {
-            mapping_error err("ID " + formatKeyString(id) + " already exists for type \"" + std::string(result.first->second.typeName)
+            mapping_error err("ID " + formatKeyString(id) + " already exists for type \"" + displayTypeName(result.first->second.typeName)
                 + "\" at " + result.first->second.location.to_string());
             if (m_errorHandler) {
-                m_errorHandler.value()(err.what(), value);
+                m_errorHandler.value()(err.what(), Object(root(), location));
             } else {
                 throw err;
             }
@@ -212,11 +253,12 @@ public:
      * @param errorLocation The location in the document for error reporting purposes.
      * @return An instance of T if found; std::nullopt if the ID is not present.
      *
-     * @throws mapping_error if the ID is found but has a different type than @p T
-     *         (release builds only; debug builds assert instead).
+     * @throws mapping_error if the ID is found but has a different (or unknown) type than @p T.
      *
-     * @note A type mismatch indicates an internal logic error in the ID mapping.
-     *       This function only models the *absence* of an ID, not type ambiguity.
+     * @note Because every id in the document is indexed, a type mismatch usually means the
+     *       document references an id of the wrong kind of object (for example, a slur target
+     *       that names a note instead of an event). This function only models the *absence*
+     *       of an ID, not type ambiguity.
      */
     template <typename T>
     std::optional<T> tryGet(
@@ -227,10 +269,10 @@ public:
         if (it == m_objectMap.end()) {
             return std::nullopt;
         }
-        MNX_ASSERT_IF(!detail::matchesTypeName<T>(it->second.typeName)) {
+        if (!detail::matchesTypeName<T>(it->second.typeName)) {
             mapping_error err(
-                "ID " + formatKeyString(id) + " has type \"" + std::string(it->second.typeName) +
-                "\", but " + detail::typeNamesExpectationString<T>() + "."
+                "ID " + formatKeyString(id) + " has " + (it->second.typeName.empty() ? "unknown type" : "type \"" + it->second.typeName + "\"")
+                + ", but " + detail::typeNamesExpectationString<T>() + "."
             );
             if (m_errorHandler) {
                 m_errorHandler.value()(err.what(), errorLocation.value_or(Document(root())));
@@ -292,6 +334,31 @@ public:
             return false;
         }
         return detail::matchesTypeName<T>(it->second.typeName);
+    }
+
+    /// @brief Looks up an id without regard to type.
+    /// @param id The id to search for.
+    /// @return The entry if the id exists in the document; std::nullopt otherwise.
+    [[nodiscard]] std::optional<IdEntry> tryFind(const std::string& id) const
+    {
+        const auto it = m_objectMap.find(id);
+        if (it == m_objectMap.end()) {
+            return std::nullopt;
+        }
+        return it->second;
+    }
+
+    /// @brief Returns the number of ids in the mapping.
+    [[nodiscard]] size_t idCount() const { return m_objectMap.size(); }
+
+    /// @brief Calls @p callback for every id in the mapping (in no particular order).
+    /// @param callback A callable accepting `(const std::string& id, const IdEntry& entry)`.
+    template <typename F>
+    void forEachId(F&& callback) const
+    {
+        for (const auto& [id, entry] : m_objectMap) {
+            callback(id, entry);
+        }
     }
 
     /// @brief Get the beam for an event, if it is mapped.
@@ -423,7 +490,7 @@ private:
         json_pointer location;          ///< location of instance in JSON
         std::string_view typeName;      ///< schema name of type for this instance
     };
-    std::unordered_map<std::string, MappedLocation> m_objectMap;
+    std::unordered_map<std::string, IdEntry> m_objectMap;
     struct BeamMappingEntry
     {
         MappedLocation location;
@@ -436,6 +503,10 @@ private:
 
     static std::string formatKeyString(const std::string& key) {
         return "\"" + key + "\"";
+    }
+
+    static std::string displayTypeName(const std::string& typeName) {
+        return typeName.empty() ? std::string(UNKNOWN_TYPE_NAME) : typeName;
     }
 
 };

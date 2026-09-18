@@ -79,6 +79,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, arrow, false);                                     ///< specifies if the arpeggio has an arrow
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, direction, MarkingUpDownAuto::Auto);  ///< the direction of the arpeggio
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "arpeggio";     ///< required for mapping
 };
 
 /**
@@ -89,6 +91,8 @@ class NonArpeggio : public ArpeggioBase
 {
 public:
     using ArpeggioBase::ArpeggioBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "non-arpeggio";     ///< required for mapping
 };
 
 /**
@@ -168,6 +172,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, showOctave, true); ///< if octave is non-zero, this value determines whether the octave should be displayed on the clef
     MNX_REQUIRED_PROPERTY(ClefSign, sign);          ///< the clef sign
     MNX_REQUIRED_PROPERTY(int, staffPosition);      ///< staff position offset from center of staff (in half-spaces)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "clef";     ///< required for mapping
 };
 
 /**
@@ -224,6 +230,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);              ///< The staff (within the part) this ottava applies to
     MNX_REQUIRED_PROPERTY(OttavaAmount, value);                     ///< The type of ottava (amount of displacement, in octaves)
     MNX_OPTIONAL_PROPERTY(std::string, voice);                      ///< Optionally specify the voice this ottava applies to.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "ottava";     ///< required for mapping
 };
 
 /**
@@ -264,6 +272,8 @@ public:
     MNX_OPTIONAL_PROPERTY(std::string, name);       ///< Human-readable name of the kit component
     MNX_OPTIONAL_PROPERTY(std::string, sound);      ///< The sound ID in `global.sounds`.
     MNX_REQUIRED_PROPERTY(int, staffPosition);      ///< The staff position of the kit component, where 0 is the middle line.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "kit-component";     ///< required for mapping
 };
 
 /**
@@ -303,6 +313,8 @@ public:
 
     MNX_REQUIRED_PROPERTY(int, count);  ///< The count to display.
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MultiStaffOrientation, orient, MultiStaffOrientation::Auto); ///< Where to display the count.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "measure-repeat-counter";     ///< required for mapping
 };
 
 /**
@@ -345,6 +357,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(AutoYesNo, displayNumber, AutoYesNo::Auto); ///< Whether a number is displayed above the measure repeat glyph.
     MNX_REQUIRED_PROPERTY(int, number);             ///< The number of measures to repeat.
     MNX_OPTIONAL_PROPERTY(int, staffPosition);      ///< THe staff position on which to display the glyph.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "measure-repeat";     ///< required for mapping
 };
 
 /**
@@ -391,6 +405,8 @@ public:
     /// @brief Calculates and returns the transposed keyFifths value for the input key.
     /// @param concertKey The concert key to calculate from.
     KeySignature::Required calcTransposedKey(const KeySignature::Required& concertKey) const;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "part-transposition";     ///< required for mapping
 };
 
 /**
@@ -438,6 +454,8 @@ public:
     MNX_OPTIONAL_CHILD(RhythmicPosition, position,
         (const FractionValue&, position)); ///< location within the measure of the tempo marking
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< the staff number (for multistaff parts)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "positioned-clef";     ///< required for mapping
 };
 
 /**
@@ -466,6 +484,8 @@ public:
     MNX_OPTIONAL_CHILD(RhythmicPosition, position,
         (const FractionValue&, position)); ///< location within the measure of the staff configuration change (default: start of measure)
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< the staff number (for multistaff parts)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "positioned-staff-config";     ///< required for mapping
 };
 
 /**

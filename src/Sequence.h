@@ -97,6 +97,8 @@ public:
     static Required make(AccidentalEnclosureSymbol symbol) { return { symbol }; }
 
     MNX_REQUIRED_PROPERTY(AccidentalEnclosureSymbol, symbol);      ///< The symbol to use for the enclosure
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "accidental-enclosure";     ///< required for mapping
 };
 
 /**
@@ -138,6 +140,8 @@ public:
         (AccidentalEnclosureSymbol, symbol)); ///< The enclosure type (brackets or parentheses). Omit if none.
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, force, false); ///< Whether this accidental was set intentionally (e.g., a courtesy accidental).
     MNX_REQUIRED_PROPERTY(bool, show);                      ///< Whether to show or hide the accidental
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "accidental-display";     ///< required for mapping
 };
 
 /**
@@ -150,6 +154,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_PROPERTY(int, staffPosition);              ///< The staff position of non-floating rests.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "rest";     ///< required for mapping
 };
 
 /**
@@ -162,6 +168,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, diatonicDelta, 0);  ///< the number of enharmonic transpositions to apply
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "written";     ///< required for mapping
 };
 
 /**
@@ -217,6 +225,8 @@ public:
     /// @brief Calculates the transposed version of this pitch, taking into account the part transposition
     /// for the part that contains this pitch.
     [[nodiscard]] Required calcTransposed() const;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "pitch";     ///< required for mapping
 };
 
 /**
@@ -260,6 +270,8 @@ public:
     MNX_OPTIONAL_PROPERTY(SlurTieSide, sideEnd);            ///< used to force slur's endpoint direction (if different than `side`)
     MNX_OPTIONAL_PROPERTY(std::string, startNote);          ///< the specific note ID this slur starts on
     MNX_REQUIRED_PROPERTY(std::string, target);             ///< the event ID this slur ends on (if present)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "slur";     ///< required for mapping
 };
 
 /**
@@ -286,6 +298,8 @@ public:
     MNX_OPTIONAL_PROPERTY(SlurTieSide, side);               ///< Used to force tie direction (if present).
     MNX_OPTIONAL_PROPERTY(std::string, target);             ///< The note id of the tied-to note.
     MNX_OPTIONAL_PROPERTY(TieTargetType, targetType);       ///< The type of target for this tie (if present).
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "tie";     ///< required for mapping
 };
 
 /**
@@ -299,6 +313,8 @@ class PerformOptions : public Object
 {
 public:
     using Object::Object;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "perform-options";     ///< required for mapping
 };
 
 /**
@@ -436,6 +452,8 @@ public:
 
     MNX_REQUIRED_PROPERTY(std::string, text);           ///< the syllable text
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LyricLineType, type, LyricLineType::Whole);  ///< the type of syllable (in relation to the complete word)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "event-lyric-line";     ///< required for mapping
 };
 
 /**
@@ -448,6 +466,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_CHILD(Dictionary<EventLyricLine>, lines);      ///< the syllables per lyric line
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "lyrics";     ///< required for mapping
 };
 
 /**
@@ -565,6 +585,8 @@ public:
         (const FractionValue&, value)); ///< Duration of space to occupy.
 
     inline static constexpr std::string_view ContentTypeValue = "space";   ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "space";     ///< required for mapping
 };
 
 /**
@@ -595,6 +617,8 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, slash, true);          ///< whether to show a slash on the grace note
 
     inline static constexpr std::string_view ContentTypeValue = "grace";   ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "grace";     ///< required for mapping
 };
 
 /**
@@ -646,6 +670,8 @@ public:
         (unsigned, count), (const NoteValue::Required&, noteValue)); ///< a half note tremolo would be 2 quarters here
 
     inline static constexpr std::string_view ContentTypeValue = "tremolo";   ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "multi-note-tremolo";     ///< required for mapping
 };
 
 /**
@@ -704,6 +730,8 @@ public:
     { return outer() / inner(); }
 
     inline static constexpr std::string_view ContentTypeValue = "tuplet";   ///< type value that identifies the type within the content array
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "tuplet";     ///< required for mapping
 };
 
 /**
@@ -726,6 +754,8 @@ public:
     MNX_OPTIONAL_PROPERTY(int, staffPosition);      ///< the forced staff position of the full-measure rest
     MNX_OPTIONAL_CHILD(NoteValue, visualDuration,
         (NoteValueBase, base), (unsigned, dots));   ///< the visual duration of the full-measure rest (defaults to importer defaults).
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "full-measure-rest";     ///< required for mapping
 };
 inline Event SequenceContent::appendEvent(NoteValueBase base, unsigned dots)
 { return appendWithType<Event>(base, dots); }
@@ -772,6 +802,8 @@ public:
     /// @todo `orient` property
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< the staff number for this sequence
     MNX_OPTIONAL_PROPERTY(std::string, voice);          ///< the unique (per measure) voice label for this sequence.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "sequence";     ///< required for mapping
 };
 
 } // namespace mnx

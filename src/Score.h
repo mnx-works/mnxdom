@@ -73,6 +73,8 @@ public:
     MNX_REQUIRED_PROPERTY(int, duration);           ///< the number of measures in the multimeasure rest
     MNX_OPTIONAL_PROPERTY(std::string, label);      ///< the label to place on the multimeasure rest, if provided.
     MNX_REQUIRED_PROPERTY(std::string, start);      ///< the global measure id of the start measure of the multimeasure rest
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "multimeasure-rest";     ///< required for mapping
 };
 
 /**
@@ -118,6 +120,8 @@ public:
     MNX_REQUIRED_PROPERTY(std::string, layout);             ///< Layout id, referring to an element in the root-level layouts array.
     MNX_REQUIRED_CHILD(MeasureRhythmicPosition, location,
         (const std::string&, measureId), (const FractionValue&, position)); ///< location where the new layout takes effect.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "layout-change";     ///< required for mapping
 };
 
 /**
@@ -158,6 +162,8 @@ public:
     MNX_OPTIONAL_PROPERTY(std::string, layout);     ///< Layout id, referring to an element in the root-level layouts array.
     MNX_OPTIONAL_CHILD(Array<LayoutChange>, layoutChanges); ///< layout changes in the system (e.g., for changes in stem direction)
     MNX_REQUIRED_PROPERTY(std::string, measure);    ///< The global measure if of the first measure in the system
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "system";     ///< required for mapping
 };
 
 /**
@@ -181,6 +187,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY(std::string, layout);     ///< Layout id, referring to an element in the root-level layouts array.
     MNX_REQUIRED_CHILD(Array<System>, systems);     ///< and array systems on the page.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "page";     ///< required for mapping
 };
 
 } // namespace score
@@ -225,6 +233,8 @@ public:
     MNX_REQUIRED_PROPERTY(std::string, name);                               ///< Required name, such as "Flute 1" or "Full Score".
     MNX_OPTIONAL_CHILD(Array<score::Page>, pages);                          ///< An optional list of pages.
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useWritten, false);            ///< If this value is true, the score should be displayed transposed.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "score";     ///< required for mapping
 };
 
 } // namespace mnx

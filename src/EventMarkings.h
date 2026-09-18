@@ -47,6 +47,8 @@ class Accent : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "accent";     ///< required for mapping
 };
 
 /**
@@ -92,6 +94,8 @@ public:
     static Required make(MarkingUpDown direction) { return { direction }; }
 
     MNX_REQUIRED_PROPERTY(MarkingUpDown, direction);     ///< whether it is a down bow or up bow
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "bow-direction";     ///< required for mapping
 };
 
 /**
@@ -104,6 +108,8 @@ public:
     using EventMarkingBase::EventMarkingBase;
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(BreathMarkSymbol, symbol, BreathMarkSymbol::Auto); ///< The symbol for the breath mark.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "breath-mark";     ///< required for mapping
 };
 
 /**
@@ -114,6 +120,8 @@ class SoftAccent : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "soft-accent";     ///< required for mapping
 };
 
 /**
@@ -124,6 +132,8 @@ class Spiccato : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "spiccato";     ///< required for mapping
 };
 
 /**
@@ -134,6 +144,8 @@ class Staccatissimo : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staccatissimo";     ///< required for mapping
 };
 
 /**
@@ -144,6 +156,8 @@ class Staccato : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "staccato";     ///< required for mapping
 };
 
 /**
@@ -154,6 +168,8 @@ class Stress : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "stress-marking";     ///< required for mapping
 };
 
 /**
@@ -167,6 +183,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, pointing, MarkingUpDownAuto::Auto);   ///< Specifies if the accent points upward or downward,
                                                                                                 ///< irrespective of above/below orientation.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "strong-accent";     ///< required for mapping
 };
 
 /**
@@ -177,6 +195,8 @@ class Tenuto : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "tenuto";     ///< required for mapping
 };
 
 /**
@@ -222,6 +242,8 @@ public:
     static Required make(unsigned marks) { return { marks }; }
 
     MNX_REQUIRED_PROPERTY(unsigned, marks);     ///< the number of marks (a value from 0..8, inclusive)
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "tremolo-single";     ///< required for mapping
 };
 
 /**
@@ -232,6 +254,8 @@ class Unstress : public EventMarkingBase
 {
 public:
     using EventMarkingBase::EventMarkingBase;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "unstress-marking";     ///< required for mapping
 };
 
 /**
@@ -257,6 +281,8 @@ public:
     MNX_OPTIONAL_CHILD(SingleNoteTremolo, tremolo,
         (unsigned, marks));                             ///< A single-note tremolo mark
     MNX_OPTIONAL_CHILD(Unstress, unstress);             ///< A stress mark
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "event-markings";     ///< required for mapping
 };
 
 } // namespace sequence

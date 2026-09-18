@@ -43,7 +43,7 @@ std::string_view embeddedSchemaText()
 const std::string& embeddedSchemaId()
 {
     static const std::string schemaId = [] {
-        const json schemaJson = json::parse(embeddedSchemaText());
+        const json& schemaJson = getMnxSchemaJson();
         const auto it = schemaJson.find("$id");
         if (it == schemaJson.end() || !it->is_string()) {
             throw std::runtime_error("MNX schema is missing a string \"$id\" field.");
@@ -72,6 +72,12 @@ int parseVersionFromSchemaId(const std::string& schemaId)
 }
 
 } // namespace
+
+const json& getMnxSchemaJson()
+{
+    static const json schemaJson = json::parse(embeddedSchemaText());
+    return schemaJson;
+}
 
 const std::string& getMnxSchemaId()
 {

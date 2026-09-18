@@ -84,6 +84,8 @@ public:
 
         MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useAccidentalDisplay, false);  ///< Optional property indicating whether accidental display is used.
         MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useBeams, false);              ///< Optional property that indicates if beams are encoded.
+
+        inline static constexpr std::string_view JsonSchemaTypeName = "support";     ///< required for mapping
     };
 
     /**
@@ -124,6 +126,8 @@ public:
             clear__x();
         }
     }
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "mnx";     ///< required for mapping
 };
 
 /**
@@ -254,6 +258,8 @@ public:
     /// appears in order on a single corresponding layout staff.
     /// @return The layout if found or std::nullopt if not.
     [[nodiscard]] std::optional<Layout> findFullScoreLayout() const;
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "root";     ///< required for mapping
 };
 
 static_assert(std::is_move_constructible<mnx::Document>::value, "Document must be move constructible");

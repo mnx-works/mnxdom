@@ -58,6 +58,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/cmake/MnxW3C.cmake")
 add_library(mnxdom
     src/EnumerationMaps.cpp
     src/Implementations.cpp
+    src/util/IdIndexer.cpp
     src/validation/SchemaValidate.cpp
     src/validation/SemanticValidate.cpp
 )

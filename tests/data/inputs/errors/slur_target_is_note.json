@@ -1,0 +1,47 @@
+{
+    "mnx": {"version": 1},
+    "global": {
+        "measures": [
+            {
+                "id": "m1",
+                "barline": {"type": "regular"},
+                "time": {"count": 4, "unit": 4}
+            }
+        ]
+    },
+    "parts": [
+        {
+            "id": "P1",
+            "measures": [
+                {
+                    "clefs": [
+                        {"clef": {"sign": "G", "staffPosition": -2}}
+                    ],
+                    "sequences": [
+                        {
+                            "content": [
+                                {
+                                    "id": "ev1",
+                                    "duration": {"base": "half"},
+                                    "notes": [
+                                        {"id": "n1", "pitch": {"step": "C", "octave": 4}}
+                                    ],
+                                    "slurs": [
+                                        {"target": "n2"}
+                                    ]
+                                },
+                                {
+                                    "id": "ev2",
+                                    "duration": {"base": "half"},
+                                    "notes": [
+                                        {"id": "n2", "pitch": {"step": "D", "octave": 4}}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -267,6 +267,7 @@ var namespacemnx =
       [ "Both", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01fa130c5b3473c57faa76e2a1c54e26f88e", null ]
     ] ],
     [ "getMnxSchemaId", "namespacemnx.html#a86e00ac3489b813478b7985b491a9ae9", null ],
+    [ "getMnxSchemaJson", "namespacemnx.html#ad810823f9325a3e1de219ce424128817", null ],
     [ "getMnxSchemaVersion", "namespacemnx.html#ac7f15615dff0f6cdcb867af398b32e80", null ],
     [ "MNX_VERSION", "namespacemnx.html#a7cd0ba846ca3299297f341bc77185832", null ],
     [ "MNXDOM_PROVENANCE_KEY", "namespacemnx.html#abff6c2f8ec2f722e37fed827c9193f2b", null ],

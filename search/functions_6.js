@@ -11,13 +11,14 @@ var searchData=
   ['getindexof_8',['getIndexOf',['../classmnx_1_1util_1_1EntityMap.html#a9328f659f08e856e3a3f15aa7ec4f729',1,'mnx::util::EntityMap']]],
   ['getlyriclineorder_9',['getLyricLineOrder',['../classmnx_1_1util_1_1EntityMap.html#a7e72106b5e3598ba6fdd3236cefac3a9',1,'mnx::util::EntityMap']]],
   ['getmnxschemaid_10',['getMnxSchemaId',['../namespacemnx.html#a86e00ac3489b813478b7985b491a9ae9',1,'mnx']]],
-  ['getmnxschemaversion_11',['getMnxSchemaVersion',['../namespacemnx.html#ac7f15615dff0f6cdcb867af398b32e80',1,'mnx']]],
-  ['getoptionalchild_12',['getOptionalChild',['../classmnx_1_1Base.html#a9004086ecbdbcccecaf288f3d5d60716',1,'mnx::Base']]],
-  ['getottavashift_13',['getOttavaShift',['../classmnx_1_1util_1_1EntityMap.html#abbbc9e36b74a1cb998782def2fd70295',1,'mnx::util::EntityMap']]],
-  ['getsequence_14',['getSequence',['../classmnx_1_1sequence_1_1Event.html#a620b9ae602e819af5e752cb94f4c4dc4',1,'mnx::sequence::Event']]],
-  ['getsequenceindex_15',['getSequenceIndex',['../classmnx_1_1sequence_1_1Event.html#a8f9eb9b91448c54ebb066c19291591fa',1,'mnx::sequence::Event']]],
-  ['gettypedobject_16',['getTypedObject',['../classmnx_1_1ContentArray.html#a68b3dbf590d5cf889816b625f59bf95a',1,'mnx::ContentArray']]],
-  ['global_17',['Global',['../classmnx_1_1Global.html#aaeb1b6a1c49ce86aa3a9c3a66b44db61',1,'mnx::Global']]],
-  ['grace_18',['grace',['../classmnx_1_1sequence_1_1Grace.html#adaf017787733646d9c59931b4b9aa468',1,'mnx::sequence::Grace::Grace(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1sequence_1_1Grace.html#a72c92cc9dbfa2bac7ddfd1db78934c37',1,'mnx::sequence::Grace::Grace(Base &amp;parent, std::string_view key)']]],
-  ['group_19',['Group',['../classmnx_1_1layout_1_1Group.html#a84d843a885173fd0c6a42a849f373d36',1,'mnx::layout::Group']]]
+  ['getmnxschemajson_11',['getMnxSchemaJson',['../namespacemnx.html#ad810823f9325a3e1de219ce424128817',1,'mnx']]],
+  ['getmnxschemaversion_12',['getMnxSchemaVersion',['../namespacemnx.html#ac7f15615dff0f6cdcb867af398b32e80',1,'mnx']]],
+  ['getoptionalchild_13',['getOptionalChild',['../classmnx_1_1Base.html#a9004086ecbdbcccecaf288f3d5d60716',1,'mnx::Base']]],
+  ['getottavashift_14',['getOttavaShift',['../classmnx_1_1util_1_1EntityMap.html#abbbc9e36b74a1cb998782def2fd70295',1,'mnx::util::EntityMap']]],
+  ['getsequence_15',['getSequence',['../classmnx_1_1sequence_1_1Event.html#a620b9ae602e819af5e752cb94f4c4dc4',1,'mnx::sequence::Event']]],
+  ['getsequenceindex_16',['getSequenceIndex',['../classmnx_1_1sequence_1_1Event.html#a8f9eb9b91448c54ebb066c19291591fa',1,'mnx::sequence::Event']]],
+  ['gettypedobject_17',['getTypedObject',['../classmnx_1_1ContentArray.html#a68b3dbf590d5cf889816b625f59bf95a',1,'mnx::ContentArray']]],
+  ['global_18',['Global',['../classmnx_1_1Global.html#aaeb1b6a1c49ce86aa3a9c3a66b44db61',1,'mnx::Global']]],
+  ['grace_19',['grace',['../classmnx_1_1sequence_1_1Grace.html#adaf017787733646d9c59931b4b9aa468',1,'mnx::sequence::Grace::Grace(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1sequence_1_1Grace.html#a72c92cc9dbfa2bac7ddfd1db78934c37',1,'mnx::sequence::Grace::Grace(Base &amp;parent, std::string_view key)']]],
+  ['group_20',['Group',['../classmnx_1_1layout_1_1Group.html#a84d843a885173fd0c6a42a849f373d36',1,'mnx::layout::Group']]]
 ];

@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classmnx_1_1util_1_1EntityMap.html',''
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classmnx_1_1util_1_1EntityMap-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">mnx::util::EntityMap Class Reference</div></div>
@@ -108,6 +109,9 @@ $(document).ready(function(){initNavTree('classmnx_1_1util_1_1EntityMap.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html">IdEntry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where an id lives in the document and what kind of object carries it.  <a href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html">MappedPosition</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canonical position value used by <a class="el" href="classmnx_1_1util_1_1EntityMap.html" title="Provides type-safe ID-based lookup for elements in an MNX document.">EntityMap</a> for measure-relative comparisons and caches.  <a href="structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +138,17 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a078f0856b4f73f6fab52ee7a24c86b59"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>exists</b> (const std::string &amp;id) const</td></tr>
 <tr class="memdesc:a078f0856b4f73f6fab52ee7a24c86b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified ID exists in the mapping with type <code>T</code>. <br /></td></tr>
 <tr class="separator:a078f0856b4f73f6fab52ee7a24c86b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c1203df4dd92caefbbf1d6763cc42fe" id="r_a4c1203df4dd92caefbbf1d6763cc42fe"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html">IdEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1util_1_1EntityMap.html#a4c1203df4dd92caefbbf1d6763cc42fe">tryFind</a> (const std::string &amp;id) const</td></tr>
+<tr class="memdesc:a4c1203df4dd92caefbbf1d6763cc42fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up an id without regard to type.  <br /></td></tr>
+<tr class="separator:a4c1203df4dd92caefbbf1d6763cc42fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c43ed3dd7b5b42a047a23957fdf369c" id="r_a1c43ed3dd7b5b42a047a23957fdf369c"><td class="memItemLeft" align="right" valign="top"><a id="a1c43ed3dd7b5b42a047a23957fdf369c" name="a1c43ed3dd7b5b42a047a23957fdf369c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>idCount</b> () const</td></tr>
+<tr class="memdesc:a1c43ed3dd7b5b42a047a23957fdf369c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of ids in the mapping. <br /></td></tr>
+<tr class="separator:a1c43ed3dd7b5b42a047a23957fdf369c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067552b68747f9ecce346c98b7ce18e2" id="r_a067552b68747f9ecce346c98b7ce18e2"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
+<tr class="memitem:a067552b68747f9ecce346c98b7ce18e2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmnx_1_1util_1_1EntityMap.html#a067552b68747f9ecce346c98b7ce18e2">forEachId</a> (F &amp;&amp;callback) const</td></tr>
+<tr class="memdesc:a067552b68747f9ecce346c98b7ce18e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <code>callback</code> for every id in the mapping (in no particular order).  <br /></td></tr>
+<tr class="separator:a067552b68747f9ecce346c98b7ce18e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ea07b7caee6b9e1cb8bacac61eda55" id="r_a08ea07b7caee6b9e1cb8bacac61eda55"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="classmnx_1_1part_1_1Beam.html">part::Beam</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1util_1_1EntityMap.html#a08ea07b7caee6b9e1cb8bacac61eda55">tryGetBeam</a> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>
 <tr class="memdesc:a08ea07b7caee6b9e1cb8bacac61eda55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the beam for an event, if it is mapped.  <br /></td></tr>
 <tr class="separator:a08ea07b7caee6b9e1cb8bacac61eda55"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,6 +188,13 @@ const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" 
 <tr class="memdesc:a7e72106b5e3598ba6fdd3236cefac3a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the lyric line order. <br /></td></tr>
 <tr class="separator:a7e72106b5e3598ba6fdd3236cefac3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a0af7560f61281dc672243ed99987ea6d" id="r_a0af7560f61281dc672243ed99987ea6d"><td class="memItemLeft" align="right" valign="top"><a id="a0af7560f61281dc672243ed99987ea6d" name="a0af7560f61281dc672243ed99987ea6d"></a>
+static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>UNKNOWN_TYPE_NAME</b> = &quot;&lt;unknown&gt;&quot;</td></tr>
+<tr class="memdesc:a0af7560f61281dc672243ed99987ea6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placeholder used in messages for an id whose object type could not be classified. <br /></td></tr>
+<tr class="separator:a0af7560f61281dc672243ed99987ea6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a19e85372fe4600a755442235664e3e9d" id="r_a19e85372fe4600a755442235664e3e9d"><td class="memItemLeft" align="right" valign="top"><a id="a19e85372fe4600a755442235664e3e9d" name="a19e85372fe4600a755442235664e3e9d"></a>
@@ -181,7 +203,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>mnx::Document</b></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides type-safe ID-based lookup for elements in an MNX document. </p>
-<p>Constructed from an <a class="el" href="classmnx_1_1Document.html" title="Represents an MNX document and provides methods for loading and saving.">mnx::Document</a>, the <a class="el" href="classmnx_1_1util_1_1EntityMap.html" title="Provides type-safe ID-based lookup for elements in an MNX document.">EntityMap</a> scans the document to index all identifiable elements by ID. Supports lookup by type. </p>
+<p>Constructed from an <a class="el" href="classmnx_1_1Document.html" title="Represents an MNX document and provides methods for loading and saving.">mnx::Document</a>, the <a class="el" href="classmnx_1_1util_1_1EntityMap.html" title="Provides type-safe ID-based lookup for elements in an MNX document.">EntityMap</a> indexes every object in the document that carries an <code>id</code>, classifying each one by the name of the MNX schema definition that describes it. Supports typed lookup (via each DOM class's <code>JsonSchemaTypeName</code>) as well as untyped lookup for ids on objects the DOM does not model or the schema cannot classify. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8cffd129d5aa66223dd307a2cc4496c8" name="a8cffd129d5aa66223dd307a2cc4496c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8cffd129d5aa66223dd307a2cc4496c8">&#9670;&#160;</a></span>EntityMap()</h2>
@@ -271,6 +293,42 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>mnx::Document</b></t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if <code>lhs</code> is earlier, 1 if later, or 0 if equivalent for the requested policy. </dd></dl>
+
+</div>
+</div>
+<a id="a067552b68747f9ecce346c98b7ce18e2" name="a067552b68747f9ecce346c98b7ce18e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067552b68747f9ecce346c98b7ce18e2">&#9670;&#160;</a></span>forEachId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename F &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mnx::util::EntityMap::forEachId </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calls <code>callback</code> for every id in the mapping (in no particular order). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>A callable accepting <code>(const std::string&amp; id, const <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html" title="Where an id lives in the document and what kind of object carries it.">IdEntry</a>&amp; entry)</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -395,6 +453,41 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a4c1203df4dd92caefbbf1d6763cc42fe" name="a4c1203df4dd92caefbbf1d6763cc42fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c1203df4dd92caefbbf1d6763cc42fe">&#9670;&#160;</a></span>tryFind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html">IdEntry</a> &gt; mnx::util::EntityMap::tryFind </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Looks up an id without regard to type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The id to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The entry if the id exists in the document; std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="ab242841ccae6f8d73450f7191991b42c" name="ab242841ccae6f8d73450f7191991b42c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab242841ccae6f8d73450f7191991b42c">&#9670;&#160;</a></span>tryGet()</h2>
 
@@ -448,11 +541,11 @@ template&lt;typename T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>An instance of T if found; std::nullopt if the ID is not present.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmnx_1_1util_1_1mapping__error.html" title="base class for mapping error exceptions">mapping_error</a></td><td>if the ID is found but has a different type than <code>T</code> (release builds only; debug builds assert instead).</td></tr>
+    <tr><td class="paramname"><a class="el" href="classmnx_1_1util_1_1mapping__error.html" title="base class for mapping error exceptions">mapping_error</a></td><td>if the ID is found but has a different (or unknown) type than <code>T</code>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>A type mismatch indicates an internal logic error in the ID mapping. This function only models the <em>absence</em> of an ID, not type ambiguity. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Because every id in the document is indexed, a type mismatch usually means the document references an id of the wrong kind of object (for example, a slur target that names a note instead of an event). This function only models the <em>absence</em> of an ID, not type ambiguity. </dd></dl>
 
 </div>
 </div>

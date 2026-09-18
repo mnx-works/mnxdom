@@ -8,10 +8,11 @@ var searchData=
   ['todouble_5',['toDouble',['../structmnx_1_1FractionValue.html#ab4c6120073156d2b7896bba8939dac53',1,'mnx::FractionValue']]],
   ['tostdvector_6',['toStdVector',['../classmnx_1_1Array.html#a71d223145cc464c531193824bb55b955',1,'mnx::Array']]],
   ['transposer_7',['transposer',['../classmusic__theory_1_1Transposer.html#a60afeabd008e8c9d8423b83fdd072405',1,'music_theory::Transposer::Transposer(const Pitch &amp;pitch)'],['../classmusic__theory_1_1Transposer.html#a77f3b85e9a4d9cfc42678c236fbd9ef6',1,'music_theory::Transposer::Transposer(int displacement, int alteration, bool isMinor=false, int numberOfEdoDivisions=STANDARD_12EDO_STEPS, const std::optional&lt; std::vector&lt; int &gt; &gt; &amp;keyMap=std::nullopt)']]],
-  ['tryget_8',['tryGet',['../classmnx_1_1util_1_1EntityMap.html#ab242841ccae6f8d73450f7191991b42c',1,'mnx::util::EntityMap']]],
-  ['trygetbeam_9',['tryGetBeam',['../classmnx_1_1util_1_1EntityMap.html#a08ea07b7caee6b9e1cb8bacac61eda55',1,'mnx::util::EntityMap']]],
-  ['trygetbeamstartlevel_10',['tryGetBeamStartLevel',['../classmnx_1_1util_1_1EntityMap.html#a1b200ff8c5af18c0e7432c64593dd1e4',1,'mnx::util::EntityMap']]],
-  ['trygeteventposition_11',['tryGetEventPosition',['../classmnx_1_1util_1_1EntityMap.html#af7c882e3ac6cc8051201be897745b943',1,'mnx::util::EntityMap']]],
-  ['trygetottavashift_12',['tryGetOttavaShift',['../classmnx_1_1util_1_1EntityMap.html#a12dd8cc2213e334374c705931c0c54c4',1,'mnx::util::EntityMap']]],
-  ['tuplet_13',['tuplet',['../classmnx_1_1sequence_1_1Tuplet.html#a61f06a9a3e85675504c25ad79a50365b',1,'mnx::sequence::Tuplet::Tuplet(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1sequence_1_1Tuplet.html#aab0a584aa71ef58585484434c8b58c6e',1,'mnx::sequence::Tuplet::Tuplet(Base &amp;parent, std::string_view key, const NoteValueQuantity::Required &amp;innerNoteValueQuant, const NoteValueQuantity::Required &amp;outerNoteValueQuant)']]]
+  ['tryfind_8',['tryFind',['../classmnx_1_1util_1_1EntityMap.html#a4c1203df4dd92caefbbf1d6763cc42fe',1,'mnx::util::EntityMap']]],
+  ['tryget_9',['tryGet',['../classmnx_1_1util_1_1EntityMap.html#ab242841ccae6f8d73450f7191991b42c',1,'mnx::util::EntityMap']]],
+  ['trygetbeam_10',['tryGetBeam',['../classmnx_1_1util_1_1EntityMap.html#a08ea07b7caee6b9e1cb8bacac61eda55',1,'mnx::util::EntityMap']]],
+  ['trygetbeamstartlevel_11',['tryGetBeamStartLevel',['../classmnx_1_1util_1_1EntityMap.html#a1b200ff8c5af18c0e7432c64593dd1e4',1,'mnx::util::EntityMap']]],
+  ['trygeteventposition_12',['tryGetEventPosition',['../classmnx_1_1util_1_1EntityMap.html#af7c882e3ac6cc8051201be897745b943',1,'mnx::util::EntityMap']]],
+  ['trygetottavashift_13',['tryGetOttavaShift',['../classmnx_1_1util_1_1EntityMap.html#a12dd8cc2213e334374c705931c0c54c4',1,'mnx::util::EntityMap']]],
+  ['tuplet_14',['tuplet',['../classmnx_1_1sequence_1_1Tuplet.html#a61f06a9a3e85675504c25ad79a50365b',1,'mnx::sequence::Tuplet::Tuplet(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1sequence_1_1Tuplet.html#aab0a584aa71ef58585484434c8b58c6e',1,'mnx::sequence::Tuplet::Tuplet(Base &amp;parent, std::string_view key, const NoteValueQuantity::Required &amp;innerNoteValueQuant, const NoteValueQuantity::Required &amp;outerNoteValueQuant)']]]
 ];

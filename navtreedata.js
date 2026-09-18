@@ -57,14 +57,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BaseTypes_8h_source.html",
-"classmnx_1_1Global.html#af41ceaed4575702db1a65964f7ebe0ed",
-"classmnx_1_1Score.html#ad0b2e802742bb78f6babaab0a73138c2",
-"classmnx_1_1layout_1_1StaffSource.html#a14d111b6b7baa4e37cfb43decc1102b7",
-"classmnx_1_1part_1_1PartTransposition.html#ac86f9e30f995bbda7970a39f383957c9",
-"classmnx_1_1sequence_1_1Grace.html#ad5e48d207f4017bee369c349d577a3d2",
-"classmnx_1_1util_1_1EntityMap.html#a5fc55190ceb406ff6fdbcb96f1e74d14",
-"namespacemnx.html#ad48565fded88559edcaeec446b9e1d8fa2dd4472245a696bc0b4b944db2a8b519",
-"structmnx_1_1part_1_1DynamicGradual_1_1Required.html#a6afbe691780d2bc3ce7f94bc711a925c"
+"classmnx_1_1Global.html#ae4aa510c166bda678d152b7896a3cf59",
+"classmnx_1_1Score.html#ac0af8ec0f0b08caa5c893da37b2b18ab",
+"classmnx_1_1layout_1_1StaffSource.html",
+"classmnx_1_1part_1_1PartTransposition.html#a9770ac3764e21485891c449f5a06219a",
+"classmnx_1_1sequence_1_1Grace.html#ac5a5ab3484b126c7637995aaced49cf8",
+"classmnx_1_1util_1_1EntityMap.html#a1b200ff8c5af18c0e7432c64593dd1e4",
+"namespacemnx.html#acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53",
+"structmnx_1_1part_1_1DynamicAccent_1_1Required.html#a7d05c5daaec1a634fea257c4914a1ad7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

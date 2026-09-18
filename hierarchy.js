@@ -197,6 +197,7 @@ var hierarchy =
     [ "mnx::EnumStringMapping< E, typename >", "structmnx_1_1EnumStringMapping.html", null ],
     [ "mnx::validation::ValidationResult::Error", "structmnx_1_1validation_1_1ValidationResult_1_1Error.html", null ],
     [ "mnx::FractionValue", "structmnx_1_1FractionValue.html", null ],
+    [ "mnx::util::EntityMap::IdEntry", "structmnx_1_1util_1_1EntityMap_1_1IdEntry.html", null ],
     [ "mnx::scope::LayoutContent", "structmnx_1_1scope_1_1LayoutContent.html", null ],
     [ "mnx::util::LayoutSpan", "structmnx_1_1util_1_1LayoutSpan.html", null ],
     [ "mnx::util::EntityMap::MappedPosition", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html", null ],

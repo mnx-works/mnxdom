@@ -36,7 +36,7 @@ class EventMarkingBase : public Object
 public:
     using Object::Object;
 
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Orientation, orient, Orientation::Auto);     ///< Whether the marking is above or below its associated event
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Placement, placement, Placement::Auto);      ///< Whether the marking is above or below its associated event
 };
 
 /**
@@ -100,7 +100,7 @@ public:
 
 /**
  * @class BreathMark
- * @brief Class that represents a spiccato marking on an event
+ * @brief Class that represents a breath mark on an event
  */
 class BreathMark : public EventMarkingBase
 {
@@ -110,6 +110,21 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(BreathMarkSymbol, symbol, BreathMarkSymbol::Auto); ///< The symbol for the breath mark.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "breath-mark";     ///< required for mapping
+};
+
+/**
+ * @class Caesura
+ * @brief Class that represents a caesura. It is encoded on the event before the caesura happens.
+ */
+class Caesura : public Object
+{
+public:
+    using Object::Object;
+
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(unsigned, marks, 2);                             ///< The number of marks/strokes (1 or 2).
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(CaesuraShape, shape, CaesuraShape::Normal);      ///< The visual shape of the caesura.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "caesura";     ///< required for mapping
 };
 
 /**
@@ -182,7 +197,7 @@ public:
     using EventMarkingBase::EventMarkingBase;
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, pointing, MarkingUpDownAuto::Auto);   ///< Specifies if the accent points upward or downward,
-                                                                                                ///< irrespective of above/below orientation.
+                                                                                                ///< irrespective of above/below placement.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "strong-accent";     ///< required for mapping
 };
@@ -271,6 +286,7 @@ public:
     MNX_OPTIONAL_CHILD(BowDirection, bowDirection,
         (MarkingUpDown, direction));                    ///< A bow direction mark
     MNX_OPTIONAL_CHILD(BreathMark, breath);             ///< A breath mark
+    MNX_OPTIONAL_CHILD(Caesura, caesura);               ///< A caesura
     MNX_OPTIONAL_CHILD(SoftAccent, softAccent);         ///< A soft accent mark
     MNX_OPTIONAL_CHILD(Spiccato, spiccato);             ///< A spiccato mark
     MNX_OPTIONAL_CHILD(Staccatissimo, staccatissimo);   ///< A staccatissimo mark

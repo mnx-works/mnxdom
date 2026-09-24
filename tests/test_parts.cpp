@@ -56,3 +56,45 @@ TEST(Parts, StaffConfigs)
 
     EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate after adding staff configs";
 }
+
+TEST(Parts, ClefSignAndHide)
+{
+    Document doc;
+    doc.global().measures().append().set_id("m1");
+    auto part = doc.parts().append();
+    part.set_id("P1");
+    auto measure = part.measures().append();
+
+    auto clef = measure.ensure_clefs().append(ClefSign::PercussionClef, 0).clef();
+    EXPECT_EQ(clef.sign(), ClefSign::PercussionClef);
+    EXPECT_EQ(nlohmann::json::parse(clef.dump())["sign"], "P") << "percussion clef should serialize as \"P\"";
+    EXPECT_FALSE(clef.hide()) << "hide should default to false";
+    EXPECT_FALSE(nlohmann::json::parse(clef.dump()).contains("hide")) << "default hide should not be serialized";
+
+    clef.set_hide(true);
+    EXPECT_TRUE(clef.hide());
+
+    EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate with a hidden percussion clef";
+}
+
+TEST(Parts, Placements)
+{
+    Document doc;
+    doc.global().measures().append().set_id("m1");
+    auto part = doc.parts().append();
+    part.set_id("P1");
+    auto measure = part.measures().append();
+
+    auto ottava = measure.ensure_ottavas().append(OttavaAmount::OctaveUp, FractionValue(0),
+        MeasureRhythmicPosition::make("m1", FractionValue(1, 4)));
+    EXPECT_EQ(ottava.placement(), Placement::Auto) << "ottava placement should default to auto";
+    ottava.set_placement(Placement::Below);
+    EXPECT_EQ(nlohmann::json::parse(ottava.dump())["placement"], "below");
+
+    auto counter = measure.ensure_measureRepeat(1).ensure_counter(2);
+    EXPECT_EQ(counter.placement(), MultiStaffPlacement::Auto) << "counter placement should default to auto";
+    counter.set_placement(MultiStaffPlacement::Between);
+    EXPECT_EQ(nlohmann::json::parse(counter.dump())["placement"], "between");
+
+    EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate with placements";
+}

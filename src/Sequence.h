@@ -266,8 +266,8 @@ public:
 
     MNX_OPTIONAL_PROPERTY(std::string, endNote);            ///< the specific note ID this slur ends on
     MNX_OPTIONAL_PROPERTY(LineType, lineType);              ///< the type of line for the slur
-    MNX_OPTIONAL_PROPERTY(SlurTieSide, side);               ///< used to force slur direction (if present)
-    MNX_OPTIONAL_PROPERTY(SlurTieSide, sideEnd);            ///< used to force slur's endpoint direction (if different than `side`)
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(SlurTieSide, side, SlurTieSide::Auto);    ///< the slur's side (direction and placement)
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(SlurTieSide, sideEnd, SlurTieSide::Auto); ///< the slur's side at its endpoint (if different than `side`)
     MNX_OPTIONAL_PROPERTY(std::string, startNote);          ///< the specific note ID this slur starts on
     MNX_REQUIRED_PROPERTY(std::string, target);             ///< the event ID this slur ends on (if present)
 
@@ -295,7 +295,7 @@ public:
     {}
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, lv, false);    ///< Indicates the presence of an l.v. tie (instead of target).
-    MNX_OPTIONAL_PROPERTY(SlurTieSide, side);               ///< Used to force tie direction (if present).
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(SlurTieSide, side, SlurTieSide::Auto);    ///< Whether the tie curves upward or downward.
     MNX_OPTIONAL_PROPERTY(std::string, target);             ///< The note id of the tied-to note.
     MNX_OPTIONAL_PROPERTY(TieTargetType, targetType);       ///< The type of target for this tie (if present).
 
@@ -513,7 +513,6 @@ public:
     MNX_OPTIONAL_CHILD(EventLyrics, lyrics);                ///< The lyric syllables on this event.
     MNX_OPTIONAL_CHILD(EventMarkings, markings);            ///< Articulation markings on this event.
     MNX_OPTIONAL_CHILD(Array<Note>, notes);                 ///< Note array
-    /// @todo `orient`
     MNX_OPTIONAL_CHILD(Rest, rest);                         ///< indicates this event is a rest.
     MNX_OPTIONAL_CHILD(Array<Slur>, slurs);                 ///< The slurs that start on this event.
     MNX_OPTIONAL_PROPERTY(int, staff);                      ///< Staff number override (e.g., for cross-staff events.)
@@ -720,7 +719,7 @@ public:
         (unsigned, count), (const NoteValue::Required&, noteValue)); ///< Inner quantity: **3 quarters in the time** of 2 quarters
     MNX_REQUIRED_CHILD(NoteValueQuantity, outer,
         (unsigned, count), (const NoteValue::Required&, noteValue)); ///< Outer quantity: 3 quarters in the time **of 2 quarters**
-    /// @todo `orient`
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Placement, placement, Placement::Auto); ///< Whether the tuplet's brackets and numbers are above or below its content
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(TupletDisplaySetting, showNumber, TupletDisplaySetting::Inner); ///< How and whether to show the tuplet number(s)
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(TupletDisplaySetting, showValue, TupletDisplaySetting::NoNumber); ///< How and whether to show the tuplet note value(s)
     MNX_OPTIONAL_PROPERTY(int, staff);                              ///< Staff number override (e.g., for cross-staff notes.)
@@ -798,8 +797,8 @@ public:
     }
 
     MNX_REQUIRED_CHILD(sequence::SequenceContent, content);          ///< the content of the sequence
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(DirectionHint, directionHint, DirectionHint::Auto); ///< Hint whether this sequence is an upper or lower voice relative to other sequences in the part measure.
     MNX_OPTIONAL_CHILD(sequence::FullMeasureRest, fullMeasure); ///< If present, this sequence is a forced full-measure rest.
-    /// @todo `orient` property
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< the staff number for this sequence
     MNX_OPTIONAL_PROPERTY(std::string, voice);          ///< the unique (per measure) voice label for this sequence.
 

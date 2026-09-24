@@ -60,7 +60,7 @@ public:
 
     MNX_OPTIONAL_CHILD(Array<std::string>, glyphs);                 ///< One or more glyphs that specify the exact representation of the dynamic.
                                                                     ///< If present, they override the default representation derived from `value` (and `attackValue`.)
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MultiStaffOrientation, orient, MultiStaffOrientation::Auto); ///< positioning of the dynamic relative to its part staves
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MultiStaffPlacement, placement, MultiStaffPlacement::Auto); ///< positioning of the dynamic relative to its part staves
     MNX_REQUIRED_CHILD(
         RhythmicPosition, position,
         (const FractionValue&, position));                          ///< The rhythmic position of the dynamic within the measure.

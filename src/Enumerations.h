@@ -89,6 +89,19 @@ enum class BreathMarkSymbol
 };
 
 /**
+ * @enum CaesuraShape
+ * @brief The visual shape of a caesura
+ * @note The first value is the MNX default.
+ */
+enum class CaesuraShape
+{
+    Normal,         ///< normal caesura (the default)
+    Curved,         ///< curved caesura
+    Short,          ///< short caesura
+    Thick           ///< thick caesura
+};
+
+/**
  * @enum ClefSign
  * @brief The values available in a clef sign object
  */
@@ -96,7 +109,20 @@ enum class ClefSign
 {
     CClef,          ///< C Clef
     FClef,          ///< F Clef
-    GClef           ///< G Clef
+    GClef,          ///< G Clef
+    PercussionClef  ///< Percussion clef
+};
+
+/**
+ * @enum DirectionHint
+ * @brief Hints whether a sequence is an upper or lower voice relative to other sequences in the same part measure
+ * @note The first value is the default.
+ */
+enum class DirectionHint
+{
+    Auto,           ///< determined automatically by the consuming application
+    Upper,          ///< upper voice
+    Lower           ///< lower voice
 };
 
 /// @enum Dynamic Prefix
@@ -294,10 +320,10 @@ enum class MarkingUpDownAuto
 };
 
 /**
- * @enum MultiStaffOrientation
- * @brief Specifies the vertical visual orientation of a symbol with respect to its part's staves
+ * @enum MultiStaffPlacement
+ * @brief Specifies the vertical placement of a symbol with respect to its part's staves
  */
-enum class MultiStaffOrientation
+enum class MultiStaffPlacement
 {
     Auto,       ///< the default value determined by implementation
     Above,      ///< symbol should be above its part staves
@@ -348,17 +374,6 @@ enum class NoteValueBase
 };
 
 /**
- * @enum Orientation
- * @brief Specifies the vertical visual orientation of a glyph with respect to its corresponding notation
- */
-enum class Orientation
-{
-    Auto,       ///< the default value determined by implementation
-    Above,      ///< glyph should be above its corresponding notation
-    Below       ///< glyph should be below its corresponding notation
-};
-
-/**
  * @enum OttavaAmount
  * @brief Valid values for ottava amount
  */
@@ -393,11 +408,25 @@ enum class OttavaAmountOrZero : int
 };
 
 /**
+ * @enum Placement
+ * @brief Specifies the vertical placement of a symbol or object relative to an event, staff, or other object
+ */
+enum class Placement
+{
+    Auto,       ///< the default value determined by implementation
+    Above,      ///< glyph should be above its corresponding notation
+    Below       ///< glyph should be below its corresponding notation
+};
+
+/**
  * @enum SlurTieSide
- * @brief Specifies the direction of a slur or tie.
+ * @brief Specifies the direction of a slur or tie. For a slur, it also specifies its placement
+ * above or below the event it is attached to.
+ * @note The first value is the MNX default.
  */
 enum class SlurTieSide
 {
+    Auto,   ///< determined automatically by the consuming application (the default)
     Down,   ///< curved down, the tips face up
     Up,     ///< curved up, the tips face down
 };

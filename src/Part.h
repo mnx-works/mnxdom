@@ -166,8 +166,9 @@ public:
     static Required make(ClefSign clefSign, int staffPosition, OttavaAmountOrZero octaveAdjustment = OttavaAmountOrZero::NoTransposition)
     { return { clefSign, staffPosition, octaveAdjustment }; }
 
-    MNX_OPTIONAL_PROPERTY(std::string, color);      ///< color to use when rendering the ending
+    MNX_OPTIONAL_PROPERTY(std::string, color);      ///< color to use when rendering the clef
     MNX_OPTIONAL_PROPERTY(std::string, glyph);      ///< the specific SMuFL glyph to use for rendering the clef
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, hide, false); ///< if true, the clef is hidden and no space is allocated for it
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(OttavaAmountOrZero, octave, OttavaAmountOrZero::NoTransposition);  ///< the number of octaves by which the clef transposes
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, showOctave, true); ///< if octave is non-zero, this value determines whether the octave should be displayed on the clef
     MNX_REQUIRED_PROPERTY(ClefSign, sign);          ///< the clef sign
@@ -224,7 +225,7 @@ public:
 
     MNX_REQUIRED_CHILD(MeasureRhythmicPosition, end,
         (const std::string&, measureId), (const FractionValue&, position)); ///< The end of the ottava; omit graceIndex at the start to include preceding grace notes, and use graceIndex 0 at the end to include them there
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Orientation, orient, Orientation::Auto); ///< Whether the ottava is above or below the staff                
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Placement, placement, Placement::Auto); ///< The vertical placement of the ottava with respect to its staff
     MNX_REQUIRED_CHILD(RhythmicPosition, position,
         (const FractionValue&, position)); ///< The start position of the ottava
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);              ///< The staff (within the part) this ottava applies to
@@ -312,7 +313,7 @@ public:
     static Required make(int count) { return { count }; }
 
     MNX_REQUIRED_PROPERTY(int, count);  ///< The count to display.
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MultiStaffOrientation, orient, MultiStaffOrientation::Auto); ///< Where to display the count.
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MultiStaffPlacement, placement, MultiStaffPlacement::Auto); ///< Where to display the count.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "measure-repeat-counter";     ///< required for mapping
 };

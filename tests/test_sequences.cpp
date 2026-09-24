@@ -225,3 +225,57 @@ TEST(TestSequences, WalkFullMeasureRest)
     EXPECT_EQ(fullMeasureDuration, static_cast<FractionValue>(globalMeasure.time().value()));
     EXPECT_EQ(ctx.elapsedTime, fullMeasureDuration);
 }
+
+TEST(TestSequences, PlacementsAndCaesura)
+{
+    Document doc;
+    doc.global().measures().append().set_id("m1");
+    auto part = doc.parts().append();
+    part.set_id("P1");
+    auto measure = part.measures().append();
+    auto sequence = measure.sequences().append();
+
+    EXPECT_EQ(sequence.directionHint(), DirectionHint::Auto) << "directionHint should default to auto";
+    EXPECT_FALSE(nlohmann::json::parse(sequence.dump()).contains("directionHint")) << "default directionHint should not be serialized";
+    sequence.set_directionHint(DirectionHint::Lower);
+    EXPECT_EQ(nlohmann::json::parse(sequence.dump())["directionHint"], "lower");
+
+    auto event = sequence.content().appendEvent(NoteValueBase::Quarter);
+    event.set_id("e1");
+    event.ensure_rest();
+    auto markings = event.ensure_markings();
+
+    auto caesura = markings.ensure_caesura();
+    EXPECT_EQ(caesura.marks(), 2u) << "caesura marks should default to 2";
+    EXPECT_EQ(caesura.shape(), CaesuraShape::Normal) << "caesura shape should default to normal";
+    EXPECT_EQ(caesura.dump(), "{}") << "caesura defaults should not be serialized";
+    caesura.set_marks(1);
+    caesura.set_shape(CaesuraShape::Curved);
+    EXPECT_EQ(nlohmann::json::parse(caesura.dump())["shape"], "curved");
+
+    auto staccato = markings.ensure_staccato();
+    EXPECT_EQ(staccato.placement(), Placement::Auto) << "marking placement should default to auto";
+    staccato.set_placement(Placement::Above);
+    EXPECT_EQ(nlohmann::json::parse(staccato.dump())["placement"], "above");
+
+    auto fermata = event.ensure_fermata();
+    EXPECT_EQ(fermata.placement(), Placement::Auto) << "fermata placement should default to auto";
+    fermata.set_placement(Placement::Below);
+
+    auto slur = event.ensure_slurs().append("e1");
+    EXPECT_EQ(slur.side(), SlurTieSide::Auto) << "slur side should default to auto";
+    EXPECT_EQ(slur.sideEnd(), SlurTieSide::Auto) << "slur sideEnd should default to auto";
+    EXPECT_FALSE(nlohmann::json::parse(slur.dump()).contains("side")) << "default slur side should not be serialized";
+    slur.set_side(SlurTieSide::Auto);
+    EXPECT_EQ(nlohmann::json::parse(slur.dump())["side"], "auto");
+
+    auto tuplet = sequence.content().appendTuplet(NoteValueQuantity::make(3, NoteValue::make(NoteValueBase::Eighth)),
+        NoteValueQuantity::make(2, NoteValue::make(NoteValueBase::Eighth)));
+    EXPECT_EQ(tuplet.placement(), Placement::Auto) << "tuplet placement should default to auto";
+    tuplet.set_placement(Placement::Above);
+    for (int i = 0; i < 3; i++) {
+        tuplet.content().appendEvent(NoteValueBase::Eighth).ensure_rest();
+    }
+
+    EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate with placements and caesura";
+}

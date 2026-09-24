@@ -41,7 +41,7 @@
             }
           },
           "measureRepeat": {
-            "counter": {"count": 2, "orient": "above"},
+            "counter": {"count": 2, "placement": "above"},
             "number": 1
           },
           "sequences": [
@@ -55,7 +55,7 @@
             }
           },
           "measureRepeat": {
-            "counter": {"count": 3, "orient": "above"},
+            "counter": {"count": 3, "placement": "above"},
             "number": 1
           },
           "sequences": [
@@ -69,7 +69,7 @@
             }
           },
           "measureRepeat": {
-            "counter": {"count": 4, "orient": "above"},
+            "counter": {"count": 4, "placement": "above"},
             "number": 1
           },
           "sequences": [

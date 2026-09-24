@@ -263,7 +263,7 @@ public:
     /// @brief Create a Required instance for #Segno.
     static Required make(const FractionValue& position) { return { position }; }
 
-    MNX_OPTIONAL_PROPERTY(std::string, color);      ///< color to use when rendering the ending
+    MNX_OPTIONAL_PROPERTY(std::string, color);      ///< color to use when rendering the segno
     MNX_OPTIONAL_PROPERTY(std::string, glyph);      ///< the SMuFL glyph name to be used when rendering this segno.
     MNX_REQUIRED_CHILD(RhythmicPosition, location,
         (const FractionValue&, position)); ///< location

@@ -43,8 +43,8 @@ public:
     using Object::Object;
 
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(FermataDuration, duration, FermataDuration::Auto);       ///< subjective playback duration of the fermata
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Orientation, orient, Orientation::Auto);                 ///< vertical placement of the fermata
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, pointing, MarkingUpDownAuto::Auto);   ///< direction of the fermata symbol
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Placement, placement, Placement::Auto);                  ///< vertical placement of the fermata with respect to the staff
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(MarkingUpDownAuto, pointing, MarkingUpDownAuto::Auto);   ///< direction of the fermata symbol (if `Auto`, consult `placement`)
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(FermataSymbol, symbol, FermataSymbol::Normal);           ///< the style of symbol for the fermata
 
     inline static constexpr std::string_view JsonSchemaTypeName = "fermata";     ///< required for mapping

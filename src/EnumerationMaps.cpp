@@ -76,10 +76,24 @@ MNX_ENUM_MAPPING(BreathMarkSymbol, {
     { "salzedo",    BreathMarkSymbol::Salzedo }
 });
 
+MNX_ENUM_MAPPING(CaesuraShape, {
+    { "normal",     CaesuraShape::Normal },
+    { "curved",     CaesuraShape::Curved },
+    { "short",      CaesuraShape::Short },
+    { "thick",      CaesuraShape::Thick }
+});
+
 MNX_ENUM_MAPPING(ClefSign, {
     { "C",          ClefSign::CClef },
     { "F",          ClefSign::FClef },
-    { "G",          ClefSign::GClef }
+    { "G",          ClefSign::GClef },
+    { "P",          ClefSign::PercussionClef }
+});
+
+MNX_ENUM_MAPPING(DirectionHint, {
+    { "auto",       DirectionHint::Auto },
+    { "upper",      DirectionHint::Upper },
+    { "lower",      DirectionHint::Lower }
 });
 
 MNX_ENUM_MAPPING(DynamicPrefix, {
@@ -199,11 +213,11 @@ MNX_ENUM_MAPPING(MarkingUpDownAuto, {
     { "up",         MarkingUpDownAuto::Up }
 });
 
-MNX_ENUM_MAPPING(MultiStaffOrientation, {
-    { "auto",       MultiStaffOrientation::Auto },
-    { "above",      MultiStaffOrientation::Above },
-    { "below",      MultiStaffOrientation::Below },
-    { "between",    MultiStaffOrientation::Between }
+MNX_ENUM_MAPPING(MultiStaffPlacement, {
+    { "auto",       MultiStaffPlacement::Auto },
+    { "above",      MultiStaffPlacement::Above },
+    { "below",      MultiStaffPlacement::Below },
+    { "between",    MultiStaffPlacement::Between }
 });
 
 MNX_ENUM_MAPPING(NoteStep, {
@@ -236,13 +250,14 @@ MNX_ENUM_MAPPING(NoteValueBase, {
     { "duplexMaxima", NoteValueBase::DuplexMaxima }
 });
 
-MNX_ENUM_MAPPING(Orientation, {
-    { "auto",       Orientation::Auto },
-    { "above",      Orientation::Above },
-    { "below",      Orientation::Below }
+MNX_ENUM_MAPPING(Placement, {
+    { "auto",       Placement::Auto },
+    { "above",      Placement::Above },
+    { "below",      Placement::Below }
 });
 
 MNX_ENUM_MAPPING(SlurTieSide, {
+    { "auto",       SlurTieSide::Auto },
     { "down",       SlurTieSide::Down },
     { "up",         SlurTieSide::Up }
 });

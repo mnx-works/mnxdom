@@ -153,6 +153,7 @@ var hierarchy =
         [ "mnx::part::PartTransposition", "classmnx_1_1part_1_1PartTransposition.html", null ],
         [ "mnx::sequence::AccidentalDisplay", "classmnx_1_1sequence_1_1AccidentalDisplay.html", null ],
         [ "mnx::sequence::AccidentalEnclosure", "classmnx_1_1sequence_1_1AccidentalEnclosure.html", null ],
+        [ "mnx::sequence::Caesura", "classmnx_1_1sequence_1_1Caesura.html", null ],
         [ "mnx::sequence::EventLyrics", "classmnx_1_1sequence_1_1EventLyrics.html", null ],
         [ "mnx::sequence::EventMarkingBase", "classmnx_1_1sequence_1_1EventMarkingBase.html", [
           [ "mnx::sequence::Accent", "classmnx_1_1sequence_1_1Accent.html", null ],

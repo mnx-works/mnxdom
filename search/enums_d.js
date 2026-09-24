@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['tietargettype_0',['TieTargetType',['../namespacemnx.html#a961d9beb0e598614b7157949964d33ef',1,'mnx']]],
-  ['timesignaturedisplay_1',['TimeSignatureDisplay',['../namespacemnx.html#a135331c929c8b377e5866fdbe1b28cc4',1,'mnx']]],
-  ['timesignatureunit_2',['TimeSignatureUnit',['../namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3',1,'mnx']]],
-  ['tupletdisplaysetting_3',['TupletDisplaySetting',['../namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01f',1,'mnx']]]
+  ['slurtieside_0',['SlurTieSide',['../namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64',1,'mnx']]],
+  ['staffgroupbarlineoverride_1',['StaffGroupBarlineOverride',['../namespacemnx.html#a07e43dee64d5f909f672da5ec99921a9',1,'mnx']]],
+  ['staffgroupbarlinestyle_2',['StaffGroupBarlineStyle',['../namespacemnx.html#ad48565fded88559edcaeec446b9e1d8f',1,'mnx']]],
+  ['stemdirection_3',['StemDirection',['../namespacemnx.html#acf37722bc87abf052775661825640121',1,'mnx']]]
 ];

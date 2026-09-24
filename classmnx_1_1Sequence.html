@@ -131,10 +131,17 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_REQUIRED_CHILD</b> (<a class="el" href="classmnx_1_1sequence_1_1SequenceContent.html">sequence::SequenceContent</a>, content)</td></tr>
 <tr class="memdesc:a2c714737c3efbe6f10fa3baeb870ac70"><td class="mdescLeft">&#160;</td><td class="mdescRight">the content of the sequence <br /></td></tr>
 <tr class="separator:a2c714737c3efbe6f10fa3baeb870ac70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2851b132bb4f5f364d9358e9bdd3bde" id="r_af2851b132bb4f5f364d9358e9bdd3bde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1Sequence.html#af2851b132bb4f5f364d9358e9bdd3bde">MNX_OPTIONAL_CHILD</a> (<a class="el" href="classmnx_1_1sequence_1_1FullMeasureRest.html">sequence::FullMeasureRest</a>, fullMeasure)</td></tr>
+<tr class="memitem:a9c56eb223599710f4127f3b92f0f74aa" id="r_a9c56eb223599710f4127f3b92f0f74aa"><td class="memItemLeft" align="right" valign="top"><a id="a9c56eb223599710f4127f3b92f0f74aa" name="a9c56eb223599710f4127f3b92f0f74aa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY_WITH_DEFAULT</b> (<a class="el" href="namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3">DirectionHint</a>, directionHint, <a class="el" href="namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3a06b9281e396db002010bde1de57262eb">DirectionHint::Auto</a>)</td></tr>
+<tr class="memdesc:a9c56eb223599710f4127f3b92f0f74aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hint whether this sequence is an upper or lower voice relative to other sequences in the part measure. <br /></td></tr>
+<tr class="separator:a9c56eb223599710f4127f3b92f0f74aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2851b132bb4f5f364d9358e9bdd3bde" id="r_af2851b132bb4f5f364d9358e9bdd3bde"><td class="memItemLeft" align="right" valign="top"><a id="af2851b132bb4f5f364d9358e9bdd3bde" name="af2851b132bb4f5f364d9358e9bdd3bde"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_CHILD</b> (<a class="el" href="classmnx_1_1sequence_1_1FullMeasureRest.html">sequence::FullMeasureRest</a>, fullMeasure)</td></tr>
+<tr class="memdesc:af2851b132bb4f5f364d9358e9bdd3bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">If present, this sequence is a forced full-measure rest. <br /></td></tr>
 <tr class="separator:af2851b132bb4f5f364d9358e9bdd3bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d338edfb354fc70d165e847f9ee1025" id="r_a4d338edfb354fc70d165e847f9ee1025"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1Sequence.html#a4d338edfb354fc70d165e847f9ee1025">MNX_OPTIONAL_PROPERTY_WITH_DEFAULT</a> (int, staff, 1)</td></tr>
-<tr class="memdesc:a4d338edfb354fc70d165e847f9ee1025"><td class="mdescLeft">&#160;</td><td class="mdescRight">the staff number for this sequence  <br /></td></tr>
+<tr class="memitem:a4d338edfb354fc70d165e847f9ee1025" id="r_a4d338edfb354fc70d165e847f9ee1025"><td class="memItemLeft" align="right" valign="top"><a id="a4d338edfb354fc70d165e847f9ee1025" name="a4d338edfb354fc70d165e847f9ee1025"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY_WITH_DEFAULT</b> (int, staff, 1)</td></tr>
+<tr class="memdesc:a4d338edfb354fc70d165e847f9ee1025"><td class="mdescLeft">&#160;</td><td class="mdescRight">the staff number for this sequence <br /></td></tr>
 <tr class="separator:a4d338edfb354fc70d165e847f9ee1025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa94c805bc9dce7c2b6207d1dbf4638d5" id="r_aa94c805bc9dce7c2b6207d1dbf4638d5"><td class="memItemLeft" align="right" valign="top"><a id="aa94c805bc9dce7c2b6207d1dbf4638d5" name="aa94c805bc9dce7c2b6207d1dbf4638d5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (std::string, voice)</td></tr>
@@ -319,73 +326,6 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#a1c2980125e66d52
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="af2851b132bb4f5f364d9358e9bdd3bde" name="af2851b132bb4f5f364d9358e9bdd3bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2851b132bb4f5f364d9358e9bdd3bde">&#9670;&#160;</a></span>MNX_OPTIONAL_CHILD()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mnx::Sequence::MNX_OPTIONAL_CHILD </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classmnx_1_1sequence_1_1FullMeasureRest.html">sequence::FullMeasureRest</a>&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">fullMeasure&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>If present, this sequence is a forced full-measure rest. </p>
-
-</div>
-</div>
-<a id="a4d338edfb354fc70d165e847f9ee1025" name="a4d338edfb354fc70d165e847f9ee1025"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d338edfb354fc70d165e847f9ee1025">&#9670;&#160;</a></span>MNX_OPTIONAL_PROPERTY_WITH_DEFAULT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mnx::Sequence::MNX_OPTIONAL_PROPERTY_WITH_DEFAULT </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">staff&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">1&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>the staff number for this sequence </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd><code>orient</code> property </dd></dl>
 
 </div>
 </div>

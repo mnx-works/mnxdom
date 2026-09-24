@@ -72,6 +72,7 @@ var annotated_dup =
         [ "AccidentalEnclosure", "classmnx_1_1sequence_1_1AccidentalEnclosure.html", "classmnx_1_1sequence_1_1AccidentalEnclosure" ],
         [ "BowDirection", "classmnx_1_1sequence_1_1BowDirection.html", "classmnx_1_1sequence_1_1BowDirection" ],
         [ "BreathMark", "classmnx_1_1sequence_1_1BreathMark.html", "classmnx_1_1sequence_1_1BreathMark" ],
+        [ "Caesura", "classmnx_1_1sequence_1_1Caesura.html", "classmnx_1_1sequence_1_1Caesura" ],
         [ "Event", "classmnx_1_1sequence_1_1Event.html", "classmnx_1_1sequence_1_1Event" ],
         [ "EventLyricLine", "classmnx_1_1sequence_1_1EventLyricLine.html", "classmnx_1_1sequence_1_1EventLyricLine" ],
         [ "EventLyrics", "classmnx_1_1sequence_1_1EventLyrics.html", "classmnx_1_1sequence_1_1EventLyrics" ],

@@ -78,10 +78,22 @@ var namespacemnx =
       [ "Upbow", "namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26ac1a7ead3faffd1eafe2791fddca0dcd2", null ],
       [ "Salzedo", "namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a750acd2375abfdf959a7a368e0727285", null ]
     ] ],
+    [ "CaesuraShape", "namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8", [
+      [ "Normal", "namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a960b44c579bc2f6818d2daaf9e4c16f0", null ],
+      [ "Curved", "namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a1e0e0b1e4554e27d30a562a079215f33", null ],
+      [ "Short", "namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a30bb747c98bccdd11b3f89e644c4d0ad", null ],
+      [ "Thick", "namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a0a908b7941c6bfd50ba866821e83cd2b", null ]
+    ] ],
     [ "ClefSign", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72", [
       [ "CClef", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a9a8b74d33d96a2daa9375a22d68ce09f", null ],
       [ "FClef", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a0945e63d7277b87a5b01102815984c5e", null ],
-      [ "GClef", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a9e1beb330f7d6cf5e497773713f81186", null ]
+      [ "GClef", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a9e1beb330f7d6cf5e497773713f81186", null ],
+      [ "PercussionClef", "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a99042930bf9b16ce018fd26b227f7f41", null ]
+    ] ],
+    [ "DirectionHint", "namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3", [
+      [ "Auto", "namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3a06b9281e396db002010bde1de57262eb", null ],
+      [ "Upper", "namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3a19de5b94f7b83900d4b296d9fa491aec", null ],
+      [ "Lower", "namespacemnx.html#ad56221e95af1c2b9fa8e6fac6e8482d3ab75fcdd2d72d9e000beab48622402d93", null ]
     ] ],
     [ "DynamicPrefix", "namespacemnx.html#a4e27a0be5614c80a05ffa0c8283ac0fb", [
       [ "None", "namespacemnx.html#a4e27a0be5614c80a05ffa0c8283ac0fba6adf97f83acf6453d4a6a4b1070f3754", null ],
@@ -166,11 +178,11 @@ var namespacemnx =
       [ "Down", "namespacemnx.html#a21337ff290b73b5c4072858a5acc5f54a08a38277b0309070706f6652eeae9a53", null ],
       [ "Up", "namespacemnx.html#a21337ff290b73b5c4072858a5acc5f54a258f49887ef8d14ac268c92b02503aaa", null ]
     ] ],
-    [ "MultiStaffOrientation", "namespacemnx.html#a916529be475b78726237297e7b030329", [
-      [ "Auto", "namespacemnx.html#a916529be475b78726237297e7b030329a06b9281e396db002010bde1de57262eb", null ],
-      [ "Above", "namespacemnx.html#a916529be475b78726237297e7b030329a5b469fd01889ec12f1e84c6e66829fc1", null ],
-      [ "Below", "namespacemnx.html#a916529be475b78726237297e7b030329ae59dd8d25c0b6bb6697eac0617ccd412", null ],
-      [ "Between", "namespacemnx.html#a916529be475b78726237297e7b030329a5ccb72b3b258508dc7918070eaeb214c", null ]
+    [ "MultiStaffPlacement", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddae", [
+      [ "Auto", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea06b9281e396db002010bde1de57262eb", null ],
+      [ "Above", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea5b469fd01889ec12f1e84c6e66829fc1", null ],
+      [ "Below", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412", null ],
+      [ "Between", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c", null ]
     ] ],
     [ "NoteStep", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63", [
       [ "C", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a0d61f8370cad1d412f80b84d143e1257", null ],
@@ -200,11 +212,6 @@ var namespacemnx =
       [ "Maxima", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79abc3292567552688d69e5ddc95781245b", null ],
       [ "DuplexMaxima", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a2635498b180d3b852b2837d34c5f21c1", null ]
     ] ],
-    [ "Orientation", "namespacemnx.html#af1d43c931c6f3b639b4bddcc2fa4554c", [
-      [ "Auto", "namespacemnx.html#af1d43c931c6f3b639b4bddcc2fa4554ca06b9281e396db002010bde1de57262eb", null ],
-      [ "Above", "namespacemnx.html#af1d43c931c6f3b639b4bddcc2fa4554ca5b469fd01889ec12f1e84c6e66829fc1", null ],
-      [ "Below", "namespacemnx.html#af1d43c931c6f3b639b4bddcc2fa4554cae59dd8d25c0b6bb6697eac0617ccd412", null ]
-    ] ],
     [ "OttavaAmount", "namespacemnx.html#a361b2c550a67bec829901cf59aec117e", [
       [ "OctaveDown", "namespacemnx.html#a361b2c550a67bec829901cf59aec117eab41646df7c887cc0e3647ba5f8b26afe", null ],
       [ "TwoOctavesDown", "namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3e464ec7a7d7edf51b4d6fcf2941da25", null ],
@@ -222,7 +229,13 @@ var namespacemnx =
       [ "TwoOctavesUp", "namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a962c3ff88330f1f80321975efddcd744", null ],
       [ "ThreeOctavesUp", "namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a3cbfeb45aff39f7d69abcb551d2badb7", null ]
     ] ],
+    [ "Placement", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621", [
+      [ "Auto", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621a06b9281e396db002010bde1de57262eb", null ],
+      [ "Above", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621a5b469fd01889ec12f1e84c6e66829fc1", null ],
+      [ "Below", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621ae59dd8d25c0b6bb6697eac0617ccd412", null ]
+    ] ],
     [ "SlurTieSide", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64", [
+      [ "Auto", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a06b9281e396db002010bde1de57262eb", null ],
       [ "Down", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a08a38277b0309070706f6652eeae9a53", null ],
       [ "Up", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a258f49887ef8d14ac268c92b02503aaa", null ]
     ] ],

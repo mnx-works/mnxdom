@@ -43,7 +43,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ]
       ] ]
@@ -59,12 +59,13 @@ var NAVTREEINDEX =
 "BaseTypes_8h_source.html",
 "classmnx_1_1Global.html#ae4aa510c166bda678d152b7896a3cf59",
 "classmnx_1_1Score.html#ac0af8ec0f0b08caa5c893da37b2b18ab",
-"classmnx_1_1layout_1_1StaffSource.html",
-"classmnx_1_1part_1_1PartTransposition.html#a9770ac3764e21485891c449f5a06219a",
-"classmnx_1_1sequence_1_1Grace.html#ac5a5ab3484b126c7637995aaced49cf8",
-"classmnx_1_1util_1_1EntityMap.html#a1b200ff8c5af18c0e7432c64593dd1e4",
-"namespacemnx.html#acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53",
-"structmnx_1_1part_1_1DynamicAccent_1_1Required.html#a7d05c5daaec1a634fea257c4914a1ad7"
+"classmnx_1_1layout_1_1Staff.html#acbe18e2d5862839638ae16a2e4ad399f",
+"classmnx_1_1part_1_1PartTransposition.html#a4de179f3a8bfe0077e997ce9c754d29d",
+"classmnx_1_1sequence_1_1FullMeasureRest.html#a4988843f33731e91af29f49660111eb6",
+"classmnx_1_1text_1_1Style.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
+"namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d",
+"structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html",
+"structmnx_1_1validation_1_1ValidationResult_1_1Error.html#a40acbb014740670b2682a5050a52c65e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

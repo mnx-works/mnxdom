@@ -3,6 +3,7 @@ var classmnx_1_1sequence_1_1EventMarkings =
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#a7bbcdcab3cd37ea1e94cecb38912bb42", null ],
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#ac01b2ee9a11379530377171a89bbc3b1", null ],
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#acfaa10a3eb0a883f598c0496ca553e59", null ],
+    [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#a9fad2e73213715dac994bf9f72d3ce2a", null ],
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#adacc4f4461c8631656cb166453cef983", null ],
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#a93520ee8d469fd0c99f1154494ffcc69", null ],
     [ "MNX_OPTIONAL_CHILD", "classmnx_1_1sequence_1_1EventMarkings.html#a6a45df4a89a88953b154c1a13c815585", null ],

@@ -1,5 +1,17 @@
 var NAVTREEINDEX8 =
 {
+"structmnx_1_1TimeSignature_1_1Required.html":[1,0,0,40,0],
+"structmnx_1_1TimeSignature_1_1Required.html":[2,0,0,43,0],
+"structmnx_1_1TimeSignature_1_1Required.html#a2c8f52da6faa63e88be3872e5f92d720":[1,0,0,40,0,0],
+"structmnx_1_1TimeSignature_1_1Required.html#a2c8f52da6faa63e88be3872e5f92d720":[2,0,0,43,0,0],
+"structmnx_1_1TimeSignature_1_1Required.html#af27b795d611f4932369e5dbe283c6326":[1,0,0,40,0,1],
+"structmnx_1_1TimeSignature_1_1Required.html#af27b795d611f4932369e5dbe283c6326":[2,0,0,43,0,1],
+"structmnx_1_1detail_1_1ArrayAppendBase.html":[2,0,0,0,0],
+"structmnx_1_1detail_1_1ArrayAppendBase.html#ae1a898822bcf3a4c62dfc03b0cab7580":[2,0,0,0,0,0],
+"structmnx_1_1detail_1_1ArrayAppendFromMake.html":[2,0,0,0,1],
+"structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html":[2,0,0,0,2],
+"structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html#a7e61f655a1ea4e55e9dca932808d26d1":[2,0,0,0,2,0],
+"structmnx_1_1detail_1_1ArrayAppendOverloads.html":[2,0,0,0,3],
 "structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html":[2,0,0,0,4],
 "structmnx_1_1detail_1_1DictionaryAppendBase.html":[2,0,0,0,5],
 "structmnx_1_1detail_1_1DictionaryAppendBase.html#a07015d1d2eb4e0b055ed0936a1471b09":[2,0,0,0,5,0],
@@ -237,17 +249,5 @@ var NAVTREEINDEX8 =
 "structmnx_1_1util_1_1StaffKeyHash.html":[2,0,0,8,6],
 "structmnx_1_1util_1_1StaffKeyHash.html#a96fe8e1c4593e97d685ec38bf7e3a038":[2,0,0,8,6,0],
 "structmnx_1_1validation_1_1SemanticValidationResult.html":[2,0,0,9,0],
-"structmnx_1_1validation_1_1SemanticValidationResult.html":[1,0,0,6,0],
-"structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59":[2,0,0,9,0,0],
-"structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59":[1,0,0,6,0,0],
-"structmnx_1_1validation_1_1ValidationResult.html":[2,0,0,9,1],
-"structmnx_1_1validation_1_1ValidationResult.html":[1,0,0,6,1],
-"structmnx_1_1validation_1_1ValidationResult.html#a589dcec319d6577d2168768d2f90e73d":[1,0,0,6,1,2],
-"structmnx_1_1validation_1_1ValidationResult.html#a589dcec319d6577d2168768d2f90e73d":[2,0,0,9,1,2],
-"structmnx_1_1validation_1_1ValidationResult.html#ad8dd74b41d16d32f64411ca8f8b10fa9":[1,0,0,6,1,1],
-"structmnx_1_1validation_1_1ValidationResult.html#ad8dd74b41d16d32f64411ca8f8b10fa9":[2,0,0,9,1,1],
-"structmnx_1_1validation_1_1ValidationResult_1_1Error.html":[1,0,0,6,1,0],
-"structmnx_1_1validation_1_1ValidationResult_1_1Error.html":[2,0,0,9,1,0],
-"structmnx_1_1validation_1_1ValidationResult_1_1Error.html#a1adda86fc4504ee4dea9f4357f0ec868":[1,0,0,6,1,0,2],
-"structmnx_1_1validation_1_1ValidationResult_1_1Error.html#a1adda86fc4504ee4dea9f4357f0ec868":[2,0,0,9,1,0,2]
+"structmnx_1_1validation_1_1SemanticValidationResult.html":[1,0,0,6,0]
 };

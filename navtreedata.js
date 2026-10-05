@@ -60,12 +60,12 @@ var NAVTREEINDEX =
 "classmnx_1_1Global.html#ae4aa510c166bda678d152b7896a3cf59",
 "classmnx_1_1Score.html#ac0af8ec0f0b08caa5c893da37b2b18ab",
 "classmnx_1_1layout_1_1Staff.html#acbe18e2d5862839638ae16a2e4ad399f",
-"classmnx_1_1part_1_1PartTransposition.html#a4de179f3a8bfe0077e997ce9c754d29d",
-"classmnx_1_1sequence_1_1FullMeasureRest.html#a4988843f33731e91af29f49660111eb6",
-"classmnx_1_1text_1_1Style.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
-"namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d",
-"structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html",
-"structmnx_1_1validation_1_1ValidationResult_1_1Error.html#a40acbb014740670b2682a5050a52c65e"
+"classmnx_1_1part_1_1Ottava.html#aa936b0d527c30d0247d470c1d7954fe2",
+"classmnx_1_1sequence_1_1EventMarkings.html#acfaa10a3eb0a883f598c0496ca553e59",
+"classmnx_1_1text_1_1Style.html#a0c076615a22cecb634aa6ecd5d311311",
+"namespacemnx.html#a961d9beb0e598614b7157949964d33ef",
+"structmnx_1_1TimeSignature_1_1Required.html",
+"structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

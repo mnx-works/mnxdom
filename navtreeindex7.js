@@ -1,5 +1,17 @@
 var NAVTREEINDEX7 =
 {
+"namespacemnx.html#a961d9beb0e598614b7157949964d33ef":[1,0,0,78],
+"namespacemnx.html#a961d9beb0e598614b7157949964d33efac5dc1837e20fc639f037002606f064bd":[1,0,0,78,3],
+"namespacemnx.html#a961d9beb0e598614b7157949964d33efacc517bad3a0101ca47b6933a5ad22ee0":[1,0,0,78,2],
+"namespacemnx.html#a961d9beb0e598614b7157949964d33efada34e2b724bdb42347569c86723e76f0":[1,0,0,78,0],
+"namespacemnx.html#a961d9beb0e598614b7157949964d33efae30c0ef84d87ecf9870662a879a36a46":[1,0,0,78,1],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26":[1,0,0,48],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a06b9281e396db002010bde1de57262eb":[1,0,0,48,0],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a0b3516a5bbb77566f904f9d3877f4710":[1,0,0,48,2],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a58be47db9455679e6a44df2eff9c9fa6":[1,0,0,48,1],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a750acd2375abfdf959a7a368e0727285":[1,0,0,48,4],
+"namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26ac1a7ead3faffd1eafe2791fddca0dcd2":[1,0,0,48,3],
+"namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485":[1,0,0,63],
 "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d":[1,0,0,63,0],
 "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d55ac077f11ad55a67924103d450612":[1,0,0,63,1],
 "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485ab5c644787d66a37b2d0e7eefaf11506b":[1,0,0,63,2],
@@ -237,17 +249,5 @@ var NAVTREEINDEX7 =
 "structmnx_1_1Score_1_1Required.html":[2,0,0,39,0],
 "structmnx_1_1Score_1_1Required.html":[1,0,0,36,0],
 "structmnx_1_1Score_1_1Required.html#aa60719e331f42accdb3199cef163e613":[2,0,0,39,0,0],
-"structmnx_1_1Score_1_1Required.html#aa60719e331f42accdb3199cef163e613":[1,0,0,36,0,0],
-"structmnx_1_1TimeSignature_1_1Required.html":[1,0,0,40,0],
-"structmnx_1_1TimeSignature_1_1Required.html":[2,0,0,43,0],
-"structmnx_1_1TimeSignature_1_1Required.html#a2c8f52da6faa63e88be3872e5f92d720":[1,0,0,40,0,0],
-"structmnx_1_1TimeSignature_1_1Required.html#a2c8f52da6faa63e88be3872e5f92d720":[2,0,0,43,0,0],
-"structmnx_1_1TimeSignature_1_1Required.html#af27b795d611f4932369e5dbe283c6326":[1,0,0,40,0,1],
-"structmnx_1_1TimeSignature_1_1Required.html#af27b795d611f4932369e5dbe283c6326":[2,0,0,43,0,1],
-"structmnx_1_1detail_1_1ArrayAppendBase.html":[2,0,0,0,0],
-"structmnx_1_1detail_1_1ArrayAppendBase.html#ae1a898822bcf3a4c62dfc03b0cab7580":[2,0,0,0,0,0],
-"structmnx_1_1detail_1_1ArrayAppendFromMake.html":[2,0,0,0,1],
-"structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html":[2,0,0,0,2],
-"structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html#a7e61f655a1ea4e55e9dca932808d26d1":[2,0,0,0,2,0],
-"structmnx_1_1detail_1_1ArrayAppendOverloads.html":[2,0,0,0,3]
+"structmnx_1_1Score_1_1Required.html#aa60719e331f42accdb3199cef163e613":[1,0,0,36,0,0]
 };

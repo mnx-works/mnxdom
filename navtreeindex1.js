@@ -247,7 +247,7 @@ var NAVTREEINDEX1 =
 "classmnx_1_1Score.html#a15b0859da34f498e0a983bec018f4634":[1,0,0,36,7],
 "classmnx_1_1Score.html#a1f534783d8f5e9e0c0993fe34bd53843":[1,0,0,36,8],
 "classmnx_1_1Score.html#a1f534783d8f5e9e0c0993fe34bd53843":[2,0,0,39,8],
-"classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992":[2,0,0,39,2],
 "classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992":[1,0,0,36,2],
+"classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992":[2,0,0,39,2],
 "classmnx_1_1Score.html#ac0af8ec0f0b08caa5c893da37b2b18ab":[2,0,0,39,4]
 };

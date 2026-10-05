@@ -151,6 +151,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2407ae8e4c9ba63b74f6c8c65d6c2bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdfa86f5fdb4e36055c2eea1d4857303" id="r_acdfa86f5fdb4e36055c2eea1d4857303"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1part_1_1DynamicAccent.html#acdfa86f5fdb4e36055c2eea1d4857303">MNX_OPTIONAL_PROPERTY</a> (DynamicValue, residualValue)</td></tr>
 <tr class="separator:acdfa86f5fdb4e36055c2eea1d4857303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f30fc5ccc6c0433c2db618ed4091423" id="r_a1f30fc5ccc6c0433c2db618ed4091423"><td class="memItemLeft" align="right" valign="top"><a id="a1f30fc5ccc6c0433c2db618ed4091423" name="a1f30fc5ccc6c0433c2db618ed4091423"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_REQUIRED_PROPERTY</b> (DynamicValue, value)</td></tr>
+<tr class="memdesc:a1f30fc5ccc6c0433c2db618ed4091423"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the initial attack (the "f" in "sfz"). See #residualValue. <br /></td></tr>
+<tr class="separator:a1f30fc5ccc6c0433c2db618ed4091423"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad07bda8c284486aea3591f99e3c76358" id="r_ad07bda8c284486aea3591f99e3c76358"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1part_1_1DynamicAccent.html#ad07bda8c284486aea3591f99e3c76358">calcHasImmediateText</a> () const override</td></tr>
 <tr class="memdesc:ad07bda8c284486aea3591f99e3c76358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates if this dynamic has immediate text. If this value returns false, then it should be a hairpin with no preceding dynamic.  <br /></td></tr>
 <tr class="separator:ad07bda8c284486aea3591f99e3c76358"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,10 +190,6 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (std::string, suffix)</td></tr>
 <tr class="memdesc:a8f664c4515b30927e5175e748aeaaec9 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text following the dynamics representation, e.g., "subito". <br /></td></tr>
 <tr class="separator:a8f664c4515b30927e5175e748aeaaec9 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7dff385c47860b490db8288e8c6db64 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase" id="r_ac7dff385c47860b490db8288e8c6db64"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (DynamicValue, value)</td></tr>
-<tr class="memdesc:ac7dff385c47860b490db8288e8c6db64 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the dynamic. <br /></td></tr>
-<tr class="separator:ac7dff385c47860b490db8288e8c6db64 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad61eaa90d2f1e417676e6478e68cce70 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase" id="r_ad61eaa90d2f1e417676e6478e68cce70"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (std::string, visuallyContinues)</td></tr>
 <tr class="memdesc:ad61eaa90d2f1e417676e6478e68cce70 inherit pub_methods_classmnx_1_1part_1_1DynamicGroupBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Points to the ID of the directly previous dynamic group. <br /></td></tr>
@@ -314,11 +314,10 @@ Static Public Attributes</h2></td></tr>
 static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>ContentTypeValue</b> = &quot;accent&quot;</td></tr>
 <tr class="memdesc:a5d5a553908522f7a6b5462097a20bc87"><td class="mdescLeft">&#160;</td><td class="mdescRight">type value that identifies the type of dynamic <br /></td></tr>
 <tr class="separator:a5d5a553908522f7a6b5462097a20bc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_attribs_classmnx_1_1part_1_1DynamicGroupBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classmnx_1_1part_1_1DynamicGroupBase')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classmnx_1_1part_1_1DynamicGroupBase.html">mnx::part::DynamicGroupBase</a></td></tr>
-<tr class="memitem:af197762ce406b3f17e0eaad4b758d2f7 inherit pub_static_attribs_classmnx_1_1part_1_1DynamicGroupBase" id="r_af197762ce406b3f17e0eaad4b758d2f7"><td class="memItemLeft" align="right" valign="top">
-static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>JsonSchemaTypeName</b> = &quot;dynamic-group&quot;</td></tr>
-<tr class="memdesc:af197762ce406b3f17e0eaad4b758d2f7 inherit pub_static_attribs_classmnx_1_1part_1_1DynamicGroupBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">required for mapping <br /></td></tr>
-<tr class="separator:af197762ce406b3f17e0eaad4b758d2f7 inherit pub_static_attribs_classmnx_1_1part_1_1DynamicGroupBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4650d9028727a22947e93372f30d20e" id="r_af4650d9028727a22947e93372f30d20e"><td class="memItemLeft" align="right" valign="top"><a id="af4650d9028727a22947e93372f30d20e" name="af4650d9028727a22947e93372f30d20e"></a>
+static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>JsonSchemaTypeName</b> = &quot;dynamic-group-accent&quot;</td></tr>
+<tr class="memdesc:af4650d9028727a22947e93372f30d20e"><td class="mdescLeft">&#160;</td><td class="mdescRight">required for mapping <br /></td></tr>
+<tr class="separator:af4650d9028727a22947e93372f30d20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>

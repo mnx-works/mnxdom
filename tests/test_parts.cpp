@@ -98,3 +98,58 @@ TEST(Parts, Placements)
 
     EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate with placements";
 }
+
+TEST(Parts, DynamicsByType)
+{
+    Document doc;
+    doc.global().measures().append().set_id("m1");
+    auto part = doc.parts().append();
+    part.set_id("P1");
+    auto dynamics = part.measures().append().ensure_dynamics();
+
+    auto immediate = dynamics.appendImmediate(DynamicValue::p, FractionValue(0));
+    immediate.set_id("dImmediate");
+    immediate.ensure_glyphs().push_back("dynamicPiano");
+    EXPECT_EQ(immediate.value(), DynamicValue::p);
+    EXPECT_TRUE(immediate.calcHasImmediateText());
+
+    auto gradual = dynamics.appendGradual(DynamicWedgeType::Increasing, FractionValue(1, 4),
+        MeasureRhythmicPosition::make("m1", FractionValue(3, 4)));
+    gradual.set_id("dGradual");
+    EXPECT_FALSE(gradual.value()) << "gradual value is optional";
+    EXPECT_FALSE(gradual.calcHasImmediateText()) << "bare hairpin has no immediate text";
+    gradual.set_value(DynamicValue::p);
+    EXPECT_TRUE(gradual.calcHasImmediateText());
+    gradual.set_visuallyContinues("dImmediate");
+
+    auto relative = dynamics.appendRelative(DynamicRelativeValue::Softer, FractionValue(3, 4));
+    relative.set_id("dRelative");
+    relative.set_prefix("più");
+    EXPECT_TRUE(relative.calcHasImmediateText());
+
+    auto accent = dynamics.appendAccent(DynamicValue::f, FractionValue(3, 4));
+    accent.set_id("dAccent");
+    accent.set_residualValue(DynamicValue::p);
+    EXPECT_EQ(accent.value(), DynamicValue::f);
+    EXPECT_TRUE(accent.calcHasImmediateText());
+
+    EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate each dynamic type";
+
+    doc.buildEntityMap();
+    const auto& entities = doc.getEntityMap();
+    for (const auto* id : { "dImmediate", "dGradual", "dRelative", "dAccent" }) {
+        EXPECT_NO_THROW(entities.get<part::DynamicGroupBase>(id)) << "base lookup should accept " << id;
+    }
+    EXPECT_EQ(entities.get<part::DynamicImmediate>("dImmediate").value(), DynamicValue::p);
+    EXPECT_EQ(entities.get<part::DynamicGradual>("dGradual").wedgeType(), DynamicWedgeType::Increasing);
+    EXPECT_EQ(entities.get<part::DynamicRelative>("dRelative").relativeValue(), DynamicRelativeValue::Softer);
+    EXPECT_EQ(entities.get<part::DynamicAccent>("dAccent").residualValue(), DynamicValue::p);
+    EXPECT_THROW(entities.get<part::DynamicRelative>("dImmediate"), util::mapping_error);
+
+    // mnxdom exposes these ahead of the MNX schema; see MNX_GAPS.md.
+    relative.set_value(DynamicValue::p);
+    EXPECT_EQ(relative.value(), DynamicValue::p);
+    gradual.ensure_glyphs().push_back("dynamicPiano");
+    ASSERT_TRUE(gradual.glyphs());
+    EXPECT_EQ(gradual.glyphs()->size(), 1u);
+}

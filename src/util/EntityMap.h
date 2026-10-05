@@ -88,6 +88,17 @@ struct JsonSchemaTypeNames<part::ArpeggioBase>
     };
 };
 
+template <>
+struct JsonSchemaTypeNames<part::DynamicGroupBase>
+{
+    static constexpr std::array<std::string_view, 4> value{
+        part::DynamicImmediate::JsonSchemaTypeName,
+        part::DynamicGradual::JsonSchemaTypeName,
+        part::DynamicRelative::JsonSchemaTypeName,
+        part::DynamicAccent::JsonSchemaTypeName
+    };
+};
+
 template <typename T>
 bool matchesTypeName(std::string_view typeName)
 {

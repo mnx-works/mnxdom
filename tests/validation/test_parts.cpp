@@ -22,6 +22,7 @@
 #include <string>
 #include <filesystem>
 #include <iterator>
+#include <set>
 
 #include "gtest/gtest.h"
 #include "mnxdom.h"
@@ -277,13 +278,17 @@ TEST(Parts, DynamicsMissingRequiredAttributesByType)
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "dynamics_missing_required_attrs.json";
     auto doc = mnx::Document::create(inputPath);
-    expectSemanticErrors(doc, inputPath, {
-        "Dynamic of type \"immediate\" requires field \"value\".",
-        "Dynamic of type \"gradual\" requires field \"end\".",
-        "Dynamic of type \"gradual\" requires field \"wedgeType\".",
-        "Dynamic of type \"relative\" requires field \"relativeValue\".",
-        "Dynamic of type \"accent\" requires field \"value\"."
-    });
+    auto schemaResult = mnx::validation::schemaValidate(doc);
+    EXPECT_FALSE(schemaResult) << "schema should reject dynamics missing their type's required fields";
+
+    std::set<std::string> actualPointers;
+    for (const auto& err : schemaResult.errors) {
+        actualPointers.insert(err.pointer.to_string());
+    }
+    for (int i = 0; i < 4; ++i) {
+        const auto pointer = "/parts/0/measures/0/dynamics/" + std::to_string(i);
+        EXPECT_TRUE(actualPointers.count(pointer)) << "expected a schema error at " << pointer;
+    }
 }
 
 TEST(Parts, SlurTargetIsNote)

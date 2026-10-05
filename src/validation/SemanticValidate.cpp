@@ -113,7 +113,6 @@ private:
     std::optional<ArpeggioSpanEndpoints> resolveArpeggioSpanEndpoints(const part::ArpeggioBase& arpeggioBase);
     std::optional<ArpeggioSpanEndpoints> validateArpeggioBase(const mnx::part::Measure& measure, const part::ArpeggioBase& arpeggioBase, std::string_view objectName);
     void validateArpeggios(const mnx::part::Measure& measure, const mnx::Array<mnx::part::Arpeggio>& arpeggios);
-    void validateDynamics(const mnx::part::DynamicGroupArray& dynamics);
     void validateNonArpeggios(const mnx::part::Measure& measure, const mnx::Array<mnx::part::NonArpeggio>& nonArpeggios);
     void validateBeams(const mnx::Array<mnx::part::Beam>& beams, unsigned depth);
     void validateMeasureRepeats(const mnx::Part& part, const mnx::Array<mnx::part::Measure>& measures);
@@ -534,34 +533,6 @@ void SemanticValidator::validateArpeggios(const mnx::part::Measure& measure, con
     }
 }
 
-void SemanticValidator::validateDynamics(const mnx::part::DynamicGroupArray& dynamics)
-{
-    for (const auto dynamic : dynamics) {
-        const auto dynamicType = dynamic.type();
-        const auto dynamicJson = json::parse(dynamic.dump());
-        const auto requireField = [&](bool present, std::string_view fieldName) {
-            if (!present) {
-                addError("Dynamic of type \"" + dynamicType + "\" requires field \"" + std::string(fieldName) + "\".", dynamic);
-            }
-        };
-
-        if (dynamicType == mnx::part::DynamicImmediate::ContentTypeValue) {
-            requireField(dynamicJson.contains("value"), "value");
-        } else if (dynamicType == mnx::part::DynamicGradual::ContentTypeValue) {
-            requireField(dynamicJson.contains("end"), "end");
-            requireField(dynamicJson.contains("wedgeType"), "wedgeType");
-        } else if (dynamicType == mnx::part::DynamicRelative::ContentTypeValue) {
-            requireField(dynamicJson.contains("relativeValue"), "relativeValue");
-        } else if (dynamicType == mnx::part::DynamicAccent::ContentTypeValue) {
-            requireField(dynamicJson.contains("value"), "value");
-        }
-
-        if (!dynamic.calcHasImmediateText() && dynamicType != mnx::part::DynamicGradual::ContentTypeValue) {
-            addError("Dynamic of type \"" + dynamicType + "\" has none of value, attackValue, prefix, or suffix.", dynamic);
-        }
-    }
-}
-
 void SemanticValidator::validateNonArpeggios(const mnx::part::Measure& measure, const mnx::Array<mnx::part::NonArpeggio>& nonArpeggios)
 {
     for (const auto nonArpeggio : nonArpeggios) {
@@ -744,9 +715,6 @@ void SemanticValidator::validateParts()
         for (const auto measure : measures) {
             if (auto beams = measure.beams()) {
                 validateBeams(beams.value(), 1);
-            }
-            if (auto dynamics = measure.dynamics()) {
-                validateDynamics(dynamics.value());
             }
             if (auto arpeggios = measure.arpeggios()) {
                 validateArpeggios(measure, arpeggios.value());

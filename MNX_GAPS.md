@@ -17,3 +17,18 @@ represent that effective child default with the existing property macro
 without deciding how a default wrapper for a child that is absent from the
 JSON should behave. Until that API design is settled, callers must interpret
 an absent default child according to the MNX specification.
+
+## Dynamics `glyphs` and relative `value`
+
+MNX schema version 41 split `dynamic-group` into four closed types. As a
+result, `glyphs` is permitted only on immediate and accent dynamics, and
+relative dynamics have no `value`. That conflicts with the specification's
+intent: before the split, `glyphs` was described as overriding the glyphs
+derived from a dynamic's value or relative value, gradual dynamics have an
+optional starting `value`, and the specification's example of a relative
+dynamic ("*più* p") requires a value.
+
+`mnxdom` therefore exposes `glyphs` on every dynamic (`DynamicGroupBase`) and
+an optional `value` on `DynamicRelative`. Until the upstream schema permits
+them, documents that set `glyphs` on gradual or relative dynamics, or `value`
+on relative dynamics, do not conform to the upstream schema.

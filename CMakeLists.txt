@@ -106,7 +106,7 @@ else()
     FetchContent_Declare(
         json_schema_validator
         GIT_REPOSITORY https://github.com/pboettch/json-schema-validator
-        GIT_TAG        40af3ec39670e768fc3f01f935140af311d71024
+        GIT_TAG        c780404a84dd9ba978ba26bc58d17cb43fa7bc80 # 2.4.0
         DOWNLOAD_EXTRACT_TIMESTAMP TRUE
     )
     FetchContent_MakeAvailable(json_schema_validator)

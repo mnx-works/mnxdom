@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"structmnx_1_1validation_1_1SemanticValidationResult.html":[1,0,0,6,0],
 "structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59":[2,0,0,9,0,0],
 "structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59":[1,0,0,6,0,0],
 "structmnx_1_1validation_1_1ValidationResult.html":[2,0,0,9,1],

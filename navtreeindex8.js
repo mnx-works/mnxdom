@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"structmnx_1_1Score_1_1Required.html#aa60719e331f42accdb3199cef163e613":[1,0,0,36,0,0],
 "structmnx_1_1TimeSignature_1_1Required.html":[1,0,0,40,0],
 "structmnx_1_1TimeSignature_1_1Required.html":[2,0,0,43,0],
 "structmnx_1_1TimeSignature_1_1Required.html#a2c8f52da6faa63e88be3872e5f92d720":[1,0,0,40,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "structmnx_1_1util_1_1StaffKey.html#ad5c02fb5852b13d7953dccaaa0b6f2ed":[2,0,0,8,5,2],
 "structmnx_1_1util_1_1StaffKeyHash.html":[2,0,0,8,6],
 "structmnx_1_1util_1_1StaffKeyHash.html#a96fe8e1c4593e97d685ec38bf7e3a038":[2,0,0,8,6,0],
-"structmnx_1_1validation_1_1SemanticValidationResult.html":[2,0,0,9,0],
-"structmnx_1_1validation_1_1SemanticValidationResult.html":[1,0,0,6,0]
+"structmnx_1_1validation_1_1SemanticValidationResult.html":[2,0,0,9,0]
 };

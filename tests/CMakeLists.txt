@@ -40,6 +40,7 @@ add_executable(mnxdom_tests
     test_scores.cpp
     test_sequences.cpp
     test_ottavas.cpp
+    validation/test_event_timing.cpp
     validation/test_document.cpp
     validation/test_examples.cpp
     validation/test_global.cpp

@@ -23,6 +23,7 @@
 
 #include "BaseTypes.h"
 #include "CommonClasses.h"
+#include "EventMarkings.h"
 
 namespace mnx {
 
@@ -113,6 +114,49 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, open, false);  ///< if this is an open (i.e., final) ending
 
     inline static constexpr std::string_view JsonSchemaTypeName = "ending";     ///< required for mapping
+};
+
+/**
+ * @class Coda
+ * @brief Represents a Coda object marking the destination of a To Coda jump
+ */
+class Coda : public Object
+{
+public:
+    /// @brief initializer class for #Coda
+    struct Required
+    {
+        FractionValue position{}; ///< the position of the Coda within the measure
+    };
+
+    /// @brief Constructor for existing Coda objects
+    Coda(const std::shared_ptr<json>& root, json_pointer pointer)
+        : Object(root, pointer)
+    {
+    }
+
+    /// @brief Creates a new Coda class as a child of a JSON element
+    /// @param parent The parent class instance
+    /// @param key The JSON key to use for embedding in parent.
+    /// @param position The position of the Coda within the measure
+    Coda(Base& parent, std::string_view key, const FractionValue& position)
+        : Object(parent, key)
+    {
+        create_location(position);
+    }
+
+    /// @brief Implicit conversion back to Required.
+    operator Required() const { return { location().fraction() }; }
+
+    /// @brief Create a Required instance for #Coda.
+    static Required make(const FractionValue& position) { return { position }; }
+
+    MNX_OPTIONAL_PROPERTY(std::string, color);                  ///< color to use when rendering the coda direction
+    MNX_OPTIONAL_PROPERTY(std::string, glyph);      ///< SMuFL glyph for the coda sign
+    MNX_REQUIRED_CHILD(RhythmicPosition, location,
+        (const FractionValue&, position)); ///< the location of the coda direction
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "coda";     ///< required for mapping
 };
 
 /**
@@ -344,6 +388,8 @@ public:
 
     MNX_OPTIONAL_CHILD(Barline, barline,
         (BarlineType, barlineType)); ///< optional barline for this measure
+    MNX_OPTIONAL_CHILD(sequence::Caesura, caesura); ///< A caesura at the end of this measure
+    MNX_OPTIONAL_CHILD(Coda, coda, (const FractionValue&, position)); ///< Destination of a To Coda jump
     MNX_OPTIONAL_CHILD(Ending, ending,
         (int, duration)); ///< optional ending ("volta bracket") for this measure
     MNX_OPTIONAL_CHILD(Fermata, fermata);           ///< Information about a fermata aligned with the barline at the end of this measure.
@@ -415,7 +461,6 @@ public:
 
     inline static constexpr std::string_view JsonSchemaTypeName = "lyrics-global";     ///< required for mapping
 };
-
 } // namespace global
 
 /**
@@ -442,5 +487,4 @@ public:
 
     inline static constexpr std::string_view JsonSchemaTypeName = "global";     ///< required for mapping
 };
-
 } // namespace mnx

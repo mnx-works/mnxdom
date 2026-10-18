@@ -172,6 +172,17 @@ public:
         }
     };
 
+    /// @brief Cached metric timing, independent of consumer ottava policies.
+    /// Rebuild the entity map after document edits. Times are fractions of a whole note.
+    struct EventInfo
+    {
+        sequence::Event event;               ///< Document-backed event wrapper
+        size_t measureIndex;                ///< Global measure index, independent of IDs
+        FractionValue elapsedTime;           ///< Elapsed metric time within the measure
+        FractionValue actualDuration;        ///< Duration after tuplet and tremolo scaling; zero for grace notes
+        std::optional<unsigned> graceIndex;  ///< Canonical grace position
+    };
+
     /// @brief Where an id lives in the document and what kind of object carries it.
     struct IdEntry
     {
@@ -239,10 +250,10 @@ private:
         m_eventOttavaShift[eventPointer] = shift;
     }
 
-    /// @brief Cache the mapped position for a specific event pointer.
-    void setEventPosition(const std::string& eventPointer, const MappedPosition& position)
+    /// @brief Cache canonical timing for an event pointer.
+    void setEventInfo(const EventInfo& info)
     {
-        m_eventPositions.insert_or_assign(eventPointer, position);
+        m_eventInfo.insert_or_assign(info.event.pointer().to_string(), info);
     }
 
     friend class mnx::Document;
@@ -420,7 +431,7 @@ public:
     {
         m_objectMap.clear();
         m_eventsInBeams.clear();
-        m_eventPositions.clear();
+        m_eventInfo.clear();
         m_eventOttavaShift.clear();
         m_lyricLineOrder.clear();
     }
@@ -444,14 +455,65 @@ public:
         return 0;
     }
 
-    /// @brief Retrieve the cached mapped position for an event (if known).
-    [[nodiscard]] std::optional<MappedPosition> tryGetEventPosition(const sequence::Event& event) const
+    /// @brief Retrieve canonical timing for an event in this document, including events without IDs.
+    [[nodiscard]] std::optional<EventInfo> tryGetEventInfo(const sequence::Event& event) const
     {
-        const auto it = m_eventPositions.find(event.pointer().to_string());
-        if (it == m_eventPositions.end()) {
+        const auto it = m_eventInfo.find(event.pointer().to_string());
+        if (it == m_eventInfo.end()) {
             return std::nullopt;
         }
         return it->second;
+    }
+
+    /// @brief Retrieve canonical timing by ID, using the usual typed lookup diagnostics.
+    [[nodiscard]] std::optional<EventInfo> tryGetEventInfo(const std::string& id) const
+    {
+        if (auto event = tryGet<sequence::Event>(id)) {
+            return tryGetEventInfo(*event);
+        }
+        return std::nullopt;
+    }
+
+    /// @brief Retrieve canonical timing or throw if the event is not cached.
+    [[nodiscard]] EventInfo getEventInfo(const sequence::Event& event) const
+    {
+        if (auto info = tryGetEventInfo(event)) {
+            return *info;
+        }
+        throw std::logic_error("No timing cached for event at " + event.pointer().to_string());
+    }
+
+    /// @brief Retrieve canonical timing by ID; throws on missing or incorrect IDs.
+    [[nodiscard]] EventInfo getEventInfo(const std::string& id) const
+    {
+        return getEventInfo(get<sequence::Event>(id));
+    }
+
+    /// @brief Compare canonical event onsets, including grace order, without requiring measure IDs.
+    [[nodiscard]] int compareEventPositions(const EventInfo& lhs, const EventInfo& rhs) const
+    {
+        if (lhs.measureIndex != rhs.measureIndex) {
+            return lhs.measureIndex < rhs.measureIndex ? -1 : 1;
+        }
+        RhythmicPosition left(lhs.elapsedTime);
+        RhythmicPosition right(rhs.elapsedTime);
+        if (lhs.graceIndex) {
+            left.set_graceIndex(*lhs.graceIndex);
+        }
+        if (rhs.graceIndex) {
+            right.set_graceIndex(*rhs.graceIndex);
+        }
+        return RhythmicPosition::compare(left, right);
+    }
+
+    /// @brief Retrieve the canonical mapped position for an event (if known).
+    [[nodiscard]] std::optional<MappedPosition> tryGetEventPosition(const sequence::Event& event) const
+    {
+        if (auto info = tryGetEventInfo(event)) {
+            const auto measure = event.getEnclosingElement<part::Measure>()->getGlobalMeasure();
+            return MappedPosition(measure.id_or(""), info->elapsedTime, info->graceIndex);
+        }
+        return std::nullopt;
     }
 
     /// @brief Retrieve the cached mapped position for an event.
@@ -508,7 +570,7 @@ private:
         int startLevel{0};
     };
     std::unordered_map<std::string, BeamMappingEntry> m_eventsInBeams;
-    std::unordered_map<std::string, MappedPosition> m_eventPositions;
+    std::unordered_map<std::string, EventInfo> m_eventInfo;
     std::unordered_map<std::string, int> m_eventOttavaShift;
     std::vector<std::string> m_lyricLineOrder;
 
@@ -519,7 +581,5 @@ private:
     static std::string displayTypeName(const std::string& typeName) {
         return typeName.empty() ? std::string(UNKNOWN_TYPE_NAME) : typeName;
     }
-
 };
-
 } // namespace mnx::util

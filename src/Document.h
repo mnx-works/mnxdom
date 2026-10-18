@@ -84,6 +84,7 @@ public:
 
         MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useAccidentalDisplay, false);  ///< Optional property indicating whether accidental display is used.
         MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useBeams, false);              ///< Optional property that indicates if beams are encoded.
+        MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, useLyricExtenders, false);     ///< Whether lyric extenders are explicitly encoded
 
         inline static constexpr std::string_view JsonSchemaTypeName = "support";     ///< required for mapping
     };
@@ -263,5 +264,4 @@ public:
 };
 
 static_assert(std::is_move_constructible<mnx::Document>::value, "Document must be move constructible");
-
 } // namespace mnx

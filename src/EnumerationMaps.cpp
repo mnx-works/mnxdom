@@ -173,7 +173,12 @@ MNX_ENUM_MAPPING(GraceType, {
 });
 
 MNX_ENUM_MAPPING(JumpType, {
-    { "dsalfine",   JumpType::DsAlFine },
+    { "dc",         JumpType::Dc },
+    { "dcAlCoda",   JumpType::DcAlCoda },
+    { "dcAlFine",   JumpType::DcAlFine },
+    { "dsAlCoda",   JumpType::DsAlCoda },
+    { "dsAlFine",   JumpType::DsAlFine },
+    { "toCoda",     JumpType::ToCoda },
     { "segno",      JumpType::Segno }
 });
 
@@ -256,6 +261,16 @@ MNX_ENUM_MAPPING(Placement, {
     { "below",      Placement::Below }
 });
 
+MNX_ENUM_MAPPING(SlideIntoNoteType, {
+    { "scoop",      SlideIntoNoteType::Scoop },
+    { "plop",       SlideIntoNoteType::Plop }
+});
+
+MNX_ENUM_MAPPING(SlideOutOfNoteType, {
+    { "falloff",    SlideOutOfNoteType::Falloff },
+    { "doit",       SlideOutOfNoteType::Doit }
+});
+
 MNX_ENUM_MAPPING(SlurTieSide, {
     { "auto",       SlurTieSide::Auto },
     { "down",       SlurTieSide::Down },
@@ -293,5 +308,4 @@ MNX_ENUM_MAPPING(TupletDisplaySetting, {
 });
 
 #endif // DOXYGEN_SHOULD_IGNORE_THIS
-
 } // namespace mnx

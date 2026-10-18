@@ -146,10 +146,12 @@ TEST(Parts, DynamicsByType)
     EXPECT_EQ(entities.get<part::DynamicAccent>("dAccent").residualValue(), DynamicValue::p);
     EXPECT_THROW(entities.get<part::DynamicRelative>("dImmediate"), util::mapping_error);
 
-    // mnxdom exposes these ahead of the MNX schema; see MNX_GAPS.md.
+    // Schema 46 permits glyph overrides on all dynamics and a relative value.
     relative.set_value(DynamicValue::p);
     EXPECT_EQ(relative.value(), DynamicValue::p);
     gradual.ensure_glyphs().push_back("dynamicPiano");
     ASSERT_TRUE(gradual.glyphs());
     EXPECT_EQ(gradual.glyphs()->size(), 1u);
+    relative.ensure_glyphs().push_back("dynamicPiano");
+    EXPECT_TRUE(validation::schemaValidate(doc));
 }

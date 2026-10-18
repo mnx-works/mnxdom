@@ -288,6 +288,29 @@
       ],
       "type": "string"
     },
+    "coda": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "glyph": {
+          "$ref": "#/$defs/smufl-glyph"
+        },
+        "location": {
+          "$ref": "#/$defs/rhythmic-position"
+        }
+      },
+      "required": [
+        "location"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
     "color": {
       "type": "string"
     },
@@ -367,6 +390,12 @@
       "properties": {
         "end": {
           "$ref": "#/$defs/measure-rhythmic-position"
+        },
+        "glyphs": {
+          "items": {
+            "$ref": "#/$defs/smufl-glyph"
+          },
+          "type": "array"
         },
         "placement": {
           "$ref": "#/$defs/multi-staff-placement"
@@ -469,6 +498,12 @@
         }
       ],
       "properties": {
+        "glyphs": {
+          "items": {
+            "$ref": "#/$defs/smufl-glyph"
+          },
+          "type": "array"
+        },
         "placement": {
           "$ref": "#/$defs/multi-staff-placement"
         },
@@ -490,6 +525,9 @@
         "type": {
           "const": "relative",
           "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/dynamic-value"
         },
         "visuallyContinues": {
           "$ref": "#/$defs/id"
@@ -664,6 +702,9 @@
         }
       ],
       "properties": {
+        "extender": {
+          "$ref": "#/$defs/event-lyric-line-extender"
+        },
         "text": {
           "$ref": "#/$defs/string"
         },
@@ -674,6 +715,23 @@
       "required": [
         "text"
       ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "event-lyric-line-extender": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "show": {
+          "type": "boolean"
+        },
+        "target": {
+          "$ref": "#/$defs/id"
+        }
+      },
       "type": "object",
       "unevaluatedProperties": false
     },
@@ -996,8 +1054,13 @@
     },
     "jump-type": {
       "enum": [
-        "dsalfine",
-        "segno"
+        "dc",
+        "dcAlCoda",
+        "dcAlFine",
+        "dsAlCoda",
+        "dsAlFine",
+        "segno",
+        "toCoda"
       ],
       "type": "string"
     },
@@ -1191,6 +1254,12 @@
       "properties": {
         "barline": {
           "$ref": "#/$defs/barline"
+        },
+        "caesura": {
+          "$ref": "#/$defs/caesura"
+        },
+        "coda": {
+          "$ref": "#/$defs/coda"
         },
         "ending": {
           "$ref": "#/$defs/ending"
@@ -1435,6 +1504,9 @@
         "accidentalDisplay": {
           "$ref": "#/$defs/accidental-display"
         },
+        "markings": {
+          "$ref": "#/$defs/note-markings"
+        },
         "perform": {
           "$ref": "#/$defs/perform-options"
         },
@@ -1454,6 +1526,23 @@
       "required": [
         "pitch"
       ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "note-markings": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "slideIn": {
+          "$ref": "#/$defs/slide-into-note"
+        },
+        "slideOut": {
+          "$ref": "#/$defs/slide-out-of-note"
+        }
+      },
       "type": "object",
       "unevaluatedProperties": false
     },
@@ -2046,6 +2135,54 @@
       "pattern": "^#[0-9a-f]{6}$",
       "type": "string"
     },
+    "slide-into-note": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/slide-into-note-type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "slide-into-note-type": {
+      "enum": [
+        "scoop",
+        "plop"
+      ],
+      "type": "string"
+    },
+    "slide-out-of-note": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/global-attrs"
+        }
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/slide-out-of-note-type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false
+    },
+    "slide-out-of-note-type": {
+      "enum": [
+        "falloff",
+        "doit"
+      ],
+      "type": "string"
+    },
     "slur": {
       "allOf": [
         {
@@ -2410,6 +2547,9 @@
         },
         "useBeams": {
           "type": "boolean"
+        },
+        "useLyricExtenders": {
+          "type": "boolean"
         }
       },
       "type": "object",
@@ -2744,7 +2884,7 @@
       "type": "string"
     }
   },
-  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/41",
+  "$id": "https://w3c-cg.github.io/mnx/docs/mnx-schema.json/version/46",
   "$ref": "#/$defs/root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "An encoding of Common Western Music Notation.",

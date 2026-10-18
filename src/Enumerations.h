@@ -249,9 +249,20 @@ enum class GraceType
  */
 enum class JumpType
 {
+    Dc,             ///< Da Capo
+    DcAlCoda,       ///< D.C. al Coda
+    DcAlFine,       ///< D.C. al Fine
+    DsAlCoda,       ///< D.S. al Coda
     DsAlFine,       ///< D.S. al Fine
-    Segno           ///< Dal Segno
+    Segno,          ///< Dal Segno
+    ToCoda          ///< Jump to the coda
 };
+
+/// Types of indeterminate slides into a note.
+enum class SlideIntoNoteType { Scoop, Plop };
+
+/// Types of indeterminate slides out of a note.
+enum class SlideOutOfNoteType { Falloff, Doit };
 
 /**
  * @enum LabelRef
@@ -517,7 +528,6 @@ enum class TupletDisplaySetting
     NoNumber,
     Both
 };
-
 } // namespace mnx
 
 #ifndef DOXYGEN_SHOULD_IGNORE_THIS
@@ -559,7 +569,6 @@ struct adl_serializer<mnx::OttavaAmountOrZero>
     static void to_json(BasicJsonType& j, const mnx::OttavaAmountOrZero& value)
     { j = int(value); }
 };
-
 } // namespace nlohmann
 
 #endif // DOXYGEN_SHOULD_IGNORE_THIS

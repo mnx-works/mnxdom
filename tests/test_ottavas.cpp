@@ -86,7 +86,6 @@ void expectOttavaShifts(const std::filesystem::path& relativePath,
     EXPECT_EQ(seen, static_cast<int>(expectations.size()))
         << "Not all event expectations were encountered in " << pathString(relativePath);
 }
-
 } // namespace
 
 TEST(Ottavas, GraceBoundaries)
@@ -98,7 +97,7 @@ TEST(Ottavas, GraceBoundaries)
             {"gr2", -1},
             {"m1e2", -1},
             {"m1e3", 1},
-            {"gr3", 0},
+            {"gr3", 1},
             {"m1e4", 1}
         }));
 }

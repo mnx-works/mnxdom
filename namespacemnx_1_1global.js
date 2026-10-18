@@ -1,6 +1,7 @@
 var namespacemnx_1_1global =
 [
     [ "Barline", "classmnx_1_1global_1_1Barline.html", "classmnx_1_1global_1_1Barline" ],
+    [ "Coda", "classmnx_1_1global_1_1Coda.html", "classmnx_1_1global_1_1Coda" ],
     [ "Ending", "classmnx_1_1global_1_1Ending.html", "classmnx_1_1global_1_1Ending" ],
     [ "Fine", "classmnx_1_1global_1_1Fine.html", "classmnx_1_1global_1_1Fine" ],
     [ "Jump", "classmnx_1_1global_1_1Jump.html", "classmnx_1_1global_1_1Jump" ],

@@ -145,8 +145,13 @@ var namespacemnx =
       [ "MakeTime", "namespacemnx.html#acb425d5f036205992cc10fea3ea3870fae19e6e10aa8e2a392f93679d938f83e1", null ]
     ] ],
     [ "JumpType", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8", [
+      [ "Dc", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a32abe17880f303bea4930ed270e0181e", null ],
+      [ "DcAlCoda", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8af2756eeb425efcabe071efac2203deb7", null ],
+      [ "DcAlFine", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8aeb480e7c4f33bd640cabb606c62291c1", null ],
+      [ "DsAlCoda", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a84a0766095250293ba65138e20a28cc4", null ],
       [ "DsAlFine", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a933bfb3af38e7ee14267c5aefdc56ad1", null ],
-      [ "Segno", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a6fc84132823756493e629bc57d118535", null ]
+      [ "Segno", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a6fc84132823756493e629bc57d118535", null ],
+      [ "ToCoda", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a2f058d6780f7a341640eca733f227e3b", null ]
     ] ],
     [ "LabelRef", "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62", [
       [ "Name", "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987", null ],
@@ -233,6 +238,14 @@ var namespacemnx =
       [ "Auto", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621a06b9281e396db002010bde1de57262eb", null ],
       [ "Above", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621a5b469fd01889ec12f1e84c6e66829fc1", null ],
       [ "Below", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621ae59dd8d25c0b6bb6697eac0617ccd412", null ]
+    ] ],
+    [ "SlideIntoNoteType", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61", [
+      [ "Scoop", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61ae7f713cc669891f304e70e86022b81e5", null ],
+      [ "Plop", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61a4d7d052a80ba25e384e2666930af89af", null ]
+    ] ],
+    [ "SlideOutOfNoteType", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788", [
+      [ "Falloff", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788ab117eba575beb12d380c24f5e704d319", null ],
+      [ "Doit", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788a9f6504a6276be8a538b71317f3fb6cce", null ]
     ] ],
     [ "SlurTieSide", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64", [
       [ "Auto", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a06b9281e396db002010bde1de57262eb", null ],

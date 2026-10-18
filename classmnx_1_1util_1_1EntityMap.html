@@ -109,6 +109,9 @@ $(document).ready(function(){initNavTree('classmnx_1_1util_1_1EntityMap.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cached metric timing, independent of consumer ottava policies. Rebuild the entity map after document edits. Times are fractions of a whole note.  <a href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html">IdEntry</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where an id lives in the document and what kind of object carries it.  <a href="structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,9 +175,29 @@ std::optional&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getOttavaShift</b> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>
 <tr class="memdesc:abbbc9e36b74a1cb998782def2fd70295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the ottava shift for an event. Returns 0 if not cached. <br /></td></tr>
 <tr class="separator:abbbc9e36b74a1cb998782def2fd70295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d545a33e81fd7126f727c43c70efcae" id="r_a0d545a33e81fd7126f727c43c70efcae"><td class="memItemLeft" align="right" valign="top"><a id="a0d545a33e81fd7126f727c43c70efcae" name="a0d545a33e81fd7126f727c43c70efcae"></a>
+std::optional&lt; <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tryGetEventInfo</b> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>
+<tr class="memdesc:a0d545a33e81fd7126f727c43c70efcae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve canonical timing for an event in this document, including events without IDs. <br /></td></tr>
+<tr class="separator:a0d545a33e81fd7126f727c43c70efcae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40952a7ef899f6d09a54dc307aca73ed" id="r_a40952a7ef899f6d09a54dc307aca73ed"><td class="memItemLeft" align="right" valign="top"><a id="a40952a7ef899f6d09a54dc307aca73ed" name="a40952a7ef899f6d09a54dc307aca73ed"></a>
+std::optional&lt; <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tryGetEventInfo</b> (const std::string &amp;id) const</td></tr>
+<tr class="memdesc:a40952a7ef899f6d09a54dc307aca73ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve canonical timing by ID, using the usual typed lookup diagnostics. <br /></td></tr>
+<tr class="separator:a40952a7ef899f6d09a54dc307aca73ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a128ef2d53c0451945c06d3bac5493b6e" id="r_a128ef2d53c0451945c06d3bac5493b6e"><td class="memItemLeft" align="right" valign="top"><a id="a128ef2d53c0451945c06d3bac5493b6e" name="a128ef2d53c0451945c06d3bac5493b6e"></a>
+<a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getEventInfo</b> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>
+<tr class="memdesc:a128ef2d53c0451945c06d3bac5493b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve canonical timing or throw if the event is not cached. <br /></td></tr>
+<tr class="separator:a128ef2d53c0451945c06d3bac5493b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79f2d453076889ee2932b8308b6d4a89" id="r_a79f2d453076889ee2932b8308b6d4a89"><td class="memItemLeft" align="right" valign="top"><a id="a79f2d453076889ee2932b8308b6d4a89" name="a79f2d453076889ee2932b8308b6d4a89"></a>
+<a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getEventInfo</b> (const std::string &amp;id) const</td></tr>
+<tr class="memdesc:a79f2d453076889ee2932b8308b6d4a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve canonical timing by ID; throws on missing or incorrect IDs. <br /></td></tr>
+<tr class="separator:a79f2d453076889ee2932b8308b6d4a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd7c1b8bf399135dc4d507f7b88266d" id="r_adcd7c1b8bf399135dc4d507f7b88266d"><td class="memItemLeft" align="right" valign="top"><a id="adcd7c1b8bf399135dc4d507f7b88266d" name="adcd7c1b8bf399135dc4d507f7b88266d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compareEventPositions</b> (const <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a> &amp;lhs, const <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1EventInfo.html">EventInfo</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:adcd7c1b8bf399135dc4d507f7b88266d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare canonical event onsets, including grace order, without requiring measure IDs. <br /></td></tr>
+<tr class="separator:adcd7c1b8bf399135dc4d507f7b88266d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7c882e3ac6cc8051201be897745b943" id="r_af7c882e3ac6cc8051201be897745b943"><td class="memItemLeft" align="right" valign="top"><a id="af7c882e3ac6cc8051201be897745b943" name="af7c882e3ac6cc8051201be897745b943"></a>
 std::optional&lt; <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html">MappedPosition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tryGetEventPosition</b> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>
-<tr class="memdesc:af7c882e3ac6cc8051201be897745b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the cached mapped position for an event (if known). <br /></td></tr>
+<tr class="memdesc:af7c882e3ac6cc8051201be897745b943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the canonical mapped position for an event (if known). <br /></td></tr>
 <tr class="separator:af7c882e3ac6cc8051201be897745b943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fc55190ceb406ff6fdbcb96f1e74d14" id="r_a5fc55190ceb406ff6fdbcb96f1e74d14"><td class="memItemLeft" align="right" valign="top"><a id="a5fc55190ceb406ff6fdbcb96f1e74d14" name="a5fc55190ceb406ff6fdbcb96f1e74d14"></a>
 <a class="el" href="structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html">MappedPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getEventPosition</b> (const <a class="el" href="classmnx_1_1sequence_1_1Event.html">sequence::Event</a> &amp;event) const</td></tr>

@@ -24,13 +24,15 @@ var searchData=
   ['calcvisiblenumber_21',['calcVisibleNumber',['../classmnx_1_1global_1_1Measure.html#a8aed2c5f9b7690e13b425e2640df7188',1,'mnx::global::Measure']]],
   ['checkindex_22',['checkIndex',['../classmnx_1_1Array.html#a05a20cc19658a6cae21da5ed73d07f7c',1,'mnx::Array']]],
   ['chromatictranspose_23',['chromaticTranspose',['../classmusic__theory_1_1Transposer.html#a316564e5ceb34e7aaa072df6677b1ef3',1,'music_theory::Transposer']]],
-  ['clear_24',['clear',['../classmnx_1_1util_1_1EntityMap.html#aa1cbaa87fce31b0a5a1e3092ed04ff7a',1,'mnx::util::EntityMap::clear()'],['../classmnx_1_1Dictionary.html#af964e19b6398456bf417982fc42a7549',1,'mnx::Dictionary::clear()'],['../classmnx_1_1Array.html#abb2b9332b4d17e94fa7be78d42be56c5',1,'mnx::Array::clear()']]],
+  ['clear_24',['clear',['../classmnx_1_1Array.html#abb2b9332b4d17e94fa7be78d42be56c5',1,'mnx::Array::clear()'],['../classmnx_1_1Dictionary.html#af964e19b6398456bf417982fc42a7549',1,'mnx::Dictionary::clear()'],['../classmnx_1_1util_1_1EntityMap.html#aa1cbaa87fce31b0a5a1e3092ed04ff7a',1,'mnx::util::EntityMap::clear()']]],
   ['clear_5fmnxdom_25',['clear_mnxdom',['../classmnx_1_1MnxMetaData.html#a1adcec72af69e677da7a7e9178d1467a',1,'mnx::MnxMetaData']]],
   ['clearextension_26',['clearExtension',['../classmnx_1_1Object.html#a3a0783bc924ab1d2fcb4b97f5c28e893',1,'mnx::Object']]],
   ['clef_27',['clef',['../classmnx_1_1part_1_1Clef.html#a9b774be02602137299488af3ef91fd85',1,'mnx::part::Clef::Clef(Base &amp;parent, std::string_view key, ClefSign clefSign, int staffPosition, OttavaAmountOrZero octaveAdjustment=OttavaAmountOrZero::NoTransposition)'],['../classmnx_1_1part_1_1Clef.html#acdb595f30c9010c001057cced35830fa',1,'mnx::part::Clef::Clef(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)']]],
-  ['compare_28',['compare',['../classmnx_1_1RhythmicPosition.html#a8e59934c4b64a4413a6c24478a9f5aa7',1,'mnx::RhythmicPosition']]],
-  ['comparepositions_29',['comparePositions',['../classmnx_1_1util_1_1EntityMap.html#aac9cd899249722b47fbbca7244dc1398',1,'mnx::util::EntityMap']]],
-  ['container_30',['container',['../classmnx_1_1ArrayElementObject.html#a79dce742fe1e62a6602d4ad33bcca291',1,'mnx::ArrayElementObject']]],
-  ['contains_31',['contains',['../classmnx_1_1Dictionary.html#af76505057285918cf48cbb6f3dbeffff',1,'mnx::Dictionary']]],
-  ['create_32',['create',['../classmnx_1_1Document.html#a5494915a76ef3b0d4c91c08ddb3a1f32',1,'mnx::Document::create(const std::filesystem::path &amp;inputPath)'],['../classmnx_1_1Document.html#a443497cd6b0cee8b86dbb655aa95c8d6',1,'mnx::Document::create(const Byte *data, std::size_t size)']]]
+  ['coda_28',['coda',['../classmnx_1_1global_1_1Coda.html#a9ea413b775e054cae432a9d8f00da2af',1,'mnx::global::Coda::Coda(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1global_1_1Coda.html#a45c693e404b15dfa1765414124d9b229',1,'mnx::global::Coda::Coda(Base &amp;parent, std::string_view key, const FractionValue &amp;position)']]],
+  ['compare_29',['compare',['../classmnx_1_1RhythmicPosition.html#a8e59934c4b64a4413a6c24478a9f5aa7',1,'mnx::RhythmicPosition']]],
+  ['compareeventpositions_30',['compareEventPositions',['../classmnx_1_1util_1_1EntityMap.html#adcd7c1b8bf399135dc4d507f7b88266d',1,'mnx::util::EntityMap']]],
+  ['comparepositions_31',['comparePositions',['../classmnx_1_1util_1_1EntityMap.html#aac9cd899249722b47fbbca7244dc1398',1,'mnx::util::EntityMap']]],
+  ['container_32',['container',['../classmnx_1_1ArrayElementObject.html#a79dce742fe1e62a6602d4ad33bcca291',1,'mnx::ArrayElementObject']]],
+  ['contains_33',['contains',['../classmnx_1_1Dictionary.html#af76505057285918cf48cbb6f3dbeffff',1,'mnx::Dictionary']]],
+  ['create_34',['create',['../classmnx_1_1Document.html#a443497cd6b0cee8b86dbb655aa95c8d6',1,'mnx::Document::create(const Byte *data, std::size_t size)'],['../classmnx_1_1Document.html#a5494915a76ef3b0d4c91c08ddb3a1f32',1,'mnx::Document::create(const std::filesystem::path &amp;inputPath)']]]
 ];

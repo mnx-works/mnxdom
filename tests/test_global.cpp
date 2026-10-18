@@ -231,7 +231,7 @@ TEST(Global, Schema46NavigationAndCaesura)
     for (const auto& [type, text] : jumps) {
         auto jump = measure.ensure_jump(type, FractionValue{1, 1});
         jump.set_type(type);
-        EXPECT_EQ(json::parse(jump.dump())["type"], text);
+        EXPECT_EQ(json::parse(jump.dump())["type"].get<std::string>(), text);
         global::Jump copy(std::make_shared<json>(json::parse(jump.dump())), json_pointer{});
         EXPECT_EQ(copy.type(), type);
         EXPECT_TRUE(validation::schemaValidate(doc));

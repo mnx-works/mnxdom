@@ -28,7 +28,7 @@
             "highlight": ["jump"]
           }
         },
-        "jump": {"type": "dsalfine", "location": {"fraction": [1, 1]}}
+        "jump": {"type": "dsAlFine", "location": {"fraction": [1, 1]}}
       }
     ]
   },

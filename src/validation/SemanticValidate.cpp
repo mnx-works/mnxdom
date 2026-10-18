@@ -86,7 +86,6 @@ struct ArpeggioSpanEndpoints
         pitch.alter()
     );
 }
-
 } // namespace
 
 class SemanticValidator
@@ -98,6 +97,8 @@ public:
     Document document;
 
     void validateGlobal();
+    void validateNavigation();
+    void validateExtenders(const sequence::Event& event);
     void validateParts();
     void validateLayouts();
     void validateScores();
@@ -124,6 +125,114 @@ private:
     template <typename T, typename KeyType>
     std::optional<T> tryGetValue(const KeyType& key, const Base& errorLocation);
 };
+
+void SemanticValidator::validateExtenders(const sequence::Event& event)
+{
+    const auto lyrics = event.lyrics();
+    if (!lyrics || !lyrics->lines()) {
+        return;
+    }
+    const auto& entities = document.getEntityMap();
+    const auto lines = *lyrics->lines();
+    for (const auto& [lineId, line] : lines) {
+        const auto extender = line.extender();
+        if (!extender || !extender->show() || !extender->target()) {
+            continue;
+        }
+        const auto targetId = *extender->target();
+        const auto target = tryGetValue<sequence::Event>(targetId, *extender);
+        if (!target) {
+            continue;
+        }
+        const auto sourceInfo = entities.tryGetEventInfo(event);
+        const auto targetInfo = entities.tryGetEventInfo(*target);
+        if (!sourceInfo || !targetInfo) {
+            addError("Cannot determine timing for lyric extender target \"" + targetId + "\".", *extender);
+            continue;
+        }
+        const int order = entities.compareEventPositions(*targetInfo, *sourceInfo);
+        if (order < 0) {
+            addError("Lyric extender target \"" + targetId + "\" precedes its source event.", *extender);
+            continue;
+        }
+        if (order == 0 || !target->lyrics() || !target->lyrics()->lines()
+            || !target->lyrics()->lines()->contains(lineId)) {
+            continue;
+        }
+        const auto sourceSequence = event.getSequence();
+        const auto targetSequence = target->getSequence();
+        const bool sameSequence = sourceSequence.pointer() == targetSequence.pointer();
+        const bool samePart = event.getEnclosingElement<Part>()->pointer() == target->getEnclosingElement<Part>()->pointer();
+        const bool sameVoice = samePart && sourceSequence.voice() && targetSequence.voice()
+            && !sourceSequence.voice()->empty() && sourceSequence.voice() == targetSequence.voice();
+        if (sameSequence || sameVoice) {
+            result.warnings.emplace_back(extender->pointer(), extender->ref(),
+                "Lyric extender target \"" + targetId + "\" has a syllable in the same lyric line \"" + lineId + "\".");
+        }
+    }
+}
+
+void SemanticValidator::validateNavigation()
+{
+    size_t segnos = 0;
+    size_t fines = 0;
+    size_t codas = 0;
+    const auto measures = document.global().measures();
+    for (const auto measure : measures) {
+        segnos += measure.segno().has_value();
+        fines += measure.fine().has_value();
+        codas += measure.coda().has_value();
+    }
+    for (const auto measure : measures) {
+        const auto time = measure.calcCurrentTime();
+        const auto checkLocation = [&](const auto& object) {
+            const auto onset = object.location().fraction();
+            // Fractions are unsigned; nonnegative encoding is checked by schema validation.
+            if (time && onset > static_cast<FractionValue>(*time)) {
+                addError("Navigation location is outside its containing measure.", object);
+            }
+        };
+        if (const auto coda = measure.coda()) {
+            checkLocation(*coda);
+        }
+        if (const auto segno = measure.segno()) {
+            checkLocation(*segno);
+        }
+        if (const auto fine = measure.fine()) {
+            checkLocation(*fine);
+        }
+        if (const auto jump = measure.jump()) {
+            checkLocation(*jump);
+            const auto requireDestination = [&](size_t count, const std::string& name) {
+                if (count != 1) {
+                    addError("Jump requires exactly one " + name + " destination; found " + std::to_string(count) + ".", *jump);
+                }
+            };
+            switch (jump->type()) {
+            case JumpType::Dc:
+                break;
+            case JumpType::Segno:
+                requireDestination(segnos, "segno");
+                break;
+            case JumpType::DcAlFine:
+                requireDestination(fines, "fine");
+                break;
+            case JumpType::DsAlFine:
+                requireDestination(segnos, "segno");
+                requireDestination(fines, "fine");
+                break;
+            case JumpType::DcAlCoda:
+            case JumpType::ToCoda:
+                requireDestination(codas, "coda");
+                break;
+            case JumpType::DsAlCoda:
+                requireDestination(segnos, "segno");
+                requireDestination(codas, "coda");
+                break;
+            }
+        }
+    }
+}
 
 template <typename T, typename KeyType>
 std::optional<T> SemanticValidator::tryGetValue(const KeyType& key, const Base& errorLocation)
@@ -350,6 +459,7 @@ void SemanticValidator::validateSequenceContent(const mnx::sequence::SequenceCon
                     }
                 }
             }
+            validateExtenders(event);
             if (!result.lyricLines.empty()) { // only check lyric lines if the line ids were provided in global.lyrics()
                 if (auto lyrics = event.lyrics()) {
                     if (auto lines = lyrics.value().lines()) {
@@ -862,6 +972,7 @@ SemanticValidationResult semanticValidate(const Document& document)
 
     // these calls are order-dependent
     validator.validateGlobal();
+    validator.validateNavigation();
     validator.validateParts();
     validator.validateLayouts();
     validator.validateScores();
@@ -921,6 +1032,5 @@ bool hasValidDocumentRoot(const Document& document)
 
     return foundGlobal && foundParts && foundMnx;
 }
-
 } // namespace validation
 } // namespace mnx

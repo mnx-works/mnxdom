@@ -76,6 +76,8 @@ struct SemanticValidationResult : public ValidationResult
     ///< These are sourced either from `global.lyrics().lineOrder()` or `global().lyrics().lineMetadata()`.
     ///< The json_pointer is used only for reporting the location of duplicate values. It points to an element
     ///< in one of the two arrays, with preference given to `lineOrder` if it exists.
+
+    std::vector<Error> warnings;                              ///< Advisory diagnostics; do not affect validation success
 };
 
 /// @brief Validates a document against a JSON schema
@@ -85,6 +87,7 @@ struct SemanticValidationResult : public ValidationResult
 extern ValidationResult schemaValidate(const Document& document, const std::optional<std::string>& jsonSchema = std::nullopt);
 
 /// @brief Validates the semantics of the input MNX document
+/// @details Warnings are advisory and do not affect the result's conversion to bool.
 /// @param document The document to validate
 /// @return validation result
 extern SemanticValidationResult semanticValidate(const Document& document);
@@ -94,6 +97,5 @@ extern SemanticValidationResult semanticValidate(const Document& document);
 /// @param document The document to check.
 /// @return True if the document root is a valid MNX document root.
 extern bool hasValidDocumentRoot(const Document& document);
-
 } // namespace validation
 } // namespace mnx

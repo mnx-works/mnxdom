@@ -162,7 +162,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
     std::vector<FractionValue> measureDurations(globalMeasures.size(), FractionValue(1, 1));
     for (const auto globalMeasure : globalMeasures) {
         FractionValue duration(1, 1);
-        if (const auto time = globalMeasure.time()) {
+        if (const auto time = globalMeasure.calcCurrentTime()) {
             duration = static_cast<FractionValue>(*time);
         }
         measureDurations[globalMeasure.calcArrayIndex()] = duration;
@@ -236,6 +236,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                 {
                     sequence::Event event;
                     FractionValue startTime;
+                    FractionValue actualDuration;
                     int staff;
                     std::optional<std::string> voice;
                 };
@@ -244,14 +245,15 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                 const auto sequenceVoice = sequence.voice();
                 const int sequenceStaff = sequence.staff();
 
-                auto storeOttavaShift = [&](const sequence::Event& event,
-                                            const FractionValue& start,
-                                            std::optional<unsigned> graceIndex,
-                                            int staffNumber,
-                                            const std::optional<std::string>& voiceLabel) {
+                auto storeEventMapping = [&](const sequence::Event& event,
+                                             const FractionValue& start,
+                                             const FractionValue& actualDuration,
+                                             std::optional<unsigned> graceIndex,
+                                             int staffNumber,
+                                             const std::optional<std::string>& voiceLabel) {
                     util::EntityMap::MappedPosition position = makeMappedPosition(globalMeasure, start,
                         adaptGraceIndex(graceIndex));
-                    m_entityMapping->setEventPosition(event.pointer().to_string(), position);
+                    m_entityMapping->setEventInfo({event, measureIndex, start, actualDuration, graceIndex});
                     const int shift = calcOttavaShift(staffNumber, voiceLabel, position);
                     m_entityMapping->setEventOttavaShift(event.pointer().to_string(), shift);
                 };
@@ -262,11 +264,12 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                     }
                     unsigned graceIndex = 1;
                     for (auto it = pendingGraceEvents.rbegin(); it != pendingGraceEvents.rend(); ++it) {
-                        storeOttavaShift(it->event,
-                                         it->startTime,
-                                         std::optional<unsigned>(graceIndex),
-                                         it->staff,
-                                         it->voice);
+                        storeEventMapping(it->event,
+                                          it->startTime,
+                                          it->actualDuration,
+                                          std::optional<unsigned>(graceIndex),
+                                          it->staff,
+                                          it->voice);
                         ++graceIndex;
                     }
                     pendingGraceEvents.clear();
@@ -276,7 +279,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                 util::SequenceWalkHooks hooks;
                 hooks.onEvent = [&](const sequence::Event& event,
                                     const FractionValue& startTime,
-                                    const FractionValue&,
+                                    const FractionValue& actualDuration,
                                     util::SequenceWalkContext& ctx) -> bool {
                     if (docLyricLines.empty()) {
                         if (const auto lyrics = event.lyrics()) {
@@ -292,17 +295,19 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                         pendingGraceEvents.push_back(PendingGraceEvent{
                             event,
                             startTime,
+                            actualDuration,
                             eventStaff,
                             sequenceVoice
                         });
                         return true;
                     }
                     flushPendingGraceEvents();
-                    storeOttavaShift(event,
-                                     startTime,
-                                     std::optional<unsigned>(0),
-                                     eventStaff,
-                                     sequenceVoice);
+                    storeEventMapping(event,
+                                      startTime,
+                                      actualDuration,
+                                      std::optional<unsigned>(0),
+                                      eventStaff,
+                                      sequenceVoice);
                     return true;
                 };
 
@@ -501,7 +506,8 @@ int RhythmicPosition::compare(const RhythmicPosition& lhs,
         if (*lhsGrace == *rhsGrace) {
             return 0;
         }
-        return *lhsGrace < *rhsGrace ? -1 : 1;
+        // Grace indices count backwards from the main note (index zero).
+        return *lhsGrace > *rhsGrace ? -1 : 1;
     };
 
     if (lhs.fraction() != rhs.fraction()) {
@@ -812,5 +818,4 @@ int util::EntityMap::comparePositions(const MappedPosition& lhs,
     }
     return RhythmicPosition::compare(lhsPosition, rhsPosition, rhsIncludesTrailingGrace);
 }
-
 } // namespace mnx

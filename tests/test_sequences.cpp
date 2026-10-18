@@ -302,3 +302,30 @@ TEST(MusicTheoryTest, CalcMidiKey)
     EXPECT_EQ(calcMidiKey(Pitch(NoteName::G, 9, 1)), 128);
     EXPECT_EQ(calcMidiKey(Pitch(NoteName::C, -2)), -12);
 }
+
+TEST(TestSequences, Schema46NoteMarkingsAndExtenders)
+{
+    sequence::Note note(std::make_shared<json>(json::object()), json_pointer{});
+    note.create_pitch(NoteStep::C, 4, 0);
+    auto markings = note.ensure_markings();
+    markings.ensure_slideIn(SlideIntoNoteType::Scoop);
+    markings.ensure_slideOut(SlideOutOfNoteType::Falloff);
+    EXPECT_EQ(json::parse(note.dump())["markings"]["slideIn"]["type"], "scoop");
+    EXPECT_EQ(json::parse(note.dump())["markings"]["slideOut"]["type"], "falloff");
+    markings.slideIn()->set_type(SlideIntoNoteType::Plop);
+    markings.slideOut()->set_type(SlideOutOfNoteType::Doit);
+    sequence::Note restored(std::make_shared<json>(json::parse(note.dump())), json_pointer{});
+    EXPECT_EQ(restored.markings()->slideIn()->type(), SlideIntoNoteType::Plop);
+    EXPECT_EQ(restored.markings()->slideOut()->type(), SlideOutOfNoteType::Doit);
+
+    sequence::EventLyricLine lyric(std::make_shared<json>(json{{"text", "Ah"}}), json_pointer{});
+    EXPECT_FALSE(lyric.extender());
+    auto extender = lyric.ensure_extender();
+    EXPECT_TRUE(extender.show());
+    EXPECT_EQ(extender.dump(), "{}");
+    extender.set_target("event2");
+    extender.set_show(false);
+    sequence::EventLyricLine copy(std::make_shared<json>(json::parse(lyric.dump())), json_pointer{});
+    EXPECT_FALSE(copy.extender()->show());
+    EXPECT_EQ(copy.extender()->target(), "event2");
+}

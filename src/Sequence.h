@@ -317,6 +317,47 @@ public:
     inline static constexpr std::string_view JsonSchemaTypeName = "perform-options";     ///< required for mapping
 };
 
+/// An indeterminate slide associated with a note.
+class SlideIntoNote : public Object
+{
+public:
+    struct Required { SlideIntoNoteType type{}; };
+    SlideIntoNote(const std::shared_ptr<json>& root, json_pointer pointer) : Object(root, pointer) {}
+    SlideIntoNote(Base& parent, std::string_view key, SlideIntoNoteType type) : Object(parent, key)
+    { set_type(type); }
+    operator Required() const { return { type() }; }
+    static Required make(SlideIntoNoteType type) { return { type }; }
+
+    MNX_REQUIRED_PROPERTY(SlideIntoNoteType, type); ///< The type of slide
+    inline static constexpr std::string_view JsonSchemaTypeName = "slide-into-note";
+};
+
+/// An indeterminate slide associated with a note.
+class SlideOutOfNote : public Object
+{
+public:
+    struct Required { SlideOutOfNoteType type{}; };
+    SlideOutOfNote(const std::shared_ptr<json>& root, json_pointer pointer) : Object(root, pointer) {}
+    SlideOutOfNote(Base& parent, std::string_view key, SlideOutOfNoteType type) : Object(parent, key)
+    { set_type(type); }
+    operator Required() const { return { type() }; }
+    static Required make(SlideOutOfNoteType type) { return { type }; }
+
+    MNX_REQUIRED_PROPERTY(SlideOutOfNoteType, type); ///< The type of slide
+    inline static constexpr std::string_view JsonSchemaTypeName = "slide-out-of-note";
+};
+
+/// Notations that apply to an individual pitched note.
+class NoteMarkings : public Object
+{
+public:
+    using Object::Object;
+
+    MNX_OPTIONAL_CHILD(SlideIntoNote, slideIn, (SlideIntoNoteType, type));    ///< Slide into the note
+    MNX_OPTIONAL_CHILD(SlideOutOfNote, slideOut, (SlideOutOfNoteType, type)); ///< Slide out of the note
+    inline static constexpr std::string_view JsonSchemaTypeName = "note-markings";
+};
+
 /**
  * @class NoteBase
  * @brief Represents common elements between @ref Note and @ref KitNote
@@ -409,10 +450,22 @@ public:
     MNX_OPTIONAL_CHILD(
         AccidentalDisplay, accidentalDisplay,
         (bool, show)); ///< the forced show/hide state of the accidental
+    MNX_OPTIONAL_CHILD(NoteMarkings, markings);                     ///< Notations applying to this note
     MNX_REQUIRED_CHILD(Pitch, pitch, (NoteStep, step), (int, octave), (int, alter)); ///< the pitch of the note
     MNX_OPTIONAL_CHILD(TransposeWritten, written);                  ///< How to write this note when it is displayed transposed
 
     inline static constexpr std::string_view JsonSchemaTypeName = "note";     ///< required for mapping
+};
+
+/// An explicitly encoded lyric extender line.
+class EventLyricLineExtender : public Object
+{
+public:
+    using Object::Object;
+
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(bool, show, true); ///< Whether to show the extender
+    MNX_OPTIONAL_PROPERTY(std::string, target);           ///< Last event covered; ignored when show is false
+    inline static constexpr std::string_view JsonSchemaTypeName = "event-lyric-line-extender";
 };
 
 /**
@@ -450,6 +503,7 @@ public:
     /// @brief Create a Required instance for #EventLyricLine.
     static Required make(const std::string& syllableText) { return { syllableText }; }
 
+    MNX_OPTIONAL_CHILD(EventLyricLineExtender, extender);                           ///< Extender for this syllable
     MNX_REQUIRED_PROPERTY(std::string, text);           ///< the syllable text
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LyricLineType, type, LyricLineType::Whole);  ///< the type of syllable (in relation to the complete word)
 
@@ -771,7 +825,6 @@ inline Space SequenceContent::appendSpace(const FractionValue& duration)
 inline Tuplet SequenceContent::appendTuplet(const NoteValueQuantity::Required& innerNoteValueQuant,
     const NoteValueQuantity::Required& outerNoteValueQuant)
 { return appendWithType<Tuplet>(innerNoteValueQuant, outerNoteValueQuant); }
-
 } // namespace sequence
 
 /**
@@ -804,5 +857,4 @@ public:
 
     inline static constexpr std::string_view JsonSchemaTypeName = "sequence";     ///< required for mapping
 };
-
 } // namespace mnx

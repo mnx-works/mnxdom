@@ -209,3 +209,36 @@ TEST(Global, TempoFractionalBpm)
     auto parsedTempo = parsed.global().measures()[0].tempos().value()[0];
     EXPECT_DOUBLE_EQ(parsedTempo.bpm(), 132.0);
 }
+
+TEST(Global, Schema46NavigationAndCaesura)
+{
+    Document doc;
+    auto measure = doc.global().measures().append();
+    auto coda = measure.ensure_coda(FractionValue{0, 1});
+    coda.set_color("#123456");
+    coda.set_glyph("coda");
+    EXPECT_EQ(coda.location().fraction(), (FractionValue{0, 1}));
+    EXPECT_EQ(coda.glyph(), "coda");
+    auto caesura = measure.ensure_caesura();
+    EXPECT_EQ(caesura.marks(), 2u);
+    EXPECT_EQ(caesura.shape(), CaesuraShape::Normal);
+    const std::pair<JumpType, std::string_view> jumps[] = {
+        {JumpType::Dc, "dc"}, {JumpType::DcAlCoda, "dcAlCoda"},
+        {JumpType::DcAlFine, "dcAlFine"}, {JumpType::DsAlCoda, "dsAlCoda"},
+        {JumpType::DsAlFine, "dsAlFine"}, {JumpType::Segno, "segno"},
+        {JumpType::ToCoda, "toCoda"}
+    };
+    for (const auto& [type, text] : jumps) {
+        auto jump = measure.ensure_jump(type, FractionValue{1, 1});
+        jump.set_type(type);
+        EXPECT_EQ(json::parse(jump.dump())["type"].get<std::string>(), text);
+        global::Jump copy(std::make_shared<json>(json::parse(jump.dump())), json_pointer{});
+        EXPECT_EQ(copy.type(), type);
+        EXPECT_TRUE(validation::schemaValidate(doc));
+    }
+    auto support = doc.mnx().ensure_support();
+    EXPECT_FALSE(support.useLyricExtenders());
+    EXPECT_FALSE(json::parse(support.dump()).contains("useLyricExtenders"));
+    support.set_useLyricExtenders(true);
+    EXPECT_TRUE(validation::schemaValidate(doc));
+}

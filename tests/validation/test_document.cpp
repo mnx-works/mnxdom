@@ -170,3 +170,30 @@ TEST(Document, EntityMapTypedLookups)
     EXPECT_EQ(entityMap.get<mnx::Sequence>("seq1").pointer().to_string(), "/parts/0/measures/0/sequences/0");
     EXPECT_EQ(entityMap.get<mnx::sequence::SequenceContentObject>("ev1").type(), "event");
 }
+
+TEST(Validation, Schema46Additions)
+{
+    std::istringstream input(R"({
+        "mnx": {"version": 1, "support": {"useLyricExtenders": true}},
+        "global": {"measures": [{"time": {"count": 4, "unit": 4},
+            "caesura": {}, "coda": {"location": {"fraction": [0, 1]}}}]},
+        "parts": [{"measures": [{"clefs": [{"clef": {"sign": "G", "staffPosition": -2}}],
+            "sequences": [{"content": [{
+            "id": "e1", "duration": {"base": "whole"},
+            "notes": [{"pitch": {"step": "C", "octave": 4}, "markings": {
+                "slideIn": {"type": "scoop"}, "slideOut": {"type": "falloff"}}}],
+            "lyrics": {"lines": {"1": {"text": "Ah", "extender": {"target": "e1"}}}}
+        }]}]}]}]
+    })");
+    mnx::Document doc(input);
+    EXPECT_TRUE(mnx::validation::schemaValidate(doc));
+    const auto semantic = mnx::validation::semanticValidate(doc);
+    for (const auto& error : semantic.errors) {
+        ADD_FAILURE() << error.to_string();
+    }
+    auto event = doc.parts()[0].measures()[0].sequences()[0].content()[0].get<mnx::sequence::Event>();
+    auto slide = event.notes()->at(0).markings()->slideIn().value();
+    slide.set_type(mnx::SlideIntoNoteType::Plop);
+    event.notes()->at(0).markings()->slideOut()->set_type(mnx::SlideOutOfNoteType::Doit);
+    EXPECT_TRUE(mnx::validation::schemaValidate(doc));
+}

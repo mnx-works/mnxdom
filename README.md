@@ -40,6 +40,25 @@ Note the naming conventions above. Children that MNX requires get a `create_NAME
 
 Note that this code never uses references. Since every MNX class in the model is a lightweight wrapper around a root JSON object and a pointer to its location, copying them is extremely cheap. The class instance returned by any method is a temporary instance. Using references on return values can result in undefined behavior.
 
+### Semantic validation and event timing
+
+`mnx::validation::schemaValidate(doc)` checks the embedded MNX schema.
+`mnx::validation::semanticValidate(doc)` checks relationships such as lyric
+extender targets and jump destinations. Its result contains `errors` and
+`warnings`, both with an instance, JSON pointer, and message. Warnings are
+advisory: conversion of the result to `bool` succeeds whenever `errors` is empty.
+Hidden lyric extenders (`show: false`) ignore their targets completely.
+
+After `doc.buildEntityMap()`, use `doc.getEntityMap().getEventInfo(id)` (or pass
+an event wrapper) to retrieve the event, global measure index, elapsed metric
+time within the measure, actual duration, and grace index. Durations are exact
+fractions of a whole note, adjusted for tuplets and tremolos; grace notes have
+zero actual duration. `compareEventPositions(lhs, rhs)` compares these onsets,
+including chronological grace order, without requiring measure IDs. These are
+score positions, not playback times in seconds or positions after repeats.
+Canonical event timing is independent of ottava policies. Rebuild the entity
+map and reacquire timing information after editing the document.
+
 ### Setup Instructions
 
 #### Via `FetchContent`

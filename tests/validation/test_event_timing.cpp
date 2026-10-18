@@ -181,7 +181,9 @@ TEST(Navigation, RequiredDestinations)
             if (destination == 2) measures[0].clear_coda();
             auto result = validation::semanticValidate(doc);
             EXPECT_EQ(result.errors.size(), required ? 1u : 0u);
-            if (required) EXPECT_EQ(result.errors[0].pointer, jump.pointer());
+            if (required) {
+                EXPECT_EQ(result.errors[0].pointer, jump.pointer());
+            }
             if (destination == 0) {
                 measures[0].ensure_segno(FractionValue(0));
                 measures[1].ensure_segno(FractionValue(0));

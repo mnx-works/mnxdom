@@ -9,7 +9,7 @@ var searchData=
   ['tostdvector_6',['toStdVector',['../classmnx_1_1Array.html#a71d223145cc464c531193824bb55b955',1,'mnx::Array']]],
   ['transposer_7',['transposer',['../classmusic__theory_1_1Transposer.html#a60afeabd008e8c9d8423b83fdd072405',1,'music_theory::Transposer::Transposer(const Pitch &amp;pitch)'],['../classmusic__theory_1_1Transposer.html#a77f3b85e9a4d9cfc42678c236fbd9ef6',1,'music_theory::Transposer::Transposer(int displacement, int alteration, bool isMinor=false, int numberOfEdoDivisions=STANDARD_12EDO_STEPS, const std::optional&lt; std::vector&lt; int &gt; &gt; &amp;keyMap=std::nullopt)']]],
   ['tryfind_8',['tryFind',['../classmnx_1_1util_1_1EntityMap.html#a4c1203df4dd92caefbbf1d6763cc42fe',1,'mnx::util::EntityMap']]],
-  ['tryget_9',['tryGet',['../classmnx_1_1util_1_1EntityMap.html#ab242841ccae6f8d73450f7191991b42c',1,'mnx::util::EntityMap']]],
+  ['tryget_9',['tryGet',['../classmnx_1_1util_1_1EntityMap.html#a580eb4ae0c0702ca261d330ac8ca1d50',1,'mnx::util::EntityMap']]],
   ['trygetbeam_10',['tryGetBeam',['../classmnx_1_1util_1_1EntityMap.html#a08ea07b7caee6b9e1cb8bacac61eda55',1,'mnx::util::EntityMap']]],
   ['trygetbeamstartlevel_11',['tryGetBeamStartLevel',['../classmnx_1_1util_1_1EntityMap.html#a1b200ff8c5af18c0e7432c64593dd1e4',1,'mnx::util::EntityMap']]],
   ['trygeteventinfo_12',['trygeteventinfo',['../classmnx_1_1util_1_1EntityMap.html#a0d545a33e81fd7126f727c43c70efcae',1,'mnx::util::EntityMap::tryGetEventInfo(const sequence::Event &amp;event) const'],['../classmnx_1_1util_1_1EntityMap.html#a40952a7ef899f6d09a54dc307aca73ed',1,'mnx::util::EntityMap::tryGetEventInfo(const std::string &amp;id) const']]],

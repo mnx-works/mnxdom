@@ -272,34 +272,18 @@ public:
      * @brief Attempts to look up an object by string ID.
      * @tparam T The expected type (e.g., mnx::Part, mnx::Layout, mnx::sequence::Note).
      * @param id The ID to search for.
-     * @param errorLocation The location in the document for error reporting purposes.
-     * @return An instance of T if found; std::nullopt if the ID is not present.
+     * @return An instance of T if the ID has a matching type; std::nullopt if the ID
+     *         is missing or has a different or unknown type.
      *
-     * @throws mapping_error if the ID is found but has a different (or unknown) type than @p T.
-     *
-     * @note Because every id in the document is indexed, a type mismatch usually means the
-     *       document references an id of the wrong kind of object (for example, a slur target
-     *       that names a note instead of an event). This function only models the *absence*
-     *       of an ID, not type ambiguity.
+     * @note Lookup failures never invoke the error handler or throw. Document lifetime,
+     *       allocation, and wrapper-construction failures may still throw.
      */
     template <typename T>
-    std::optional<T> tryGet(
-        const std::string& id,
-        const std::optional<Base>& errorLocation = std::nullopt) const
+    std::optional<T> tryGet(const std::string& id) const
     {
-        auto it = m_objectMap.find(id);
-        if (it == m_objectMap.end()) {
+        const auto it = m_objectMap.find(id);
+        if (it == m_objectMap.end() || !detail::matchesTypeName<T>(it->second.typeName)) {
             return std::nullopt;
-        }
-        if (!detail::matchesTypeName<T>(it->second.typeName)) {
-            mapping_error err(
-                "ID " + formatKeyString(id) + " has " + (it->second.typeName.empty() ? "unknown type" : "type \"" + it->second.typeName + "\"")
-                + ", but " + detail::typeNamesExpectationString<T>() + "."
-            );
-            if (m_errorHandler) {
-                m_errorHandler.value()(err.what(), errorLocation.value_or(Document(root())));
-            }
-            throw err;
         }
         return T(root(), it->second.location);
     }
@@ -310,15 +294,19 @@ public:
      * @param id The ID to search for.
      * @param errorLocation The location in the document for error reporting purposes.
      * @return An instance of T if found.
-     * @throws mapping_error if the ID is not found.
+     * @throws mapping_error if the ID is missing or has a different or unknown type.
      */
     template <typename T>
     T get(const std::string& id, const std::optional<Base>& errorLocation = std::nullopt) const
     {
-        if (auto v = tryGet<T>(id, errorLocation)) {
-            return *std::move(v);
+        const auto it = m_objectMap.find(id);
+        if (it != m_objectMap.end() && detail::matchesTypeName<T>(it->second.typeName)) {
+            return T(root(), it->second.location);
         }
-        mapping_error err("ID " + formatKeyString(id) + " not found in ID mapping");
+        mapping_error err(it == m_objectMap.end()
+            ? "ID " + formatKeyString(id) + " not found in ID mapping"
+            : "ID " + formatKeyString(id) + " has " + (it->second.typeName.empty() ? "unknown type" : "type \"" + it->second.typeName + "\"")
+                + ", but " + detail::typeNamesExpectationString<T>() + ".");
         if (m_errorHandler) {
             m_errorHandler.value()(err.what(), errorLocation.value_or(Document(root())));
         }
@@ -465,7 +453,7 @@ public:
         return it->second;
     }
 
-    /// @brief Retrieve canonical timing by ID, using the usual typed lookup diagnostics.
+    /// @brief Retrieve canonical timing by ID; returns std::nullopt for missing or incorrect ID types.
     [[nodiscard]] std::optional<EventInfo> tryGetEventInfo(const std::string& id) const
     {
         if (auto event = tryGet<sequence::Event>(id)) {

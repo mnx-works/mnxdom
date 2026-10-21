@@ -171,6 +171,82 @@ TEST(Document, EntityMapTypedLookups)
     EXPECT_EQ(entityMap.get<mnx::sequence::SequenceContentObject>("ev1").type(), "event");
 }
 
+TEST(Document, EntityMapSilentTypedLookups)
+{
+    setupTestDataPaths();
+    auto doc = mnx::Document::create(getInputPath() / "errors" / "duplicate_ids_arbitrary.json");
+    bool failOnCallback = false;
+    size_t callbacks = 0;
+    doc.buildEntityMap({}, [&](const std::string&, const mnx::Base&) {
+        if (failOnCallback) {
+            ++callbacks;
+            throw std::runtime_error("Unexpected lookup diagnostic");
+        }
+    });
+    failOnCallback = true;
+    const auto& map = doc.getEntityMap();
+    EXPECT_TRUE(map.tryGet<mnx::Sequence>("seq1"));
+    EXPECT_TRUE(map.tryGet<mnx::layout::Staff>("layoutStaff1"));
+    EXPECT_TRUE(map.tryGet<mnx::layout::LayoutContentObject>("layoutStaff1"));
+    EXPECT_TRUE(map.tryGet<mnx::sequence::SequenceContentObject>("ev1"));
+    EXPECT_FALSE(map.tryGet<mnx::Sequence>("missing"));
+    EXPECT_FALSE(map.tryGet<mnx::Sequence>("ev1"));
+    EXPECT_FALSE(map.tryGetEventInfo("seq1"));
+    EXPECT_EQ(callbacks, 0u);
+
+    auto unknownDoc = mnx::Document::create(getInputPath() / "errors" / "duplicate_id_unknown_location.json");
+    failOnCallback = false;
+    unknownDoc.buildEntityMap({}, [&](const std::string&, const mnx::Base&) {
+        if (failOnCallback) {
+            ++callbacks;
+            throw std::runtime_error("Unexpected lookup diagnostic");
+        }
+    });
+    failOnCallback = true;
+    EXPECT_FALSE(unknownDoc.getEntityMap().tryGet<mnx::global::Measure>("m1"));
+    EXPECT_EQ(callbacks, 0u);
+}
+
+TEST(Document, EntityMapGetDiagnostics)
+{
+    setupTestDataPaths();
+    for (const bool unknown : {false, true}) {
+        auto doc = mnx::Document::create(getInputPath() / "errors" /
+            (unknown ? "duplicate_id_unknown_location.json" : "duplicate_ids_arbitrary.json"));
+        size_t callbacks = 0;
+        std::string message;
+        std::string pointer;
+        doc.buildEntityMap({}, [&](const std::string& text, const mnx::Base& location) {
+            ++callbacks;
+            message = text;
+            pointer = location.pointer().to_string();
+        });
+        callbacks = 0;
+        const auto& map = doc.getEntityMap();
+        const auto location = doc.global();
+        for (const auto* id : {"missing", unknown ? "m1" : "tempo1"}) {
+            const auto expected = std::string(id) == "missing"
+                ? "ID \"missing\" not found in ID mapping"
+                : unknown ? "ID \"m1\" has unknown type, but expected \"measure-global\"."
+                          : "ID \"tempo1\" has type \"tempo\", but expected \"measure-global\".";
+            callbacks = 0;
+            try {
+                (void)map.get<mnx::global::Measure>(id, location);
+                FAIL() << "Expected mapping_error";
+            } catch (const mnx::util::mapping_error& error) {
+                EXPECT_EQ(std::string(error.what()), expected);
+            }
+            EXPECT_EQ(callbacks, 1u);
+            EXPECT_EQ(message, expected);
+            EXPECT_EQ(pointer, location.pointer().to_string());
+        }
+        callbacks = 0;
+        EXPECT_THROW((void)map.get<mnx::global::Measure>("missing"), mnx::util::mapping_error);
+        EXPECT_EQ(callbacks, 1u);
+        EXPECT_TRUE(pointer.empty());
+    }
+}
+
 TEST(Validation, Schema46Additions)
 {
     std::istringstream input(R"({

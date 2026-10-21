@@ -73,7 +73,7 @@ TEST(EventTiming, CachedInfoAndLookup)
     EXPECT_GT(map.compareEventPositions(source, map.getEventInfo("p0m0e0")), 0);
     EXPECT_FALSE(map.tryGetEventInfo("missing"));
     EXPECT_THROW((void)map.getEventInfo("missing"), util::mapping_error);
-    EXPECT_THROW((void)map.tryGetEventInfo("p0"), util::mapping_error);
+    EXPECT_FALSE(map.tryGetEventInfo("p0"));
     EXPECT_THROW((void)map.getEventInfo("p0"), util::mapping_error);
     auto anonymous = eventAt(doc, 0, 0, 0);
     anonymous.clear_id();
@@ -110,6 +110,9 @@ TEST(Extenders, InvalidTargetsAndHiddenTargets)
         ASSERT_EQ(result.errors.size(), 1u);
         EXPECT_EQ(result.errors[0].pointer, sourceExtender(doc).pointer());
         EXPECT_NE(result.errors[0].message.find(target), std::string::npos);
+        if (std::string_view(target) == "p0") {
+            EXPECT_EQ(result.errors[0].message, "ID \"p0\" has type \"part\", but expected \"event\".");
+        }
         sourceExtender(doc).set_show(false);
         expectValid(doc);
         EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
@@ -118,7 +121,12 @@ TEST(Extenders, InvalidTargetsAndHiddenTargets)
     auto note = eventAt(doc, 0, 0, 0).notes()->at(0);
     note.set_id("noteId");
     sourceExtender(doc).set_target("noteId");
-    EXPECT_FALSE(validation::semanticValidate(doc));
+    const auto result = validation::semanticValidate(doc);
+    ASSERT_EQ(result.errors.size(), 1u);
+    EXPECT_EQ(result.errors[0].pointer, sourceExtender(doc).pointer());
+    EXPECT_EQ(result.errors[0].message, "ID \"noteId\" has type \"note\", but expected \"event\".");
+    sourceExtender(doc).set_show(false);
+    expectValid(doc);
 }
 
 TEST(Extenders, AdvisoryWarnings)

@@ -142,3 +142,14 @@ TEST(Layouts, StaffGroupBarlineOverride)
     groupB.set_barlineStyle(StaffGroupBarlineStyle::Individual);
     EXPECT_EQ(groupB.calcBarlineOverride(), StaffGroupBarlineOverride::None);
 }
+
+TEST(Layouts, SquareBracket)
+{
+    const auto doc = mnx::Document::create(std::filesystem::path(MNX_W3C_EXAMPLES_PATH) / "bracket-square.json");
+    auto group = doc.layouts().value()[0].content().get<mnx::layout::Group>(0)
+        .content().get<mnx::layout::Group>(1);
+    EXPECT_EQ(group.symbol(), mnx::LayoutSymbol::Square);
+    group.set_symbol(mnx::LayoutSymbol::Square);
+    EXPECT_EQ(mnx::json::parse(group.dump())["symbol"], "square");
+    EXPECT_TRUE(mnx::validation::schemaValidate(doc));
+}

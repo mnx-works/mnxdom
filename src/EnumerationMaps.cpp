@@ -156,16 +156,6 @@ MNX_ENUM_MAPPING(FermataSymbol, {
     { "square",         FermataSymbol::Square }
 });
 
-MNX_ENUM_MAPPING(FontStyle, {
-    { "plain",          FontStyle::Plain },
-    { "italic",         FontStyle::Italic }
-});
-
-MNX_ENUM_MAPPING(FontWeight, {
-    { "plain",          FontWeight::Plain },
-    { "bold",           FontWeight::Bold }
-});
-
 MNX_ENUM_MAPPING(GraceType, {
     { "makeTime",       GraceType::MakeTime },
     { "stealFollowing", GraceType::StealFollowing },
@@ -190,7 +180,8 @@ MNX_ENUM_MAPPING(LabelRef, {
 MNX_ENUM_MAPPING(LayoutSymbol, {
     { "noSymbol",   LayoutSymbol::NoSymbol },
     { "brace",      LayoutSymbol::Brace },
-    { "bracket",    LayoutSymbol::Bracket }
+    { "bracket",    LayoutSymbol::Bracket },
+    { "square",     LayoutSymbol::Square }
 });
 
 MNX_ENUM_MAPPING(LineType, {
@@ -287,6 +278,10 @@ MNX_ENUM_MAPPING(StaffGroupBarlineStyle, {
 MNX_ENUM_MAPPING(StemDirection, {
     { "down",       StemDirection::Down },
     { "up",         StemDirection::Up }
+});
+
+MNX_ENUM_MAPPING(TextType, {
+    { "general",    TextType::General }
 });
 
 MNX_ENUM_MAPPING(TieTargetType, {

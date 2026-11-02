@@ -155,3 +155,47 @@ TEST(Parts, DynamicsByType)
     relative.ensure_glyphs().push_back("dynamicPiano");
     EXPECT_TRUE(validation::schemaValidate(doc));
 }
+
+TEST(Parts, PositionedText)
+{
+    Document doc;
+    doc.global().measures().append();
+    auto part = doc.parts().append();
+    auto measure = part.measures().append();
+    EXPECT_FALSE(measure.text());
+    auto positioned = measure.ensure_text().append();
+    positioned.set_id("t1");
+    EXPECT_EQ(positioned.type(), TextType::General);
+    EXPECT_EQ(positioned.staff(), 1);
+    EXPECT_EQ(positioned.placement(), Placement::Auto);
+    EXPECT_FALSE(positioned.position());
+    EXPECT_EQ(json::parse(positioned.dump()), (json{{"id", "t1"}, {"text", json::array()}}));
+    EXPECT_FALSE(validation::schemaValidate(doc)) << "formatted text requires at least one chunk";
+
+    auto chunks = positioned.text();
+    auto plain = chunks.appendText("Allegro ");
+    plain.set_id("plain");
+    auto glyph = chunks.appendSmufl({"metNoteQuarterUp"});
+    glyph.set_id("glyph");
+    EXPECT_FALSE(glyph.glyphs().empty());
+    EXPECT_EQ(json::parse(plain.dump()), (json{{"id", "plain"}, {"text", "Allegro "}}));
+    EXPECT_EQ(json::parse(glyph.dump())["type"], "smufl");
+    auto emptyGlyph = chunks.appendSmufl({});
+    EXPECT_TRUE(emptyGlyph.glyphs().empty());
+    EXPECT_EQ(json::parse(emptyGlyph.dump()), (json{{"type", "smufl"}, {"glyphs", json::array()}}));
+    EXPECT_EQ(chunks.get<text::Text>(0).text(), "Allegro ");
+    EXPECT_EQ(chunks.get<text::Smufl>(1).glyphs().toStdVector(), std::vector<std::string>{"metNoteQuarterUp"});
+    EXPECT_THROW((void)chunks.get<text::Smufl>(0), std::invalid_argument);
+    EXPECT_TRUE(validation::schemaValidate(doc));
+
+    positioned.set_type(TextType::General);
+    positioned.set_placement(Placement::Below);
+    positioned.set_staff(1);
+    positioned.ensure_position(FractionValue(1, 4));
+    EXPECT_EQ(json::parse(positioned.dump())["type"], "general");
+    EXPECT_TRUE(validation::schemaValidate(doc));
+    doc.buildEntityMap();
+    EXPECT_EQ(doc.getEntityMap().get<part::PositionedText>("t1").placement(), Placement::Below);
+    EXPECT_EQ(doc.getEntityMap().get<text::Text>("plain").text(), "Allegro ");
+    EXPECT_EQ(doc.getEntityMap().get<text::TextContentObject>("glyph").type(), "smufl");
+}

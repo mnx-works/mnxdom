@@ -213,26 +213,6 @@ enum class FermataSymbol
 };
 
 /**
- * @enum FontStyle
- * @brief Specifies the style of text glyphs.
- */
-enum class FontStyle
-{
-    Plain,          ///< plain (non-italic) text
-    Italic          ///< italic text
-};
-
-/**
- * @enum FontWeight
- * @brief Specifies the weight of text glyphs.
- */
-enum class FontWeight
-{
-    Plain,          ///< plain (non-bold) text
-    Bold            ///< bold text
-};
-
-/**
  * @enum GraceType
  * @brief Options for how to perform grace notes.
  */
@@ -282,7 +262,8 @@ enum class LayoutSymbol
 {
     NoSymbol,       ///< the default (none)
     Brace,          ///< piano brace
-    Bracket         ///< bracket
+    Bracket,        ///< bracket
+    Square          ///< square bracket
 };
 
 /**
@@ -478,6 +459,15 @@ enum class StemDirection
 {
     Down,           ///< stems down (default)
     Up              ///< stems up
+};
+
+/**
+ * @enum TextType
+ * @brief Specifies the purpose of positioned text.
+ */
+enum class TextType
+{
+    General         ///< general text (the default)
 };
 
 /**

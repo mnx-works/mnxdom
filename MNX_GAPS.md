@@ -17,3 +17,11 @@ represent that effective child default with the existing property macro
 without deciding how a default wrapper for a child that is absent from the
 JSON should behave. Until that API design is settled, callers must interpret
 an absent default child according to the MNX specification.
+
+## Unknown properties in schema validation
+
+The current nlohmann/json-schema-validator dependency implements Draft 7 and
+ignores the Draft 2020-12 `unevaluatedProperties` keyword used by MNX. As a
+result, `schemaValidate()` does not reject unknown properties on objects that
+use that keyword. Full enforcement needs a validator with Draft 2020-12 support or
+a deliberate compatibility layer; the vendored schema should remain intact.

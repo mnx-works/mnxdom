@@ -2,7 +2,7 @@ var searchData=
 [
   ['mappedposition_0',['MappedPosition',['../structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html',1,'mnx::util::EntityMap']]],
   ['mapping_5ferror_1',['mapping_error',['../classmnx_1_1util_1_1mapping__error.html',1,'mnx::util']]],
-  ['measure_2',['measure',['../classmnx_1_1global_1_1Measure.html',1,'mnx::global::Measure'],['../classmnx_1_1part_1_1Measure.html',1,'mnx::part::Measure']]],
+  ['measure_2',['Measure',['../classmnx_1_1global_1_1Measure.html',1,'mnx::global::Measure'],['../classmnx_1_1part_1_1Measure.html',1,'mnx::part::Measure']]],
   ['measurerepeat_3',['MeasureRepeat',['../classmnx_1_1part_1_1MeasureRepeat.html',1,'mnx::part']]],
   ['measurerepeatcounter_4',['MeasureRepeatCounter',['../classmnx_1_1part_1_1MeasureRepeatCounter.html',1,'mnx::part']]],
   ['measurerhythmicposition_5',['MeasureRhythmicPosition',['../classmnx_1_1MeasureRhythmicPosition.html',1,'mnx']]],

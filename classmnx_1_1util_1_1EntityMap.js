@@ -1,8 +1,8 @@
 var classmnx_1_1util_1_1EntityMap =
 [
+    [ "MappedPosition", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition" ],
     [ "EventInfo", "structmnx_1_1util_1_1EntityMap_1_1EventInfo.html", "structmnx_1_1util_1_1EntityMap_1_1EventInfo" ],
     [ "IdEntry", "structmnx_1_1util_1_1EntityMap_1_1IdEntry.html", "structmnx_1_1util_1_1EntityMap_1_1IdEntry" ],
-    [ "MappedPosition", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition" ],
     [ "EntityMap", "classmnx_1_1util_1_1EntityMap.html#a8cffd129d5aa66223dd307a2cc4496c8", null ],
     [ "clear", "classmnx_1_1util_1_1EntityMap.html#aa1cbaa87fce31b0a5a1e3092ed04ff7a", null ],
     [ "compareEventPositions", "classmnx_1_1util_1_1EntityMap.html#adcd7c1b8bf399135dc4d507f7b88266d", null ],

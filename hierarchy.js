@@ -1,55 +1,70 @@
 var hierarchy =
 [
-    [ "mnx::detail::ArrayAppendBase< Derived, T >", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
-      [ "mnx::detail::ArrayAppendOverloads< Array< T >, T >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
-        [ "mnx::Array< T >", "classmnx_1_1Array.html", [
-          [ "mnx::ContentArray< text::TextContentObject >", "classmnx_1_1ContentArray.html", [
-            [ "mnx::FormattedText", "classmnx_1_1FormattedText.html", null ]
-          ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Derived, T &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ],
+      [ "mnx::detail::ArrayAppendOverloads< Derived, T, typename >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< NumType >", "classmnx_1_1Array.html", null ],
+        [ "mnx::Array< BaseContentT >", "classmnx_1_1Array.html", [
+          [ "mnx::ContentArray< BaseContentT >", "classmnx_1_1ContentArray.html", null ]
+        ] ]
+      ] ],
+      [ "mnx::detail::ArrayAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; LayoutContentObject &gt;, LayoutContentObject &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< LayoutContentObject >, LayoutContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< LayoutContentObject >", "classmnx_1_1Array.html", [
           [ "mnx::ContentArray< LayoutContentObject >", "classmnx_1_1ContentArray.html", [
             [ "mnx::layout::LayoutContent", "classmnx_1_1layout_1_1LayoutContent.html", null ]
-          ] ],
+          ] ]
+        ] ]
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; part::DynamicGroupBase &gt;, part::DynamicGroupBase &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< part::DynamicGroupBase >, part::DynamicGroupBase >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< part::DynamicGroupBase >", "classmnx_1_1Array.html", [
           [ "mnx::ContentArray< part::DynamicGroupBase >", "classmnx_1_1ContentArray.html", [
             [ "mnx::part::DynamicGroupArray", "classmnx_1_1part_1_1DynamicGroupArray.html", null ]
-          ] ],
+          ] ]
+        ] ]
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; SequenceContentObject &gt;, SequenceContentObject &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< SequenceContentObject >, SequenceContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< SequenceContentObject >", "classmnx_1_1Array.html", [
           [ "mnx::ContentArray< SequenceContentObject >", "classmnx_1_1ContentArray.html", [
             [ "mnx::sequence::SequenceContent", "classmnx_1_1sequence_1_1SequenceContent.html", null ]
           ] ]
         ] ]
-      ] ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< BaseContentT >, BaseContentT >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< text::TextContentObject >, text::TextContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< unsigned >, unsigned >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< LayoutContentObject >, LayoutContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< part::DynamicGroupBase >, part::DynamicGroupBase >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Array< SequenceContentObject >, SequenceContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", null ],
-      [ "mnx::detail::ArrayAppendOverloads< Derived, T, typename >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
-        [ "mnx::Array< BaseContentT >", "classmnx_1_1Array.html", [
-          [ "mnx::ContentArray< BaseContentT >", "classmnx_1_1ContentArray.html", null ]
-        ] ],
-        [ "mnx::Array< text::TextContentObject >", "classmnx_1_1Array.html", null ],
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; T &gt;, T &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< T >, T >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< T >", "classmnx_1_1Array.html", null ]
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; text::TextContentObject &gt;, text::TextContentObject &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< text::TextContentObject >, text::TextContentObject >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
+        [ "mnx::Array< text::TextContentObject >", "classmnx_1_1Array.html", [
+          [ "mnx::ContentArray< text::TextContentObject >", "classmnx_1_1ContentArray.html", [
+            [ "mnx::FormattedText", "classmnx_1_1FormattedText.html", null ]
+          ] ]
+        ] ]
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendBase&lt; Array&lt; unsigned &gt;, unsigned &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
+      [ "mnx::detail::ArrayAppendOverloads< Array< unsigned >, unsigned >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
         [ "mnx::Array< unsigned >", "classmnx_1_1Array.html", [
           [ "mnx::Fraction", "classmnx_1_1Fraction.html", null ]
-        ] ],
-        [ "mnx::Array< LayoutContentObject >", "classmnx_1_1Array.html", null ],
-        [ "mnx::Array< part::DynamicGroupBase >", "classmnx_1_1Array.html", null ],
-        [ "mnx::Array< SequenceContentObject >", "classmnx_1_1Array.html", null ]
-      ] ],
+        ] ]
+      ] ]
+    ] ],
+    [ "mnx::detail::ArrayAppendFromMake&lt; T, MakeFunc &gt;", "structmnx_1_1detail_1_1ArrayAppendFromMake.html", null ],
+    [ "mnx::detail::ArrayAppendFromMake&lt; T, &amp;T::make &gt;", "structmnx_1_1detail_1_1ArrayAppendFromMake.html", [
       [ "mnx::detail::ArrayAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
     ] ],
-    [ "mnx::detail::ArrayAppendBase< Array< BaseContentT >, BaseContentT >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< LayoutContentObject >, LayoutContentObject >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< part::DynamicGroupBase >, part::DynamicGroupBase >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< SequenceContentObject >, SequenceContentObject >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< T >, T >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< text::TextContentObject >, text::TextContentObject >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendBase< Array< unsigned >, unsigned >", "structmnx_1_1detail_1_1ArrayAppendBase.html", null ],
-    [ "mnx::detail::ArrayAppendFromMake< T, MakeFunc >", "structmnx_1_1detail_1_1ArrayAppendFromMake.html", null ],
-    [ "mnx::detail::ArrayAppendFromMake< T, &T::make >", "structmnx_1_1detail_1_1ArrayAppendFromMake.html", [
-      [ "mnx::detail::ArrayAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
-    ] ],
-    [ "mnx::detail::ArrayAppendFromMake< T, MakeFunc >", "structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html", null ],
+    [ "mnx::detail::ArrayAppendFromMake&lt; T, MakeFunc &gt;", "structmnx_1_1detail_1_1ArrayAppendFromMake_3_01T_00_01MakeFunc_01_4.html", null ],
     [ "mnx::Base", "classmnx_1_1Base.html", [
+      [ "mnx::Array< NumType >", "classmnx_1_1Array.html", null ],
       [ "mnx::Array< BaseContentT >", "classmnx_1_1Array.html", null ],
       [ "mnx::Array< text::TextContentObject >", "classmnx_1_1Array.html", null ],
       [ "mnx::Array< unsigned >", "classmnx_1_1Array.html", null ],
@@ -108,6 +123,7 @@ var hierarchy =
           [ "mnx::part::Ottava", "classmnx_1_1part_1_1Ottava.html", null ],
           [ "mnx::part::PositionedClef", "classmnx_1_1part_1_1PositionedClef.html", null ],
           [ "mnx::part::PositionedStaffConfig", "classmnx_1_1part_1_1PositionedStaffConfig.html", null ],
+          [ "mnx::part::PositionedText", "classmnx_1_1part_1_1PositionedText.html", null ],
           [ "mnx::score::LayoutChange", "classmnx_1_1score_1_1LayoutChange.html", null ],
           [ "mnx::score::MultimeasureRest", "classmnx_1_1score_1_1MultimeasureRest.html", null ],
           [ "mnx::score::Page", "classmnx_1_1score_1_1Page.html", null ],
@@ -179,28 +195,29 @@ var hierarchy =
         [ "mnx::sequence::Rest", "classmnx_1_1sequence_1_1Rest.html", null ],
         [ "mnx::sequence::SlideIntoNote", "classmnx_1_1sequence_1_1SlideIntoNote.html", null ],
         [ "mnx::sequence::SlideOutOfNote", "classmnx_1_1sequence_1_1SlideOutOfNote.html", null ],
-        [ "mnx::sequence::TransposeWritten", "classmnx_1_1sequence_1_1TransposeWritten.html", null ],
-        [ "mnx::text::Style", "classmnx_1_1text_1_1Style.html", null ]
+        [ "mnx::sequence::TransposeWritten", "classmnx_1_1sequence_1_1TransposeWritten.html", null ]
       ] ],
       [ "mnx::SimpleType< T, >", "classmnx_1_1SimpleType.html", null ]
     ] ],
     [ "mnx::scope::Default", "structmnx_1_1scope_1_1Default.html", null ],
-    [ "mnx::detail::DictionaryAppendBase< Derived, T >", "structmnx_1_1detail_1_1DictionaryAppendBase.html", [
-      [ "mnx::detail::DictionaryAppendOverloads< Dictionary< T >, T >", "structmnx_1_1detail_1_1DictionaryAppendOverloads.html", [
-        [ "mnx::Dictionary< T >", "classmnx_1_1Dictionary.html", null ]
-      ] ],
+    [ "mnx::detail::DictionaryAppendBase&lt; Derived, T &gt;", "structmnx_1_1detail_1_1DictionaryAppendBase.html", [
+      [ "mnx::detail::DictionaryAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1DictionaryAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ],
       [ "mnx::detail::DictionaryAppendOverloads< Derived, T, typename >", "structmnx_1_1detail_1_1DictionaryAppendOverloads.html", null ],
       [ "mnx::detail::DictionaryAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1DictionaryAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
     ] ],
-    [ "mnx::detail::DictionaryAppendBase< Dictionary< T >, T >", "structmnx_1_1detail_1_1DictionaryAppendBase.html", null ],
-    [ "mnx::detail::DictionaryAppendFromMake< T, MakeFunc >", "structmnx_1_1detail_1_1DictionaryAppendFromMake.html", null ],
-    [ "mnx::detail::DictionaryAppendFromMake< T, &T::make >", "structmnx_1_1detail_1_1DictionaryAppendFromMake.html", [
+    [ "mnx::detail::DictionaryAppendBase&lt; Dictionary&lt; T &gt;, T &gt;", "structmnx_1_1detail_1_1DictionaryAppendBase.html", [
+      [ "mnx::detail::DictionaryAppendOverloads< Dictionary< T >, T >", "structmnx_1_1detail_1_1DictionaryAppendOverloads.html", [
+        [ "mnx::Dictionary< T >", "classmnx_1_1Dictionary.html", null ]
+      ] ]
+    ] ],
+    [ "mnx::detail::DictionaryAppendFromMake&lt; T, MakeFunc &gt;", "structmnx_1_1detail_1_1DictionaryAppendFromMake.html", null ],
+    [ "mnx::detail::DictionaryAppendFromMake&lt; T, &amp;T::make &gt;", "structmnx_1_1detail_1_1DictionaryAppendFromMake.html", [
       [ "mnx::detail::DictionaryAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1DictionaryAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
     ] ],
-    [ "mnx::detail::DictionaryAppendFromMake< T, MakeFunc >", "structmnx_1_1detail_1_1DictionaryAppendFromMake_3_01T_00_01MakeFunc_01_4.html", null ],
+    [ "mnx::detail::DictionaryAppendFromMake&lt; T, MakeFunc &gt;", "structmnx_1_1detail_1_1DictionaryAppendFromMake_3_01T_00_01MakeFunc_01_4.html", null ],
     [ "mnx::util::EntityMap", "classmnx_1_1util_1_1EntityMap.html", null ],
     [ "mnx::EntityMapPolicies", "structmnx_1_1EntityMapPolicies.html", null ],
-    [ "mnx::EnumStringMapping< E, typename >", "structmnx_1_1EnumStringMapping.html", null ],
+    [ "mnx::EnumStringMapping&lt; E, typename &gt;", "structmnx_1_1EnumStringMapping.html", null ],
     [ "mnx::validation::ValidationResult::Error", "structmnx_1_1validation_1_1ValidationResult_1_1Error.html", null ],
     [ "mnx::util::EntityMap::EventInfo", "structmnx_1_1util_1_1EntityMap_1_1EventInfo.html", null ],
     [ "mnx::FractionValue", "structmnx_1_1FractionValue.html", null ],

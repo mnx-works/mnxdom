@@ -4,7 +4,7 @@ var searchData=
   ['segno_1',['Segno',['../classmnx_1_1global_1_1Segno.html',1,'mnx::global']]],
   ['semanticvalidationresult_2',['SemanticValidationResult',['../structmnx_1_1validation_1_1SemanticValidationResult.html',1,'mnx::validation']]],
   ['sequence_3',['Sequence',['../classmnx_1_1Sequence.html',1,'mnx']]],
-  ['sequencecontent_4',['sequencecontent',['../structmnx_1_1scope_1_1SequenceContent.html',1,'mnx::scope::SequenceContent'],['../classmnx_1_1sequence_1_1SequenceContent.html',1,'mnx::sequence::SequenceContent']]],
+  ['sequencecontent_4',['SequenceContent',['../structmnx_1_1scope_1_1SequenceContent.html',1,'mnx::scope::SequenceContent'],['../classmnx_1_1sequence_1_1SequenceContent.html',1,'mnx::sequence::SequenceContent']]],
   ['sequencecontentobject_5',['SequenceContentObject',['../classmnx_1_1sequence_1_1SequenceContentObject.html',1,'mnx::sequence']]],
   ['sequencewalkcontext_6',['SequenceWalkContext',['../structmnx_1_1util_1_1SequenceWalkContext.html',1,'mnx::util']]],
   ['sequencewalkhooks_7',['SequenceWalkHooks',['../structmnx_1_1util_1_1SequenceWalkHooks.html',1,'mnx::util']]],
@@ -27,7 +27,6 @@ var searchData=
   ['staffsource_24',['StaffSource',['../classmnx_1_1layout_1_1StaffSource.html',1,'mnx::layout']]],
   ['stress_25',['Stress',['../classmnx_1_1sequence_1_1Stress.html',1,'mnx::sequence']]],
   ['strongaccent_26',['StrongAccent',['../classmnx_1_1sequence_1_1StrongAccent.html',1,'mnx::sequence']]],
-  ['style_27',['Style',['../classmnx_1_1text_1_1Style.html',1,'mnx::text']]],
-  ['support_28',['Support',['../classmnx_1_1MnxMetaData_1_1Support.html',1,'mnx::MnxMetaData']]],
-  ['system_29',['System',['../classmnx_1_1score_1_1System.html',1,'mnx::score']]]
+  ['support_27',['Support',['../classmnx_1_1MnxMetaData_1_1Support.html',1,'mnx::MnxMetaData']]],
+  ['system_28',['System',['../classmnx_1_1score_1_1System.html',1,'mnx::score']]]
 ];

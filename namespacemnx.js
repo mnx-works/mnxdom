@@ -1,58 +1,54 @@
 var namespacemnx =
 [
-    [ "global", "namespacemnx_1_1global.html", "namespacemnx_1_1global" ],
-    [ "layout", "namespacemnx_1_1layout.html", "namespacemnx_1_1layout" ],
-    [ "part", "namespacemnx_1_1part.html", "namespacemnx_1_1part" ],
-    [ "score", "namespacemnx_1_1score.html", "namespacemnx_1_1score" ],
     [ "sequence", "namespacemnx_1_1sequence.html", "namespacemnx_1_1sequence" ],
+    [ "layout", "namespacemnx_1_1layout.html", "namespacemnx_1_1layout" ],
     [ "text", "namespacemnx_1_1text.html", "namespacemnx_1_1text" ],
+    [ "part", "namespacemnx_1_1part.html", "namespacemnx_1_1part" ],
     [ "validation", "namespacemnx_1_1validation.html", "namespacemnx_1_1validation" ],
-    [ "Array", "classmnx_1_1Array.html", "classmnx_1_1Array" ],
-    [ "ArrayElementObject", "classmnx_1_1ArrayElementObject.html", "classmnx_1_1ArrayElementObject" ],
-    [ "Base", "classmnx_1_1Base.html", "classmnx_1_1Base" ],
-    [ "ContentArray", "classmnx_1_1ContentArray.html", "classmnx_1_1ContentArray" ],
+    [ "global", "namespacemnx_1_1global.html", "namespacemnx_1_1global" ],
+    [ "score", "namespacemnx_1_1score.html", "namespacemnx_1_1score" ],
     [ "ContentObject", "classmnx_1_1ContentObject.html", "classmnx_1_1ContentObject" ],
+    [ "Array", "classmnx_1_1Array.html", "classmnx_1_1Array" ],
     [ "Dictionary", "classmnx_1_1Dictionary.html", "classmnx_1_1Dictionary" ],
-    [ "Document", "classmnx_1_1Document.html", "classmnx_1_1Document" ],
-    [ "EntityMapPolicies", "structmnx_1_1EntityMapPolicies.html", "structmnx_1_1EntityMapPolicies" ],
+    [ "Base", "classmnx_1_1Base.html", "classmnx_1_1Base" ],
+    [ "Object", "classmnx_1_1Object.html", "classmnx_1_1Object" ],
+    [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
+    [ "ArrayElementObject", "classmnx_1_1ArrayElementObject.html", "classmnx_1_1ArrayElementObject" ],
+    [ "ContentArray", "classmnx_1_1ContentArray.html", "classmnx_1_1ContentArray" ],
     [ "EnumStringMapping", "structmnx_1_1EnumStringMapping.html", null ],
     [ "Fermata", "classmnx_1_1Fermata.html", "classmnx_1_1Fermata" ],
-    [ "FormattedText", "classmnx_1_1FormattedText.html", null ],
-    [ "Fraction", "classmnx_1_1Fraction.html", "classmnx_1_1Fraction" ],
     [ "FractionValue", "structmnx_1_1FractionValue.html", "structmnx_1_1FractionValue" ],
-    [ "Global", "classmnx_1_1Global.html", "classmnx_1_1Global" ],
+    [ "Fraction", "classmnx_1_1Fraction.html", "classmnx_1_1Fraction" ],
     [ "IdPair", "classmnx_1_1IdPair.html", "classmnx_1_1IdPair" ],
+    [ "RhythmicPosition", "classmnx_1_1RhythmicPosition.html", "classmnx_1_1RhythmicPosition" ],
+    [ "MeasureRhythmicPosition", "classmnx_1_1MeasureRhythmicPosition.html", "classmnx_1_1MeasureRhythmicPosition" ],
     [ "Interval", "classmnx_1_1Interval.html", "classmnx_1_1Interval" ],
     [ "KeySignature", "classmnx_1_1KeySignature.html", "classmnx_1_1KeySignature" ],
-    [ "Layout", "classmnx_1_1Layout.html", "classmnx_1_1Layout" ],
-    [ "MeasureRhythmicPosition", "classmnx_1_1MeasureRhythmicPosition.html", "classmnx_1_1MeasureRhythmicPosition" ],
-    [ "MnxdomClientInfo", "classmnx_1_1MnxdomClientInfo.html", "classmnx_1_1MnxdomClientInfo" ],
-    [ "MnxdomExtensionData", "classmnx_1_1MnxdomExtensionData.html", "classmnx_1_1MnxdomExtensionData" ],
-    [ "MnxdomGeneratorInfo", "classmnx_1_1MnxdomGeneratorInfo.html", "classmnx_1_1MnxdomGeneratorInfo" ],
-    [ "MnxdomSourceInfo", "classmnx_1_1MnxdomSourceInfo.html", "classmnx_1_1MnxdomSourceInfo" ],
-    [ "MnxMetaData", "classmnx_1_1MnxMetaData.html", "classmnx_1_1MnxMetaData" ],
     [ "NoteValue", "classmnx_1_1NoteValue.html", "classmnx_1_1NoteValue" ],
     [ "NoteValueQuantity", "classmnx_1_1NoteValueQuantity.html", "classmnx_1_1NoteValueQuantity" ],
-    [ "Object", "classmnx_1_1Object.html", "classmnx_1_1Object" ],
-    [ "Part", "classmnx_1_1Part.html", "classmnx_1_1Part" ],
-    [ "RhythmicPosition", "classmnx_1_1RhythmicPosition.html", "classmnx_1_1RhythmicPosition" ],
-    [ "Score", "classmnx_1_1Score.html", "classmnx_1_1Score" ],
-    [ "Sequence", "classmnx_1_1Sequence.html", "classmnx_1_1Sequence" ],
-    [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
     [ "StaffConfig", "classmnx_1_1StaffConfig.html", "classmnx_1_1StaffConfig" ],
     [ "TimeSignature", "classmnx_1_1TimeSignature.html", "classmnx_1_1TimeSignature" ],
-    [ "ErrorHandler", "namespacemnx.html#a1ecfb36b8c75b494f064bfd002c4c119", null ],
-    [ "json", "namespacemnx.html#a1c2980125e66d525147bb9c34c8c7d30", null ],
-    [ "json_pointer", "namespacemnx.html#a4bae3f49293d8a1d3aed78c5a8af26bc", null ],
+    [ "EntityMapPolicies", "structmnx_1_1EntityMapPolicies.html", "structmnx_1_1EntityMapPolicies" ],
+    [ "MnxMetaData", "classmnx_1_1MnxMetaData.html", "classmnx_1_1MnxMetaData" ],
+    [ "Document", "classmnx_1_1Document.html", "classmnx_1_1Document" ],
+    [ "FormattedText", "classmnx_1_1FormattedText.html", null ],
+    [ "Global", "classmnx_1_1Global.html", "classmnx_1_1Global" ],
+    [ "Layout", "classmnx_1_1Layout.html", "classmnx_1_1Layout" ],
+    [ "MnxdomGeneratorInfo", "classmnx_1_1MnxdomGeneratorInfo.html", "classmnx_1_1MnxdomGeneratorInfo" ],
+    [ "MnxdomClientInfo", "classmnx_1_1MnxdomClientInfo.html", "classmnx_1_1MnxdomClientInfo" ],
+    [ "MnxdomSourceInfo", "classmnx_1_1MnxdomSourceInfo.html", "classmnx_1_1MnxdomSourceInfo" ],
+    [ "MnxdomExtensionData", "classmnx_1_1MnxdomExtensionData.html", "classmnx_1_1MnxdomExtensionData" ],
+    [ "Part", "classmnx_1_1Part.html", "classmnx_1_1Part" ],
+    [ "Score", "classmnx_1_1Score.html", "classmnx_1_1Score" ],
+    [ "Sequence", "classmnx_1_1Sequence.html", "classmnx_1_1Sequence" ],
+    [ "ErrorHandler", "namespacemnx.html#a69ef33a2220ead362953724128117eb8", null ],
+    [ "json", "namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714", null ],
+    [ "json_pointer", "namespacemnx.html#a457dbaf3b64a0013d028909dce89952d", null ],
     [ "AccidentalEnclosureSymbol", "namespacemnx.html#a6c27feb239f38438c6ac35e32c716b7d", [
       [ "Brackets", "namespacemnx.html#a6c27feb239f38438c6ac35e32c716b7da16e127072878e35f572b8f19bdb4b686", null ],
       [ "Parentheses", "namespacemnx.html#a6c27feb239f38438c6ac35e32c716b7da9ca8f54c595187c5d86748cc2f3346d7", null ]
     ] ],
-    [ "AutoYesNo", "namespacemnx.html#a80e8e06e1c1d79c1b9fb8305c2184940", [
-      [ "Auto", "namespacemnx.html#a80e8e06e1c1d79c1b9fb8305c2184940a06b9281e396db002010bde1de57262eb", null ],
-      [ "Yes", "namespacemnx.html#a80e8e06e1c1d79c1b9fb8305c2184940a93cba07454f06a4a960172bbd6e2a435", null ],
-      [ "No", "namespacemnx.html#a80e8e06e1c1d79c1b9fb8305c2184940abafd7322c6e97d25b6299b5d6fe8920b", null ]
-    ] ],
+    [ "AutoYesNo", "namespacemnx.html#a80e8e06e1c1d79c1b9fb8305c2184940", null ],
     [ "BarlineType", "namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9", [
       [ "Regular", "namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9ad2203cb1237cb6460cbad94564e39345", null ],
       [ "Dashed", "namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9aeb656e41b6da91494775ecf47a51da91", null ],
@@ -131,14 +127,6 @@ var namespacemnx =
       [ "HalfCurve", "namespacemnx.html#a3889d7e09f893061e56a2c2d94a76922a90bd3467613dcbaf7ee6d7f6c19c35aa", null ],
       [ "Square", "namespacemnx.html#a3889d7e09f893061e56a2c2d94a76922aceb46ca115d05c51aa5a16a8867c3304", null ]
     ] ],
-    [ "FontStyle", "namespacemnx.html#aad90f0c5544573f7751c6f66a0ec8251", [
-      [ "Plain", "namespacemnx.html#aad90f0c5544573f7751c6f66a0ec8251a4cd8413207629a963225f4314b53adcd", null ],
-      [ "Italic", "namespacemnx.html#aad90f0c5544573f7751c6f66a0ec8251a1d874710ccdcd46b95397049d2e7500c", null ]
-    ] ],
-    [ "FontWeight", "namespacemnx.html#a7f6bc6c3cc455de994f7fb502fb67d50", [
-      [ "Plain", "namespacemnx.html#a7f6bc6c3cc455de994f7fb502fb67d50a4cd8413207629a963225f4314b53adcd", null ],
-      [ "Bold", "namespacemnx.html#a7f6bc6c3cc455de994f7fb502fb67d50a114c3050111d8b8ddd830b99ccebd246", null ]
-    ] ],
     [ "GraceType", "namespacemnx.html#acb425d5f036205992cc10fea3ea3870f", [
       [ "StealPrevious", "namespacemnx.html#acb425d5f036205992cc10fea3ea3870fa2a84f4241eab6f257fe571797ffe0683", null ],
       [ "StealFollowing", "namespacemnx.html#acb425d5f036205992cc10fea3ea3870fa2e8f815389e8cf3484317394f24d473d", null ],
@@ -160,7 +148,8 @@ var namespacemnx =
     [ "LayoutSymbol", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485", [
       [ "NoSymbol", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d", null ],
       [ "Brace", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d55ac077f11ad55a67924103d450612", null ],
-      [ "Bracket", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485ab5c644787d66a37b2d0e7eefaf11506b", null ]
+      [ "Bracket", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485ab5c644787d66a37b2d0e7eefaf11506b", null ],
+      [ "Square", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485aceb46ca115d05c51aa5a16a8867c3304", null ]
     ] ],
     [ "LineType", "namespacemnx.html#a28144cefaba3e535366ea178e05f7d9a", [
       [ "Solid", "namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aae41480b6bbfbf7407974a88d3d34f4fa", null ],
@@ -189,34 +178,8 @@ var namespacemnx =
       [ "Below", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412", null ],
       [ "Between", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c", null ]
     ] ],
-    [ "NoteStep", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63", [
-      [ "C", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a0d61f8370cad1d412f80b84d143e1257", null ],
-      [ "D", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63af623e75af30e62bbd73d6df5b50bb7b5", null ],
-      [ "E", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a3a3ea00cfc35332cedf6e5e9a32e94da", null ],
-      [ "F", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a800618943025315f869e4e1f09471012", null ],
-      [ "G", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63adfcf28d0734569a6a693bc8194de62bf", null ],
-      [ "A", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a7fc56270e7a70fa81a5935b72eacbe29", null ],
-      [ "B", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63a9d5ed678fe57bcca610140957afab571", null ]
-    ] ],
-    [ "NoteValueBase", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79", [
-      [ "Note4096th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ad7c06d6056952818ee768091427b977e", null ],
-      [ "Note2048th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a63e3a214703146dacc03d8cded7d770d", null ],
-      [ "Note1024th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79aabc5e88dc0cc3dd0969d578e686fba1f", null ],
-      [ "Note512th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a9f5075212d3850bc0698dc1d2a09f1ed", null ],
-      [ "Note256th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79aca40b218e470ce49ebf572641a95b6c2", null ],
-      [ "Note128th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ad2eaf8f388daf3f90867c33651c72835", null ],
-      [ "Note64th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a842855bd38469fffaaf9d907b985a7ed", null ],
-      [ "Note32nd", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ae9100497560a5b26e5cee946af914f2d", null ],
-      [ "Note16th", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ae78a96c9481ac5ed150a3b999e0ae0e8", null ],
-      [ "Eighth", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a454165bf233bafb701ab35d62383576e", null ],
-      [ "Quarter", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ab25cde1e74f3d27f678c2e309e06102e", null ],
-      [ "Half", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ac48615a1bc4197056d522af276aa5a85", null ],
-      [ "Whole", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79ac8d2fc8ed10b21e647d7f58d4436b050", null ],
-      [ "Breve", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a201a42b1660aae58d38bd0ef2d5082f5", null ],
-      [ "Longa", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a30cba0c98833cb8bf807c5d2280b17be", null ],
-      [ "Maxima", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79abc3292567552688d69e5ddc95781245b", null ],
-      [ "DuplexMaxima", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79a2635498b180d3b852b2837d34c5f21c1", null ]
-    ] ],
+    [ "NoteStep", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63", null ],
+    [ "NoteValueBase", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79", null ],
     [ "OttavaAmount", "namespacemnx.html#a361b2c550a67bec829901cf59aec117e", [
       [ "OctaveDown", "namespacemnx.html#a361b2c550a67bec829901cf59aec117eab41646df7c887cc0e3647ba5f8b26afe", null ],
       [ "TwoOctavesDown", "namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3e464ec7a7d7edf51b4d6fcf2941da25", null ],
@@ -239,14 +202,8 @@ var namespacemnx =
       [ "Above", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621a5b469fd01889ec12f1e84c6e66829fc1", null ],
       [ "Below", "namespacemnx.html#a93e083982d2ad6d7672c436edbb46621ae59dd8d25c0b6bb6697eac0617ccd412", null ]
     ] ],
-    [ "SlideIntoNoteType", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61", [
-      [ "Scoop", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61ae7f713cc669891f304e70e86022b81e5", null ],
-      [ "Plop", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61a4d7d052a80ba25e384e2666930af89af", null ]
-    ] ],
-    [ "SlideOutOfNoteType", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788", [
-      [ "Falloff", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788ab117eba575beb12d380c24f5e704d319", null ],
-      [ "Doit", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788a9f6504a6276be8a538b71317f3fb6cce", null ]
-    ] ],
+    [ "SlideIntoNoteType", "namespacemnx.html#a62c525ba651f1f810c9d8e11d2633b61", null ],
+    [ "SlideOutOfNoteType", "namespacemnx.html#aed82770c077b55a2e1903a57edf54788", null ],
     [ "SlurTieSide", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64", [
       [ "Auto", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a06b9281e396db002010bde1de57262eb", null ],
       [ "Down", "namespacemnx.html#a9ed98bf9309c8a441c873e4763429a64a08a38277b0309070706f6652eeae9a53", null ],
@@ -267,6 +224,9 @@ var namespacemnx =
       [ "Down", "namespacemnx.html#acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53", null ],
       [ "Up", "namespacemnx.html#acf37722bc87abf052775661825640121a258f49887ef8d14ac268c92b02503aaa", null ]
     ] ],
+    [ "TextType", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48", [
+      [ "General", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48a0db377921f4ce762c62526131097968f", null ]
+    ] ],
     [ "TieTargetType", "namespacemnx.html#a961d9beb0e598614b7157949964d33ef", [
       [ "NextNote", "namespacemnx.html#a961d9beb0e598614b7157949964d33efada34e2b724bdb42347569c86723e76f0", null ],
       [ "Arpeggio", "namespacemnx.html#a961d9beb0e598614b7157949964d33efae30c0ef84d87ecf9870662a879a36a46", null ],
@@ -277,21 +237,8 @@ var namespacemnx =
       [ "Common", "namespacemnx.html#a135331c929c8b377e5866fdbe1b28cc4ad13bc5b68b2bd9e18f29777db17cc563", null ],
       [ "Cut", "namespacemnx.html#a135331c929c8b377e5866fdbe1b28cc4aeb334dca00e390e0d3ebf52d205807d7", null ]
     ] ],
-    [ "TimeSignatureUnit", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3", [
-      [ "Whole", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3ac8d2fc8ed10b21e647d7f58d4436b050", null ],
-      [ "Half", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3ac48615a1bc4197056d522af276aa5a85", null ],
-      [ "Quarter", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3ab25cde1e74f3d27f678c2e309e06102e", null ],
-      [ "Eighth", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3a454165bf233bafb701ab35d62383576e", null ],
-      [ "Value16th", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3a3dccfc36fdaad27b4ebd12226ef477e6", null ],
-      [ "Value32nd", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3a171efda2ecd25fc4c6371c182d2b8760", null ],
-      [ "Value64th", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3a96bcb2e55deb50bd964dfb32e0739cca", null ],
-      [ "Value128th", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3afbcb417c06192ed5494c7ec4f5a44b01", null ]
-    ] ],
-    [ "TupletDisplaySetting", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01f", [
-      [ "Inner", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01faa1684698ac3d8ffda353d0458c30b1e7", null ],
-      [ "NoNumber", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01fa69c491581a6e9a9a7c8d24ec1fe951fc", null ],
-      [ "Both", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01fa130c5b3473c57faa76e2a1c54e26f88e", null ]
-    ] ],
+    [ "TimeSignatureUnit", "namespacemnx.html#aa17c3a6f2b681e4c8e401dd6691dc8b3", null ],
+    [ "TupletDisplaySetting", "namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01f", null ],
     [ "getMnxSchemaId", "namespacemnx.html#a86e00ac3489b813478b7985b491a9ae9", null ],
     [ "getMnxSchemaJson", "namespacemnx.html#ad810823f9325a3e1de219ce424128817", null ],
     [ "getMnxSchemaVersion", "namespacemnx.html#ac7f15615dff0f6cdcb867af398b32e80", null ],

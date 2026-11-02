@@ -60,13 +60,14 @@ var NAVTREEINDEX =
 "classmnx_1_1Global.html#ae4aa510c166bda678d152b7896a3cf59",
 "classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992",
 "classmnx_1_1layout_1_1Group.html#ab10d586c0212bae11fac011ada17625c",
-"classmnx_1_1part_1_1MeasureRepeatCounter.html#ad250f3438920dec0ca5a49a9a1517061",
-"classmnx_1_1sequence_1_1EventMarkingBase.html#a4988843f33731e91af29f49660111eb6",
-"classmnx_1_1sequence_1_1Tie.html#a9e82df9946a062e801fda671700ae6b3",
-"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aa0e9498bd18e441969b23cb70819abc3c",
-"structmnx_1_1FractionValue.html#a165ff3b23210bd57341c10f3ae8f87dd",
-"structmnx_1_1sequence_1_1Note_1_1Required.html"
+"classmnx_1_1part_1_1MeasureRepeatCounter.html#aadd166777b73accbc25387943208fade",
+"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a73c9f20dd89c9f023fad1336c17bd34a",
+"classmnx_1_1sequence_1_1Stress.html",
+"namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72",
+"structmnx_1_1NoteValueQuantity_1_1Required.html",
+"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html#a6a5a743f793a6f3bb642cacb9e10437b"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

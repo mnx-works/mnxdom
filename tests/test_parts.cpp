@@ -183,6 +183,8 @@ TEST(Parts, PositionedText)
     auto emptyGlyph = chunks.appendSmufl({});
     EXPECT_TRUE(emptyGlyph.glyphs().empty());
     EXPECT_EQ(json::parse(emptyGlyph.dump()), (json{{"type", "smufl"}, {"glyphs", json::array()}}));
+    EXPECT_FALSE(validation::schemaValidate(doc)) << "SMuFL chunks require at least one glyph";
+    emptyGlyph.glyphs().push_back("metNoteQuarterUp");
     EXPECT_EQ(chunks.get<text::Text>(0).text(), "Allegro ");
     EXPECT_EQ(chunks.get<text::Smufl>(1).glyphs().toStdVector(), std::vector<std::string>{"metNoteQuarterUp"});
     EXPECT_THROW((void)chunks.get<text::Smufl>(0), std::invalid_argument);

@@ -67,6 +67,21 @@
                                     "text": "dolce"
                                 }
                             ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "type": "smufl",
+                                    "glyphs": []
+                                }
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "type": "smufl"
+                                }
+                            ]
                         }
                     ]
                 }

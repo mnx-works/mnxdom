@@ -308,7 +308,8 @@ TEST(Parts, PositionedTextRoundTrip)
     auto texts = doc.parts()[0].measures()[0].text().value();
     EXPECT_EQ(texts[0].type(), mnx::TextType::General);
     EXPECT_EQ(texts[0].text().get<mnx::text::Text>(0).text(), "Allegro ");
-    EXPECT_TRUE(texts[0].text().get<mnx::text::Smufl>(2).glyphs().empty());
+    EXPECT_EQ(texts[0].text().get<mnx::text::Smufl>(2).glyphs().toStdVector(),
+        std::vector<std::string>{"metNoteQuarterUp"});
     EXPECT_EQ(texts[1].position()->fraction(), mnx::FractionValue(1, 4));
     const auto serialized = doc.dump();
     const auto reparsed = mnx::Document::create(serialized.data(), serialized.size());
@@ -333,12 +334,18 @@ TEST(Parts, TextInvalidChunks)
     EXPECT_FALSE(result);
     bool foundEmpty = false;
     bool foundInvalidType = false;
+    bool foundEmptyGlyphs = false;
+    bool foundMissingGlyphs = false;
     for (const auto& error : result.errors) {
         const auto pointer = error.pointer.to_string();
         foundEmpty |= pointer.find("/parts/0/measures/0/text/0/text") == 0;
         foundInvalidType |= pointer.find("/parts/0/measures/0/text/1/text/0") == 0;
+        foundEmptyGlyphs |= pointer.find("/parts/0/measures/0/text/2/text/0") == 0;
+        foundMissingGlyphs |= pointer.find("/parts/0/measures/0/text/3/text/0") == 0;
     }
     EXPECT_TRUE(foundEmpty);
+    EXPECT_TRUE(foundEmptyGlyphs);
+    EXPECT_TRUE(foundMissingGlyphs);
     EXPECT_TRUE(foundInvalidType) << [&]() {
         std::string errors;
         for (const auto& error : result.errors) errors += error.to_string() + "\n";

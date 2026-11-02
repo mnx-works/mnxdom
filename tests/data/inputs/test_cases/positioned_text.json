@@ -63,7 +63,9 @@
                                 },
                                 {
                                     "type": "smufl",
-                                    "glyphs": []
+                                    "glyphs": [
+                                        "metNoteQuarterUp"
+                                    ]
                                 }
                             ]
                         },

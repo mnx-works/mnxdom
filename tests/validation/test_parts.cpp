@@ -298,3 +298,50 @@ TEST(Parts, SlurTargetIsNote)
     auto doc = mnx::Document::create(inputPath);
     expectSemanticError(doc, inputPath, "ID \"n2\" has type \"note\", but expected \"event\".");
 }
+
+TEST(Parts, PositionedTextRoundTrip)
+{
+    setupTestDataPaths();
+    const auto inputPath = getInputPath() / "test_cases" / "positioned_text.json";
+    auto doc = mnx::Document::create(inputPath);
+    EXPECT_TRUE(fullValidate(doc, inputPath));
+    auto texts = doc.parts()[0].measures()[0].text().value();
+    EXPECT_EQ(texts[0].type(), mnx::TextType::General);
+    EXPECT_EQ(texts[0].text().get<mnx::text::Text>(0).text(), "Allegro ");
+    EXPECT_TRUE(texts[0].text().get<mnx::text::Smufl>(2).glyphs().empty());
+    EXPECT_EQ(texts[1].position()->fraction(), mnx::FractionValue(1, 4));
+    const auto serialized = doc.dump();
+    const auto reparsed = mnx::Document::create(serialized.data(), serialized.size());
+    EXPECT_EQ(reparsed.dump(), serialized);
+    EXPECT_TRUE(fullValidate(reparsed, inputPath));
+}
+
+TEST(Parts, TextInvalidStaff)
+{
+    setupTestDataPaths();
+    const auto inputPath = getInputPath() / "errors" / "text_invalid_staff.json";
+    auto doc = mnx::Document::create(inputPath);
+    expectSemanticError(doc, inputPath, "Text references non-existent staff 2 in part P1.");
+}
+
+TEST(Parts, TextInvalidChunks)
+{
+    setupTestDataPaths();
+    const auto inputPath = getInputPath() / "errors" / "text_invalid_chunks.json";
+    auto doc = mnx::Document::create(inputPath);
+    const auto result = mnx::validation::schemaValidate(doc);
+    EXPECT_FALSE(result);
+    bool foundEmpty = false;
+    bool foundInvalidType = false;
+    for (const auto& error : result.errors) {
+        const auto pointer = error.pointer.to_string();
+        foundEmpty |= pointer.find("/parts/0/measures/0/text/0/text") == 0;
+        foundInvalidType |= pointer.find("/parts/0/measures/0/text/1/text/0") == 0;
+    }
+    EXPECT_TRUE(foundEmpty);
+    EXPECT_TRUE(foundInvalidType) << [&]() {
+        std::string errors;
+        for (const auto& error : result.errors) errors += error.to_string() + "\n";
+        return errors;
+    }();
+}

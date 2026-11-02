@@ -797,6 +797,16 @@ void SemanticValidator::validateParts()
                     }
                 }
             }
+            if (auto texts = measure.text()) {
+                for (const auto text : texts.value()) {
+                    const int staffNumber = text.staff();
+                    if (staffNumber < 1 || staffNumber > staffCount) {
+                        addError("Text references non-existent staff " + std::to_string(staffNumber) +
+                                     " in part " + part.id_or("<no-id>") + ".",
+                                 text);
+                    }
+                }
+            }
             auto measureTime = [&]() -> FractionValue {
                 if (auto time = measure.calcCurrentTime()) {
                     return time.value();

@@ -1,0 +1,77 @@
+{
+    "mnx": {
+        "version": 1
+    },
+    "global": {
+        "measures": [
+            {
+                "barline": {
+                    "type": "regular"
+                },
+                "time": {
+                    "count": 4,
+                    "unit": 4
+                }
+            }
+        ]
+    },
+    "parts": [
+        {
+            "measures": [
+                {
+                    "clefs": [
+                        {
+                            "clef": {
+                                "sign": "G",
+                                "staffPosition": -2
+                            }
+                        }
+                    ],
+                    "sequences": [
+                        {
+                            "content": [
+                                {
+                                    "duration": {
+                                        "base": "whole"
+                                    },
+                                    "notes": [
+                                        {
+                                            "pitch": {
+                                                "step": "C",
+                                                "octave": 4
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "text": [
+                        {
+                            "id": "t1",
+                            "text": []
+                        },
+                        {
+                            "type": "general",
+                            "staff": 1,
+                            "placement": "above",
+                            "position": {
+                                "fraction": [
+                                    1,
+                                    4
+                                ]
+                            },
+                            "text": [
+                                {
+                                    "type": "unknown",
+                                    "text": "dolce"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "id": "P1"
+        }
+    ]
+}

@@ -31,12 +31,6 @@
 namespace mnx {
 
 /**
- * @note Experimental helper types for formatted text.
- * These are not currently part of the published MNX schema and are therefore
- * not included by default from mnxdom.h.
- */
-
-/**
  * @namespace mnx::text
  * @brief classes related to formatted text objects
  */
@@ -51,21 +45,6 @@ class TextContentObject : public ContentObject<TextContentObject>
 public:
     using ContentObject::ContentObject;
     std::string_view defaultType() const override { return "text"; }
-};
-
-/**
- * @class Style
- * @brief Describes styling for formatted text content.
- */
-class Style : public Object
-{
-public:
-    using Object::Object;
-
-    MNX_OPTIONAL_PROPERTY(std::string, font);       ///< the name of the font
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(FontStyle, fontStyle, FontStyle::Plain);  ///< the font style
-    MNX_OPTIONAL_PROPERTY(double, size);            ///< the font size
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(FontWeight, weight, FontWeight::Plain);  ///< the font weight
 };
 
 /**
@@ -104,8 +83,8 @@ public:
     static Required make(const std::string& text) { return { text }; }
 
     MNX_REQUIRED_PROPERTY(std::string, text);       ///< the text for this formatted chunk
-    MNX_OPTIONAL_CHILD(Style, style);               ///< the style for this formatted chunk
 
+    inline static constexpr std::string_view JsonSchemaTypeName = "text-chunk-text";
     inline static constexpr std::string_view ContentTypeValue = "text";    ///< type value that identifies the type within the content array
 };
 
@@ -144,11 +123,9 @@ public:
     /// @brief Create a Required instance for #Smufl.
     static Required make(const std::vector<std::string>& glyphs) { return { glyphs }; }
 
-    using TextContentObject::TextContentObject;
-
     MNX_REQUIRED_CHILD(Array<std::string>, glyphs);     ///< the smufl glyphs in this chunk
-    MNX_OPTIONAL_CHILD(Style, style);                   ///< the style for the glyphs in thie chunk
 
+    inline static constexpr std::string_view JsonSchemaTypeName = "text-chunk-smufl";
     inline static constexpr std::string_view ContentTypeValue = "smufl";    ///< type value that identifies the type within the content array
 };
 

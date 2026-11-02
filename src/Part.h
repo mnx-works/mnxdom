@@ -24,6 +24,7 @@
 #include "BaseTypes.h"
 #include "ContentArray.h"
 #include "Dynamics.h"
+#include "FormattedText.h"
 #include "Sequence.h"
 
 namespace mnx {
@@ -490,6 +491,37 @@ public:
 };
 
 /**
+ * @class PositionedText
+ * @brief Text positioned within a part measure.
+ */
+class PositionedText : public ArrayElementObject
+{
+public:
+    /// @brief Constructor for existing positioned text.
+    PositionedText(const std::shared_ptr<json>& root, json_pointer pointer)
+        : ArrayElementObject(root, pointer)
+    {
+    }
+
+    /// @brief Creates positioned text with an initially empty chunk array.
+    /// @details Add at least one chunk before schema validation.
+    PositionedText(Base& parent, std::string_view key)
+        : ArrayElementObject(parent, key)
+    {
+        create_text();
+    }
+
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(Placement, placement, Placement::Auto); ///< Placement relative to the staff.
+    MNX_OPTIONAL_CHILD(RhythmicPosition, position,
+        (const FractionValue&, position)); ///< Position within the measure (default: start of measure).
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1); ///< Staff number in a multistaff part.
+    MNX_REQUIRED_CHILD(FormattedText, text); ///< Mixed text and SMuFL chunks (at least one).
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(TextType, type, TextType::General); ///< Purpose of the text.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "positioned-text";
+};
+
+/**
  * @class Measure
  * @brief Represents a single measure in a part in an MNX document. It contains the majority of the musical information in its sequences.
  */
@@ -518,6 +550,8 @@ public:
     MNX_OPTIONAL_CHILD(Array<Ottava>, ottavas);             ///< the ottavas in this measure
     MNX_REQUIRED_CHILD(Array<Sequence>, sequences);         ///< sequences that contain all the musical details in each measure
     MNX_OPTIONAL_CHILD(Array<PositionedStaffConfig>, staffConfigs);  ///< Staff config changes in this measure.
+
+    MNX_OPTIONAL_CHILD(Array<PositionedText>, text);        ///< Text positioned in this measure.
 
     /// @brief Returns the global measure for this part measure.
     /// @throws std::logic_error if the global measure does not exist.

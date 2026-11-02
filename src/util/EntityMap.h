@@ -80,6 +80,15 @@ struct JsonSchemaTypeNames<layout::LayoutContentObject>
 };
 
 template <>
+struct JsonSchemaTypeNames<text::TextContentObject>
+{
+    static constexpr std::array<std::string_view, 2> value{
+        text::Text::JsonSchemaTypeName,
+        text::Smufl::JsonSchemaTypeName
+    };
+};
+
+template <>
 struct JsonSchemaTypeNames<part::ArpeggioBase>
 {
     static constexpr std::array<std::string_view, 2> value{

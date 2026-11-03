@@ -61,11 +61,11 @@ var NAVTREEINDEX =
 "classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992",
 "classmnx_1_1layout_1_1Group.html#ab10d586c0212bae11fac011ada17625c",
 "classmnx_1_1part_1_1MeasureRepeatCounter.html#aadd166777b73accbc25387943208fade",
-"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a73c9f20dd89c9f023fad1336c17bd34a",
-"classmnx_1_1sequence_1_1Stress.html",
-"namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72",
-"structmnx_1_1NoteValueQuantity_1_1Required.html",
-"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html#a6a5a743f793a6f3bb642cacb9e10437b"
+"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a52b65416bd31d8dfe6c884db79f71995",
+"classmnx_1_1sequence_1_1Staccato.html",
+"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aae41480b6bbfbf7407974a88d3d34f4fa",
+"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427",
+"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

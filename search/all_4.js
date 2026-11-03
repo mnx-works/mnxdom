@@ -29,5 +29,6 @@ var searchData=
   ['eventmarkingbase_26',['EventMarkingBase',['../classmnx_1_1sequence_1_1EventMarkingBase.html',1,'mnx::sequence']]],
   ['eventmarkings_27',['EventMarkings',['../classmnx_1_1sequence_1_1EventMarkings.html',1,'mnx::sequence']]],
   ['exists_28',['exists',['../classmnx_1_1util_1_1EntityMap.html#a078f0856b4f73f6fab52ee7a24c86b59',1,'mnx::util::EntityMap']]],
-  ['expresswithdenominator_29',['expressWithDenominator',['../structmnx_1_1FractionValue.html#a2e403ca3c23b0d66e15c2ce135ddd04e',1,'mnx::FractionValue']]]
+  ['expression_29',['Expression',['../namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48aa1a6657be79cc0fc1e9b23b9e108f043',1,'mnx']]],
+  ['expresswithdenominator_30',['expressWithDenominator',['../structmnx_1_1FractionValue.html#a2e403ca3c23b0d66e15c2ce135ddd04e',1,'mnx::FractionValue']]]
 ];

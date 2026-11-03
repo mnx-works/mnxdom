@@ -1,5 +1,8 @@
 var NAVTREEINDEX8 =
 {
+"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427":[1,0,0,21,0,1],
+"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427":[2,0,0,24,0,1],
+"structmnx_1_1NoteValueQuantity_1_1Required.html":[1,0,0,25,0],
 "structmnx_1_1NoteValueQuantity_1_1Required.html":[2,0,0,28,0],
 "structmnx_1_1NoteValueQuantity_1_1Required.html#ab79fcee095f4c2e694f05d3cf61f762d":[1,0,0,25,0,0],
 "structmnx_1_1NoteValueQuantity_1_1Required.html#ab79fcee095f4c2e694f05d3cf61f762d":[2,0,0,28,0,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX8 =
 "structmnx_1_1util_1_1EntityMap_1_1EventInfo.html#af5b1630d1678dbdff152fcaf0c22b3f7":[2,0,0,7,1,1,0],
 "structmnx_1_1util_1_1EntityMap_1_1IdEntry.html":[2,0,0,7,1,2],
 "structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#aadf76225e0182a8a1e93ac8df170d13f":[2,0,0,7,1,2,0],
-"structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#ad050264194accaa759198ec85b1242ae":[2,0,0,7,1,2,1],
-"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html":[2,0,0,7,1,0],
-"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html#a021d32d4be296429ecea87943d90ac50":[2,0,0,7,1,0,0],
-"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html#a594a15134231b4b682a3ce898a7efa4d":[2,0,0,7,1,0,3]
+"structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#ad050264194accaa759198ec85b1242ae":[2,0,0,7,1,2,1]
 };

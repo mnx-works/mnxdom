@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"classmnx_1_1sequence_1_1Staccato.html":[2,0,0,0,8],
+"classmnx_1_1sequence_1_1Stress.html":[1,0,0,0,9],
 "classmnx_1_1sequence_1_1Stress.html":[2,0,0,0,9],
 "classmnx_1_1sequence_1_1StrongAccent.html":[1,0,0,0,10],
 "classmnx_1_1sequence_1_1StrongAccent.html":[2,0,0,0,10],
@@ -247,7 +249,5 @@ var NAVTREEINDEX6 =
 "namespacemnx.html#a21337ff290b73b5c4072858a5acc5f54a258f49887ef8d14ac268c92b02503aaa":[1,0,0,65,2],
 "namespacemnx.html#a28144cefaba3e535366ea178e05f7d9a":[1,0,0,62],
 "namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aa0e9498bd18e441969b23cb70819abc3c":[1,0,0,62,3],
-"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aa90c09393a4c0970bc9a6703ad527781c":[1,0,0,62,2],
-"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aae41480b6bbfbf7407974a88d3d34f4fa":[1,0,0,62,0],
-"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aaeb656e41b6da91494775ecf47a51da91":[1,0,0,62,1]
+"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aa90c09393a4c0970bc9a6703ad527781c":[1,0,0,62,2]
 };

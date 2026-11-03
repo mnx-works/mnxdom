@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a52b65416bd31d8dfe6c884db79f71995":[2,0,0,0,31,2],
+"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a73c9f20dd89c9f023fad1336c17bd34a":[1,0,0,0,31,1],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html#a73c9f20dd89c9f023fad1336c17bd34a":[2,0,0,0,31,1],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html#a91af92dd2f9be18e9045d16894aa2c79":[1,0,0,0,31,0],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html#a91af92dd2f9be18e9045d16894aa2c79":[2,0,0,0,31,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "classmnx_1_1sequence_1_1Spiccato.html":[2,0,0,0,6],
 "classmnx_1_1sequence_1_1Staccatissimo.html":[1,0,0,0,7],
 "classmnx_1_1sequence_1_1Staccatissimo.html":[2,0,0,0,7],
-"classmnx_1_1sequence_1_1Staccato.html":[1,0,0,0,8],
-"classmnx_1_1sequence_1_1Staccato.html":[2,0,0,0,8],
-"classmnx_1_1sequence_1_1Stress.html":[1,0,0,0,9]
+"classmnx_1_1sequence_1_1Staccato.html":[1,0,0,0,8]
 };

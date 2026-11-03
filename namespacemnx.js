@@ -225,7 +225,8 @@ var namespacemnx =
       [ "Up", "namespacemnx.html#acf37722bc87abf052775661825640121a258f49887ef8d14ac268c92b02503aaa", null ]
     ] ],
     [ "TextType", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48", [
-      [ "General", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48a0db377921f4ce762c62526131097968f", null ]
+      [ "General", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48a0db377921f4ce762c62526131097968f", null ],
+      [ "Expression", "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48aa1a6657be79cc0fc1e9b23b9e108f043", null ]
     ] ],
     [ "TieTargetType", "namespacemnx.html#a961d9beb0e598614b7157949964d33ef", [
       [ "NextNote", "namespacemnx.html#a961d9beb0e598614b7157949964d33efada34e2b724bdb42347569c86723e76f0", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX7 =
 {
+"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aae41480b6bbfbf7407974a88d3d34f4fa":[1,0,0,62,0],
+"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aaeb656e41b6da91494775ecf47a51da91":[1,0,0,62,1],
 "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72":[1,0,0,50],
 "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a0945e63d7277b87a5b01102815984c5e":[1,0,0,50,1],
 "namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a99042930bf9b16ce018fd26b227f7f41":[1,0,0,50,3],
@@ -86,6 +88,7 @@ var NAVTREEINDEX7 =
 "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62ad26b007baa81cc3cd38d8d6c93e6df42":[1,0,0,60,1],
 "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48":[1,0,0,78],
 "namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48a0db377921f4ce762c62526131097968f":[1,0,0,78,0],
+"namespacemnx.html#aa6debc4d37db9e8cbce996f20eca7a48aa1a6657be79cc0fc1e9b23b9e108f043":[1,0,0,78,1],
 "namespacemnx.html#ab1fbd0e4479390784ce5ffd4fad0c391":[1,0,0,47],
 "namespacemnx.html#ab1fbd0e4479390784ce5ffd4fad0c391a06b9281e396db002010bde1de57262eb":[1,0,0,47,0],
 "namespacemnx.html#ab1fbd0e4479390784ce5ffd4fad0c391a92b09c7c48c520c3c55e497875da437c":[1,0,0,47,2],
@@ -246,8 +249,5 @@ var NAVTREEINDEX7 =
 "structmnx_1_1MeasureRhythmicPosition_1_1Required.html":[1,0,0,21,0],
 "structmnx_1_1MeasureRhythmicPosition_1_1Required.html":[2,0,0,24,0],
 "structmnx_1_1MeasureRhythmicPosition_1_1Required.html#abdc7d4fd9b39510d061ba6d8736a9b4b":[1,0,0,21,0,0],
-"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#abdc7d4fd9b39510d061ba6d8736a9b4b":[2,0,0,24,0,0],
-"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427":[1,0,0,21,0,1],
-"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427":[2,0,0,24,0,1],
-"structmnx_1_1NoteValueQuantity_1_1Required.html":[1,0,0,25,0]
+"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#abdc7d4fd9b39510d061ba6d8736a9b4b":[2,0,0,24,0,0]
 };

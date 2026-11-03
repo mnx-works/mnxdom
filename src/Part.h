@@ -517,6 +517,7 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1); ///< Staff number in a multistaff part.
     MNX_REQUIRED_CHILD(FormattedText, text); ///< Mixed text and SMuFL chunks (at least one).
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(TextType, type, TextType::General); ///< Purpose of the text.
+    MNX_OPTIONAL_PROPERTY(std::string, voice); ///< Voice to which the text applies (omitted: all voices).
 
     inline static constexpr std::string_view JsonSchemaTypeName = "positioned-text";
 };

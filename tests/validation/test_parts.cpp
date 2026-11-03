@@ -307,6 +307,9 @@ TEST(Parts, PositionedTextRoundTrip)
     EXPECT_TRUE(fullValidate(doc, inputPath));
     auto texts = doc.parts()[0].measures()[0].text().value();
     EXPECT_EQ(texts[0].type(), mnx::TextType::General);
+    EXPECT_FALSE(texts[0].voice());
+    EXPECT_EQ(texts[1].type(), mnx::TextType::Expression);
+    EXPECT_EQ(texts[1].voice(), "upper");
     EXPECT_EQ(texts[0].text().get<mnx::text::Text>(0).text(), "Allegro ");
     EXPECT_EQ(texts[0].text().get<mnx::text::Smufl>(2).glyphs().toStdVector(),
         std::vector<std::string>{"metNoteQuarterUp"});

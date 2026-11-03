@@ -467,7 +467,8 @@ enum class StemDirection
  */
 enum class TextType
 {
-    General         ///< general text (the default)
+    General,        ///< general text (the default)
+    Expression      ///< expression text
 };
 
 /**

@@ -281,7 +281,8 @@ MNX_ENUM_MAPPING(StemDirection, {
 });
 
 MNX_ENUM_MAPPING(TextType, {
-    { "general",    TextType::General }
+    { "general",    TextType::General },
+    { "expression", TextType::Expression }
 });
 
 MNX_ENUM_MAPPING(TieTargetType, {

@@ -43,7 +43,8 @@
                                         }
                                     ]
                                 }
-                            ]
+                            ],
+                            "voice": "upper"
                         }
                     ],
                     "text": [
@@ -70,7 +71,7 @@
                             ]
                         },
                         {
-                            "type": "general",
+                            "type": "expression",
                             "staff": 1,
                             "placement": "above",
                             "position": {
@@ -84,7 +85,8 @@
                                     "type": "text",
                                     "text": "dolce"
                                 }
-                            ]
+                            ],
+                            "voice": "upper"
                         }
                     ]
                 }

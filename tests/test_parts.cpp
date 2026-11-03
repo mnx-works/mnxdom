@@ -169,6 +169,7 @@ TEST(Parts, PositionedText)
     EXPECT_EQ(positioned.staff(), 1);
     EXPECT_EQ(positioned.placement(), Placement::Auto);
     EXPECT_FALSE(positioned.position());
+    EXPECT_FALSE(positioned.voice());
     EXPECT_EQ(json::parse(positioned.dump()), (json{{"id", "t1"}, {"text", json::array()}}));
     EXPECT_FALSE(validation::schemaValidate(doc)) << "formatted text requires at least one chunk";
 
@@ -196,6 +197,16 @@ TEST(Parts, PositionedText)
     positioned.ensure_position(FractionValue(1, 4));
     EXPECT_EQ(json::parse(positioned.dump())["type"], "general");
     EXPECT_TRUE(validation::schemaValidate(doc));
+    positioned.set_type(TextType::Expression);
+    positioned.set_voice("upper");
+    EXPECT_EQ(positioned.type(), TextType::Expression);
+    EXPECT_EQ(positioned.voice(), "upper");
+    EXPECT_EQ(json::parse(positioned.dump())["type"], "expression");
+    EXPECT_EQ(json::parse(positioned.dump())["voice"], "upper");
+    EXPECT_TRUE(validation::schemaValidate(doc));
+    positioned.clear_voice();
+    EXPECT_FALSE(positioned.voice());
+    EXPECT_FALSE(json::parse(positioned.dump()).contains("voice"));
     doc.buildEntityMap();
     EXPECT_EQ(doc.getEntityMap().get<part::PositionedText>("t1").placement(), Placement::Below);
     EXPECT_EQ(doc.getEntityMap().get<text::Text>("plain").text(), "Allegro ");

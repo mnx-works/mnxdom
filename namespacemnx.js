@@ -178,6 +178,19 @@ var namespacemnx =
       [ "Below", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412", null ],
       [ "Between", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c", null ]
     ] ],
+    [ "NoteheadShape", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1", [
+      [ "Default", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67", null ],
+      [ "CircleX", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf", null ],
+      [ "Custom", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af", null ],
+      [ "Diamond", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699", null ],
+      [ "Oval", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61", null ],
+      [ "Plus", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4", null ],
+      [ "Slash", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc", null ],
+      [ "Square", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304", null ],
+      [ "Triangle", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b", null ],
+      [ "TriangleDown", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8", null ],
+      [ "X", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383", null ]
+    ] ],
     [ "NoteStep", "namespacemnx.html#a9c640b95a4e3f2faf13da2f85669cc63", null ],
     [ "NoteValueBase", "namespacemnx.html#aedcf62c90c7ec3ac99e89b55a70d7b79", null ],
     [ "OttavaAmount", "namespacemnx.html#a361b2c550a67bec829901cf59aec117e", [

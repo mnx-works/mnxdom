@@ -28,6 +28,7 @@ var namespacemnx_1_1sequence =
     [ "SlideIntoNote", "classmnx_1_1sequence_1_1SlideIntoNote.html", "classmnx_1_1sequence_1_1SlideIntoNote" ],
     [ "SlideOutOfNote", "classmnx_1_1sequence_1_1SlideOutOfNote.html", "classmnx_1_1sequence_1_1SlideOutOfNote" ],
     [ "NoteMarkings", "classmnx_1_1sequence_1_1NoteMarkings.html", "classmnx_1_1sequence_1_1NoteMarkings" ],
+    [ "Notehead", "classmnx_1_1sequence_1_1Notehead.html", "classmnx_1_1sequence_1_1Notehead" ],
     [ "NoteBase", "classmnx_1_1sequence_1_1NoteBase.html", "classmnx_1_1sequence_1_1NoteBase" ],
     [ "KitNote", "classmnx_1_1sequence_1_1KitNote.html", "classmnx_1_1sequence_1_1KitNote" ],
     [ "Note", "classmnx_1_1sequence_1_1Note.html", "classmnx_1_1sequence_1_1Note" ],

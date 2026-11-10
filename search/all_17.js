@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_0',['z',['../namespacemnx.html#a6bde9b92bdb7e56a96cce03dfbebbb03afbade9e36a3f36d3d676c1b808451dd7',1,'mnx']]]
+  ['x_0',['X',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383',1,'mnx']]]
 ];

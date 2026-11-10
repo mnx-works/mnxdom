@@ -7,6 +7,8 @@ var searchData=
   ['threeoctavesup_4',['ThreeOctavesUp',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3cbfeb45aff39f7d69abcb551d2badb7',1,'mnx::ThreeOctavesUp'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a3cbfeb45aff39f7d69abcb551d2badb7',1,'mnx::ThreeOctavesUp']]],
   ['tick_5',['Tick',['../namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9a0b3516a5bbb77566f904f9d3877f4710',1,'mnx::Tick'],['../namespacemnx.html#a987a8a31243b5d666217aa67e56fdc26a0b3516a5bbb77566f904f9d3877f4710',1,'mnx::Tick']]],
   ['tocoda_6',['ToCoda',['../namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a2f058d6780f7a341640eca733f227e3b',1,'mnx']]],
-  ['twooctavesdown_7',['TwoOctavesDown',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown']]],
-  ['twooctavesup_8',['TwoOctavesUp',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp']]]
+  ['triangle_7',['Triangle',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b',1,'mnx']]],
+  ['triangledown_8',['TriangleDown',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8',1,'mnx']]],
+  ['twooctavesdown_9',['TwoOctavesDown',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown']]],
+  ['twooctavesup_10',['TwoOctavesUp',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp']]]
 ];

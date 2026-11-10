@@ -381,6 +381,23 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c">Between</a>
  }</td></tr>
 <tr class="memdesc:a1cbd33e240b0ad4078c0bfba9043ddae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the vertical placement of a symbol with respect to its part's staves.  <a href="#a1cbd33e240b0ad4078c0bfba9043ddae">More...</a><br /></td></tr>
+<tr class="memitem:a87df00778c2acae557839d9ef283f5a1" id="r_a87df00778c2acae557839d9ef283f5a1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87df00778c2acae557839d9ef283f5a1">NoteheadShape</a> { <br />
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67">Default</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf">CircleX</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af">Custom</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699">Diamond</a>
+, <br />
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61">Oval</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4">Plus</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc">Slash</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304">Square</a>
+, <br />
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b">Triangle</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8">TriangleDown</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383">X</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a87df00778c2acae557839d9ef283f5a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The semantic shape family of a notehead; does not affect pitch, duration, or performance.  <a href="#a87df00778c2acae557839d9ef283f5a1">More...</a><br /></td></tr>
 <tr class="memitem:a9c640b95a4e3f2faf13da2f85669cc63" id="r_a9c640b95a4e3f2faf13da2f85669cc63"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c640b95a4e3f2faf13da2f85669cc63">NoteStep</a> : int { <br />
 &#160;&#160;<b>C</b> = 0
 , <b>D</b> = 1
@@ -1271,6 +1288,54 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 <tr><td class="fieldname"><a id="a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412" name="a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412"></a>Below&#160;</td><td class="fielddoc"><p>symbol should be below its part staves </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c" name="a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c"></a>Between&#160;</td><td class="fielddoc"><p>symbol should be between its part staves </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a87df00778c2acae557839d9ef283f5a1" name="a87df00778c2acae557839d9ef283f5a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87df00778c2acae557839d9ef283f5a1">&#9670;&#160;</a></span>NoteheadShape</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a87df00778c2acae557839d9ef283f5a1">mnx::NoteheadShape</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The semantic shape family of a notehead; does not affect pitch, duration, or performance. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67" name="a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67"></a>Default&#160;</td><td class="fielddoc"><p>Use the kit component's design for kit notes; otherwise determined by consuming software. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf" name="a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf"></a>CircleX&#160;</td><td class="fielddoc"><p>X enclosed in a circle. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af" name="a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af"></a>Custom&#160;</td><td class="fielddoc"><p>Otherwise unclassified notehead; requires an explicit glyph. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699" name="a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699"></a>Diamond&#160;</td><td class="fielddoc"><p>Diamond-shaped notehead. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61" name="a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61"></a>Oval&#160;</td><td class="fielddoc"><p>Conventional oval notehead. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4" name="a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4"></a>Plus&#160;</td><td class="fielddoc"><p>Plus-shaped notehead. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc" name="a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc"></a>Slash&#160;</td><td class="fielddoc"><p>Rhythmic slash notehead. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304" name="a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304"></a>Square&#160;</td><td class="fielddoc"><p>Square notehead; does not itself select a shape-note system. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b" name="a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b"></a>Triangle&#160;</td><td class="fielddoc"><p>Triangle pointing up, irrespective of stem direction. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8" name="a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8"></a>TriangleDown&#160;</td><td class="fielddoc"><p>Triangle pointing down, irrespective of stem direction. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383" name="a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383"></a>X&#160;</td><td class="fielddoc"><p>X-shaped notehead. </p>
 </td></tr>
 </table>
 

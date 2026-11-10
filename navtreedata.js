@@ -60,12 +60,12 @@ var NAVTREEINDEX =
 "classmnx_1_1Global.html#ae4aa510c166bda678d152b7896a3cf59",
 "classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992",
 "classmnx_1_1layout_1_1Group.html#ab10d586c0212bae11fac011ada17625c",
-"classmnx_1_1part_1_1MeasureRepeatCounter.html#aadd166777b73accbc25387943208fade",
-"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a52b65416bd31d8dfe6c884db79f71995",
-"classmnx_1_1sequence_1_1Staccato.html",
-"namespacemnx.html#a28144cefaba3e535366ea178e05f7d9aae41480b6bbfbf7407974a88d3d34f4fa",
-"structmnx_1_1MeasureRhythmicPosition_1_1Required.html#ac6a1722db5cb0ec17f33d5f902da1427",
-"structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html"
+"classmnx_1_1part_1_1MeasureRepeatCounter.html#a8333b5fc21ffa463d430504cdf2e2c3e",
+"classmnx_1_1sequence_1_1EventLyricLineExtender.html#a4988843f33731e91af29f49660111eb6",
+"classmnx_1_1sequence_1_1SoftAccent.html",
+"namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaeae59dd8d25c0b6bb6697eac0617ccd412",
+"structmnx_1_1FractionValue.html#ac146febfa2afe0a4bd95c045d3d24dd4",
+"structmnx_1_1sequence_1_1SlideOutOfNote_1_1Required.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

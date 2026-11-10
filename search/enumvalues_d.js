@@ -4,5 +4,6 @@ var searchData=
   ['percussion1_1',['Percussion1',['../namespacemusic__theory.html#a815d2a1e748a138127d59c252e4fa946ae45a3c65bbd13b82efb95ddfce95ee28',1,'music_theory']]],
   ['percussion2_2',['Percussion2',['../namespacemusic__theory.html#a815d2a1e748a138127d59c252e4fa946a50fdf989a6b1d1c6999550038f0a46f4',1,'music_theory']]],
   ['percussionclef_3',['PercussionClef',['../namespacemnx.html#a2d15170d378fa4c62736de982dfdfe72a99042930bf9b16ce018fd26b227f7f41',1,'mnx']]],
-  ['phrygian_4',['Phrygian',['../namespacemusic__theory.html#a04ed1b374e50ea532b72ed1bb66683cea805db0fe201d84ac80b9572cb7d262ea',1,'music_theory']]]
+  ['phrygian_4',['Phrygian',['../namespacemusic__theory.html#a04ed1b374e50ea532b72ed1bb66683cea805db0fe201d84ac80b9572cb7d262ea',1,'music_theory']]],
+  ['plus_5',['Plus',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4',1,'mnx']]]
 ];

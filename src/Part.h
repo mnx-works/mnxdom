@@ -272,6 +272,7 @@ public:
     static Required make(int staffPosition) { return { staffPosition }; }
 
     MNX_OPTIONAL_PROPERTY(std::string, name);       ///< Human-readable name of the kit component
+    MNX_OPTIONAL_CHILD(sequence::Notehead, notehead, (NoteheadShape, shape)); ///< Default head design; if omitted, determined by consuming software.
     MNX_OPTIONAL_PROPERTY(std::string, sound);      ///< The sound ID in `global.sounds`.
     MNX_REQUIRED_PROPERTY(int, staffPosition);      ///< The staff position of the kit component, where 0 is the middle line.
 

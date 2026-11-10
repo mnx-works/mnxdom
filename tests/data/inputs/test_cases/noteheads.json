@@ -1,0 +1,47 @@
+{
+    "mnx": { "version": 1 },
+    "global": {
+        "measures": [{ "time": { "count": 4, "unit": 4 } }]
+    },
+    "parts": [
+        {
+            "measures": [
+                {
+                    "clefs": [{ "clef": { "sign": "G", "staffPosition": -2 } }],
+                    "sequences": [
+                        {
+                            "content": [
+                                {
+                                    "duration": { "base": "whole" },
+                                    "notes": [{ "pitch": { "step": "C", "octave": 5 }, "notehead": {} }]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "kit": {
+                "snare": {
+                    "staffPosition": 0,
+                    "notehead": { "shape": "diamond", "glyph": "noteheadDiamondBlack" }
+                }
+            },
+            "measures": [
+                {
+                    "sequences": [
+                        {
+                            "content": [
+                                {
+                                    "duration": { "base": "whole" },
+                                    "kitNotes": [{ "kitComponent": "snare" }]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -27,6 +27,46 @@
 #include "mnxdom.h"
 #include "test_utils.h"
 
+TEST(Validation, Noteheads)
+{
+    setupTestDataPaths();
+    const auto inputPath = getInputPath() / "test_cases" / "noteheads.json";
+    auto fixture = mnx::Document::create(inputPath);
+    ASSERT_TRUE(fullValidate(fixture, inputPath));
+
+    const char* locations[] = {
+        "/parts/0/measures/0/sequences/0/content/0/notes/0/notehead",
+        "/parts/1/measures/0/sequences/0/content/0/kitNotes/0/notehead",
+        "/parts/1/kit/snare/notehead"
+    };
+    struct Case {
+        const char* notehead;
+        bool valid;
+    };
+    const Case cases[] = {
+        { R"({})", true },
+        { R"({"shape":"default"})", true },
+        { R"({"shape":"oval"})", true },
+        { R"({"shape":"custom","glyph":"noteheadBlack"})", true },
+        { R"({"shape":"diamond","glyph":"noteheadDiamondBlack"})", true },
+        { R"({"shape":"default","glyph":"noteheadBlack"})", true },
+        { R"({"shape":"unknown"})", false },
+        { R"({"shape":1})", false },
+        { R"({"shape":"oval","glyph":1})", false }
+    };
+    // Missing shape with glyph and missing glyph with custom shape are invalid
+    // MNX, but require dependentRequired/dependentSchemas support in the validator.
+    // See MNX_GAPS.md; these cases must not be treated as valid fixtures.
+    for (const auto location : locations) {
+        for (const auto& test : cases) {
+            SCOPED_TRACE(std::string(location) + ": " + test.notehead);
+            auto doc = mnx::Document::create(inputPath);
+            (*doc.root())[mnx::json_pointer(location)] = mnx::json::parse(test.notehead);
+            EXPECT_EQ(bool(mnx::validation::schemaValidate(doc)), test.valid);
+        }
+    }
+}
+
 TEST(Document, UnrelatedJson)
 {
     setupTestDataPaths();

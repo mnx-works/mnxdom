@@ -216,6 +216,20 @@ MNX_ENUM_MAPPING(MultiStaffPlacement, {
     { "between",    MultiStaffPlacement::Between }
 });
 
+MNX_ENUM_MAPPING(NoteheadShape, {
+    { "default",      NoteheadShape::Default },
+    { "circleX",      NoteheadShape::CircleX },
+    { "custom",       NoteheadShape::Custom },
+    { "diamond",      NoteheadShape::Diamond },
+    { "oval",         NoteheadShape::Oval },
+    { "plus",         NoteheadShape::Plus },
+    { "slash",        NoteheadShape::Slash },
+    { "square",       NoteheadShape::Square },
+    { "triangle",     NoteheadShape::Triangle },
+    { "triangleDown", NoteheadShape::TriangleDown },
+    { "x",            NoteheadShape::X }
+});
+
 MNX_ENUM_MAPPING(NoteStep, {
     { "C", NoteStep::C },
     { "D", NoteStep::D },

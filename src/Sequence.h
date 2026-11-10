@@ -359,6 +359,54 @@ public:
 };
 
 /**
+ * @class Notehead
+ * @brief Describes a notehead's visual shape and optional explicit SMuFL glyph.
+ *
+ * For kit notes, an omitted or Default shape inherits the kit component's design,
+ * including its glyph. An explicit shape replaces that design; an explicit glyph
+ * overrides the selected appearance. These properties do not affect pitch, duration,
+ * or performance. Glyph selection by consuming software uses the displayed note value.
+ * Creating a notehead requires an explicit shape; an omitted shape in an existing
+ * notehead is read as Default without inserting the property into JSON.
+ */
+class Notehead : public Object
+{
+public:
+    /// @brief initializer class for #Notehead
+    struct Required
+    {
+        NoteheadShape shape{}; ///< the semantic shape of the notehead
+    };
+
+    /// @brief Constructor for existing Notehead objects
+    Notehead(const std::shared_ptr<json>& root, json_pointer pointer)
+        : Object(root, pointer)
+    {
+    }
+
+    /// @brief Creates a new Notehead class as a child of a JSON element
+    /// @param parent The parent class instance
+    /// @param key The JSON key to use for embedding in parent.
+    /// @param shape The semantic shape of the notehead
+    Notehead(Base& parent, std::string_view key, NoteheadShape shape)
+        : Object(parent, key)
+    {
+        set_shape(shape);
+    }
+
+    /// @brief Implicit conversion back to Required.
+    operator Required() const { return { shape() }; }
+
+    /// @brief Create a Required instance for #Notehead.
+    static Required make(NoteheadShape shape) { return { shape }; }
+
+    MNX_OPTIONAL_PROPERTY(std::string, glyph);                                      ///< SMuFL glyph override; requires an explicit shape.
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(NoteheadShape, shape, NoteheadShape::Default); ///< Semantic shape; Custom requires a glyph.
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "notehead";     ///< required for mapping
+};
+
+/**
  * @class NoteBase
  * @brief Represents common elements between @ref Note and @ref KitNote
  */
@@ -367,6 +415,7 @@ class NoteBase : public ArrayElementObject
 public:
     using ArrayElementObject::ArrayElementObject;
 
+    MNX_OPTIONAL_CHILD(Notehead, notehead, (NoteheadShape, shape));   ///< Visual head design; if omitted, kit notes inherit their component's design, and pitched notes use consuming software's choice.
     MNX_OPTIONAL_CHILD(PerformOptions, perform);                    ///< Controls whether this note is performed by consuming software.
     MNX_OPTIONAL_PROPERTY(int, staff);                              ///< Staff number override (e.g., for cross-staff notes.)
     MNX_OPTIONAL_CHILD(Array<Tie>, ties);                           ///< The (forward) ties, if any.

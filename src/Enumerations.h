@@ -324,6 +324,25 @@ enum class MultiStaffPlacement
 };
 
 /**
+ * @enum NoteheadShape
+ * @brief The semantic shape family of a notehead; does not affect pitch, duration, or performance.
+ */
+enum class NoteheadShape
+{
+    Default,        ///< Use the kit component's design for kit notes; otherwise determined by consuming software.
+    CircleX,        ///< X enclosed in a circle.
+    Custom,         ///< Otherwise unclassified notehead; requires an explicit glyph.
+    Diamond,        ///< Diamond-shaped notehead.
+    Oval,           ///< Conventional oval notehead.
+    Plus,           ///< Plus-shaped notehead.
+    Slash,          ///< Rhythmic slash notehead.
+    Square,         ///< Square notehead; does not itself select a shape-note system.
+    Triangle,       ///< Triangle pointing up, irrespective of stem direction.
+    TriangleDown,   ///< Triangle pointing down, irrespective of stem direction.
+    X               ///< X-shaped notehead.
+};
+
+/**
  * @enum NoteStep
  * @brief The diatonic note step values.
  *

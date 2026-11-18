@@ -1,8 +1,8 @@
 # mnxdom
 
-Document object model for the MNX music interchange format. It is compatible with the C++17 standard.
+Document object model for the MNX music interchange format.
 
-- compatible with the C++17 standard and higher. (Currently tested with C++23.)
+- requires C++20 or newer. The default CMake build uses C++23.
 - uses [nlohmann\_json](https://github.com/nlohmann/json) as its JSON parser.
 - allows structured access to MNX objects, without the need of quoted strings.
 - validates against the MNX schema using [json-schema-validator](https://github.com/pboettch/json-schema-validator).
@@ -11,7 +11,7 @@ Document object model for the MNX music interchange format. It is compatible wit
 
 ### Documentation
 
-[MNX Document Model for C++17](https://mnx-works.github.io/mnxdom/)
+[MNX Document Model for C++20](https://mnx-works.github.io/mnxdom/)
 
 Here is a simple example of code that creates the [Hello World](https://w3c.github.io/mnx/docs/mnx-reference/examples/hello-world/) MNX JSON file.
 

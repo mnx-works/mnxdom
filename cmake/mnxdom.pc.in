@@ -3,7 +3,7 @@ libdir=@CMAKE_INSTALL_FULL_LIBDIR@
 includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
 
 Name: mnxdom
-Description: MNX Document Object Model for C++17
+Description: MNX Document Object Model for C++20
 Version: @PROJECT_VERSION@
 # nlohmann_json_schema_validator is not listed here because it has no
 # pkg-config files exposed. However it should be dynamically linked to the

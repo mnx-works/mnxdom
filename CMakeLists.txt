@@ -24,9 +24,9 @@ if(NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 23)
 endif()
 
-# Enforce at least C++17, allow higher if set by the parent
-if(CMAKE_CXX_STANDARD LESS 17)
-    message(FATAL_ERROR "Mnxdom requires at least C++17. Current: C++${CMAKE_CXX_STANDARD}")
+# Enforce at least C++20, allow higher if set by the parent
+if(CMAKE_CXX_STANDARD STREQUAL "98" OR CMAKE_CXX_STANDARD LESS 20)
+    message(FATAL_ERROR "Mnxdom requires at least C++20. Current: C++${CMAKE_CXX_STANDARD}")
 endif()
 
 message(STATUS "Mnxdom C++ standard: ${CMAKE_CXX_STANDARD}")
@@ -62,6 +62,8 @@ add_library(mnxdom
     src/validation/SchemaValidate.cpp
     src/validation/SemanticValidate.cpp
 )
+
+target_compile_features(mnxdom PUBLIC cxx_std_20)
 
 target_include_directories(mnxdom PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>

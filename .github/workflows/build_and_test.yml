@@ -14,7 +14,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test on ${{ matrix.os }}
+    name: Build and Test on ${{ matrix.os }} (C++${{ matrix.standard }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -22,10 +22,13 @@ jobs:
         include:
           - os: ubuntu-latest
             generator: Ninja
+            standard: 20
           - os: macos-latest
             generator: Ninja
+            standard: 23
           - os: windows-latest
             generator: Ninja
+            standard: 23
     steps:
       # Step 1: Check out the repository
       - name: Checkout code
@@ -59,7 +62,7 @@ jobs:
 
       # Step 4: Configure CMake
       - name: Configure CMake
-        run: cmake -S . -B build -G "${{ matrix.generator }}" -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S . -B build -G "${{ matrix.generator }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=${{ matrix.standard }}
 
       # Step 5: Build with CMake
       - name: Build

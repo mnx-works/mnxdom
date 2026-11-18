@@ -120,25 +120,17 @@ $(function(){initNavTree('IdIndexer_8h_source.html','',''); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;../BaseTypes.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;../DocumentIdIndex.h&quot;</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span>mnx::util::detail {</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#ifndef DOXYGEN_SHOULD_IGNORE_THIS</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">struct </span>IndexedId</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::string id;             </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_typedef" href="namespacemnx.html#a457dbaf3b64a0013d028909dce89952d">json_pointer</a> location;      </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::string typeName;       </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">void</span> indexDocumentIds(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a>&amp; root, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a>&amp; schema, <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> IndexedId&amp;)&gt;&amp; sink);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">// DOXYGEN_SHOULD_IGNORE_THIS</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>} <span class="comment">// namespace mnx::util::detail</span></div>
-<div class="ttc" id="anamespacemnx_html_a457dbaf3b64a0013d028909dce89952d"><div class="ttname"><a href="namespacemnx.html#a457dbaf3b64a0013d028909dce89952d">mnx::json_pointer</a></div><div class="ttdeci">json::json_pointer json_pointer</div><div class="ttdoc">JSON pointer class for MNX.</div><div class="ttdef"><b>Definition</b> BaseTypes.h:71</div></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> indexDocumentIds(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a>&amp; root, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a>&amp; schema, <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(DocumentIdIndex::Item)&gt;&amp; sink);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif </span><span class="comment">// DOXYGEN_SHOULD_IGNORE_THIS</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace mnx::util::detail</span></div>
 <div class="ttc" id="anamespacemnx_html_afb51b93e20cca098a1db80a77d8e0714"><div class="ttname"><a href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">mnx::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdoc">JSON class for MNX.</div><div class="ttdef"><b>Definition</b> BaseTypes.h:70</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

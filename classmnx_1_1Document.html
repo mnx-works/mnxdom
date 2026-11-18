@@ -140,8 +140,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a33c1a5d20341bf4649c7af79a77524f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of scores for the MNX document. <br /></td></tr>
 <tr class="memitem:a02a5f9228a9083f053f2e12f8aaeaf74" id="r_a02a5f9228a9083f053f2e12f8aaeaf74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02a5f9228a9083f053f2e12f8aaeaf74">save</a> (const std::filesystem::path &amp;outputPath, std::optional&lt; int &gt; indentSpaces) const</td></tr>
 <tr class="memdesc:a02a5f9228a9083f053f2e12f8aaeaf74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the MNX document to a file.  <br /></td></tr>
-<tr class="memitem:ac7d5e6859f022b19fb27d89d4798d53f" id="r_ac7d5e6859f022b19fb27d89d4798d53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7d5e6859f022b19fb27d89d4798d53f">buildEntityMap</a> (<a class="el" href="structmnx_1_1EntityMapPolicies.html">EntityMapPolicies</a> policies={}, const std::optional&lt; <a class="el" href="namespacemnx.html#a69ef33a2220ead362953724128117eb8">ErrorHandler</a> &gt; &amp;errorHandler=std::nullopt)</td></tr>
-<tr class="memdesc:ac7d5e6859f022b19fb27d89d4798d53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds or rebuilds the ID mapping for the document, replacing any existing mapping.  <br /></td></tr>
+<tr class="memitem:a8feeb16526d31406a1a76a75546f24f1" id="r_a8feeb16526d31406a1a76a75546f24f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8feeb16526d31406a1a76a75546f24f1">buildEntityMapFromIndex</a> (const <a class="el" href="classmnx_1_1DocumentIdIndex.html">DocumentIdIndex</a> &amp;ids, <a class="el" href="structmnx_1_1EntityMapPolicies.html">EntityMapPolicies</a> policies={}, const std::optional&lt; <a class="el" href="namespacemnx.html#a69ef33a2220ead362953724128117eb8">ErrorHandler</a> &gt; &amp;errorHandler=std::nullopt)</td></tr>
+<tr class="memdesc:a8feeb16526d31406a1a76a75546f24f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds or rebuilds the entity map using IDs already collected by <a class="el" href="namespacemnx_1_1validation.html#a1ec51b3e638a9a6e8ac8f6e51273354c" title="Validates a parsed document and optionally collects its IDs.">validation::schemaValidate</a>.  <br /></td></tr>
 <tr class="memitem:a90f5175ea60f1965a03c1a47ffa2f552" id="r_a90f5175ea60f1965a03c1a47ffa2f552"><td class="memItemLeft" align="right" valign="top"><a id="a90f5175ea60f1965a03c1a47ffa2f552" name="a90f5175ea60f1965a03c1a47ffa2f552"></a>
 const <a class="el" href="classmnx_1_1util_1_1EntityMap.html">util::EntityMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntityMap</b> () const</td></tr>
 <tr class="memdesc:a90f5175ea60f1965a03c1a47ffa2f552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a reference to the entity mapping instance for the document. <br /></td></tr>
@@ -318,15 +318,20 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ac7d5e6859f022b19fb27d89d4798d53f" name="ac7d5e6859f022b19fb27d89d4798d53f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7d5e6859f022b19fb27d89d4798d53f">&#9670;&#160;</a></span>buildEntityMap()</h2>
+<a id="a8feeb16526d31406a1a76a75546f24f1" name="a8feeb16526d31406a1a76a75546f24f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8feeb16526d31406a1a76a75546f24f1">&#9670;&#160;</a></span>buildEntityMapFromIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mnx::Document::buildEntityMap </td>
+          <td class="memname">void mnx::Document::buildEntityMapFromIndex </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmnx_1_1DocumentIdIndex.html">DocumentIdIndex</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ids</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="structmnx_1_1EntityMapPolicies.html">EntityMapPolicies</a></td>          <td class="paramname"><span class="paramname"><em>policies</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>, </td>
         </tr>
         <tr>
@@ -337,17 +342,18 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
       </table>
 </div><div class="memdoc">
 
-<p>Builds or rebuilds the ID mapping for the document, replacing any existing mapping. </p>
+<p>Builds or rebuilds the entity map using IDs already collected by <a class="el" href="namespacemnx_1_1validation.html#a1ec51b3e638a9a6e8ac8f6e51273354c" title="Validates a parsed document and optionally collects its IDs.">validation::schemaValidate</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">policies</td><td>Optional controls for how supplemental mappings (like ottavas) are constructed. </td></tr>
-    <tr><td class="paramname">errorHandler</td><td>An optional error handler. If provided, the function does not throw on duplicate keys added. </td></tr>
+    <tr><td class="paramname">ids</td><td>Snapshot from this document, current for its IDs, locations and types. </td></tr>
+    <tr><td class="paramname">policies</td><td>Controls construction of supplemental mappings such as ottavas. </td></tr>
+    <tr><td class="paramname">errorHandler</td><td>Optional handler for duplicate keys. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmnx_1_1util_1_1mapping__error.html" title="base class for mapping error exceptions">util::mapping_error</a></td><td>on duplicate keys if no <code class="param">errorHandler</code> is provided. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classmnx_1_1util_1_1mapping__error.html" title="base class for mapping error exceptions">util::mapping_error</a></td><td>on duplicate keys when no handler is supplied. </td></tr>
   </table>
   </dd>
 </dl>

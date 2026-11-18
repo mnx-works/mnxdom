@@ -8,6 +8,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "CommonClasses.h", "CommonClasses_8h_source.html", null ],
     [ "ContentArray.h", "ContentArray_8h_source.html", null ],
     [ "Document.h", "Document_8h_source.html", null ],
+    [ "DocumentIdIndex.h", "DocumentIdIndex_8h_source.html", null ],
     [ "Dynamics.h", "Dynamics_8h_source.html", null ],
     [ "Enumerations.h", "Enumerations_8h_source.html", null ],
     [ "EventMarkings.h", "EventMarkings_8h_source.html", null ],

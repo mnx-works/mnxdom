@@ -39,5 +39,5 @@ var searchData=
   ['tupletdisplaysetting_36',['TupletDisplaySetting',['../namespacemnx.html#a9f98fd98d5106fa00063d9df29eea01f',1,'mnx']]],
   ['twooctavesdown_37',['TwoOctavesDown',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a3e464ec7a7d7edf51b4d6fcf2941da25',1,'mnx::TwoOctavesDown']]],
   ['twooctavesup_38',['TwoOctavesUp',['../namespacemnx.html#a361b2c550a67bec829901cf59aec117ea962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp'],['../namespacemnx.html#a70be29bf5b4e51a04312d21a6353e4e9a962c3ff88330f1f80321975efddcd744',1,'mnx::TwoOctavesUp']]],
-  ['typename_39',['typeName',['../structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#ad050264194accaa759198ec85b1242ae',1,'mnx::util::EntityMap::IdEntry']]]
+  ['typename_39',['typeName',['../structmnx_1_1DocumentIdIndex_1_1Item.html#a6af893368a5862cbfb61e7a33437ccfc',1,'mnx::DocumentIdIndex::Item::typeName'],['../structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#ad050264194accaa759198ec85b1242ae',1,'mnx::util::EntityMap::IdEntry::typeName']]]
 ];

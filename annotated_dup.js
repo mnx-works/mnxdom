@@ -80,7 +80,9 @@ var annotated_dup =
       ] ],
       [ "validation", "namespacemnx_1_1validation.html", [
         [ "ValidationResult", "structmnx_1_1validation_1_1ValidationResult.html", "structmnx_1_1validation_1_1ValidationResult" ],
-        [ "SemanticValidationResult", "structmnx_1_1validation_1_1SemanticValidationResult.html", "structmnx_1_1validation_1_1SemanticValidationResult" ]
+        [ "SemanticValidationResult", "structmnx_1_1validation_1_1SemanticValidationResult.html", "structmnx_1_1validation_1_1SemanticValidationResult" ],
+        [ "SchemaValidationOptions", "structmnx_1_1validation_1_1SchemaValidationOptions.html", "structmnx_1_1validation_1_1SchemaValidationOptions" ],
+        [ "SchemaValidationResult", "structmnx_1_1validation_1_1SchemaValidationResult.html", "structmnx_1_1validation_1_1SchemaValidationResult" ]
       ] ],
       [ "scope", null, [
         [ "Default", "structmnx_1_1scope_1_1Default.html", null ],
@@ -153,6 +155,7 @@ var annotated_dup =
       [ "EntityMapPolicies", "structmnx_1_1EntityMapPolicies.html", "structmnx_1_1EntityMapPolicies" ],
       [ "MnxMetaData", "classmnx_1_1MnxMetaData.html", "classmnx_1_1MnxMetaData" ],
       [ "Document", "classmnx_1_1Document.html", "classmnx_1_1Document" ],
+      [ "DocumentIdIndex", "classmnx_1_1DocumentIdIndex.html", "classmnx_1_1DocumentIdIndex" ],
       [ "FormattedText", "classmnx_1_1FormattedText.html", null ],
       [ "Global", "classmnx_1_1Global.html", "classmnx_1_1Global" ],
       [ "Layout", "classmnx_1_1Layout.html", "classmnx_1_1Layout" ],

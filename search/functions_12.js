@@ -1,10 +1,10 @@
 var searchData=
 [
   ['save_0',['save',['../classmnx_1_1Document.html#a02a5f9228a9083f053f2e12f8aaeaf74',1,'mnx::Document']]],
-  ['schemavalidate_1',['schemaValidate',['../namespacemnx_1_1validation.html#a94f02ad6bb8ceac641a8773d2588ea9a',1,'mnx::validation']]],
+  ['schemavalidate_1',['schemaValidate',['../namespacemnx_1_1validation.html#a1ec51b3e638a9a6e8ac8f6e51273354c',1,'mnx::validation']]],
   ['score_2',['Score',['../classmnx_1_1Score.html#aff70e3722c5441a1dce544100269c769',1,'mnx::Score::Score(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1Score.html#a1fc5faf70ad89de98781399204422992',1,'mnx::Score::Score(Base &amp;parent, std::string_view key, const std::string &amp;scoreName)']]],
   ['segno_3',['Segno',['../classmnx_1_1global_1_1Segno.html#a4aea76b155635cb784967bcfb58cd633',1,'mnx::global::Segno::Segno(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1global_1_1Segno.html#ada0544f4476db2118c1df1c69e574ac3',1,'mnx::global::Segno::Segno(Base &amp;parent, std::string_view key, const FractionValue &amp;position)']]],
-  ['semanticvalidate_4',['semanticValidate',['../namespacemnx_1_1validation.html#ac8fcada9e8539ae3ce8094a02d2b653a',1,'mnx::validation']]],
+  ['semanticvalidate_4',['semanticValidate',['../namespacemnx_1_1validation.html#a1582399d40a317e5b5d168f35e7fbb34',1,'mnx::validation']]],
   ['sequence_5',['Sequence',['../classmnx_1_1Sequence.html#ae906023069134a2caa5b2b5ec8d2295f',1,'mnx::Sequence::Sequence(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1Sequence.html#a5bdaaf20ef9397550c85d441cfd6663c',1,'mnx::Sequence::Sequence(Base &amp;parent, std::string_view key)']]],
   ['setchild_6',['setChild',['../classmnx_1_1Base.html#a9e9cecbea5088d0c63fb0f92eb71556c',1,'mnx::Base']]],
   ['setextension_7',['setExtension',['../classmnx_1_1Object.html#a4f083c0967954c364a91ee5b748f40cc',1,'mnx::Object']]],

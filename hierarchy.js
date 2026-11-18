@@ -216,6 +216,7 @@ var hierarchy =
       [ "mnx::detail::DictionaryAppendOverloads< Derived, T, std::void_t< decltype(&T::make)> >", "structmnx_1_1detail_1_1DictionaryAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html", null ]
     ] ],
     [ "mnx::detail::DictionaryAppendFromMake&lt; T, MakeFunc &gt;", "structmnx_1_1detail_1_1DictionaryAppendFromMake_3_01T_00_01MakeFunc_01_4.html", null ],
+    [ "mnx::DocumentIdIndex", "classmnx_1_1DocumentIdIndex.html", null ],
     [ "mnx::util::EntityMap", "classmnx_1_1util_1_1EntityMap.html", null ],
     [ "mnx::EntityMapPolicies", "structmnx_1_1EntityMapPolicies.html", null ],
     [ "mnx::EnumStringMapping&lt; E, typename &gt;", "structmnx_1_1EnumStringMapping.html", null ],
@@ -223,6 +224,7 @@ var hierarchy =
     [ "mnx::util::EntityMap::EventInfo", "structmnx_1_1util_1_1EntityMap_1_1EventInfo.html", null ],
     [ "mnx::FractionValue", "structmnx_1_1FractionValue.html", null ],
     [ "mnx::util::EntityMap::IdEntry", "structmnx_1_1util_1_1EntityMap_1_1IdEntry.html", null ],
+    [ "mnx::DocumentIdIndex::Item", "structmnx_1_1DocumentIdIndex_1_1Item.html", null ],
     [ "mnx::scope::LayoutContent", "structmnx_1_1scope_1_1LayoutContent.html", null ],
     [ "mnx::util::LayoutSpan", "structmnx_1_1util_1_1LayoutSpan.html", null ],
     [ "mnx::util::EntityMap::MappedPosition", "structmnx_1_1util_1_1EntityMap_1_1MappedPosition.html", null ],
@@ -279,6 +281,7 @@ var hierarchy =
     [ "std::runtime_error", null, [
       [ "mnx::util::mapping_error", "classmnx_1_1util_1_1mapping__error.html", null ]
     ] ],
+    [ "mnx::validation::SchemaValidationOptions", "structmnx_1_1validation_1_1SchemaValidationOptions.html", null ],
     [ "mnx::scope::SequenceContent", "structmnx_1_1scope_1_1SequenceContent.html", null ],
     [ "mnx::util::SequenceWalkContext", "structmnx_1_1util_1_1SequenceWalkContext.html", null ],
     [ "mnx::util::SequenceWalkHooks", "structmnx_1_1util_1_1SequenceWalkHooks.html", null ],
@@ -286,6 +289,7 @@ var hierarchy =
     [ "mnx::util::StaffKeyHash", "structmnx_1_1util_1_1StaffKeyHash.html", null ],
     [ "music_theory::Transposer", "classmusic__theory_1_1Transposer.html", null ],
     [ "mnx::validation::ValidationResult", "structmnx_1_1validation_1_1ValidationResult.html", [
+      [ "mnx::validation::SchemaValidationResult", "structmnx_1_1validation_1_1SchemaValidationResult.html", null ],
       [ "mnx::validation::SemanticValidationResult", "structmnx_1_1validation_1_1SemanticValidationResult.html", null ]
     ] ]
 ];

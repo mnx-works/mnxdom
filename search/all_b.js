@@ -13,7 +13,7 @@ var searchData=
   ['left_10',['Left',['../namespacemnx.html#ab1fbd0e4479390784ce5ffd4fad0c391a945d5e233cf7d6240f6b783b36a374ff',1,'mnx']]],
   ['linetype_11',['LineType',['../namespacemnx.html#a28144cefaba3e535366ea178e05f7d9a',1,'mnx']]],
   ['list_12',['Todo List',['../todo.html',1,'']]],
-  ['location_13',['location',['../structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#aadf76225e0182a8a1e93ac8df170d13f',1,'mnx::util::EntityMap::IdEntry']]],
+  ['location_13',['location',['../structmnx_1_1DocumentIdIndex_1_1Item.html#a2a68227bd4e172441c7dd6b02c92634b',1,'mnx::DocumentIdIndex::Item::location'],['../structmnx_1_1util_1_1EntityMap_1_1IdEntry.html#aadf76225e0182a8a1e93ac8df170d13f',1,'mnx::util::EntityMap::IdEntry::location']]],
   ['locrian_14',['Locrian',['../namespacemusic__theory.html#a04ed1b374e50ea532b72ed1bb66683cea957b71824981a76ee8367e6684065f5d',1,'music_theory']]],
   ['long_15',['Long',['../namespacemnx.html#ac47100f45e293be73a048ddd73d529d1a8394f0347c184cf156ac5924dccb773b',1,'mnx']]],
   ['louder_16',['Louder',['../namespacemnx.html#a78c45e0f146aed99c0e9b5a7e3e1ec3ba6e8f7e13c0f56cff983d762fb3e519ab',1,'mnx']]],

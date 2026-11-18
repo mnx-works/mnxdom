@@ -99,9 +99,8 @@ void assertStringsInFile(const std::vector<std::string>& targets, const std::fil
     }
 }
 
-bool validateSchema(const mnx::Document& doc, const std::filesystem::path& filePath)
+static bool checkSchemaResult(const mnx::validation::ValidationResult& schemaResult, const std::filesystem::path& filePath)
 {
-    auto schemaResult = mnx::validation::schemaValidate(doc);
     EXPECT_TRUE(schemaResult) << "schema validation failed for " << pathString(filePath);
     if (!schemaResult) {
         for (const auto& err : schemaResult.errors) {
@@ -113,9 +112,18 @@ bool validateSchema(const mnx::Document& doc, const std::filesystem::path& fileP
     return true;
 }
 
-bool validateSemantics(const mnx::Document& doc, const std::filesystem::path& filePath)
+bool validateSchema(const mnx::Document& doc, const std::filesystem::path& filePath)
 {
-    auto semanticResult = mnx::validation::semanticValidate(doc);
+    return checkSchemaResult(mnx::validation::schemaValidate(doc), filePath);
+}
+
+bool fullValidate(const mnx::Document& doc, const std::filesystem::path& filePath)
+{
+    const auto input = mnx::validation::schemaValidate(doc, withIdCollection);
+    if (!checkSchemaResult(input, filePath)) {
+        return false;
+    }
+    auto semanticResult = mnx::validation::semanticValidate(doc, input.ids.value());
     EXPECT_TRUE(semanticResult) << "semantic validation failed for " << pathString(filePath.filename());
     if (!semanticResult) {
         for (const auto& err : semanticResult.errors) {
@@ -127,23 +135,13 @@ bool validateSemantics(const mnx::Document& doc, const std::filesystem::path& fi
     return true;
 }
 
-bool fullValidate(const mnx::Document& doc, const std::filesystem::path& filePath)
-{
-    if (validateSchema(doc, filePath)) {
-        return validateSemantics(doc, filePath);
-    }
-    return false;
-}
-
 void expectSemanticErrors(const mnx::Document& doc, const std::filesystem::path& filePath, const std::vector<std::string>& errors, bool skipSchema)
 {
-    if (!skipSchema) {
-        bool schemaResult = validateSchema(doc, filePath);
-        EXPECT_TRUE(schemaResult) << "schema validation failed for " << pathString(filePath);
-        if (!schemaResult) return;
+    const auto input = mnx::validation::schemaValidate(doc, withIdCollection);
+    if (!skipSchema && !checkSchemaResult(input, filePath)) {
+        return;
     }
-    
-    auto semanticResult = mnx::validation::semanticValidate(doc);
+    auto semanticResult = mnx::validation::semanticValidate(doc, input.ids.value());
     EXPECT_FALSE(semanticResult) << "semantic validation succeeded for " << pathString(filePath.filename()) << " but expected failure";
 
     std::vector<std::string> actualMessages;

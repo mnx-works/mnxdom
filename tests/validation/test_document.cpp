@@ -98,7 +98,7 @@ TEST(Document, DuplicateArbitraryIds)
         "ID \"P1\" has type \"root\", but expected \"part\"."                                // the staff source's part reference resolves to the root
     });
     // Every duplicate is reported at the object carrying the duplicate id, in document (sorted-key) order.
-    const auto result = mnx::validation::semanticValidate(doc);
+    const auto result = mnx::validation::semanticValidate(doc, mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     ASSERT_EQ(result.errors.size(), 5u);
     EXPECT_EQ(result.errors[0].pointer.to_string(), "/layouts/0/content/0/sources/0");
     EXPECT_EQ(result.errors[1].pointer.to_string(), "/parts/0");
@@ -114,7 +114,7 @@ TEST(Document, DuplicateIdUnknownLocation)
     auto doc = mnx::Document::create(inputPath);
     // The id under the unexpected key is walked first (nlohmann sorts object keys), so the global measure is the duplicate.
     expectSemanticError(doc, inputPath, "ID \"m1\" already exists for type \"<unknown>\" at /global/aaaUnexpected/0", /*skipSchema*/true);
-    doc.buildEntityMap({}, [](const std::string&, const mnx::Base&) {});
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [](const std::string&, const mnx::Base&) {});
     const auto entry = doc.getEntityMap().tryFind("m1");
     ASSERT_TRUE(entry.has_value());
     EXPECT_EQ(entry->location.to_string(), "/global/aaaUnexpected/0");
@@ -129,7 +129,7 @@ TEST(Document, IdsInVendorExtensionsIgnored)
     std::filesystem::path inputPath = getInputPath() / "test_cases" / "ids_in_vendor_extensions.json";
     auto doc = mnx::Document::create(inputPath);
     EXPECT_TRUE(fullValidate(doc, inputPath));
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     const auto& entityMap = doc.getEntityMap();
     EXPECT_EQ(entityMap.idCount(), 3u);
     ASSERT_TRUE(entityMap.tryFind("P1").has_value());
@@ -171,7 +171,7 @@ TEST(Document, EntityMapClassifiesAllIds)
             continue;
         }
         auto doc = mnx::Document::create(entry.path());
-        doc.buildEntityMap({}, [&](const std::string& message, const mnx::Base& location) {
+        doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [&](const std::string& message, const mnx::Base& location) {
             ADD_FAILURE() << entry.path().filename() << ": " << location.pointer().to_string() << ": " << message;
         });
         const auto& entityMap = doc.getEntityMap();
@@ -197,7 +197,7 @@ TEST(Document, EntityMapTypedLookups)
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "duplicate_ids_arbitrary.json";
     auto doc = mnx::Document::create(inputPath);
-    doc.buildEntityMap({}, [](const std::string&, const mnx::Base&) {});
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [](const std::string&, const mnx::Base&) {});
     const auto& entityMap = doc.getEntityMap();
     EXPECT_TRUE(entityMap.exists<mnx::Sequence>("seq1"));
     EXPECT_TRUE(entityMap.exists<mnx::global::Tempo>("tempo1"));
@@ -217,7 +217,7 @@ TEST(Document, EntityMapSilentTypedLookups)
     auto doc = mnx::Document::create(getInputPath() / "errors" / "duplicate_ids_arbitrary.json");
     bool failOnCallback = false;
     size_t callbacks = 0;
-    doc.buildEntityMap({}, [&](const std::string&, const mnx::Base&) {
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [&](const std::string&, const mnx::Base&) {
         if (failOnCallback) {
             ++callbacks;
             throw std::runtime_error("Unexpected lookup diagnostic");
@@ -236,7 +236,7 @@ TEST(Document, EntityMapSilentTypedLookups)
 
     auto unknownDoc = mnx::Document::create(getInputPath() / "errors" / "duplicate_id_unknown_location.json");
     failOnCallback = false;
-    unknownDoc.buildEntityMap({}, [&](const std::string&, const mnx::Base&) {
+    unknownDoc.buildEntityMapFromIndex(mnx::validation::schemaValidate(unknownDoc, withIdCollection).ids.value(), {}, [&](const std::string&, const mnx::Base&) {
         if (failOnCallback) {
             ++callbacks;
             throw std::runtime_error("Unexpected lookup diagnostic");
@@ -256,7 +256,7 @@ TEST(Document, EntityMapGetDiagnostics)
         size_t callbacks = 0;
         std::string message;
         std::string pointer;
-        doc.buildEntityMap({}, [&](const std::string& text, const mnx::Base& location) {
+        doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [&](const std::string& text, const mnx::Base& location) {
             ++callbacks;
             message = text;
             pointer = location.pointer().to_string();
@@ -302,8 +302,9 @@ TEST(Validation, Schema46Additions)
         }]}]}]}]
     })");
     mnx::Document doc(input);
-    EXPECT_TRUE(mnx::validation::schemaValidate(doc));
-    const auto semantic = mnx::validation::semanticValidate(doc);
+    const auto indexed = mnx::validation::schemaValidate(doc, withIdCollection);
+    EXPECT_TRUE(indexed);
+    const auto semantic = mnx::validation::semanticValidate(doc, indexed.ids.value());
     for (const auto& error : semantic.errors) {
         ADD_FAILURE() << error.to_string();
     }

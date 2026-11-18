@@ -32,7 +32,7 @@ TEST(Beams, SecondaryStartLevels)
     const auto inputPath = getInputPath() / std::filesystem::path("test_cases") / "beams_secondary_map.json";
     auto doc = mnx::Document::create(inputPath);
     fullValidate(doc, inputPath);
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
 
     const std::map<std::string, int> expectedLevels{
         {"ev1", 1},

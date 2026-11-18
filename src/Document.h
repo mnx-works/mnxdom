@@ -25,6 +25,7 @@
 #include <fstream>
 
 #include "BaseTypes.h"
+#include "DocumentIdIndex.h"
 #include "MnxdomProvenance.h"
 #include "Global.h"
 #include "Layout.h"
@@ -236,18 +237,19 @@ public:
         file.close();
     }
 
-    /// @brief Builds or rebuilds the ID mapping for the document, replacing any existing mapping.
-    /// @param policies Optional controls for how supplemental mappings (like ottavas) are constructed.
-    /// @param errorHandler An optional error handler. If provided, the function does not throw on duplicate keys added.
-    /// @throws util::mapping_error on duplicate keys if no @p errorHandler is provided.
-    void buildEntityMap(EntityMapPolicies policies = {},
-                        const std::optional<ErrorHandler>& errorHandler = std::nullopt);
+    /// @brief Builds or rebuilds the entity map using IDs already collected by validation::schemaValidate.
+    /// @param ids Snapshot from this document, current for its IDs, locations and types.
+    /// @param policies Controls construction of supplemental mappings such as ottavas.
+    /// @param errorHandler Optional handler for duplicate keys.
+    /// @throws util::mapping_error on duplicate keys when no handler is supplied.
+    void buildEntityMapFromIndex(const DocumentIdIndex& ids, EntityMapPolicies policies = {},
+                                 const std::optional<ErrorHandler>& errorHandler = std::nullopt);
 
     /// @brief Gets a reference to the entity mapping instance for the document.
     [[nodiscard]] const util::EntityMap& getEntityMap() const
     {
         MNX_ASSERT_IF(!m_entityMapping) {
-            throw std::logic_error("Call buildEntityMap before calling getEntityMap.");
+            throw std::logic_error("Call buildEntityMapFromIndex before calling getEntityMap.");
         }
         return *m_entityMapping;
     }

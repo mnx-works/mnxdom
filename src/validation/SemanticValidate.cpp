@@ -973,10 +973,10 @@ void SemanticValidator::validateScores()
 
 #endif // DOXYGEN_SHOULD_IGNORE_THIS
 
-SemanticValidationResult semanticValidate(const Document& document)
+SemanticValidationResult semanticValidate(const Document& document, const DocumentIdIndex& ids)
 {
     SemanticValidator validator(document);
-    validator.document.buildEntityMap({}, [&](const std::string& message, const Base& location) {
+    validator.document.buildEntityMapFromIndex(ids, {}, [&](const std::string& message, const Base& location) {
         validator.addError(message, location);
     });
 

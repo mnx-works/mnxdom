@@ -27,6 +27,8 @@
 
 #include "mnxdom.h"
 
+inline const mnx::validation::SchemaValidationOptions withIdCollection{true, std::nullopt};
+
 inline std::filesystem::path getInputPath()
 { return std::filesystem::current_path() / "inputs"; }
 
@@ -47,7 +49,6 @@ inline void assertStringInFile(const std::string& target, const std::filesystem:
 { assertStringsInFile(std::vector<std::string>({ target }), filePath, extension); }
 
 bool validateSchema(const mnx::Document& doc, const std::filesystem::path& filePath);
-bool validateSemantics(const mnx::Document& doc, const std::filesystem::path& filePath);
 bool fullValidate(const mnx::Document& doc, const std::filesystem::path& filePath);
 
 void expectSemanticErrors(const mnx::Document& doc, const std::filesystem::path& filePath, const std::vector<std::string>& errors, bool skipSchema = false);

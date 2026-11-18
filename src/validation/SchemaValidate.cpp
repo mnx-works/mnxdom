@@ -20,6 +20,7 @@
  * THE SOFTWARE.
  */
 #include "mnxdom.h"
+#include "util/IdIndexer.h"
 #include <charconv>
 #include <stdexcept>
 
@@ -92,9 +93,9 @@ int getMnxSchemaVersion()
 
 namespace validation {
 
-ValidationResult schemaValidate(const Document& document, const std::optional<std::string>& jsonSchema)
+SchemaValidationResult schemaValidate(const Document& document, const SchemaValidationOptions& options)
 {
-    ValidationResult result;
+    SchemaValidationResult result;
 
     class errorHandler : public nlohmann::json_schema::error_handler
     {
@@ -128,12 +129,19 @@ ValidationResult schemaValidate(const Document& document, const std::optional<st
         }
     };
     
-    // Load JSON schema
-    json schemaJson = json::parse(jsonSchema.value_or(std::string(embeddedSchemaText())));
+    const auto customSchema = options.jsonSchema ? std::optional<json>(json::parse(*options.jsonSchema)) : std::nullopt;
+    const json& schema = customSchema ? *customSchema : getMnxSchemaJson();
     nlohmann::json_schema::json_validator validator;
-    validator.set_root_schema(schemaJson);
+    validator.set_root_schema(schema);
     errorHandler handler(result);
     validator.validate(*document.root(), handler);
+    if (options.collectIds) {
+        std::vector<DocumentIdIndex::Item> items;
+        util::detail::indexDocumentIds(*document.root(), schema, [&](DocumentIdIndex::Item item) {
+            items.push_back(std::move(item));
+        });
+        result.ids = DocumentIdIndex(std::move(items));
+    }
     return result;
 }
 

@@ -1,0 +1,21 @@
+{
+    "mnx": {"version": 1},
+    "global": {
+        "_c": {"id": "comment"},
+        "_x": {"vendor": {"id": "vendor"}},
+        "measures": [{"id": "m1"}],
+        "unexpected": [{"id": "unknown"}]
+    },
+    "parts": [{
+        "kit": {"id": "dictionary-value"},
+        "measures": [{
+            "arpeggios": [{"span": {"start": "n1", "end": "n2", "id": "span"}}],
+            "clefs": [{"clef": {"sign": "G", "staffPosition": -2, "id": "duplicate"}}],
+            "id": "duplicate",
+            "sequences": [{"content": [{
+                "type": 7, "duration": {"base": "whole"}, "id": "event",
+                "notes": [{"id": "n1", "pitch": {"step": "C", "octave": 4}}]
+            }]}]
+        }]
+    }]
+}

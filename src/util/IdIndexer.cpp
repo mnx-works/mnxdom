@@ -56,7 +56,7 @@ enum class PropertyMatch
 class SchemaWalker
 {
 public:
-    SchemaWalker(const json& schema, const std::function<void(const IndexedId&)>& sink)
+    SchemaWalker(const json& schema, const std::function<void(DocumentIdIndex::Item)>& sink)
         : m_schema(schema), m_sink(sink)
     {
         if (const auto it = schema.find("$defs"); it != schema.end() && it->is_object()) {
@@ -245,7 +245,7 @@ private:
                 }
                 // A named `id` is classified by the enclosing object's schema definition. An `id`
                 // the schema does not describe here is still recorded, but with no type name.
-                m_sink(IndexedId{ value.get<std::string>(), pointer, match == PropertyMatch::Named ? cursor.typeName : std::string() });
+                m_sink(DocumentIdIndex::Item{ value.get<std::string>(), pointer, match == PropertyMatch::Named ? cursor.typeName : std::string() });
                 continue;
             }
             if (!value.is_object() && !value.is_array()) {
@@ -257,13 +257,13 @@ private:
 
     const json& m_schema;
     const json* m_defs{ nullptr };
-    const std::function<void(const IndexedId&)>& m_sink;
+    const std::function<void(DocumentIdIndex::Item)>& m_sink;
     mutable std::unordered_map<std::string, std::regex> m_regexCache;
 };
 
 } // namespace
 
-void indexDocumentIds(const json& root, const json& schema, const std::function<void(const IndexedId&)>& sink)
+void indexDocumentIds(const json& root, const json& schema, const std::function<void(DocumentIdIndex::Item)>& sink)
 {
     SchemaWalker walker(schema, sink);
     walker.run(root);

@@ -21,6 +21,10 @@
  */
 #pragma once
 
+#if defined(_MSVC_LANG) ? _MSVC_LANG < 202002L : __cplusplus < 202002L
+#error "mnxdom requires C++20 or newer"
+#endif
+
 #include <memory>
 #include <unordered_map>
 #include <cassert>

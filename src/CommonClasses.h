@@ -114,7 +114,6 @@ public:
      * @param num The numerator.
      * @param den The denominator. Must not be zero.
      * @throws std::invalid_argument if @p den is zero.
-     * @todo Make this constructor constexpr when we drop C++17 support.
      */
     constexpr FractionValue(NumType num, NumType den)
         : m_num(num), m_den(den)

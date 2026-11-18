@@ -28,7 +28,7 @@
  *
  * The MNX Document Model is a <b>C++ class framework</b>
  * around the MNX music interchange format, which uses JSON files.
- * It requires the C++17 standard or higher. (It is currently tested with C++23.)
+ * It requires C++20 or newer. The default CMake build uses C++23.
  * 
  * Features include:
  * - Implemented with an underlying nlohmann JSON document. No class-level serializing to/from JSON is required.

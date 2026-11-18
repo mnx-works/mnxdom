@@ -96,7 +96,7 @@ $(function(){initNavTree('index.html','',''); });
 <div class="contents">
 <div class="textblock"><p>Welcome to the <b>MNX Document Model</b>.</p>
 <p>Use the <b>navigation buttons</b> at the top of this page to browse through the framework documentation.</p>
-<p>The MNX Document Model is a <b>C++ class framework</b> around the MNX music interchange format, which uses JSON files. It requires the C++17 standard or higher. (It is currently tested with C++23.)</p>
+<p>The MNX Document Model is a <b>C++ class framework</b> around the MNX music interchange format, which uses JSON files. It requires C++20 or newer. The default CMake build uses C++23.</p>
 <p>Features include:</p><ul>
 <li>Implemented with an underlying nlohmann JSON document. No class-level serializing to/from JSON is required.</li>
 <li>Lightweight class definitions contain only the shared JSON document and a json_pointer to the object. (See <a class="el" href="classmnx_1_1Base.html">mnx::Base</a>.)</li>

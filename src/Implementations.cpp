@@ -25,7 +25,6 @@
 
 #include "mnxdom.h"
 #include "music_theory/music_theory.hpp"
-#include "util/IdIndexer.h"
 #include "util/MusicTheoryConversions.h"
 
 namespace mnx {
@@ -128,15 +127,13 @@ Document Base::document() const
 // ***** Document *****
 // ********************
 
-void Document::buildEntityMap(EntityMapPolicies policies,
-                              const std::optional<ErrorHandler>& errorHandler)
+void Document::buildEntityMapFromIndex(const DocumentIdIndex& ids, EntityMapPolicies policies,
+                                       const std::optional<ErrorHandler>& errorHandler)
 {
-    m_entityMapping.reset();
-    m_entityMapping = std::make_shared<util::EntityMap>(root(), errorHandler);
-    // every id in the document, classified by the schema
-    util::detail::indexDocumentIds(*root(), getMnxSchemaJson(), [&](const util::detail::IndexedId& indexed) {
-        m_entityMapping->add(indexed.id, indexed.location, indexed.typeName);
-    });
+    auto mapping = std::make_shared<util::EntityMap>(root(), errorHandler);
+    for (const auto& item : ids) {
+        mapping->add(item.id, item.location, item.typeName);
+    }
     auto adaptGraceIndex = [&](std::optional<unsigned> value) -> std::optional<unsigned> {
         if (!policies.ottavasRespectGraceTargets) {
             return std::nullopt;
@@ -150,7 +147,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
         return voice;
     };
     // global settings
-    std::vector<std::string>& docLyricLines = m_entityMapping->m_lyricLineOrder;
+    std::vector<std::string>& docLyricLines = mapping->m_lyricLineOrder;
     std::set<std::string> foundLyricLines;
     if (const auto lyrics = global().lyrics()) {
         if (const auto lineOrder = lyrics->lineOrder()) {
@@ -195,10 +192,10 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                 if (span.voice && (!voice || *voice != *span.voice)) {
                     continue;
                 }
-                if (!span.start || m_entityMapping->comparePositions(position, span.start.value(), false) < 0) {
+                if (!span.start || mapping->comparePositions(position, span.start.value(), false) < 0) {
                     continue;
                 }
-                if (!span.end || m_entityMapping->comparePositions(position, span.end.value(), span.endsAtMeasureEnd) > 0) {
+                if (!span.end || mapping->comparePositions(position, span.end.value(), span.endsAtMeasureEnd) > 0) {
                     continue;
                 }
                 total += span.value;
@@ -220,7 +217,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                     span.voice = adaptVoiceTarget(ottava.voice());
                     span.start.emplace(makeMappedPosition(globalMeasure, ottava.position().fraction(),
                         adaptGraceIndex(ottava.position().graceIndex())));
-                    const auto endMeasure = m_entityMapping->get<mnx::global::Measure>(ottava.end().measure(), ottava);
+                    const auto endMeasure = mapping->get<mnx::global::Measure>(ottava.end().measure(), ottava);
                     span.end.emplace(makeMappedPosition(endMeasure, ottava.end().position().fraction(),
                         adaptGraceIndex(ottava.end().position().graceIndex())));
                     span.value = static_cast<int>(ottava.value());
@@ -253,9 +250,9 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                                              const std::optional<std::string>& voiceLabel) {
                     util::EntityMap::MappedPosition position = makeMappedPosition(globalMeasure, start,
                         adaptGraceIndex(graceIndex));
-                    m_entityMapping->setEventInfo({event, measureIndex, start, actualDuration, graceIndex});
+                    mapping->setEventInfo({event, measureIndex, start, actualDuration, graceIndex});
                     const int shift = calcOttavaShift(staffNumber, voiceLabel, position);
-                    m_entityMapping->setEventOttavaShift(event.pointer().to_string(), shift);
+                    mapping->setEventOttavaShift(event.pointer().to_string(), shift);
                 };
 
                 auto flushPendingGraceEvents = [&]() {
@@ -323,7 +320,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                                           const auto& selfRef) -> void {
                     const auto events = beam.events();
                     if (!events.empty()) {
-                        m_entityMapping->setEventBeamStartLevel(events[0], level);
+                        mapping->setEventBeamStartLevel(events[0], level);
                     }
                     if (const auto childBeams = beam.beams()) {
                         for (const auto& child : childBeams.value()) {
@@ -333,7 +330,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
                 };
                 for (const auto& beam : beams.value()) {
                     for (const auto& eventId : beam.events()) {
-                        m_entityMapping->addEventToBeam(eventId, beam);
+                        mapping->addEventToBeam(eventId, beam);
                     }
                     walkBeamLevels(beam, 1, walkBeamLevels);
                 }
@@ -346,6 +343,7 @@ void Document::buildEntityMap(EntityMapPolicies policies,
             docLyricLines.emplace_back(std::move(line));
         }
     }
+    m_entityMapping = std::move(mapping);
 }
 
 std::optional<Layout> Document::findFullScoreLayout() const

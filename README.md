@@ -43,21 +43,34 @@ Note that this code never uses references. Since every MNX class in the model is
 ### Semantic validation and event timing
 
 `mnx::validation::schemaValidate(doc)` checks the embedded MNX schema.
-`mnx::validation::semanticValidate(doc)` checks relationships such as lyric
+`mnx::validation::semanticValidate(doc, ids)` checks relationships such as lyric
 extender targets and jump destinations. Its result contains `errors` and
 `warnings`, both with an instance, JSON pointer, and message. Warnings are
 advisory: conversion of the result to `bool` succeeds whenever `errors` is empty.
 Hidden lyric extenders (`show: false`) ignore their targets completely.
 
-After `doc.buildEntityMap()`, use `doc.getEntityMap().getEventInfo(id)` (or pass
+Set `options.jsonSchema` to use a custom schema for both validation and ID classification. Omitting it selects the embedded MNX schema.
+
+For input documents, collect the IDs once and pass the snapshot to the operations you need:
+
+```cpp
+mnx::validation::SchemaValidationOptions options;
+options.collectIds = true;
+const auto input = mnx::validation::schemaValidate(doc, options);
+// Inspect input.errors to decide whether to continue.
+const auto semantics = mnx::validation::semanticValidate(doc, input.ids.value());
+doc.buildEntityMapFromIndex(input.ids.value());
+```
+
+Use `doc.getEntityMap().getEventInfo(id)` (or pass
 an event wrapper) to retrieve the event, global measure index, elapsed metric
 time within the measure, actual duration, and grace index. Durations are exact
 fractions of a whole note, adjusted for tuplets and tremolos; grace notes have
 zero actual duration. `compareEventPositions(lhs, rhs)` compares these onsets,
 including chronological grace order, without requiring measure IDs. These are
 score positions, not playback times in seconds or positions after repeats.
-Canonical event timing is independent of ottava policies. Rebuild the entity
-map and reacquire timing information after editing the document.
+Canonical event timing is independent of ottava policies. Recollect the IDs after edits affecting IDs, paths or types. Rebuild the entity
+map and reacquire timing information after timing edits.
 
 ### Setup Instructions
 

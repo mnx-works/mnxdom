@@ -22,6 +22,7 @@
 #include "gtest/gtest.h"
 
 #include "mnxdom.h"
+#include "test_utils.h"
 
 using namespace mnx;
 
@@ -135,7 +136,7 @@ TEST(Parts, DynamicsByType)
 
     EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate each dynamic type";
 
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     const auto& entities = doc.getEntityMap();
     for (const auto* id : { "dImmediate", "dGradual", "dRelative", "dAccent" }) {
         EXPECT_NO_THROW(entities.get<part::DynamicGroupBase>(id)) << "base lookup should accept " << id;
@@ -207,7 +208,7 @@ TEST(Parts, PositionedText)
     positioned.clear_voice();
     EXPECT_FALSE(positioned.voice());
     EXPECT_FALSE(json::parse(positioned.dump()).contains("voice"));
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     EXPECT_EQ(doc.getEntityMap().get<part::PositionedText>("t1").placement(), Placement::Below);
     EXPECT_EQ(doc.getEntityMap().get<text::Text>("plain").text(), "Allegro ");
     EXPECT_EQ(doc.getEntityMap().get<text::TextContentObject>("glyph").type(), "smufl");

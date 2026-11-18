@@ -25,6 +25,7 @@
 #include <vector>
 #include <unordered_set>
 
+#include "../DocumentIdIndex.h"
 #include "../util/EntityMap.h"
 
 namespace mnx {
@@ -80,17 +81,32 @@ struct SemanticValidationResult : public ValidationResult
     std::vector<Error> warnings;                              ///< Advisory diagnostics; do not affect validation success
 };
 
-/// @brief Validates a document against a JSON schema
-/// @param document The mnx::Document to validate
-/// @param jsonSchema The JSON schema to validate against, or std::nullopt for the embedded schema
-/// @return validation result
-extern ValidationResult schemaValidate(const Document& document, const std::optional<std::string>& jsonSchema = std::nullopt);
+/// Options for schema validation.
+struct SchemaValidationOptions
+{
+    /// Collect recoverable IDs even when validation reports errors. Duplicates retain encounter order.
+    bool collectIds = false;
+    /// Schema text for validation and ID classification. Defaults to the embedded MNX schema.
+    std::optional<std::string> jsonSchema = std::nullopt;
+};
+
+struct SchemaValidationResult : public ValidationResult
+{
+    std::optional<DocumentIdIndex> ids;  ///< Engaged when requested, including for documents with no IDs.
+};
+
+/// @brief Validates a parsed document and optionally collects its IDs.
+/// @param document The MNX document to validate.
+/// @param options Selects the validation schema and whether to collect IDs.
+extern SchemaValidationResult schemaValidate(const Document& document,
+                                             const SchemaValidationOptions& options = {});
 
 /// @brief Validates the semantics of the input MNX document
 /// @details Warnings are advisory and do not affect the result's conversion to bool.
 /// @param document The document to validate
+/// @param ids Current ID snapshot collected by schemaValidate for this document.
 /// @return validation result
-extern SemanticValidationResult semanticValidate(const Document& document);
+extern SemanticValidationResult semanticValidate(const Document& document, const DocumentIdIndex& ids);
 
 /// @brief Detects if the input JSON has a valid document root. This allows client code to permit a
 /// non-schema-conforming document to run anyway, perhaps with a warning to the user.

@@ -43,23 +43,24 @@ sequence::EventLyricLineExtender sourceExtender(Document& doc)
     return eventAt(doc, 0, 0, 1).lyrics()->lines()->at("1").extender().value();
 }
 
-void expectValid(const Document& doc)
+validation::SemanticValidationResult expectValid(const Document& doc)
 {
-    const auto schema = validation::schemaValidate(doc);
-    for (const auto& error : schema.errors) {
+    const auto input = validation::schemaValidate(doc, withIdCollection);
+    for (const auto& error : input.errors) {
         ADD_FAILURE() << error.to_string();
     }
-    const auto semantic = validation::semanticValidate(doc);
+    auto semantic = validation::semanticValidate(doc, input.ids.value());
     for (const auto& error : semantic.errors) {
         ADD_FAILURE() << error.to_string();
     }
+    return semantic;
 }
 }
 
 TEST(EventTiming, CachedInfoAndLookup)
 {
     auto doc = extenderDocument();
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     const auto& map = doc.getEntityMap();
     const auto source = map.getEventInfo("p0m0e1");
     EXPECT_EQ(source.measureIndex, 0u);
@@ -77,7 +78,7 @@ TEST(EventTiming, CachedInfoAndLookup)
     EXPECT_THROW((void)map.getEventInfo("p0"), util::mapping_error);
     auto anonymous = eventAt(doc, 0, 0, 0);
     anonymous.clear_id();
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     EXPECT_EQ(doc.getEntityMap().getEventInfo(anonymous).elapsedTime, FractionValue(0));
     sequence::Event detached(std::make_shared<json>(json::object()), json_pointer{});
     EXPECT_FALSE(doc.getEntityMap().tryGetEventInfo(detached));
@@ -89,8 +90,7 @@ TEST(Extenders, AllowedTargets)
     for (const auto* target : {"p0m0e1", "p0m0e2", "p0m1e0", "p1m0e1", "p1m2e3"}) {
         auto doc = extenderDocument();
         sourceExtender(doc).set_target(target);
-        expectValid(doc);
-        EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
+        EXPECT_TRUE(expectValid(doc).warnings.empty());
     }
     auto doc = extenderDocument();
     sourceExtender(doc).clear_target();
@@ -105,8 +105,9 @@ TEST(Extenders, InvalidTargetsAndHiddenTargets)
     for (const auto* target : {"missing", "p0", "p0m0e0", "p1m0e0"}) {
         auto doc = extenderDocument();
         sourceExtender(doc).set_target(target);
-        EXPECT_TRUE(validation::schemaValidate(doc));
-        const auto result = validation::semanticValidate(doc);
+        const auto input = validation::schemaValidate(doc, withIdCollection);
+        EXPECT_TRUE(input);
+        const auto result = validation::semanticValidate(doc, input.ids.value());
         ASSERT_EQ(result.errors.size(), 1u);
         EXPECT_EQ(result.errors[0].pointer, sourceExtender(doc).pointer());
         EXPECT_NE(result.errors[0].message.find(target), std::string::npos);
@@ -114,14 +115,13 @@ TEST(Extenders, InvalidTargetsAndHiddenTargets)
             EXPECT_EQ(result.errors[0].message, "ID \"p0\" has type \"part\", but expected \"event\".");
         }
         sourceExtender(doc).set_show(false);
-        expectValid(doc);
-        EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
+        EXPECT_TRUE(expectValid(doc).warnings.empty());
     }
     auto doc = extenderDocument();
     auto note = eventAt(doc, 0, 0, 0).notes()->at(0);
     note.set_id("noteId");
     sourceExtender(doc).set_target("noteId");
-    const auto result = validation::semanticValidate(doc);
+    const auto result = validation::semanticValidate(doc, validation::schemaValidate(doc, withIdCollection).ids.value());
     ASSERT_EQ(result.errors.size(), 1u);
     EXPECT_EQ(result.errors[0].pointer, sourceExtender(doc).pointer());
     EXPECT_EQ(result.errors[0].message, "ID \"noteId\" has type \"note\", but expected \"event\".");
@@ -133,13 +133,14 @@ TEST(Extenders, AdvisoryWarnings)
 {
     for (const auto* target : {"p0m0e2", "p0m1e0", "p1m1e0", "p1m0e1", "p0m0e1"}) {
         auto doc = extenderDocument();
-        doc.buildEntityMap();
+        const auto input = validation::schemaValidate(doc, withIdCollection);
+        doc.buildEntityMapFromIndex(input.ids.value());
         auto event = doc.getEntityMap().get<sequence::Event>(target);
         if (!event.lyrics() || !event.lyrics()->lines() || !event.lyrics()->lines()->contains("1")) {
             event.ensure_lyrics().ensure_lines().append("1", "Next");
         }
         sourceExtender(doc).set_target(target);
-        const auto result = validation::semanticValidate(doc);
+        const auto result = validation::semanticValidate(doc, input.ids.value());
         EXPECT_TRUE(result);
         const bool warning = std::string_view(target) == "p0m0e2" || std::string_view(target) == "p0m1e0";
         EXPECT_EQ(result.warnings.size(), warning ? 1u : 0u);
@@ -148,21 +149,22 @@ TEST(Extenders, AdvisoryWarnings)
             EXPECT_NE(result.warnings[0].message.find(target), std::string::npos);
         }
         sourceExtender(doc).set_show(false);
-        EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
+        EXPECT_TRUE(validation::semanticValidate(doc, input.ids.value()).warnings.empty());
     }
     auto doc = extenderDocument();
     eventAt(doc, 0, 1, 0).ensure_lyrics().ensure_lines().append("1", "Next");
     doc.parts()[0].measures()[0].sequences()[0].clear_voice();
     doc.parts()[0].measures()[1].sequences()[0].clear_voice();
-    EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
+    const auto input = validation::schemaValidate(doc, withIdCollection);
+    EXPECT_TRUE(validation::semanticValidate(doc, input.ids.value()).warnings.empty());
     doc.parts()[0].measures()[0].sequences()[0].set_voice("firstVoice");
     doc.parts()[0].measures()[1].sequences()[0].set_voice("otherVoice");
-    EXPECT_TRUE(validation::semanticValidate(doc).warnings.empty());
+    EXPECT_TRUE(validation::semanticValidate(doc, input.ids.value()).warnings.empty());
     auto sameSequenceDoc = extenderDocument();
     sameSequenceDoc.parts()[0].measures()[0].sequences()[0].clear_voice();
     eventAt(sameSequenceDoc, 0, 0, 2).ensure_lyrics().ensure_lines().append("1", "Next");
     sourceExtender(sameSequenceDoc).set_target("p0m0e2");
-    EXPECT_EQ(validation::semanticValidate(sameSequenceDoc).warnings.size(), 1u);
+    EXPECT_EQ(validation::semanticValidate(sameSequenceDoc, validation::schemaValidate(sameSequenceDoc, withIdCollection).ids.value()).warnings.size(), 1u);
 }
 
 TEST(Navigation, RequiredDestinations)
@@ -182,12 +184,13 @@ TEST(Navigation, RequiredDestinations)
         measures[0].ensure_fine(FractionValue(1));
         measures[0].ensure_coda(FractionValue(0));
         expectValid(doc);
+        const auto input = validation::schemaValidate(doc, withIdCollection);
         for (int destination = 0; destination < 3; ++destination) {
             const bool required = destination == 0 ? item.segno : destination == 1 ? item.fine : item.coda;
             if (destination == 0) measures[0].clear_segno();
             if (destination == 1) measures[0].clear_fine();
             if (destination == 2) measures[0].clear_coda();
-            auto result = validation::semanticValidate(doc);
+            auto result = validation::semanticValidate(doc, input.ids.value());
             EXPECT_EQ(result.errors.size(), required ? 1u : 0u);
             if (required) {
                 EXPECT_EQ(result.errors[0].pointer, jump.pointer());
@@ -204,7 +207,7 @@ TEST(Navigation, RequiredDestinations)
                 measures[0].ensure_coda(FractionValue(0));
                 measures[1].ensure_coda(FractionValue(0));
             }
-            result = validation::semanticValidate(doc);
+            result = validation::semanticValidate(doc, input.ids.value());
             EXPECT_EQ(result.errors.size(), required ? 1u : 0u);
             if (destination == 0) measures[1].clear_segno();
             if (destination == 1) measures[1].clear_fine();
@@ -224,12 +227,13 @@ TEST(Navigation, LocationsAndInheritedMeter)
         measure.ensure_segno(onset);
         measure.ensure_fine(onset);
         measure.ensure_jump(JumpType::Dc, onset);
-        const auto result = validation::semanticValidate(doc);
+        const auto input = validation::schemaValidate(doc, withIdCollection);
+        const auto result = validation::semanticValidate(doc, input.ids.value());
         EXPECT_EQ(result.errors.size(), onset >= FractionValue(0) && onset <= FractionValue(3, 4) ? 0u : 4u);
         measures[0].clear_time();
-        EXPECT_TRUE(validation::semanticValidate(doc));
+        EXPECT_TRUE(validation::semanticValidate(doc, input.ids.value()));
         measure.ensure_time(4, TimeSignatureUnit::Quarter);
-        const auto finalResult = validation::semanticValidate(doc);
+        const auto finalResult = validation::semanticValidate(doc, input.ids.value());
         EXPECT_EQ(finalResult.errors.size(), onset <= FractionValue(1) ? 0u : 4u);
     }
 }
@@ -239,7 +243,8 @@ TEST(EventTiming, NestedTimingAndCanonicalGracePositions)
     setupTestDataPaths();
     auto doc = Document::create(getInputPath() / "validation" / "event_timing.json");
     expectValid(doc);
-    doc.buildEntityMap();
+    const auto input = validation::schemaValidate(doc, withIdCollection);
+    doc.buildEntityMapFromIndex(input.ids.value());
     const auto& map = doc.getEntityMap();
     EXPECT_EQ(map.getEventInfo("nested0").elapsedTime, FractionValue(1, 8));
     EXPECT_EQ(map.getEventInfo("nested1").elapsedTime, FractionValue(11, 72));
@@ -263,7 +268,7 @@ TEST(EventTiming, NestedTimingAndCanonicalGracePositions)
     }
     EntityMapPolicies policies;
     policies.ottavasRespectGraceTargets = false;
-    doc.buildEntityMap(policies);
+    doc.buildEntityMapFromIndex(input.ids.value(), policies);
     for (const auto& info : before) {
         const auto after = doc.getEntityMap().getEventInfo(info.event);
         EXPECT_EQ(after.elapsedTime, info.elapsedTime);
@@ -271,7 +276,7 @@ TEST(EventTiming, NestedTimingAndCanonicalGracePositions)
         EXPECT_EQ(after.graceIndex, info.graceIndex);
         EXPECT_EQ(doc.getEntityMap().getEventPosition(info.event).graceIndex, info.graceIndex);
     }
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(input.ids.value());
     const auto& rebuilt = doc.getEntityMap();
     for (const auto* id : {"nested0", "tremolo0", "grace0", "grace1", "tail"}) {
         auto event = rebuilt.get<sequence::Event>(id);
@@ -282,10 +287,10 @@ TEST(EventTiming, NestedTimingAndCanonicalGracePositions)
     auto grace = doc.getEntityMap().get<sequence::Event>("grace0");
     auto extender = grace.lyrics()->lines()->at("1").extender().value();
     extender.set_target("grace1");
-    EXPECT_TRUE(validation::semanticValidate(doc));
+    EXPECT_TRUE(validation::semanticValidate(doc, input.ids.value()));
     auto other = doc.getEntityMap().get<sequence::Event>("grace1");
     other.lyrics()->lines()->at("1").extender()->set_target("grace0");
-    EXPECT_FALSE(validation::semanticValidate(doc));
+    EXPECT_FALSE(validation::semanticValidate(doc, input.ids.value()));
 }
 
 TEST(EventTiming, OttavaPolicyDoesNotChangeCachedGracePositions)
@@ -296,12 +301,13 @@ TEST(EventTiming, OttavaPolicyDoesNotChangeCachedGracePositions)
     auto start = doc.parts()[0].measures()[0].ottavas()->at(1).position();
     start.create_fraction(FractionValue(3, 4));
     start.set_graceIndex(0);
-    doc.buildEntityMap();
+    const auto input = validation::schemaValidate(doc, withIdCollection);
+    doc.buildEntityMapFromIndex(input.ids.value());
     auto before = doc.getEntityMap().getEventInfo("gr3");
     const auto shift = doc.getEntityMap().getOttavaShift(before.event);
     EntityMapPolicies policies;
     policies.ottavasRespectGraceTargets = false;
-    doc.buildEntityMap(policies);
+    doc.buildEntityMapFromIndex(input.ids.value(), policies);
     auto after = doc.getEntityMap().getEventInfo("gr3");
     EXPECT_EQ(after.elapsedTime, before.elapsedTime);
     EXPECT_EQ(after.graceIndex, before.graceIndex);
@@ -342,7 +348,7 @@ TEST(EventTiming, OttavaSpanBetweenSpecificGraceNotes)
     span.end().position().create_fraction(FractionValue(1, 4));
     span.end().position().set_graceIndex(1);
     expectValid(doc);
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     const auto& map = doc.getEntityMap();
     EXPECT_EQ(map.getOttavaShift(map.get<sequence::Event>("gr1")), -1);
     EXPECT_EQ(map.getOttavaShift(map.get<sequence::Event>("gr2")), -1);
@@ -364,11 +370,12 @@ TEST(Extenders, ActualTimeAndGraceOrder)
     for (const auto& item : cases) {
         SCOPED_TRACE(std::string(item.source) + " -> " + item.target);
         auto doc = Document::create(getInputPath() / "validation" / "event_timing.json");
-        doc.buildEntityMap();
+        doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
         auto source = doc.getEntityMap().get<sequence::Event>(item.source);
         source.ensure_lyrics().ensure_lines().append("1", "Ah").ensure_extender().set_target(item.target);
-        EXPECT_TRUE(validation::schemaValidate(doc));
-        const auto result = validation::semanticValidate(doc);
+        const auto input = validation::schemaValidate(doc, withIdCollection);
+        EXPECT_TRUE(input);
+        const auto result = validation::semanticValidate(doc, input.ids.value());
         EXPECT_EQ(bool(result), item.valid);
         EXPECT_EQ(result.errors.size(), item.valid ? 0u : 1u);
     }

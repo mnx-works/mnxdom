@@ -46,7 +46,7 @@ TEST(Layouts, BuildLayoutSpans)
     auto doc = mnx::Document::create(inputPath);
     EXPECT_TRUE(validateSchema(doc, inputPath)) << "schema validatation failed"; // empty group means semantic fails: tested elsewhere
 
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     auto layout = doc.getEntityMap().tryGet<mnx::Layout>("S0-ScrVw");
     ASSERT_TRUE(layout);
 
@@ -119,7 +119,7 @@ TEST(Layouts, StaffGroupBarlineOverride)
     auto doc = mnx::Document::create(inputPath);
     EXPECT_TRUE(validateSchema(doc, inputPath)) << "schema validation failed";
 
-    doc.buildEntityMap();
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     auto layout = doc.getEntityMap().tryGet<mnx::Layout>("S0-ScrVw");
     ASSERT_TRUE(layout);
     ASSERT_EQ(layout->content().size(), 1u);

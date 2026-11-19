@@ -152,10 +152,8 @@ class mapping_error : public std::runtime_error
  * @class EntityMap
  * @brief Provides type-safe ID-based lookup for elements in an MNX document.
  *
- * Constructed from an mnx::Document, the EntityMap indexes every object in the document
- * that carries an `id`, classifying each one by the name of the MNX schema definition that
- * describes it. Supports typed lookup (via each DOM class's `JsonSchemaTypeName`) as well as
- * untyped lookup for ids on objects the DOM does not model or the schema cannot classify.
+ * Uses the document's ID snapshot for typed lookup via each DOM class's
+ * `JsonSchemaTypeName` and for untyped lookup of any ID in the snapshot.
  */
 class EntityMap
 {

@@ -3,17 +3,16 @@
     "global": {
         "_c": {"id": "comment"},
         "_x": {"vendor": {"id": "vendor"}},
-        "measures": [{"id": "m1"}],
-        "unexpected": [{"id": "unknown"}]
+        "measures": [{"id": "m1"}]
     },
     "parts": [{
         "kit": {"id": "dictionary-value"},
         "measures": [{
-            "arpeggios": [{"span": {"start": "n1", "end": "n2", "id": "span"}}],
+            "arpeggios": [{"span": {"start": "n1", "end": "n2"}}],
             "clefs": [{"clef": {"sign": "G", "staffPosition": -2, "id": "duplicate"}}],
             "id": "duplicate",
             "sequences": [{"content": [{
-                "type": 7, "duration": {"base": "whole"}, "id": "event",
+                "type": "event", "duration": {"base": "invalid"}, "id": "event",
                 "notes": [{"id": "n1", "pitch": {"step": "C", "octave": 4}}]
             }]}]
         }]

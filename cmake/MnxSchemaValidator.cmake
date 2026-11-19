@@ -26,15 +26,16 @@ else()
     if(CMAKE_VERSION VERSION_LESS 3.21)
         message(FATAL_ERROR "Fetching json-schema-cpp requires CMake 3.21 or newer")
     endif()
-    cmake_policy(SET CMP0097 NEW) # GIT_SUBMODULES "" skips the upstream test suite
+    if(POLICY CMP0135)
+        cmake_policy(SET CMP0135 NEW) # Timestamp extracted files when the archive changes.
+    endif()
     set(JSONSCHEMA_BUILD_TESTS OFF)
     set(JSONSCHEMA_BUILD_CLI OFF)
     set(JSONSCHEMA_BUILD_BOWTIE OFF)
     set(JSONSCHEMA_INSTALL ON)
     FetchContent_Declare(json_schema_cpp
-        GIT_REPOSITORY https://github.com/rpatters1/json-schema-cpp.git
-        GIT_TAG aab374748c580e94e60778a6866b3c4231063ff1
-        GIT_SUBMODULES "")
+        URL https://github.com/rpatters1/json-schema-cpp/archive/refs/tags/v1.0.0.tar.gz
+        URL_HASH SHA256=bc2fad4d117ecd443a6f483220efbc57a0105e516e798c4e7989368e32670bc6)
     FetchContent_MakeAvailable(json_schema_cpp)
     message(STATUS "mnxdom schema validator: fetched json-schema-cpp")
 endif()

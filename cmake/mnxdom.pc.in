@@ -5,10 +5,7 @@ includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
 Name: mnxdom
 Description: MNX Document Object Model for C++20
 Version: @PROJECT_VERSION@
-# nlohmann_json_schema_validator is not listed here because it has no
-# pkg-config files exposed. However it should be dynamically linked to the
-# shared objects of mnxdom. nlohmann_json OTH, is a header only library which
-# is required by mnxdom, so it is sensible to mention it here.
 Requires: nlohmann_json
-Libs: -L${libdir} -lmnxdom
+Libs: -L${libdir} -lmnxdom@MNXDOM_PC_VALIDATOR_LIBS@
+@MNXDOM_PC_VALIDATOR@
 Cflags: -I${includedir} -DJSON_DISABLE_ENUM_SERIALIZATION=1

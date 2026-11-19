@@ -50,6 +50,10 @@ add_executable(mnxdom_tests
     validation/test_scores.cpp
 )
 
+if(MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR)
+    target_compile_definitions(mnxdom_tests PRIVATE MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR)
+endif()
+
 if (CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang|GNU")
     # Extra warnings for Clang/AppleClang
     target_compile_options(mnxdom_tests PRIVATE -Wall -Wextra -Werror -Wpedantic)

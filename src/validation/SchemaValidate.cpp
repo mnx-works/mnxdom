@@ -24,10 +24,10 @@
 #include <charconv>
 #include <stdexcept>
 
-#ifdef JSON_SCHEMA_VALIDATOR_SYSTEM
+#ifdef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
 #include <nlohmann/json-schema.hpp>
 #else
-#include "nlohmann/json-schema.hpp"
+#include <jsonschema/schema.hpp>
 #endif
 #include "mnx-schema.xxd"
 
@@ -93,48 +93,88 @@ int getMnxSchemaVersion()
 
 namespace validation {
 
+namespace {
+
+void addSchemaError(ValidationResult& result, const json_pointer& location, const json& instance,
+                    const std::string& message)
+{
+    // Only deliver the first error at or below an already reported location.
+    for (json_pointer path = location;; path.pop_back()) {
+        for (const auto& error : result.errors) {
+            if (error.pointer == path) {
+                return;
+            }
+        }
+        if (path.empty()) {
+            break;
+        }
+    }
+    result.errors.emplace_back(location, instance, message);
+}
+
+#ifdef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
+class SchemaErrorHandler final : public nlohmann::json_schema::error_handler
+{
+public:
+    explicit SchemaErrorHandler(ValidationResult& result) : m_result(result) {}
+
+    void error(const json_pointer& location, const json& instance, const std::string& message) override
+    {
+        addSchemaError(m_result, location, instance, message);
+    }
+
+private:
+    ValidationResult& m_result;
+};
+
+void validate(const json& instance, const json& schema, ValidationResult& result)
+{
+    nlohmann::json_schema::json_validator validator;
+    validator.set_root_schema(schema);
+    SchemaErrorHandler handler(result);
+    validator.validate(instance, handler);
+}
+#else
+class SchemaErrorHandler final : public jsonschema::error_sink
+{
+public:
+    explicit SchemaErrorHandler(ValidationResult& result) : m_result(result) {}
+
+    void on_error(const jsonschema::error& error) override
+    {
+        addSchemaError(m_result, error.instance_location, *error.instance, error.message);
+    }
+
+private:
+    ValidationResult& m_result;
+};
+
+const jsonschema::schema& compiledMnxSchema()
+{
+    static const auto compiled = jsonschema::schema::compile(getMnxSchemaJson());
+    return compiled;
+}
+
+void validate(const json& instance, const json& schema, ValidationResult& result)
+{
+    SchemaErrorHandler handler(result);
+    const jsonschema::validation_options options{.errors = &handler};
+    if (&schema == &getMnxSchemaJson()) {
+        (void)compiledMnxSchema().validate(instance, options);
+    } else {
+        (void)jsonschema::schema::compile(schema).validate(instance, options);
+    }
+}
+#endif
+
+} // namespace
+
 SchemaValidationResult schemaValidate(const Document& document, const SchemaValidationOptions& options)
 {
     SchemaValidationResult result;
-
-    class errorHandler : public nlohmann::json_schema::error_handler
-    {
-        ValidationResult* m_result;
-        std::vector<json::json_pointer> top_level_errors;
-
-        // Utility: returns true if `candidate` is a descendant of any path in `top_level_errors`
-        bool is_descendant(const json::json_pointer& candidate) const
-        {
-            for (const auto& path : top_level_errors) {
-                if (candidate == path) {
-                    return true;
-                }
-                if (candidate.to_string().rfind(path.to_string() + "/", 0) == 0) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        
-    public:
-        errorHandler(ValidationResult& rslt) : m_result(&rslt) {}
-
-        void error(const json::json_pointer& ptr, const nlohmann::json& instance, const std::string& message) override
-        {
-            if (is_descendant(ptr)) {
-                return; // Skip descendant errors.
-            }
-            top_level_errors.push_back(ptr);
-            m_result->errors.emplace_back(ValidationResult::Error(ptr, instance, message));
-        }
-    };
-    
     const auto customSchema = options.jsonSchema ? std::optional<json>(json::parse(*options.jsonSchema)) : std::nullopt;
     const json& schema = customSchema ? *customSchema : getMnxSchemaJson();
-    nlohmann::json_schema::json_validator validator;
-    validator.set_root_schema(schema);
-    errorHandler handler(result);
-    validator.validate(*document.root(), handler);
+    validate(*document.root(), schema, result);
     if (options.collectIds) {
         std::vector<DocumentIdIndex::Item> items;
         util::detail::indexDocumentIds(*document.root(), schema, [&](DocumentIdIndex::Item item) {

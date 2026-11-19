@@ -14,21 +14,27 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test on ${{ matrix.os }} (C++${{ matrix.standard }})
+    name: Build and Test on ${{ matrix.os }} (C++${{ matrix.standard }}, legacy=${{ matrix.legacy }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - os: ubuntu-latest
             generator: Ninja
             standard: 20
+            legacy: "OFF"
+          - os: ubuntu-latest
+            generator: Ninja
+            standard: 20
+            legacy: "ON"
           - os: macos-latest
             generator: Ninja
             standard: 23
+            legacy: "OFF"
           - os: windows-latest
             generator: Ninja
             standard: 23
+            legacy: "OFF"
     steps:
       # Step 1: Check out the repository
       - name: Checkout code
@@ -62,7 +68,7 @@ jobs:
 
       # Step 4: Configure CMake
       - name: Configure CMake
-        run: cmake -S . -B build -G "${{ matrix.generator }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=${{ matrix.standard }}
+        run: cmake -S . -B build -G "${{ matrix.generator }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=${{ matrix.standard }} -DMNXDOM_USE_LEGACY_SCHEMA_VALIDATOR=${{ matrix.legacy }} -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_LIBDIR=lib "-DCMAKE_INSTALL_PREFIX=${{ runner.temp }}/stage"
 
       # Step 5: Build with CMake
       - name: Build
@@ -75,6 +81,25 @@ jobs:
       # Step 7: Install with CMake
       - name: Install
         if: matrix.os != 'windows-latest'
+        run: cmake --install build
+
+      - name: Verify installed static library
+        if: matrix.os == 'ubuntu-latest'
         run: |
-          mkdir -p /tmp/prefix
-          cmake --install build --prefix /tmp/prefix
+          export PKG_CONFIG_PATH="$RUNNER_TEMP/stage/lib/pkgconfig:$RUNNER_TEMP/stage/share/pkgconfig"
+          c++ -std=c++20 tests/installed_consumer.cpp $(pkg-config --static --cflags --libs mnxdom) -o "$RUNNER_TEMP/static-consumer"
+          "$RUNNER_TEMP/static-consumer"
+
+      - name: Build and test with installed dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cmake -S . -B build-system -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
+            -DCMAKE_PREFIX_PATH="$RUNNER_TEMP/stage" -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/shared" -DCMAKE_INSTALL_LIBDIR=lib \
+            -DMNXDOM_USE_LEGACY_SCHEMA_VALIDATOR=${{ matrix.legacy }} -DUSE_SYSTEM_JSON_SCHEMA_VALIDATOR=ON \
+            -DUSE_SYSTEM_NLOHMANN_JSON=ON -DUSE_SYSTEM_GOOGLETEST=ON -DFETCHCONTENT_FULLY_DISCONNECTED=ON -DBUILD_SHARED_LIBS=ON
+          cmake --build build-system --parallel 2
+          ctest --test-dir build-system --output-on-failure
+          cmake --install build-system
+          export PKG_CONFIG_PATH="$RUNNER_TEMP/shared/lib/pkgconfig:$RUNNER_TEMP/stage/share/pkgconfig:$RUNNER_TEMP/stage/lib/pkgconfig"
+          c++ -std=c++20 tests/installed_consumer.cpp $(pkg-config --cflags --libs mnxdom) -o "$RUNNER_TEMP/shared-consumer"
+          LD_LIBRARY_PATH="$RUNNER_TEMP/shared/lib" "$RUNNER_TEMP/shared-consumer"

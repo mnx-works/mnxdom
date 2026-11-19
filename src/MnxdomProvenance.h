@@ -66,19 +66,7 @@ class MnxdomGeneratorInfo : public Object
 public:
     using Object::Object;
 
-    MnxdomGeneratorInfo(Base& parent, std::string_view key)
-        : Object(parent, key)
-    {
-        set_version(MNXDOM_VERSION);
-        constexpr std::string_view commit = MNXDOM_GIT_COMMIT;
-        if constexpr (!commit.empty()) {
-            set_commit(std::string(commit));
-        }
-        constexpr std::string_view build = MNXDOM_BUILD_ID;
-        if constexpr (!build.empty()) {
-            set_build(std::string(build));
-        }
-    }
+    MnxdomGeneratorInfo(Base& parent, std::string_view key);
 
     MNX_REQUIRED_PROPERTY(std::string, version);     ///< The version of the writing component.
     MNX_OPTIONAL_PROPERTY(std::string, build);       ///< Optional build number or build identifier.

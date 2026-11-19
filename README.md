@@ -5,7 +5,7 @@ Document object model for the MNX music interchange format.
 - requires C++20 or newer. The default CMake build uses C++23.
 - uses [nlohmann\_json](https://github.com/nlohmann/json) as its JSON parser.
 - allows structured access to MNX objects, without the need of quoted strings.
-- validates against the MNX schema using [json-schema-validator](https://github.com/pboettch/json-schema-validator).
+- validates against the MNX schema using [json-schema-cpp](https://github.com/rpatters1/json-schema-cpp) (JSON Schema Draft 2020-12).
 - no class serialization beyond nlohmann.
 - every MNX class is a wrapper around the root JSON object and a pointer to the location of the instance.
 
@@ -127,12 +127,16 @@ And include the top header in your source file with:
 
 #### Dependencies
 
-The dependencies [pboettch/json-schema-validator](https://github.com/pboettch/json-schema-validator) and [nlohmann/json](https://json.nlohmann.me/) are required by mnxdom. If you wish mnxdom to use the system versions of either of these dependencies, configure mnxdom with the following CMake flags:
+mnxdom uses nlohmann/json 3.12.0 or newer. Select the schema validator at build time:
 
-```sh
--DUSE_SYSTEM_NLOHMANN_JSON=ON
--DUSE_SYSTEM_JSON_SCHEMA_VALIDATOR=ON
-```
+| Validator | Fetch a pinned revision (default) | Use an installed CMake package |
+|---|---|---|
+| json-schema-cpp (default) | No validator flags; fetching requires CMake 3.21 or newer | `-DUSE_SYSTEM_JSON_SCHEMA_VALIDATOR=ON` (`jsonschema`) |
+| json-schema-validator 2.4.0 (legacy) | `-DMNXDOM_USE_LEGACY_SCHEMA_VALIDATOR=ON` | Set both validator options to `ON` (`nlohmann_json_schema_validator`) |
+
+The default backend enforces Draft 2020-12 keywords such as `unevaluatedProperties`, which rejects stray properties on closed MNX objects. The legacy backend retains its Draft 7 behavior. Both backends use the chosen schema for validation and ID collection through the same public API.
+
+For MuseScore's existing dependency prefixes, set `MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR`, `USE_SYSTEM_JSON_SCHEMA_VALIDATOR`, and `USE_SYSTEM_NLOHMANN_JSON` to `ON` and include both prefixes in `CMAKE_PREFIX_PATH`. For a prebuilt mnxdom package the packager selects the backend. Build the validator and mnxdom with matching nlohmann/json versions and ABI settings; both pass JSON values across the library boundary.
 
 mnxdom vendors the W3C MNX schema and example JSON files in `third_party/w3c-mnx`. These files are not fetched during the build. To update them from the current `main` branch of the W3C MNX repository, run:
 
@@ -144,7 +148,7 @@ To update to a specific upstream commit or ref of the w3c repository, pass it as
 
 #### Package Builds
 
-Package creators should configure mnxdom so that the build does not download dependencies from the internet. Use system-provided copies of nlohmann/json and json-schema-validator:
+Package creators should configure mnxdom so that the build does not download dependencies from the internet. Use system-provided copies of nlohmann/json and the selected validator:
 
 ```sh
 cmake -S . -B build \

@@ -51,12 +51,13 @@ TEST(Validation, Noteheads)
         { R"({"shape":"diamond","glyph":"noteheadDiamondBlack"})", true },
         { R"({"shape":"default","glyph":"noteheadBlack"})", true },
         { R"({"shape":"unknown"})", false },
+#ifndef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
+        { R"({"glyph":"noteheadBlack"})", false }, // dependentRequired
+        { R"({"shape":"custom"})", false },        // dependentSchemas
+#endif
         { R"({"shape":1})", false },
         { R"({"shape":"oval","glyph":1})", false }
     };
-    // Missing shape with glyph and missing glyph with custom shape are invalid
-    // MNX, but require dependentRequired/dependentSchemas support in the validator.
-    // See MNX_GAPS.md; these cases must not be treated as valid fixtures.
     for (const auto location : locations) {
         for (const auto& test : cases) {
             SCOPED_TRACE(std::string(location) + ": " + test.notehead);
@@ -65,6 +66,24 @@ TEST(Validation, Noteheads)
             EXPECT_EQ(bool(mnx::validation::schemaValidate(doc)), test.valid);
         }
     }
+}
+
+TEST(Validation, UnevaluatedMnxProperty)
+{
+    setupTestDataPaths();
+    auto doc = mnx::Document::create(getInputPath() / "test_cases" / "ids_in_vendor_extensions.json");
+    ASSERT_TRUE(mnx::validation::schemaValidate(doc)); // _x contains valid vendor data.
+    const mnx::json_pointer stray("/global/unexpected");
+    (*doc.root())[stray] = 42;
+    const auto result = mnx::validation::schemaValidate(doc);
+#ifdef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
+    EXPECT_TRUE(result); // Draft 7 ignores unevaluatedProperties.
+#else
+    ASSERT_FALSE(result);
+    ASSERT_FALSE(result.errors.empty());
+    EXPECT_EQ(result.errors.front().pointer, stray);
+    EXPECT_EQ(result.errors.front().instance, 42);
+#endif
 }
 
 TEST(Document, UnrelatedJson)

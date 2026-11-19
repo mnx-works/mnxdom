@@ -18,30 +18,16 @@ without deciding how a default wrapper for a child that is absent from the
 JSON should behave. Until that API design is settled, callers must interpret
 an absent default child according to the MNX specification.
 
-## Unknown properties in schema validation
+## Legacy validator support for Draft 2020-12
 
-The current nlohmann/json-schema-validator dependency implements Draft 7 and
-ignores the Draft 2020-12 `unevaluatedProperties` keyword used by MNX. As a
-result, `schemaValidate()` does not reject unknown properties on objects that
-use that keyword. Full enforcement needs a validator with Draft 2020-12 support or
-a deliberate compatibility layer; the vendored schema should remain intact.
-
-## Notehead shape/glyph dependencies in schema validation
-
-MNX schema version 52 uses `dependentRequired` to require an explicit `shape`
-when a notehead supplies `glyph`, and `dependentSchemas` to require `glyph`
-when `shape` is `custom`. The current Draft 7 validator silently ignores both
-keywords, so `schemaValidate()` does not reject either missing dependency.
-The DOM remains permissive, and mnxdom does not implement these schema rules
-in its semantic validator or translate the schema locally.
+The default json-schema-cpp backend enforces the vendored MNX schema's
+`unevaluatedProperties` rules and notehead shape/glyph dependencies. Builds
+using `MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR` use the Draft 7 validator. It ignores
+`unevaluatedProperties`, `dependentRequired` and `dependentSchemas`, so a stray
+property, a glyph without an explicit shape, or a custom shape without a glyph
+can pass schema validation in those builds.
 
 Creating a notehead in mnxdom requires an explicit shape constructor argument,
 including `NoteheadShape::Default`, and serializes it. The property itself
 remains optional with a default: reading `shape()` from an existing notehead
 without the property returns `NoteheadShape::Default` without changing the JSON.
-
-This is related to the upstream Draft 2020-12 support work in
-[json-schema-validator issue #385](https://github.com/pboettch/json-schema-validator/issues/385),
-but that proposal focuses on `$ref` siblings and `unevaluatedProperties` and
-explicitly excludes `dependentSchemas`. Enforcement requires upstream support
-for both dependency keywords; the vendored MNX schema should remain intact.

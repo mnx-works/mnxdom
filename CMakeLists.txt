@@ -8,7 +8,8 @@ find_package(Git QUIET)
 
 # Options for using system libraries instead of fetching from the internet
 option(USE_SYSTEM_NLOHMANN_JSON "Use system-installed nlohmann_json instead of fetching" OFF)
-option(USE_SYSTEM_JSON_SCHEMA_VALIDATOR "Use system-installed nlohmann_json_schema_validator instead of fetching" OFF)
+option(MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR "Validate with json-schema-validator instead of json-schema-cpp" OFF)
+option(USE_SYSTEM_JSON_SCHEMA_VALIDATOR "Require an installed package for the selected schema validator" OFF)
 # Set MNX_W3C_SOURCE to a directory path containing a vendored w3c-mnx data snapshot.
 set(MNX_W3C_SOURCE "${CMAKE_CURRENT_LIST_DIR}/third_party/w3c-mnx" CACHE PATH "Path to w3c-mnx data snapshot")
 
@@ -84,6 +85,7 @@ if(USE_SYSTEM_NLOHMANN_JSON)
 else()
     # Disable building tests for nlohmann_json
     set(JSON_BuildTests OFF CACHE BOOL "Do not build tests for nlohmann_json")
+    set(JSON_Install ON)
     # Fetch nlohmann_json
     FetchContent_Declare(
         nlohmann_json
@@ -95,37 +97,9 @@ else()
     message(STATUS "Using fetched nlohmann_json")
 endif()
 
-# Handle json_schema_validator: use system version or fetch
-if(USE_SYSTEM_JSON_SCHEMA_VALIDATOR)
-    find_package(nlohmann_json_schema_validator REQUIRED CONFIG)
-    target_compile_definitions(mnxdom PRIVATE JSON_SCHEMA_VALIDATOR_SYSTEM)
-    message(STATUS "Using system-installed nlohmann_json_schema_validator")
-else()
-    # Disable building tests for json_schema_validator
-    set(JSON_VALIDATOR_BUILD_TESTS OFF CACHE BOOL "Do not build tests for json_schema_validator")
-    # Fetch json_schema_validator
-    set(nlohmann_json_VERSION ${NLOHMANN_JSON_VERSION})
-    FetchContent_Declare(
-        json_schema_validator
-        GIT_REPOSITORY https://github.com/pboettch/json-schema-validator
-        GIT_TAG        c780404a84dd9ba978ba26bc58d17cb43fa7bc80 # 2.4.0
-        DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-    )
-    FetchContent_MakeAvailable(json_schema_validator)
-    message(STATUS "Using fetched json_schema_validator")
-endif()
+include(cmake/MnxSchemaValidator.cmake)
 
-if(TARGET nlohmann_json_schema_validator::validator)
-    set(MNXDOM_JSON_SCHEMA_VALIDATOR_TARGET nlohmann_json_schema_validator::validator)
-elseif(TARGET nlohmann_json_schema_validator)
-    set(MNXDOM_JSON_SCHEMA_VALIDATOR_TARGET nlohmann_json_schema_validator)
-else()
-    message(FATAL_ERROR "nlohmann_json_schema_validator target not found")
-endif()
-message(STATUS "Using nlohmann_json_schema_validator target: ${MNXDOM_JSON_SCHEMA_VALIDATOR_TARGET}")
-
-target_link_libraries(mnxdom PUBLIC nlohmann_json::nlohmann_json)
-target_link_libraries(mnxdom PUBLIC ${MNXDOM_JSON_SCHEMA_VALIDATOR_TARGET})
+target_link_libraries(mnxdom PUBLIC nlohmann_json::nlohmann_json PRIVATE ${MNXDOM_VALIDATOR_TARGET})
 # nlohmann/json behavior config
 target_compile_definitions(mnxdom PUBLIC JSON_DISABLE_ENUM_SERIALIZATION=1)
 target_compile_definitions(mnxdom PUBLIC MNXDOM_VERSION=\"${PROJECT_VERSION}\")
@@ -169,6 +143,11 @@ install(DIRECTORY src/
     PATTERN "*.hpp"
 )
 
+if(BUILD_SHARED_LIBS)
+    set(MNXDOM_PC_VALIDATOR "Libs.private: -l${MNXDOM_VALIDATOR_LIBRARY}")
+else()
+    set(MNXDOM_PC_VALIDATOR_LIBS " -l${MNXDOM_VALIDATOR_LIBRARY}")
+endif()
 configure_file(
     cmake/mnxdom.pc.in
     ${CMAKE_CURRENT_BINARY_DIR}/mnxdom.pc

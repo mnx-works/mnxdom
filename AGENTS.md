@@ -9,7 +9,7 @@ enum mappings, implementation files, and schema/semantic validation.
 
 The project requires C++20 or newer and is tested with C++20 and C++23. The
 default build uses CMake `FetchContent` for nlohmann/json,
-json-schema-validator, and (when tests are enabled) GoogleTest.
+json-schema-cpp (or json-schema-validator with the legacy build option), and (when tests are enabled) GoogleTest.
 
 ## Repository layout
 

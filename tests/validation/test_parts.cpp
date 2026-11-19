@@ -109,9 +109,9 @@ TEST(Parts, EventErrors)
     std::filesystem::path inputPath = getInputPath() / "errors" / "event_errors.json";
     auto doc = mnx::Document::create(inputPath);
     expectSemanticErrors(doc, inputPath, {
-        "ID \"ev5n1\" already exists for type \"note\" at",
-        "ID \"ev6\" already exists for type \"event\" at",
-        "ID \"ev7\" already exists for type \"event\" at",
+        "ID \"ev5n1\" already exists",
+        "ID \"ev6\" already exists",
+        "ID \"ev7\" already exists",
         "Event \"ev7\" is a rest but also has notes"
     });
 }

@@ -20,14 +20,17 @@
  * THE SOFTWARE.
  */
 #include "mnxdom.h"
-#include "util/IdIndexer.h"
 #include <charconv>
 #include <stdexcept>
 
 #ifdef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
+#include "util/IdIndexer.h"
 #include <nlohmann/json-schema.hpp>
 #else
 #include <jsonschema/schema.hpp>
+#include <algorithm>
+#include <iterator>
+#include <unordered_map>
 #endif
 #include "mnx-schema.xxd"
 
@@ -127,12 +130,18 @@ private:
     ValidationResult& m_result;
 };
 
-void validate(const json& instance, const json& schema, ValidationResult& result)
+void validate(const json& instance, const json& schema, ValidationResult& result,
+              std::vector<DocumentIdIndex::Item>* ids)
 {
     nlohmann::json_schema::json_validator validator;
     validator.set_root_schema(schema);
     SchemaErrorHandler handler(result);
     validator.validate(instance, handler);
+    if (ids) {
+        util::detail::indexDocumentIds(instance, schema, [&](DocumentIdIndex::Item item) {
+            ids->push_back(std::move(item));
+        });
+    }
 }
 #else
 class SchemaErrorHandler final : public jsonschema::error_sink
@@ -149,20 +158,91 @@ private:
     ValidationResult& m_result;
 };
 
-const jsonschema::schema& compiledMnxSchema()
+class IdClassificationSink final : public jsonschema::classification_sink
 {
-    static const auto compiled = jsonschema::schema::compile(getMnxSchemaJson());
-    return compiled;
+public:
+    explicit IdClassificationSink(std::vector<DocumentIdIndex::Item>& ids) : m_ids(ids) {}
+
+    void on_classified(const jsonschema::classification& classification) override
+    {
+        const auto id = classification.instance.find("id");
+        if (id == classification.instance.end() || !id->is_string()) {
+            return;
+        }
+        for (const auto& match : classification.matches) {
+            if (match.confidence != jsonschema::confidence::ambiguous && match.info.declares_property("id")) {
+                auto& items = classification.branch ? m_pending[classification.branch] : m_ids;
+                items.push_back({id->get<std::string>(), classification.instance_location, std::string(match.name)});
+            }
+        }
+    }
+
+    void on_branch(const jsonschema::classification_branch& branch) override
+    {
+        if (branch.action == jsonschema::branch_action::begin) {
+            return;
+        }
+        auto pending = m_pending.extract(branch.id);
+        if (pending.empty() || branch.action == jsonschema::branch_action::discard) {
+            return;
+        }
+        auto& items = pending.mapped();
+        if (branch.ambiguous_at) {
+            std::erase_if(items, [&](const auto& item) { return item.location == *branch.ambiguous_at; });
+        }
+        if (!items.empty()) {
+            auto& target = branch.parent ? m_pending[branch.parent] : m_ids;
+            target.insert(target.end(), std::make_move_iterator(items.begin()), std::make_move_iterator(items.end()));
+        }
+    }
+
+private:
+    std::vector<DocumentIdIndex::Item>& m_ids;
+    std::unordered_map<jsonschema::classification_branch_id, std::vector<DocumentIdIndex::Item>> m_pending;
+};
+
+jsonschema::schema compileMnxSchema(const json& schema, bool collectIds)
+{
+    jsonschema::compile_options options;
+    if (collectIds) {
+        options.classification.enabled = true;
+        options.classification.name_rule = jsonschema::namer::custom([](const jsonschema::schema_node_view& node)
+            -> std::optional<std::string> {
+            // MNX entities are concrete definitions. The shared attributes also match
+            // at the entity location, but the enclosing class owns the ID.
+            if (node.parent_keyword == "$defs" && node.key != "global-attrs"
+                && (node.schema.contains("properties") || node.schema.contains("allOf"))) {
+                return std::string(node.key);
+            }
+            return std::nullopt;
+        });
+    }
+    return jsonschema::schema::compile(schema, options);
 }
 
-void validate(const json& instance, const json& schema, ValidationResult& result)
+const jsonschema::schema& compiledMnxSchema(bool collectIds)
+{
+    if (collectIds) {
+        static const auto indexed = compileMnxSchema(getMnxSchemaJson(), true);
+        return indexed;
+    }
+    static const auto plain = compileMnxSchema(getMnxSchemaJson(), false);
+    return plain;
+}
+
+void validate(const json& instance, const json& schema, ValidationResult& result,
+              std::vector<DocumentIdIndex::Item>* ids)
 {
     SchemaErrorHandler handler(result);
-    const jsonschema::validation_options options{.errors = &handler};
+    std::optional<IdClassificationSink> sink;
+    if (ids) {
+        sink.emplace(*ids);
+    }
+    const jsonschema::validation_options options{.errors = &handler, .classifications = sink ? &*sink : nullptr};
     if (&schema == &getMnxSchemaJson()) {
-        (void)compiledMnxSchema().validate(instance, options);
+        (void)compiledMnxSchema(ids != nullptr).validate(instance, options);
     } else {
-        (void)jsonschema::schema::compile(schema).validate(instance, options);
+        (void)compileMnxSchema(schema, ids != nullptr).validate(instance, options);
     }
 }
 #endif
@@ -174,12 +254,9 @@ SchemaValidationResult schemaValidate(const Document& document, const SchemaVali
     SchemaValidationResult result;
     const auto customSchema = options.jsonSchema ? std::optional<json>(json::parse(*options.jsonSchema)) : std::nullopt;
     const json& schema = customSchema ? *customSchema : getMnxSchemaJson();
-    validate(*document.root(), schema, result);
+    std::vector<DocumentIdIndex::Item> items;
+    validate(*document.root(), schema, result, options.collectIds ? &items : nullptr);
     if (options.collectIds) {
-        std::vector<DocumentIdIndex::Item> items;
-        util::detail::indexDocumentIds(*document.root(), schema, [&](DocumentIdIndex::Item item) {
-            items.push_back(std::move(item));
-        });
         result.ids = DocumentIdIndex(std::move(items));
     }
     return result;

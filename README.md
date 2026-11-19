@@ -49,7 +49,7 @@ extender targets and jump destinations. Its result contains `errors` and
 advisory: conversion of the result to `bool` succeeds whenever `errors` is empty.
 Hidden lyric extenders (`show: false`) ignore their targets completely.
 
-Set `options.jsonSchema` to use a custom schema for both validation and ID classification. Omitting it selects the embedded MNX schema.
+Set `options.jsonSchema` to use a custom schema for both validation and ID classification. Omitting it selects the embedded MNX schema. The default validator collects declared string IDs during validation. Objects outside a matched MNX class contribute no IDs. The legacy validator uses a separate walker that also retains unclassified IDs. Duplicate IDs are errors, and index order is unspecified.
 
 For input documents, collect the IDs once and pass the snapshot to the operations you need:
 

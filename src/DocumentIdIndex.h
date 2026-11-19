@@ -35,7 +35,7 @@ struct SchemaValidationResult;
 SchemaValidationResult schemaValidate(const Document&, const SchemaValidationOptions&);
 } // namespace validation
 
-/// Ordered, owning snapshot of the IDs discovered in one MNX document, including duplicates.
+/// Owning snapshot of the IDs discovered in one MNX document, including duplicates.
 /// Use it with the same document. Collect it again after edits affecting IDs, paths or types.
 class DocumentIdIndex
 {

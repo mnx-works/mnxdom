@@ -33,7 +33,7 @@ else()
     set(JSONSCHEMA_INSTALL ON)
     FetchContent_Declare(json_schema_cpp
         GIT_REPOSITORY https://github.com/rpatters1/json-schema-cpp.git
-        GIT_TAG f60c413f09531db7b14c04f3814ede2e5cffa0ae
+        GIT_TAG aab374748c580e94e60778a6866b3c4231063ff1
         GIT_SUBMODULES "")
     FetchContent_MakeAvailable(json_schema_cpp)
     message(STATUS "mnxdom schema validator: fetched json-schema-cpp")

@@ -110,36 +110,24 @@ TEST(Document, DuplicateArbitraryIds)
     std::filesystem::path inputPath = getInputPath() / "errors" / "duplicate_ids_arbitrary.json";
     auto doc = mnx::Document::create(inputPath);
     expectSemanticErrors(doc, inputPath, {
-        "ID \"m1\" already exists for type \"measure-global\" at /global/measures/0",          // reported at the positioned clef
-        "ID \"P1\" already exists for type \"root\" at ",                                      // reported at the part
-        "ID \"tempo1\" already exists for type \"tempo\" at /global/measures/0/tempos/0",     // reported at the staff source
-        "ID \"seq2\" already exists for type \"note\" at /parts/0/measures/0/sequences/1/content/0/notes/0", // reported at the sequence
-        "ID \"P1\" has type \"root\", but expected \"part\"."                                // the staff source's part reference resolves to the root
+        "ID \"m1\" already exists",
+        "ID \"P1\" already exists",
+        "ID \"tempo1\" already exists",
+        "ID \"seq2\" already exists"
     });
-    // Every duplicate is reported at the object carrying the duplicate id, in document (sorted-key) order.
-    const auto result = mnx::validation::semanticValidate(doc, mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
-    ASSERT_EQ(result.errors.size(), 5u);
-    EXPECT_EQ(result.errors[0].pointer.to_string(), "/layouts/0/content/0/sources/0");
-    EXPECT_EQ(result.errors[1].pointer.to_string(), "/parts/0");
-    EXPECT_EQ(result.errors[2].pointer.to_string(), "/parts/0/measures/0/clefs/0");
-    EXPECT_EQ(result.errors[3].pointer.to_string(), "/parts/0/measures/0/sequences/1");
-    EXPECT_EQ(result.errors[4].pointer.to_string(), "/layouts/0/content/0/sources/0");
 }
 
-TEST(Document, DuplicateIdUnknownLocation)
+TEST(Document, UnknownLocationHasNoMeasureClassification)
 {
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "duplicate_id_unknown_location.json";
     auto doc = mnx::Document::create(inputPath);
-    // The id under the unexpected key is walked first (nlohmann sorts object keys), so the global measure is the duplicate.
-    expectSemanticError(doc, inputPath, "ID \"m1\" already exists for type \"<unknown>\" at /global/aaaUnexpected/0", /*skipSchema*/true);
-    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [](const std::string&, const mnx::Base&) {});
-    const auto entry = doc.getEntityMap().tryFind("m1");
-    ASSERT_TRUE(entry.has_value());
-    EXPECT_EQ(entry->location.to_string(), "/global/aaaUnexpected/0");
-    EXPECT_TRUE(entry->typeName.empty());
-    EXPECT_FALSE(doc.getEntityMap().exists<mnx::global::Measure>("m1"));
-    EXPECT_THROW(doc.getEntityMap().get<mnx::global::Measure>("m1"), mnx::util::mapping_error);
+    (*doc.root())["global"]["aaaUnexpected"][0]["id"] = "unknown";
+    const auto input = mnx::validation::schemaValidate(doc, withIdCollection);
+    doc.buildEntityMapFromIndex(input.ids.value());
+    const auto& map = doc.getEntityMap();
+    EXPECT_EQ(map.get<mnx::global::Measure>("m1").pointer().to_string(), "/global/measures/0");
+    EXPECT_FALSE(map.tryGet<mnx::global::Measure>("unknown"));
 }
 
 TEST(Document, IdsInVendorExtensionsIgnored)
@@ -216,6 +204,8 @@ TEST(Document, EntityMapTypedLookups)
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "duplicate_ids_arbitrary.json";
     auto doc = mnx::Document::create(inputPath);
+    (*doc.root())["parts"][0]["measures"][0]["clefs"][0].erase("id");
+    (*doc.root())["layouts"][0]["content"][0]["sources"][0].erase("id");
     doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [](const std::string&, const mnx::Base&) {});
     const auto& entityMap = doc.getEntityMap();
     EXPECT_TRUE(entityMap.exists<mnx::Sequence>("seq1"));
@@ -223,7 +213,7 @@ TEST(Document, EntityMapTypedLookups)
     EXPECT_TRUE(entityMap.exists<mnx::layout::Staff>("layoutStaff1"));
     EXPECT_TRUE(entityMap.exists<mnx::layout::LayoutContentObject>("layoutStaff1"));
     EXPECT_TRUE(entityMap.exists<mnx::sequence::SequenceContentObject>("ev1"));
-    EXPECT_TRUE(entityMap.exists<mnx::global::Measure>("m1"));         // first occurrence wins; the duplicate clef is not mapped
+    EXPECT_TRUE(entityMap.exists<mnx::global::Measure>("m1"));
     EXPECT_FALSE(entityMap.exists<mnx::part::PositionedClef>("m1"));
     EXPECT_FALSE(entityMap.exists<mnx::global::Measure>("tempo1"));
     EXPECT_EQ(entityMap.get<mnx::Sequence>("seq1").pointer().to_string(), "/parts/0/measures/0/sequences/0");
@@ -252,58 +242,43 @@ TEST(Document, EntityMapSilentTypedLookups)
     EXPECT_FALSE(map.tryGet<mnx::Sequence>("ev1"));
     EXPECT_FALSE(map.tryGetEventInfo("seq1"));
     EXPECT_EQ(callbacks, 0u);
-
-    auto unknownDoc = mnx::Document::create(getInputPath() / "errors" / "duplicate_id_unknown_location.json");
-    failOnCallback = false;
-    unknownDoc.buildEntityMapFromIndex(mnx::validation::schemaValidate(unknownDoc, withIdCollection).ids.value(), {}, [&](const std::string&, const mnx::Base&) {
-        if (failOnCallback) {
-            ++callbacks;
-            throw std::runtime_error("Unexpected lookup diagnostic");
-        }
-    });
-    failOnCallback = true;
-    EXPECT_FALSE(unknownDoc.getEntityMap().tryGet<mnx::global::Measure>("m1"));
-    EXPECT_EQ(callbacks, 0u);
 }
 
 TEST(Document, EntityMapGetDiagnostics)
 {
     setupTestDataPaths();
-    for (const bool unknown : {false, true}) {
-        auto doc = mnx::Document::create(getInputPath() / "errors" /
-            (unknown ? "duplicate_id_unknown_location.json" : "duplicate_ids_arbitrary.json"));
-        size_t callbacks = 0;
-        std::string message;
-        std::string pointer;
-        doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [&](const std::string& text, const mnx::Base& location) {
-            ++callbacks;
-            message = text;
-            pointer = location.pointer().to_string();
-        });
+    auto doc = mnx::Document::create(getInputPath() / "errors" / "duplicate_ids_arbitrary.json");
+    (*doc.root())["layouts"][0]["content"][0]["sources"][0].erase("id");
+    size_t callbacks = 0;
+    std::string message;
+    std::string pointer;
+    doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value(), {}, [&](const std::string& text, const mnx::Base& location) {
+        ++callbacks;
+        message = text;
+        pointer = location.pointer().to_string();
+    });
+    callbacks = 0;
+    const auto& map = doc.getEntityMap();
+    const auto location = doc.global();
+    for (const auto* id : {"missing", "tempo1"}) {
+        const auto expected = std::string(id) == "missing"
+            ? "ID \"missing\" not found in ID mapping"
+            : "ID \"tempo1\" has type \"tempo\", but expected \"measure-global\".";
         callbacks = 0;
-        const auto& map = doc.getEntityMap();
-        const auto location = doc.global();
-        for (const auto* id : {"missing", unknown ? "m1" : "tempo1"}) {
-            const auto expected = std::string(id) == "missing"
-                ? "ID \"missing\" not found in ID mapping"
-                : unknown ? "ID \"m1\" has unknown type, but expected \"measure-global\"."
-                          : "ID \"tempo1\" has type \"tempo\", but expected \"measure-global\".";
-            callbacks = 0;
-            try {
-                (void)map.get<mnx::global::Measure>(id, location);
-                FAIL() << "Expected mapping_error";
-            } catch (const mnx::util::mapping_error& error) {
-                EXPECT_EQ(std::string(error.what()), expected);
-            }
-            EXPECT_EQ(callbacks, 1u);
-            EXPECT_EQ(message, expected);
-            EXPECT_EQ(pointer, location.pointer().to_string());
+        try {
+            (void)map.get<mnx::global::Measure>(id, location);
+            FAIL() << "Expected mapping_error";
+        } catch (const mnx::util::mapping_error& error) {
+            EXPECT_EQ(std::string(error.what()), expected);
         }
-        callbacks = 0;
-        EXPECT_THROW((void)map.get<mnx::global::Measure>("missing"), mnx::util::mapping_error);
         EXPECT_EQ(callbacks, 1u);
-        EXPECT_TRUE(pointer.empty());
+        EXPECT_EQ(message, expected);
+        EXPECT_EQ(pointer, location.pointer().to_string());
     }
+    callbacks = 0;
+    EXPECT_THROW((void)map.get<mnx::global::Measure>("missing"), mnx::util::mapping_error);
+    EXPECT_EQ(callbacks, 1u);
+    EXPECT_TRUE(pointer.empty());
 }
 
 TEST(Validation, Schema46Additions)

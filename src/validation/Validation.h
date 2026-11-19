@@ -84,7 +84,8 @@ struct SemanticValidationResult : public ValidationResult
 /// Options for schema validation.
 struct SchemaValidationOptions
 {
-    /// Collect recoverable IDs even when validation reports errors. Duplicates retain encounter order.
+    /// Collect IDs from matching MNX classes, including recoverable matches on invalid input.
+    /// The legacy walker also retains unclassified IDs. Index order is unspecified.
     bool collectIds = false;
     /// Schema text for validation and ID classification. Defaults to the embedded MNX schema.
     std::optional<std::string> jsonSchema = std::nullopt;

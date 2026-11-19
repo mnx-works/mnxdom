@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#include <set>
 #include <tuple>
 
 #include "gtest/gtest.h"
@@ -29,11 +30,11 @@ namespace {
 
 using IdRow = std::tuple<std::string, std::string, std::string>;
 
-std::vector<IdRow> rows(const mnx::DocumentIdIndex& index)
+std::multiset<IdRow> rows(const mnx::DocumentIdIndex& index)
 {
-    std::vector<IdRow> result;
+    std::multiset<IdRow> result;
     for (const auto& item : index) {
-        result.emplace_back(item.id, item.location.to_string(), item.typeName);
+        result.emplace(item.id, item.location.to_string(), item.typeName);
     }
     return result;
 }
@@ -71,24 +72,26 @@ TEST(SchemaValidation, CustomSchemaControlsValidityAndIdClassification)
     expectSameDiagnostics(embedded, mnx::validation::schemaValidate(doc));
 
     mnx::validation::SchemaValidationOptions options;
-    options.jsonSchema = R"({
-        "required": ["publisher"],
-        "properties": {"parts": {"items": {"$ref": "#/$defs/publisher-part"}}},
-        "$defs": {"publisher-part": {"properties": {"id": {"type": "string"}}}}
-    })";
+    auto schema = mnx::getMnxSchemaJson();
+    auto& defs = schema["$defs"];
+    defs["publisher-part"] = defs.at("part");
+    defs.erase("part");
+    defs["root"]["properties"]["parts"]["items"]["$ref"] = "#/$defs/publisher-part";
+    defs["root"]["required"].push_back("publisher");
+    options.jsonSchema = schema.dump();
     const auto schemaOnly = mnx::validation::schemaValidate(doc, options);
     EXPECT_FALSE(schemaOnly.ids.has_value());
     options.collectIds = true;
     const auto rejected = mnx::validation::schemaValidate(doc, options);
     EXPECT_FALSE(rejected);
     expectSameDiagnostics(rejected, schemaOnly);
-    const std::vector<IdRow> customIds {
-        {"m1", "/global/measures/0", ""},
+    const std::multiset<IdRow> customIds {
+        {"m1", "/global/measures/0", "measure-global"},
         {"P1", "/parts/0", "publisher-part"},
-        {"ev1", "/parts/0/measures/0/sequences/0/content/0", ""},
-        {"upper", "/parts/0/measures/0/sequences/0/content/0/notes/0", ""},
-        {"ev2", "/parts/0/measures/0/sequences/1/content/0", ""},
-        {"lower", "/parts/0/measures/0/sequences/1/content/0/notes/0", ""}
+        {"ev1", "/parts/0/measures/0/sequences/0/content/0", "event"},
+        {"upper", "/parts/0/measures/0/sequences/0/content/0/notes/0", "note"},
+        {"ev2", "/parts/0/measures/0/sequences/1/content/0", "event"},
+        {"lower", "/parts/0/measures/0/sequences/1/content/0/notes/0", "note"}
     };
     EXPECT_EQ(rows(rejected.ids.value()), customIds);
     EXPECT_FALSE(doc.hasEntityMap());
@@ -102,39 +105,44 @@ TEST(SchemaValidation, CustomSchemaControlsValidityAndIdClassification)
     }
 }
 
-TEST(SchemaValidation, RecoverableIdsInEncounterOrder)
+TEST(SchemaValidation, RecoverableIds)
 {
     setupTestDataPaths();
     const auto doc = mnx::Document::create(getInputPath() / "validation" / "index_edge_cases.json");
     const auto embedded = mnx::validation::schemaValidate(doc, withIdCollection);
     EXPECT_FALSE(embedded);
     expectSameDiagnostics(embedded, mnx::validation::schemaValidate(doc));
-    mnx::validation::SchemaValidationOptions options;
-    options.jsonSchema = "{}";
-    const auto schemaOnly = mnx::validation::schemaValidate(doc, options);
-    EXPECT_FALSE(schemaOnly.ids.has_value());
-    options.collectIds = true;
-    const auto accepted = mnx::validation::schemaValidate(doc, options);
-    EXPECT_TRUE(accepted);
-    expectSameDiagnostics(accepted, schemaOnly);
-    const std::vector<IdRow> expected {
+    const std::multiset<IdRow> expected {
         {"m1", "/global/measures/0", "measure-global"},
-        {"unknown", "/global/unexpected/0", ""},
-        {"span", "/parts/0/measures/0/arpeggios/0/span", ""},
         {"duplicate", "/parts/0/measures/0/clefs/0/clef", "clef"},
         {"duplicate", "/parts/0/measures/0", "part-measure"},
         {"event", "/parts/0/measures/0/sequences/0/content/0", "event"},
         {"n1", "/parts/0/measures/0/sequences/0/content/0/notes/0", "note"}
     };
     EXPECT_EQ(rows(embedded.ids.value()), expected);
-    // The empty schema supplies no type names and does not describe kit as a dictionary.
-    auto unclassified = expected;
-    for (auto& item : unclassified) {
-        std::get<2>(item).clear();
-    }
-    unclassified.insert(unclassified.begin() + 2, {"dictionary-value", "/parts/0/kit", ""});
-    EXPECT_EQ(rows(accepted.ids.value()), unclassified);
     EXPECT_FALSE(doc.hasEntityMap());
+}
+
+TEST(SchemaValidation, DiscardedAlternativeContributesNoChildIds)
+{
+    mnx::Document doc;
+    (*doc.root())["parts"] = mnx::json::parse(R"([{"type":"part","child":{"id":"child"}}])");
+    mnx::validation::SchemaValidationOptions options;
+    options.collectIds = true;
+    options.jsonSchema = R"({
+        "properties":{"parts":{"items":{"anyOf":[
+            {"properties":{"child":{"$ref":"#/$defs/rejected-child"},"type":{"const":"other"}}},
+            {"properties":{"child":{"$ref":"#/$defs/selected-child"},"type":{"const":"part"}}}
+        ]}}},
+        "$defs":{
+            "rejected-child":{"properties":{"id":{"type":"string"}}},
+            "selected-child":{"properties":{"id":{"type":"string"}}}
+        }
+    })";
+    const auto input = mnx::validation::schemaValidate(doc, options);
+    ASSERT_TRUE(input);
+    const std::multiset<IdRow> expected{{"child", "/parts/0/child", "selected-child"}};
+    EXPECT_EQ(rows(input.ids.value()), expected);
 }
 
 TEST(SchemaValidation, DuplicateOwnershipAndDiagnostics)
@@ -154,12 +162,12 @@ TEST(SchemaValidation, DuplicateOwnershipAndDiagnostics)
     };
     doc.buildEntityMapFromIndex(input.ids.value(), {}, handler);
     ASSERT_EQ(diagnostics.size(), 1u);
-    EXPECT_EQ(diagnostics.front().second, "/parts/0/measures/0");
-    EXPECT_NE(diagnostics.front().first.find("/parts/0/measures/0/clefs/0/clef"), std::string::npos);
     const auto owner = doc.getEntityMap().tryFind("dup");
     ASSERT_TRUE(owner);
-    EXPECT_EQ(owner->typeName, "clef");
-    EXPECT_EQ(owner->location.to_string(), "/parts/0/measures/0/clefs/0/clef");
+    const std::set<std::string> locations{owner->location.to_string(), diagnostics.front().second};
+    const std::set<std::string> expected{"/parts/0/measures/0", "/parts/0/measures/0/clefs/0/clef"};
+    EXPECT_EQ(locations, expected);
+    EXPECT_NE(diagnostics.front().first.find(owner->location.to_string()), std::string::npos);
 }
 
 TEST(SchemaValidation, SupplementalMapsRespectImportPolicies)

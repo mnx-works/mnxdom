@@ -191,7 +191,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>mnx::Document</b></t
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides type-safe ID-based lookup for elements in an MNX document. </p>
-<p>Constructed from an <a class="el" href="classmnx_1_1Document.html" title="Represents an MNX document and provides methods for loading and saving.">mnx::Document</a>, the <a class="el" href="classmnx_1_1util_1_1EntityMap.html" title="Provides type-safe ID-based lookup for elements in an MNX document.">EntityMap</a> indexes every object in the document that carries an <span class="tt">id</span>, classifying each one by the name of the MNX schema definition that describes it. Supports typed lookup (via each DOM class's <span class="tt">JsonSchemaTypeName</span>) as well as untyped lookup for ids on objects the DOM does not model or the schema cannot classify. </p>
+<p>Uses the document's ID snapshot for typed lookup via each DOM class's <span class="tt">JsonSchemaTypeName</span> and for untyped lookup of any ID in the snapshot. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8cffd129d5aa66223dd307a2cc4496c8" name="a8cffd129d5aa66223dd307a2cc4496c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8cffd129d5aa66223dd307a2cc4496c8">&#9670;&#160;</a></span>EntityMap()</h2>

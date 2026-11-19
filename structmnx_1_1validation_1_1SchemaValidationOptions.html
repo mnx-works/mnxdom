@@ -102,16 +102,30 @@ $(function(){initNavTree('structmnx_1_1validation_1_1SchemaValidationOptions.htm
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa5742ac435c03c387ec49ee700903893" id="r_aa5742ac435c03c387ec49ee700903893"><td class="memItemLeft" align="right" valign="top"><a id="aa5742ac435c03c387ec49ee700903893" name="aa5742ac435c03c387ec49ee700903893"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>collectIds</b> = false</td></tr>
-<tr class="memdesc:aa5742ac435c03c387ec49ee700903893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect recoverable IDs even when validation reports errors. Duplicates retain encounter order. <br /></td></tr>
+<tr class="memitem:aa5742ac435c03c387ec49ee700903893" id="r_aa5742ac435c03c387ec49ee700903893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5742ac435c03c387ec49ee700903893">collectIds</a> = false</td></tr>
 <tr class="memitem:a823bbf4c197bcf1ec70f953009d53c60" id="r_a823bbf4c197bcf1ec70f953009d53c60"><td class="memItemLeft" align="right" valign="top"><a id="a823bbf4c197bcf1ec70f953009d53c60" name="a823bbf4c197bcf1ec70f953009d53c60"></a>
 std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>jsonSchema</b> = std::nullopt</td></tr>
 <tr class="memdesc:a823bbf4c197bcf1ec70f953009d53c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schema text for validation and ID classification. Defaults to the embedded MNX schema. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Options for schema validation. </p>
-</div></div><!-- contents -->
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aa5742ac435c03c387ec49ee700903893" name="aa5742ac435c03c387ec49ee700903893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5742ac435c03c387ec49ee700903893">&#9670;&#160;</a></span>collectIds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mnx::validation::SchemaValidationOptions::collectIds = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Collect IDs from matching MNX classes, including recoverable matches on invalid input. The legacy walker also retains unclassified IDs. Index order is unspecified. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -362,12 +362,10 @@ public:
  * @class Notehead
  * @brief Describes a notehead's visual shape and optional explicit SMuFL glyph.
  *
- * For kit notes, an omitted or Default shape inherits the kit component's design,
- * including its glyph. An explicit shape replaces that design; an explicit glyph
- * overrides the selected appearance. These properties do not affect pitch, duration,
- * or performance. Glyph selection by consuming software uses the displayed note value.
- * Creating a notehead requires an explicit shape; an omitted shape in an existing
- * notehead is read as Default without inserting the property into JSON.
+ * The shape is required. For a kit note without an explicit notehead, consuming software
+ * uses the kit component's notehead, including its glyph. An explicit glyph overrides the
+ * glyph a rendering engine would otherwise select. These properties do not affect pitch,
+ * duration, or performance.
  */
 class Notehead : public Object
 {
@@ -400,8 +398,8 @@ public:
     /// @brief Create a Required instance for #Notehead.
     static Required make(NoteheadShape shape) { return { shape }; }
 
-    MNX_OPTIONAL_PROPERTY(std::string, glyph);                                      ///< SMuFL glyph override; requires an explicit shape.
-    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(NoteheadShape, shape, NoteheadShape::Default); ///< Semantic shape; Custom requires a glyph.
+    MNX_OPTIONAL_PROPERTY(std::string, glyph);      ///< Explicit SMuFL glyph overriding the rendering engine's selection.
+    MNX_REQUIRED_PROPERTY(NoteheadShape, shape);    ///< Semantic shape family; Custom requires a glyph.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "notehead";     ///< required for mapping
 };
@@ -415,7 +413,7 @@ class NoteBase : public ArrayElementObject
 public:
     using ArrayElementObject::ArrayElementObject;
 
-    MNX_OPTIONAL_CHILD(Notehead, notehead, (NoteheadShape, shape));   ///< Visual head design; if omitted, kit notes inherit their component's design, and pitched notes use consuming software's choice.
+    MNX_OPTIONAL_CHILD(Notehead, notehead, (NoteheadShape, shape));   ///< Visual head design; if omitted, kit notes use their component's notehead, and other notes use consuming software's choice.
     MNX_OPTIONAL_CHILD(PerformOptions, perform);                    ///< Controls whether this note is performed by consuming software.
     MNX_OPTIONAL_PROPERTY(int, staff);                              ///< Staff number override (e.g., for cross-staff notes.)
     MNX_OPTIONAL_CHILD(Array<Tie>, ties);                           ///< The (forward) ties, if any.

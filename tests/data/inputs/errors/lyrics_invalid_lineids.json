@@ -13,7 +13,8 @@
                     "label": "Nederlands",
                     "lang": "nl"
                 }
-            }
+            },
+            "lineOrder": ["line1", "line2"]
         },
         "measures": [
             {

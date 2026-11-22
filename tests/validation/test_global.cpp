@@ -40,7 +40,51 @@ TEST(Global, InvalidLyricLineIds)
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "nonexistent_lyric_line_id.json";
     auto doc = mnx::Document::create(inputPath);
-    expectSemanticErrors(doc, inputPath, { "ID \"line1\" not found in ID mapping", "ID \"line2\" not found in ID mapping", });
+    expectSemanticErrors(doc, inputPath, { "Lyric line ID \"line1\" is not listed in global.lyrics.lineOrder.", "Lyric line ID \"line2\" is not listed in global.lyrics.lineOrder.", });
+}
+
+TEST(Global, LyricLineOrder)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "errors" / "lyrics_missing_global.json";
+    auto doc = mnx::Document::create(inputPath);
+    expectSemanticError(doc, inputPath, "Event has lyrics, but global lyrics are not defined.");
+
+    // Creating global lyrics creates the required lineOrder.
+    auto lyrics = doc.global().ensure_lyrics();
+    EXPECT_EQ(lyrics.lineOrder().size(), 0u);
+    EXPECT_FALSE(mnx::validation::schemaValidate(doc)); // lineOrder requires at least one item
+    lyrics.lineOrder().push_back("1");
+    lyrics.lineOrder().push_back("2");
+    // lineMetadata may describe a subset of lineOrder.
+    lyrics.ensure_lineMetadata().append("2").set_lang("nl");
+    const auto input = mnx::validation::schemaValidate(doc, withIdCollection);
+    ASSERT_TRUE(input);
+    const auto semantic = mnx::validation::semanticValidate(doc, input.ids.value());
+    for (const auto& error : semantic.errors) {
+        ADD_FAILURE() << error.to_string();
+    }
+    EXPECT_EQ(semantic.lyricLines.size(), 2u);
+    doc.buildEntityMapFromIndex(input.ids.value());
+    EXPECT_EQ(doc.getEntityMap().getLyricLineOrder(), (std::vector<std::string>{ "1", "2" }));
+
+    struct Case {
+        const char* lyrics;
+        bool valid;
+    };
+    const Case cases[] = {
+        { R"({"lineOrder":["1","2"]})", true },
+        { R"({"lineOrder":["2","1"],"lineMetadata":{"1":{"lang":"en"}}})", true },
+        { R"({})", false },                       // lineOrder is required
+        { R"({"lineMetadata":{"1":{}}})", false }, // lineOrder is required
+        { R"({"lineOrder":[]})", false },          // minItems
+        { R"({"lineOrder":["1","1"]})", false }    // uniqueItems
+    };
+    for (const auto& test : cases) {
+        SCOPED_TRACE(test.lyrics);
+        (*doc.root())["global"]["lyrics"] = mnx::json::parse(test.lyrics);
+        EXPECT_EQ(bool(mnx::validation::schemaValidate(doc)), test.valid);
+    }
 }
 
 TEST(Global, MeasureIndices)

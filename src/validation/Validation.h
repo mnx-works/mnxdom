@@ -74,9 +74,9 @@ struct SemanticValidationResult : public ValidationResult
     using ValidationResult::ValidationResult;
 
     std::unordered_map<std::string, json_pointer> lyricLines; ///< list of lyric line ID values.
-    ///< These are sourced either from `global.lyrics().lineOrder()` or `global().lyrics().lineMetadata()`.
+    ///< These are sourced from `global().lyrics().lineOrder()`.
     ///< The json_pointer is used only for reporting the location of duplicate values. It points to an element
-    ///< in one of the two arrays, with preference given to `lineOrder` if it exists.
+    ///< in the `lineOrder` array.
 
     std::vector<Error> warnings;                              ///< Advisory diagnostics; do not affect validation success
 };

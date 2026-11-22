@@ -100,7 +100,7 @@ TEST(Parts, InvalidLyricsLineIds)
     setupTestDataPaths();
     std::filesystem::path inputPath = getInputPath() / "errors" / "lyrics_invalid_lineids.json";
     auto doc = mnx::Document::create(inputPath);
-    expectSemanticErrors(doc, inputPath, { "ID \"1\" not found in ID mapping", "ID \"2\" not found in ID mapping" });
+    expectSemanticErrors(doc, inputPath, { "Lyric line ID \"1\" is not listed in global.lyrics.lineOrder.", "Lyric line ID \"2\" is not listed in global.lyrics.lineOrder." });
 }
 
 TEST(Parts, EventErrors)

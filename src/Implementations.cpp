@@ -164,9 +164,7 @@ void Document::buildEntityMapFromIndex(const DocumentIdIndex& ids, EntityMapPoli
     std::vector<std::string>& docLyricLines = mapping->m_lyricLineOrder;
     std::set<std::string> foundLyricLines;
     if (const auto lyrics = global().lyrics()) {
-        if (const auto lineOrder = lyrics->lineOrder()) {
-            docLyricLines = lineOrder->toStdVector();
-        }
+        docLyricLines = lyrics->lineOrder().toStdVector();
     }
     // global measures
     const auto globalMeasures = global().measures();

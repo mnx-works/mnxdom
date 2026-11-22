@@ -329,11 +329,10 @@ enum class MultiStaffPlacement
  */
 enum class NoteheadShape
 {
-    Default,        ///< Use the kit component's design for kit notes; otherwise determined by consuming software.
+    Oval,           ///< Conventional oval notehead. (MNX defines no default shape; this is the value-initialized enum value.)
     CircleX,        ///< X enclosed in a circle.
     Custom,         ///< Otherwise unclassified notehead; requires an explicit glyph.
     Diamond,        ///< Diamond-shaped notehead.
-    Oval,           ///< Conventional oval notehead.
     Plus,           ///< Plus-shaped notehead.
     Slash,          ///< Rhythmic slash notehead.
     Square,         ///< Square notehead; does not itself select a shape-note system.

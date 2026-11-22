@@ -44,15 +44,14 @@ TEST(Validation, Noteheads)
         bool valid;
     };
     const Case cases[] = {
-        { R"({})", true },
-        { R"({"shape":"default"})", true },
         { R"({"shape":"oval"})", true },
         { R"({"shape":"custom","glyph":"noteheadBlack"})", true },
         { R"({"shape":"diamond","glyph":"noteheadDiamondBlack"})", true },
-        { R"({"shape":"default","glyph":"noteheadBlack"})", true },
+        { R"({})", false },                        // shape is required
+        { R"({"glyph":"noteheadBlack"})", false }, // shape is required
+        { R"({"shape":"default"})", false },       // "default" is no longer a shape
         { R"({"shape":"unknown"})", false },
 #ifndef MNXDOM_USE_LEGACY_SCHEMA_VALIDATOR
-        { R"({"glyph":"noteheadBlack"})", false }, // dependentRequired
         { R"({"shape":"custom"})", false },        // dependentSchemas
 #endif
         { R"({"shape":1})", false },
@@ -66,6 +65,16 @@ TEST(Validation, Noteheads)
             EXPECT_EQ(bool(mnx::validation::schemaValidate(doc)), test.valid);
         }
     }
+}
+
+TEST(Validation, IdPairProperties)
+{
+    setupTestDataPaths();
+    const auto inputPath = getInputPath() / "test_cases" / "arpeggio_valid.json";
+    auto doc = mnx::Document::create(inputPath);
+    ASSERT_TRUE(mnx::validation::schemaValidate(doc));
+    (*doc.root())[mnx::json_pointer("/parts/0/measures/0/arpeggios/0/span/unexpected")] = 1;
+    EXPECT_FALSE(mnx::validation::schemaValidate(doc)); // id-pair has additionalProperties: false
 }
 
 TEST(Validation, UnevaluatedMnxProperty)
@@ -285,7 +294,7 @@ TEST(Validation, Schema46Additions)
 {
     std::istringstream input(R"({
         "mnx": {"version": 1, "support": {"useLyricExtenders": true}},
-        "global": {"measures": [{"time": {"count": 4, "unit": 4},
+        "global": {"lyrics": {"lineOrder": ["1"]}, "measures": [{"time": {"count": 4, "unit": 4},
             "caesura": {}, "coda": {"location": {"fraction": [0, 1]}}}]},
         "parts": [{"measures": [{"clefs": [{"clef": {"sign": "G", "staffPosition": -2}}],
             "sequences": [{"content": [{

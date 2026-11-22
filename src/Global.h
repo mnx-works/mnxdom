@@ -449,15 +449,25 @@ public:
 
 /**
  * @class LyricsGlobal
- * @brief Metadata for lyrics in this MNX document
+ * @brief Document-wide lyric data. Required if any event in the document has lyrics.
  */
 class LyricsGlobal : public Object
 {
 public:
     using Object::Object;
 
-    MNX_OPTIONAL_CHILD(Dictionary<LyricLineMetadata>, lineMetadata); ///< Defines lyric line IDs and their metadata.
-    MNX_OPTIONAL_CHILD(Array<std::string>, lineOrder);              ///< Lyric line IDs used in the document (e.g. verse numbers)
+    /// @brief Creates a new LyricsGlobal class as a child of a JSON element
+    /// @param parent The parent class instance
+    /// @param key The JSON key to use for embedding in parent.
+    LyricsGlobal(Base& parent, std::string_view key)
+        : Object(parent, key)
+    {
+        // required children
+        create_lineOrder();
+    }
+
+    MNX_OPTIONAL_CHILD(Dictionary<LyricLineMetadata>, lineMetadata); ///< Per-line metadata; each key must be listed in #lineOrder.
+    MNX_REQUIRED_CHILD(Array<std::string>, lineOrder);              ///< All lyric line IDs used in the document, each exactly once, in top-to-bottom display order.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "lyrics-global";     ///< required for mapping
 };

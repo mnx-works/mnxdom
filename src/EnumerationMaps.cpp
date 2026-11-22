@@ -217,7 +217,6 @@ MNX_ENUM_MAPPING(MultiStaffPlacement, {
 });
 
 MNX_ENUM_MAPPING(NoteheadShape, {
-    { "default",      NoteheadShape::Default },
     { "circleX",      NoteheadShape::CircleX },
     { "custom",       NoteheadShape::Custom },
     { "diamond",      NoteheadShape::Diamond },

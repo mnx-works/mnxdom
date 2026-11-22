@@ -13,7 +13,7 @@
                             "content": [
                                 {
                                     "duration": { "base": "whole" },
-                                    "notes": [{ "pitch": { "step": "C", "octave": 5 }, "notehead": {} }]
+                                    "notes": [{ "pitch": { "step": "C", "octave": 5 }, "notehead": { "shape": "oval" } }]
                                 }
                             ]
                         }

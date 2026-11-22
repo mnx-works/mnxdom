@@ -95,6 +95,7 @@ public:
 
     SemanticValidationResult result;
     Document document;
+    bool hasGlobalLyrics{}; ///< set by validateGlobal
 
     void validateGlobal();
     void validateNavigation();
@@ -326,33 +327,23 @@ void SemanticValidator::validateGlobal()
     auto global = document.global();
 
     result.lyricLines.clear();
-    if (global.lyrics().has_value()) {
-        const auto lyricsGlobal = global.lyrics().value();
-        const auto lineOrder = lyricsGlobal.lineOrder();
-        const auto lineMetadata = lyricsGlobal.lineMetadata();
-        // If both are present, validate that they match
-        if (lineOrder) {
-            size_t x = 0;
-            for (const auto& lineId : lineOrder.value()) {
-                if (auto rslt = result.lyricLines.emplace(lineId, lineOrder.value()[x].pointer()); !rslt.second) {
-                    addError("ID \"" + lineId + "\" already exists at " + rslt.first->second.to_string(), lineOrder.value()[x]);
-                }
-                x++;
+    const auto lyricsGlobal = global.lyrics();
+    hasGlobalLyrics = lyricsGlobal.has_value();
+    if (lyricsGlobal) {
+        // Schema validation enforces a non-empty, duplicate-free lineOrder; duplicates are still
+        // reported here so that line IDs are always mapped consistently.
+        const auto lineOrder = lyricsGlobal->lineOrder();
+        size_t x = 0;
+        for (const auto& lineId : lineOrder) {
+            if (auto rslt = result.lyricLines.emplace(lineId, lineOrder[x].pointer()); !rslt.second) {
+                addError("ID \"" + lineId + "\" already exists at " + rslt.first->second.to_string(), lineOrder[x]);
             }
-            if (lineMetadata) {
-                if (result.lyricLines.size() != lineMetadata.value().size()) {
-                    addError("Size of line metadata does not match size of line order.", lineMetadata.value());
-                }
-                for (const auto& [lineId, instance] : lineMetadata.value()) {
-                    if (result.lyricLines.find(lineId) == result.lyricLines.end()) {
-                        addError("ID \"" + lineId + "\" not found in ID mapping", instance);
-                    }
-                }
-            }
-        } else if (lineMetadata) {
+            x++;
+        }
+        if (const auto lineMetadata = lyricsGlobal->lineMetadata()) {
             for (const auto& [lineId, instance] : lineMetadata.value()) {
-                if (auto rslt = result.lyricLines.emplace(lineId, instance.pointer()); !rslt.second) {
-                    addError("ID \"" + lineId + "\" already exists at " + rslt.first->second.to_string(), instance);
+                if (result.lyricLines.find(lineId) == result.lyricLines.end()) {
+                    addError("Lyric line ID \"" + lineId + "\" is not listed in global.lyrics.lineOrder.", instance);
                 }
             }
         }
@@ -460,13 +451,13 @@ void SemanticValidator::validateSequenceContent(const mnx::sequence::SequenceCon
                 }
             }
             validateExtenders(event);
-            if (!result.lyricLines.empty()) { // only check lyric lines if the line ids were provided in global.lyrics()
-                if (auto lyrics = event.lyrics()) {
-                    if (auto lines = lyrics.value().lines()) {
-                        for (const auto& line : lines.value()) {
-                            if (result.lyricLines.find(line.first) == result.lyricLines.end()) {
-                                addError("ID \"" + line.first + "\" not found in ID mapping", line.second);
-                            }
+            if (auto lyrics = event.lyrics()) {
+                if (!hasGlobalLyrics) {
+                    addError("Event has lyrics, but global lyrics are not defined.", lyrics.value());
+                } else if (auto lines = lyrics.value().lines()) {
+                    for (const auto& line : lines.value()) {
+                        if (result.lyricLines.find(line.first) == result.lyricLines.end()) {
+                            addError("Lyric line ID \"" + line.first + "\" is not listed in global.lyrics.lineOrder.", line.second);
                         }
                     }
                 }

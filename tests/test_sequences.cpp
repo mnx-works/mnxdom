@@ -29,7 +29,6 @@ using namespace mnx;
 TEST(TestSequences, NoteheadShapes)
 {
     const std::pair<NoteheadShape, const char*> shapes[] = {
-        { NoteheadShape::Default, "default" },
         { NoteheadShape::CircleX, "circleX" },
         { NoteheadShape::Custom, "custom" },
         { NoteheadShape::Diamond, "diamond" },
@@ -41,12 +40,16 @@ TEST(TestSequences, NoteheadShapes)
         { NoteheadShape::TriangleDown, "triangleDown" },
         { NoteheadShape::X, "x" }
     };
+    EXPECT_EQ(NoteheadShape{}, NoteheadShape::Oval);
+    EXPECT_EQ(sequence::Notehead::Required{}.shape, NoteheadShape::Oval);
+    {
+        sequence::Notehead missing(std::make_shared<json>(json::object()), json_pointer{});
+        EXPECT_THROW(static_cast<void>(missing.shape()), std::runtime_error);
+        EXPECT_FALSE(missing.glyph());
+    }
     for (const auto& [shape, text] : shapes) {
         SCOPED_TRACE(text);
         sequence::Notehead head(std::make_shared<json>(json::object()), json_pointer{});
-        EXPECT_EQ(head.shape(), NoteheadShape::Default);
-        EXPECT_FALSE(head.glyph());
-        EXPECT_EQ(head.dump(), "{}");
         head.set_shape(shape);
         head.set_glyph("noteheadBlack");
         const auto serialized = json::parse(head.dump());
@@ -59,9 +62,6 @@ TEST(TestSequences, NoteheadShapes)
         EXPECT_EQ(json::parse(copy.dump()), (json{{ "shape", text }}));
         const sequence::Notehead::Required required = copy;
         EXPECT_EQ(required.shape, sequence::Notehead::make(shape).shape);
-        copy.clear_shape();
-        EXPECT_EQ(copy.shape(), NoteheadShape::Default);
-        EXPECT_EQ(copy.dump(), "{}");
     }
 }
 
@@ -73,12 +73,11 @@ TEST(TestSequences, NoteheadChildren)
     auto event = doc.parts()[0].measures()[0].sequences()[0].content()[0].get<sequence::Event>();
     auto note = event.notes()->at(0);
     ASSERT_TRUE(note.notehead());
-    EXPECT_EQ(note.notehead()->shape(), NoteheadShape::Default);
-    EXPECT_EQ(note.notehead()->dump(), "{}");
+    EXPECT_EQ(note.notehead()->shape(), NoteheadShape::Oval);
+    EXPECT_EQ(note.notehead()->dump(), R"({"shape":"oval"})");
     // Ensuring an existing child preserves its current shape.
-    note.ensure_notehead(NoteheadShape::Oval);
-    EXPECT_EQ(note.notehead()->shape(), NoteheadShape::Default);
-    EXPECT_EQ(note.notehead()->dump(), "{}");
+    note.ensure_notehead(NoteheadShape::X);
+    EXPECT_EQ(note.notehead()->shape(), NoteheadShape::Oval);
     note.notehead()->set_shape(NoteheadShape::TriangleDown);
 
     auto component = doc.parts()[1].kit()->at("snare");
@@ -89,11 +88,10 @@ TEST(TestSequences, NoteheadChildren)
     auto kitEvent = doc.parts()[1].measures()[0].sequences()[0].content()[0].get<sequence::Event>();
     auto kitNote = kitEvent.kitNotes()->at(0);
     EXPECT_FALSE(kitNote.notehead());
-    auto head = kitNote.ensure_notehead(NoteheadShape::Default);
-    EXPECT_EQ(head.shape(), NoteheadShape::Default);
+    auto head = kitNote.ensure_notehead(NoteheadShape::Oval);
+    EXPECT_EQ(head.shape(), NoteheadShape::Oval);
     EXPECT_FALSE(head.glyph());
-    EXPECT_EQ(head.dump(), R"({"shape":"default"})");
-    head.set_shape(NoteheadShape::Oval);
+    EXPECT_EQ(head.dump(), R"({"shape":"oval"})");
     // Explicit kit-note overrides preserve the component's stored design.
     EXPECT_EQ(component.notehead()->shape(), NoteheadShape::Diamond);
     EXPECT_EQ(component.notehead()->glyph(), "noteheadDiamondBlack");

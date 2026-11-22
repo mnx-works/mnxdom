@@ -59,13 +59,13 @@ var NAVTREEINDEX =
 "BaseTypes_8h_source.html",
 "classmnx_1_1Global.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
 "classmnx_1_1Score.html#a1f534783d8f5e9e0c0993fe34bd53843",
-"classmnx_1_1layout_1_1Group.html#a84d843a885173fd0c6a42a849f373d36",
-"classmnx_1_1part_1_1MeasureRepeatCounter.html#a5ba43a2ba7b3c6375ad8456dcfa022d9",
-"classmnx_1_1sequence_1_1EventLyricLineExtender.html",
-"classmnx_1_1sequence_1_1Slur.html#ae9b604435f98c0d32493fac8be6f13cd",
-"namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea06b9281e396db002010bde1de57262eb",
+"classmnx_1_1layout_1_1Group.html#a5d8b72be235c8f82376a48afa79d90d8",
+"classmnx_1_1part_1_1MeasureRepeatCounter.html#a419e2cb050c99f1fa268c5e1d7c51948",
+"classmnx_1_1sequence_1_1EventLyricLine.html#aedd3699ce9bba06575e9444885e5fcb7",
+"classmnx_1_1sequence_1_1Slur.html#acad2cdab58d0b82f19a53c57f828697a",
+"namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a960b44c579bc2f6818d2daaf9e4c16f0",
 "structmnx_1_1FractionValue.html#a513f0073f45175e862a905dd176bd1c2",
-"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a7eb866eee626ce4d90e814e0f231a8ec"
+"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a1ec809463a7728ce2dc260d9fe7fcd29"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

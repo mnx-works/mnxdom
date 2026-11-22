@@ -5,7 +5,7 @@ var searchData=
   ['dcalcoda_2',['DcAlCoda',['../namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8af2756eeb425efcabe071efac2203deb7',1,'mnx']]],
   ['dcalfine_3',['DcAlFine',['../namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8aeb480e7c4f33bd640cabb606c62291c1',1,'mnx']]],
   ['decreasing_4',['Decreasing',['../namespacemnx.html#a0c98e62013b01d589b6e4b04f67b12d5a2e6a9b0375c021e8f650a5eb22012b5b',1,'mnx']]],
-  ['default_5',['Default',['../structmnx_1_1scope_1_1Default.html',1,'mnx::scope::Default'],['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67',1,'mnx::Default']]],
+  ['default_5',['Default',['../structmnx_1_1scope_1_1Default.html',1,'mnx::scope']]],
   ['denominator_6',['denominator',['../structmnx_1_1FractionValue.html#a165ff3b23210bd57341c10f3ae8f87dd',1,'mnx::FractionValue']]],
   ['depth_7',['depth',['../structmnx_1_1util_1_1LayoutSpan.html#acabcc139dd420fefbb53d9f61de447e6',1,'mnx::util::LayoutSpan']]],
   ['diamond_8',['Diamond',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699',1,'mnx']]],

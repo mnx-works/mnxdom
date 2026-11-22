@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"structmnx_1_1FractionValue.html#a513f0073f45175e862a905dd176bd1c2":[1,0,0,17,3],
 "structmnx_1_1FractionValue.html#a513f0073f45175e862a905dd176bd1c2":[2,0,0,20,3],
 "structmnx_1_1FractionValue.html#a82a89143349329c7c3abf798662ac2dd":[1,0,0,17,14],
 "structmnx_1_1FractionValue.html#a82a89143349329c7c3abf798662ac2dd":[2,0,0,20,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "structmnx_1_1sequence_1_1Notehead_1_1Required.html#ae9046689c2a21d2304572c347bb694ef":[2,0,0,0,28,0,0],
 "structmnx_1_1sequence_1_1Pitch_1_1Required.html":[1,0,0,0,21,0],
 "structmnx_1_1sequence_1_1Pitch_1_1Required.html":[2,0,0,0,21,0],
-"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a1ec809463a7728ce2dc260d9fe7fcd29":[1,0,0,0,21,0,2],
-"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a1ec809463a7728ce2dc260d9fe7fcd29":[2,0,0,0,21,0,2]
+"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a1ec809463a7728ce2dc260d9fe7fcd29":[1,0,0,0,21,0,2]
 };

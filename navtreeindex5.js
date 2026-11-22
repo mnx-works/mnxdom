@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"classmnx_1_1sequence_1_1EventLyricLine.html#aedd3699ce9bba06575e9444885e5fcb7":[1,0,0,0,33,4],
+"classmnx_1_1sequence_1_1EventLyricLine.html#aedd3699ce9bba06575e9444885e5fcb7":[2,0,0,0,33,4],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html":[1,0,0,0,32],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html":[2,0,0,0,32],
 "classmnx_1_1sequence_1_1EventLyricLineExtender.html#a4988843f33731e91af29f49660111eb6":[1,0,0,0,32,4],
@@ -162,12 +164,12 @@ var NAVTREEINDEX5 =
 "classmnx_1_1sequence_1_1NoteMarkings.html#ae22e4613f2e67d4fb6c0951f1cf86a74":[2,0,0,0,27,3],
 "classmnx_1_1sequence_1_1Notehead.html":[1,0,0,0,28],
 "classmnx_1_1sequence_1_1Notehead.html":[2,0,0,0,28],
-"classmnx_1_1sequence_1_1Notehead.html#a0cd4c14280e31028da8ce92ec1afc33c":[1,0,0,0,28,4],
-"classmnx_1_1sequence_1_1Notehead.html#a0cd4c14280e31028da8ce92ec1afc33c":[2,0,0,0,28,4],
 "classmnx_1_1sequence_1_1Notehead.html#a3990fb96477b47fada1d23a8aa60ddb6":[1,0,0,0,28,2],
 "classmnx_1_1sequence_1_1Notehead.html#a3990fb96477b47fada1d23a8aa60ddb6":[2,0,0,0,28,2],
 "classmnx_1_1sequence_1_1Notehead.html#a8ccacdd5d823d1861bb72a91c4ecf0fc":[1,0,0,0,28,3],
 "classmnx_1_1sequence_1_1Notehead.html#a8ccacdd5d823d1861bb72a91c4ecf0fc":[2,0,0,0,28,3],
+"classmnx_1_1sequence_1_1Notehead.html#aa5aa6c2067f43cee8331e6f55049a809":[1,0,0,0,28,4],
+"classmnx_1_1sequence_1_1Notehead.html#aa5aa6c2067f43cee8331e6f55049a809":[2,0,0,0,28,4],
 "classmnx_1_1sequence_1_1Notehead.html#ae56347e8e4896ceecb5c4c0f010d2e07":[1,0,0,0,28,1],
 "classmnx_1_1sequence_1_1Notehead.html#ae56347e8e4896ceecb5c4c0f010d2e07":[2,0,0,0,28,1],
 "classmnx_1_1sequence_1_1Notehead.html#af7d441dea3a45712c06d2a238595a9ba":[1,0,0,0,28,5],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "classmnx_1_1sequence_1_1Slur.html#abd32be426eeecc36196e3171c026b434":[1,0,0,0,22,7],
 "classmnx_1_1sequence_1_1Slur.html#abd32be426eeecc36196e3171c026b434":[2,0,0,0,22,7],
 "classmnx_1_1sequence_1_1Slur.html#ac08a3692f026c54b0f9c7760fb2ded2c":[1,0,0,0,22,3],
-"classmnx_1_1sequence_1_1Slur.html#ac08a3692f026c54b0f9c7760fb2ded2c":[2,0,0,0,22,3],
-"classmnx_1_1sequence_1_1Slur.html#acad2cdab58d0b82f19a53c57f828697a":[1,0,0,0,22,8],
-"classmnx_1_1sequence_1_1Slur.html#acad2cdab58d0b82f19a53c57f828697a":[2,0,0,0,22,8]
+"classmnx_1_1sequence_1_1Slur.html#ac08a3692f026c54b0f9c7760fb2ded2c":[2,0,0,0,22,3]
 };

@@ -180,11 +180,10 @@ var namespacemnx =
       [ "Between", "namespacemnx.html#a1cbd33e240b0ad4078c0bfba9043ddaea5ccb72b3b258508dc7918070eaeb214c", null ]
     ] ],
     [ "NoteheadShape", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1", [
-      [ "Default", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67", null ],
+      [ "Oval", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61", null ],
       [ "CircleX", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf", null ],
       [ "Custom", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af", null ],
       [ "Diamond", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699", null ],
-      [ "Oval", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61", null ],
       [ "Plus", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4", null ],
       [ "Slash", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc", null ],
       [ "Square", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304", null ],

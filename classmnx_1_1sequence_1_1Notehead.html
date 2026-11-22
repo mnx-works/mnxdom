@@ -128,10 +128,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af7d441dea3a45712c06d2a238595a9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implicit conversion back to <a class="el" href="structmnx_1_1sequence_1_1Notehead_1_1Required.html" title="initializer class for Notehead">Required</a>. <br /></td></tr>
 <tr class="memitem:a8ccacdd5d823d1861bb72a91c4ecf0fc" id="r_a8ccacdd5d823d1861bb72a91c4ecf0fc"><td class="memItemLeft" align="right" valign="top"><a id="a8ccacdd5d823d1861bb72a91c4ecf0fc" name="a8ccacdd5d823d1861bb72a91c4ecf0fc"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (std::string, glyph)</td></tr>
-<tr class="memdesc:a8ccacdd5d823d1861bb72a91c4ecf0fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">SMuFL glyph override; requires an explicit shape. <br /></td></tr>
-<tr class="memitem:a0cd4c14280e31028da8ce92ec1afc33c" id="r_a0cd4c14280e31028da8ce92ec1afc33c"><td class="memItemLeft" align="right" valign="top"><a id="a0cd4c14280e31028da8ce92ec1afc33c" name="a0cd4c14280e31028da8ce92ec1afc33c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY_WITH_DEFAULT</b> (<a class="el" href="namespacemnx.html#a87df00778c2acae557839d9ef283f5a1">NoteheadShape</a>, shape, <a class="el" href="namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a7a1920d61156abc05a60135aefe8bc67">NoteheadShape::Default</a>)</td></tr>
-<tr class="memdesc:a0cd4c14280e31028da8ce92ec1afc33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic shape; Custom requires a glyph. <br /></td></tr>
+<tr class="memdesc:a8ccacdd5d823d1861bb72a91c4ecf0fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit SMuFL glyph overriding the rendering engine's selection. <br /></td></tr>
+<tr class="memitem:aa5aa6c2067f43cee8331e6f55049a809" id="r_aa5aa6c2067f43cee8331e6f55049a809"><td class="memItemLeft" align="right" valign="top"><a id="aa5aa6c2067f43cee8331e6f55049a809" name="aa5aa6c2067f43cee8331e6f55049a809"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_REQUIRED_PROPERTY</b> (<a class="el" href="namespacemnx.html#a87df00778c2acae557839d9ef283f5a1">NoteheadShape</a>, shape)</td></tr>
+<tr class="memdesc:aa5aa6c2067f43cee8331e6f55049a809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic shape family; Custom requires a glyph. <br /></td></tr>
 <tr class="inherit_header pub_methods_classmnx_1_1Object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classmnx_1_1Object')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classmnx_1_1Object.html">mnx::Object</a></td></tr>
 <tr class="memitem:a52b65416bd31d8dfe6c884db79f71995 inherit pub_methods_classmnx_1_1Object" id="r_a52b65416bd31d8dfe6c884db79f71995"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> ()</td></tr>
@@ -227,7 +227,7 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes a notehead's visual shape and optional explicit SMuFL glyph. </p>
-<p>For kit notes, an omitted or Default shape inherits the kit component's design, including its glyph. An explicit shape replaces that design; an explicit glyph overrides the selected appearance. These properties do not affect pitch, duration, or performance. Glyph selection by consuming software uses the displayed note value. Creating a notehead requires an explicit shape; an omitted shape in an existing notehead is read as Default without inserting the property into JSON. </p>
+<p>The shape is required. For a kit note without an explicit notehead, consuming software uses the kit component's notehead, including its glyph. An explicit glyph overrides the glyph a rendering engine would otherwise select. These properties do not affect pitch, duration, or performance. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3990fb96477b47fada1d23a8aa60ddb6" name="a3990fb96477b47fada1d23a8aa60ddb6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3990fb96477b47fada1d23a8aa60ddb6">&#9670;&#160;</a></span>Notehead()</h2>

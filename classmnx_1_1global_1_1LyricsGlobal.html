@@ -95,7 +95,7 @@ $(function(){initNavTree('classmnx_1_1global_1_1LyricsGlobal.html','','classmnx_
 </div><!--header-->
 <div class="contents">
 
-<p>Metadata for lyrics in this MNX document.  
+<p>Document-wide lyric data. Required if any event in the document has lyrics.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Global_8h_source.html">Global.h</a>&gt;</code></p>
@@ -113,12 +113,14 @@ $(function(){initNavTree('classmnx_1_1global_1_1LyricsGlobal.html','','classmnx_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:aca57aaa44376293147c0d73ba521e1da" id="r_aca57aaa44376293147c0d73ba521e1da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca57aaa44376293147c0d73ba521e1da">LyricsGlobal</a> (<a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a> &amp;<a class="el" href="classmnx_1_1Base.html#a4bbd397a39dc2f5db959ac639d954335">parent</a>, std::string_view key)</td></tr>
+<tr class="memdesc:aca57aaa44376293147c0d73ba521e1da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classmnx_1_1global_1_1LyricsGlobal.html" title="Document-wide lyric data. Required if any event in the document has lyrics.">LyricsGlobal</a> class as a child of a JSON element.  <br /></td></tr>
 <tr class="memitem:a8f4bc4db7a38061a04fc48a8881f628a" id="r_a8f4bc4db7a38061a04fc48a8881f628a"><td class="memItemLeft" align="right" valign="top"><a id="a8f4bc4db7a38061a04fc48a8881f628a" name="a8f4bc4db7a38061a04fc48a8881f628a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_CHILD</b> (<a class="el" href="classmnx_1_1Dictionary.html">Dictionary</a>&lt; <a class="el" href="classmnx_1_1global_1_1LyricLineMetadata.html">LyricLineMetadata</a> &gt;, lineMetadata)</td></tr>
-<tr class="memdesc:a8f4bc4db7a38061a04fc48a8881f628a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines lyric line IDs and their metadata. <br /></td></tr>
-<tr class="memitem:a52d8c4600a6a065d5aad8ebb4f44259f" id="r_a52d8c4600a6a065d5aad8ebb4f44259f"><td class="memItemLeft" align="right" valign="top"><a id="a52d8c4600a6a065d5aad8ebb4f44259f" name="a52d8c4600a6a065d5aad8ebb4f44259f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_CHILD</b> (<a class="el" href="classmnx_1_1Array.html">Array</a>&lt; std::string &gt;, lineOrder)</td></tr>
-<tr class="memdesc:a52d8c4600a6a065d5aad8ebb4f44259f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lyric line IDs used in the document (e.g. verse numbers). <br /></td></tr>
+<tr class="memdesc:a8f4bc4db7a38061a04fc48a8881f628a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-line metadata; each key must be listed in #lineOrder. <br /></td></tr>
+<tr class="memitem:af183d0fd9b2c47f46ffd9de7fc83842e" id="r_af183d0fd9b2c47f46ffd9de7fc83842e"><td class="memItemLeft" align="right" valign="top"><a id="af183d0fd9b2c47f46ffd9de7fc83842e" name="af183d0fd9b2c47f46ffd9de7fc83842e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_REQUIRED_CHILD</b> (<a class="el" href="classmnx_1_1Array.html">Array</a>&lt; std::string &gt;, lineOrder)</td></tr>
+<tr class="memdesc:af183d0fd9b2c47f46ffd9de7fc83842e"><td class="mdescLeft">&#160;</td><td class="mdescRight">All lyric line IDs used in the document, each exactly once, in top-to-bottom display order. <br /></td></tr>
 <tr class="memitem:a52b65416bd31d8dfe6c884db79f71995" id="r_a52b65416bd31d8dfe6c884db79f71995"><td class="memItemLeft" align="right" valign="top"><a id="a52b65416bd31d8dfe6c884db79f71995" name="a52b65416bd31d8dfe6c884db79f71995"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Object</b> ()</td></tr>
 <tr class="memdesc:a52b65416bd31d8dfe6c884db79f71995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor fresh document or detached instance. <br /></td></tr>
@@ -214,8 +216,47 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
 <tr class="memdesc:a9004086ecbdbcccecaf288f3d5d60716 inherit pro_methods_classmnx_1_1Base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an optional child node.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Metadata for lyrics in this MNX document. </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p>Document-wide lyric data. Required if any event in the document has lyrics. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aca57aaa44376293147c0d73ba521e1da" name="aca57aaa44376293147c0d73ba521e1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca57aaa44376293147c0d73ba521e1da">&#9670;&#160;</a></span>LyricsGlobal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mnx::global::LyricsGlobal::LyricsGlobal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="classmnx_1_1global_1_1LyricsGlobal.html" title="Document-wide lyric data. Required if any event in the document has lyrics.">LyricsGlobal</a> class as a child of a JSON element. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>The parent class instance </td></tr>
+    <tr><td class="paramname">key</td><td>The JSON key to use for embedding in parent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ae22e4613f2e67d4fb6c0951f1cf86a74" name="ae22e4613f2e67d4fb6c0951f1cf86a74"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae22e4613f2e67d4fb6c0951f1cf86a74">&#9670;&#160;</a></span>Object() <span class="overload">[1/2]</span></h2>
 

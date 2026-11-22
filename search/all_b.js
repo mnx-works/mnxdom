@@ -22,5 +22,5 @@ var searchData=
   ['lyriclinemetadata_19',['LyricLineMetadata',['../classmnx_1_1global_1_1LyricLineMetadata.html',1,'mnx::global']]],
   ['lyriclines_20',['lyricLines',['../structmnx_1_1validation_1_1SemanticValidationResult.html#afc062dace0308c1dcb6e072343f89a59',1,'mnx::validation::SemanticValidationResult']]],
   ['lyriclinetype_21',['LyricLineType',['../namespacemnx.html#a55805e9c21a5eb737c16ba29e01f3afc',1,'mnx']]],
-  ['lyricsglobal_22',['LyricsGlobal',['../classmnx_1_1global_1_1LyricsGlobal.html',1,'mnx::global']]]
+  ['lyricsglobal_22',['LyricsGlobal',['../classmnx_1_1global_1_1LyricsGlobal.html',1,'mnx::global::LyricsGlobal'],['../classmnx_1_1global_1_1LyricsGlobal.html#aca57aaa44376293147c0d73ba521e1da',1,'mnx::global::LyricsGlobal::LyricsGlobal()']]]
 ];

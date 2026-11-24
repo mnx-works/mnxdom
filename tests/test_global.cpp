@@ -139,6 +139,60 @@ TEST(Global, LyricLineMetadata)
     //std::cout << doc.dump(4) << std::endl;
 }
 
+TEST(Global, LyricLineOrderUnique)
+{
+    std::istringstream input(R"({
+        "mnx": {"version": 1},
+        "global": {"lyrics": {"lineOrder": ["1", "2"]}, "measures": []},
+        "parts": []
+    })");
+    Document doc(input);
+    auto lineOrder = doc.global().lyrics().value().lineOrder();
+    ASSERT_EQ(lineOrder.size(), 2u);
+    EXPECT_TRUE(lineOrder.contains("1"));
+    EXPECT_FALSE(lineOrder.contains("3"));
+
+    EXPECT_FALSE(lineOrder.push_back("2")) << "duplicate should not be added";
+    EXPECT_EQ(lineOrder.size(), 2u);
+    EXPECT_TRUE(lineOrder.push_back("3"));
+    EXPECT_EQ(lineOrder.size(), 3u);
+    EXPECT_EQ(lineOrder.back(), "3");
+
+    EXPECT_FALSE(lineOrder.set(0, "2")) << "value exists at another index";
+    EXPECT_EQ(lineOrder.at(0), "1");
+    EXPECT_TRUE(lineOrder.set(1, "2")) << "same value at its own index";
+    EXPECT_TRUE(lineOrder.set(1, "4"));
+    EXPECT_EQ(lineOrder.at(1), "4");
+
+    EXPECT_FALSE(lineOrder.assign(std::vector<std::string>{"a", "b", "a", "c", "b"}));
+    EXPECT_EQ(lineOrder.toStdVector(), (std::vector<std::string>{"a", "b", "c"}));
+    EXPECT_TRUE(lineOrder.assign(std::vector<std::string>{"x", "y"}));
+
+    std::vector<std::string> iterated;
+    for (const auto& value : lineOrder) {
+        iterated.push_back(value);
+    }
+    EXPECT_EQ(iterated, (std::vector<std::string>{"x", "y"}));
+    EXPECT_TRUE(validation::schemaValidate(doc));
+}
+
+TEST(Global, UniqueArrayMixedJsonTypes)
+{
+    auto root = std::make_shared<json>(json::parse(R"([1, "2", 1.5])"));
+    UniqueArray<std::string> strings(root, json_pointer{});
+    EXPECT_TRUE(strings.contains("2"));
+    EXPECT_FALSE(strings.contains("1")) << "a number never matches a string";
+    EXPECT_TRUE(strings.push_back("3"));
+    EXPECT_FALSE(strings.push_back("2"));
+    EXPECT_TRUE(strings.set(1, "4")) << "existing elements of other types do not block a write";
+
+    auto numbers = std::make_shared<json>(json::parse(R"([1.5, "1"])"));
+    UniqueArray<int> ints(numbers, json_pointer{});
+    EXPECT_FALSE(ints.contains(1)) << "1.5 must not be truncated to 1";
+    EXPECT_TRUE(ints.push_back(1));
+    EXPECT_FALSE(ints.push_back(1));
+}
+
 TEST(Global, EndingTest)
 {
     setupTestDataPaths();

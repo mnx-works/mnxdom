@@ -116,3 +116,20 @@ TEST(Global, TimeSigFraction)
     EXPECT_EQ(measureDura.numerator(), 6);
     EXPECT_EQ(measureDura.denominator(), 8);
 }
+
+TEST(Global, DuplicateLyricLineOrder)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "errors" / "duplicate_lyric_line_order.json";
+    auto doc = mnx::Document::create(inputPath);
+    auto lineOrder = doc.global().lyrics().value().lineOrder();
+    EXPECT_EQ(lineOrder.size(), 3u) << "wrapping existing JSON does not remove duplicates";
+
+    const auto result = mnx::validation::schemaValidate(doc);
+    EXPECT_FALSE(result) << "schema should reject duplicate lineOrder values";
+    ASSERT_EQ(result.errors.size(), 1u);
+    EXPECT_EQ(result.errors[0].pointer.to_string(), "/global/lyrics/lineOrder");
+
+    EXPECT_TRUE(lineOrder.set(0, "1")) << "writing the value already at the index is allowed";
+    EXPECT_FALSE(lineOrder.set(1, "1")) << "value exists at another index";
+}

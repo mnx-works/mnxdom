@@ -1,0 +1,23 @@
+{
+    "mnx": {
+        "version": 1
+    },
+    "global": {
+        "lyrics": {
+            "lineOrder": [
+                "1",
+                "2",
+                "1"
+            ]
+        },
+        "measures": [
+            {
+                "time": {
+                    "count": 4,
+                    "unit": 4
+                }
+            }
+        ]
+    },
+    "parts": []
+}

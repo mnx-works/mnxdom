@@ -330,14 +330,11 @@ void SemanticValidator::validateGlobal()
     const auto lyricsGlobal = global.lyrics();
     hasGlobalLyrics = lyricsGlobal.has_value();
     if (lyricsGlobal) {
-        // Schema validation enforces a non-empty, duplicate-free lineOrder; duplicates are still
-        // reported here so that line IDs are always mapped consistently.
+        // Schema validation enforces a non-empty, duplicate-free lineOrder.
         const auto lineOrder = lyricsGlobal->lineOrder();
         size_t x = 0;
         for (const auto& lineId : lineOrder) {
-            if (auto rslt = result.lyricLines.emplace(lineId, lineOrder[x].pointer()); !rslt.second) {
-                addError("ID \"" + lineId + "\" already exists at " + rslt.first->second.to_string(), lineOrder[x]);
-            }
+            result.lyricLines.emplace(lineId, lineOrder.pointer() / std::to_string(x));
             x++;
         }
         if (const auto lineMetadata = lyricsGlobal->lineMetadata()) {

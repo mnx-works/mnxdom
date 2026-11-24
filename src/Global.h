@@ -467,7 +467,7 @@ public:
     }
 
     MNX_OPTIONAL_CHILD(Dictionary<LyricLineMetadata>, lineMetadata); ///< Per-line metadata; each key must be listed in #lineOrder.
-    MNX_REQUIRED_CHILD(Array<std::string>, lineOrder);              ///< All lyric line IDs used in the document, each exactly once, in top-to-bottom display order.
+    MNX_REQUIRED_CHILD(UniqueArray<std::string>, lineOrder);        ///< All lyric line IDs used in the document, each exactly once, in top-to-bottom display order.
 
     inline static constexpr std::string_view JsonSchemaTypeName = "lyrics-global";     ///< required for mapping
 };

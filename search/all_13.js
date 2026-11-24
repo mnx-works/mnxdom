@@ -23,7 +23,7 @@ var searchData=
   ['tocoda_20',['ToCoda',['../namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a2f058d6780f7a341640eca733f227e3b',1,'mnx']]],
   ['todo_20list_21',['Todo List',['../todo.html',1,'']]],
   ['todouble_22',['toDouble',['../structmnx_1_1FractionValue.html#ab4c6120073156d2b7896bba8939dac53',1,'mnx::FractionValue']]],
-  ['tostdvector_23',['toStdVector',['../classmnx_1_1Array.html#a71d223145cc464c531193824bb55b955',1,'mnx::Array']]],
+  ['tostdvector_23',['toStdVector',['../classmnx_1_1Array.html#a71d223145cc464c531193824bb55b955',1,'mnx::Array::toStdVector()'],['../classmnx_1_1UniqueArray.html#a71d223145cc464c531193824bb55b955',1,'mnx::UniqueArray::toStdVector()']]],
   ['transposer_24',['Transposer',['../classmusic__theory_1_1Transposer.html',1,'music_theory::Transposer'],['../classmusic__theory_1_1Transposer.html#a60afeabd008e8c9d8423b83fdd072405',1,'music_theory::Transposer::Transposer(const Pitch &amp;pitch)'],['../classmusic__theory_1_1Transposer.html#a77f3b85e9a4d9cfc42678c236fbd9ef6',1,'music_theory::Transposer::Transposer(int displacement, int alteration, bool isMinor=false, int numberOfEdoDivisions=STANDARD_12EDO_STEPS, const std::optional&lt; std::vector&lt; int &gt; &gt; &amp;keyMap=std::nullopt)']]],
   ['transposewritten_25',['TransposeWritten',['../classmnx_1_1sequence_1_1TransposeWritten.html',1,'mnx::sequence']]],
   ['triangle_26',['Triangle',['../namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b',1,'mnx']]],

@@ -7,6 +7,6 @@ var searchData=
   ['foreachid_4',['forEachId',['../classmnx_1_1util_1_1EntityMap.html#a067552b68747f9ecce346c98b7ce18e2',1,'mnx::util::EntityMap']]],
   ['fraction_5',['Fraction',['../classmnx_1_1Fraction.html#aad792b7d7dd55b7e68bd9bd075cdb089',1,'mnx::Fraction::Fraction(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1Fraction.html#a7ad000487431c93856b94ba77a77c75f',1,'mnx::Fraction::Fraction(Base &amp;parent, std::string_view key, const FractionValue &amp;value)']]],
   ['fractionvalue_6',['FractionValue',['../structmnx_1_1FractionValue.html#a39036721234db22ce4d76688a06cdd27',1,'mnx::FractionValue::FractionValue()=default'],['../structmnx_1_1FractionValue.html#a46fa2be65dd07b2a2950a2b16ff70dc8',1,'mnx::FractionValue::FractionValue(NumType num, NumType den)'],['../structmnx_1_1FractionValue.html#a513f0073f45175e862a905dd176bd1c2',1,'mnx::FractionValue::FractionValue(NumType value)']]],
-  ['front_7',['front',['../classmnx_1_1Array.html#a0154160a7a37029f2a66876b529d3ead',1,'mnx::Array']]],
+  ['front_7',['front',['../classmnx_1_1Array.html#a0154160a7a37029f2a66876b529d3ead',1,'mnx::Array::front()'],['../classmnx_1_1UniqueArray.html#a0154160a7a37029f2a66876b529d3ead',1,'mnx::UniqueArray::front()']]],
   ['fullmeasurerest_8',['FullMeasureRest',['../classmnx_1_1sequence_1_1FullMeasureRest.html#a3688649a4c2cb7cc44c0d6c3e5eacea4',1,'mnx::sequence::FullMeasureRest']]]
 ];

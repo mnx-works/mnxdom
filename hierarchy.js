@@ -39,7 +39,9 @@ var hierarchy =
     ] ],
     [ "mnx::detail::ArrayAppendBase&lt; Array&lt; T &gt;, T &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [
       [ "mnx::detail::ArrayAppendOverloads< Array< T >, T >", "structmnx_1_1detail_1_1ArrayAppendOverloads.html", [
-        [ "mnx::Array< T >", "classmnx_1_1Array.html", null ]
+        [ "mnx::Array< T >", "classmnx_1_1Array.html", [
+          [ "mnx::UniqueArray< T >", "classmnx_1_1UniqueArray.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "mnx::detail::ArrayAppendBase&lt; Array&lt; text::TextContentObject &gt;, text::TextContentObject &gt;", "structmnx_1_1detail_1_1ArrayAppendBase.html", [

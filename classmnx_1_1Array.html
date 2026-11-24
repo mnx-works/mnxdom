@@ -109,6 +109,7 @@ $(function(){initNavTree('classmnx_1_1Array.html','','classmnx_1_1Array-members'
 <area href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes." alt="mnx::Base" shape="rect" coords="0,56,316,80"/>
 <area href="structmnx_1_1detail_1_1ArrayAppendOverloads.html" alt="mnx::detail::ArrayAppendOverloads&lt; Array&lt; T &gt;, T &gt;" shape="rect" coords="326,56,642,80"/>
 <area href="structmnx_1_1detail_1_1ArrayAppendBase.html" alt="mnx::detail::ArrayAppendBase&lt; Array&lt; T &gt;, T &gt;" shape="rect" coords="326,0,642,24"/>
+<area href="classmnx_1_1UniqueArray.html" title="Represents an MNX array of simple values that must be unique (JSON schema uniqueItems)." alt="mnx::UniqueArray&lt; T &gt;" shape="rect" coords="163,168,479,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -159,10 +160,9 @@ auto&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_
 template&lt;typename U = T&gt; </td></tr>
 <tr class="memitem:ac5b1b4f6b60b7a8aae628dda400dbfe8 template"><td class="memItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_base_of_v&lt; <a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a>, U &gt;, void &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>push_back</b> (const U &amp;value)</td></tr>
 <tr class="memdesc:ac5b1b4f6b60b7a8aae628dda400dbfe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a new value to the array. (Available only for primitive types). <br /></td></tr>
-<tr class="memitem:a06f3d192243f70bf9aef123be051777a" id="r_a06f3d192243f70bf9aef123be051777a"><td class="memTemplParams" colspan="2"><a id="a06f3d192243f70bf9aef123be051777a" name="a06f3d192243f70bf9aef123be051777a"></a>
-template&lt;typename InputIt, typename U = T&gt; </td></tr>
-<tr class="memitem:a06f3d192243f70bf9aef123be051777a template"><td class="memItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_base_of_v&lt; <a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a>, U &gt;, void &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>assign</b> (InputIt first, InputIt last)</td></tr>
-<tr class="memdesc:a06f3d192243f70bf9aef123be051777a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace all elements with values from an iterator range. (Available only for primitive types). <br /></td></tr>
+<tr class="memitem:a06f3d192243f70bf9aef123be051777a" id="r_a06f3d192243f70bf9aef123be051777a"><td class="memTemplParams" colspan="2">template&lt;typename InputIt, typename U = T&gt; </td></tr>
+<tr class="memitem:a06f3d192243f70bf9aef123be051777a template"><td class="memItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_base_of_v&lt; <a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a>, U &gt;, void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06f3d192243f70bf9aef123be051777a">assign</a> (InputIt first, InputIt last)</td></tr>
+<tr class="memdesc:a06f3d192243f70bf9aef123be051777a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace all elements with values from an iterator range. (Available only for primitive types).  <br /></td></tr>
 <tr class="memitem:a00e7ef4ca9310cc2f38c28da9fec0a33" id="r_a00e7ef4ca9310cc2f38c28da9fec0a33"><td class="memTemplParams" colspan="2"><a id="a00e7ef4ca9310cc2f38c28da9fec0a33" name="a00e7ef4ca9310cc2f38c28da9fec0a33"></a>
 template&lt;typename U = T&gt; </td></tr>
 <tr class="memitem:a00e7ef4ca9310cc2f38c28da9fec0a33 template"><td class="memItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_base_of_v&lt; <a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a>, U &gt;, void &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>assign</b> (const std::vector&lt; U &gt; &amp;values)</td></tr>
@@ -339,6 +339,42 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a06f3d192243f70bf9aef123be051777a" name="a06f3d192243f70bf9aef123be051777a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06f3d192243f70bf9aef123be051777a">&#9670;&#160;</a></span>assign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<div class="memtemplate">
+template&lt;typename InputIt, typename U = T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt;!std::is_base_of_v&lt; <a class="el" href="classmnx_1_1Base.html#aa9fde0d4b169deb16f2ac1ba97c5219f">Base</a>, U &gt;, void &gt; <a class="el" href="classmnx_1_1Array.html">mnx::Array</a>&lt; T &gt;::assign </td>
+          <td>(</td>
+          <td class="paramtype">InputIt</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt</td>          <td class="paramname"><span class="paramname"><em>last</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Replace all elements with values from an iterator range. (Available only for primitive types). </p>
+<dl class="section pre"><dt>Precondition</dt><dd>The range must not refer to this array. </dd></dl>
+
+</div>
+</div>
 <a id="aa9148a0f6c01309edbc04f82b7e777fb" name="aa9148a0f6c01309edbc04f82b7e777fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9148a0f6c01309edbc04f82b7e777fb">&#9670;&#160;</a></span>back()</h2>
 

@@ -19,5 +19,5 @@ var searchData=
   ['issamepitch_16',['isSamePitch',['../classmnx_1_1sequence_1_1Pitch.html#af9f727626f8ba58b01a375f4f2977bf8',1,'mnx::sequence::Pitch']]],
   ['istremolo_17',['isTremolo',['../classmnx_1_1sequence_1_1Event.html#affe69e7696d92a46edb2f2502b865868',1,'mnx::sequence::Event']]],
   ['item_18',['Item',['../structmnx_1_1DocumentIdIndex_1_1Item.html',1,'mnx::DocumentIdIndex']]],
-  ['iterator_19',['iterator',['../classmnx_1_1Array.html#a302af380b7058c862d97146fd0cd1101',1,'mnx::Array::iterator'],['../classmnx_1_1Dictionary.html#a019b524d836830d0434d6d9f5010c8ef',1,'mnx::Dictionary::iterator']]]
+  ['iterator_19',['iterator',['../classmnx_1_1Array.html#a302af380b7058c862d97146fd0cd1101',1,'mnx::Array::iterator'],['../classmnx_1_1Dictionary.html#a019b524d836830d0434d6d9f5010c8ef',1,'mnx::Dictionary::iterator'],['../classmnx_1_1UniqueArray.html#a302af380b7058c862d97146fd0cd1101',1,'mnx::UniqueArray::iterator']]]
 ];

@@ -59,13 +59,13 @@ var NAVTREEINDEX =
 "BaseTypes_8h_source.html",
 "classmnx_1_1Global.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
 "classmnx_1_1Score.html#a1f534783d8f5e9e0c0993fe34bd53843",
-"classmnx_1_1layout_1_1Group.html#a5d8b72be235c8f82376a48afa79d90d8",
-"classmnx_1_1part_1_1MeasureRepeatCounter.html#a419e2cb050c99f1fa268c5e1d7c51948",
-"classmnx_1_1sequence_1_1EventLyricLine.html#aedd3699ce9bba06575e9444885e5fcb7",
-"classmnx_1_1sequence_1_1Slur.html#acad2cdab58d0b82f19a53c57f828697a",
-"namespacemnx.html#a1c127caca80fa75fe3e593892eb79ee8a960b44c579bc2f6818d2daaf9e4c16f0",
-"structmnx_1_1FractionValue.html#a513f0073f45175e862a905dd176bd1c2",
-"structmnx_1_1sequence_1_1Pitch_1_1Required.html#a1ec809463a7728ce2dc260d9fe7fcd29"
+"classmnx_1_1global_1_1RepeatStart.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
+"classmnx_1_1part_1_1Measure.html#a1043e8ea608ff6a0c77fc3935fcc80ce",
+"classmnx_1_1sequence_1_1Event.html#a5570a8b269e37b3b6f71bf4d1bb3b799",
+"classmnx_1_1sequence_1_1Rest.html#affccc745dc1ec6560b127d600086e1ae",
+"functions_vars_f.html",
+"namespacemusic__theory.html#a9c6d3371d0dbd13ad22c18e667a6d384",
+"structmnx_1_1score_1_1System_1_1Required.html#a65291c3ae91e8979ed34658d6fc9420f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

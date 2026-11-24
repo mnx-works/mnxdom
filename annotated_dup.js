@@ -137,6 +137,7 @@ var annotated_dup =
       [ "Base", "classmnx_1_1Base.html", "classmnx_1_1Base" ],
       [ "Object", "classmnx_1_1Object.html", "classmnx_1_1Object" ],
       [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
+      [ "UniqueArray", "classmnx_1_1UniqueArray.html", "classmnx_1_1UniqueArray" ],
       [ "ArrayElementObject", "classmnx_1_1ArrayElementObject.html", "classmnx_1_1ArrayElementObject" ],
       [ "ContentArray", "classmnx_1_1ContentArray.html", "classmnx_1_1ContentArray" ],
       [ "EnumStringMapping", "structmnx_1_1EnumStringMapping.html", null ],

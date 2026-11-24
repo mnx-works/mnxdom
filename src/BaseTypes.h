@@ -25,6 +25,7 @@
 #error "mnxdom requires C++20 or newer"
 #endif
 
+#include <algorithm>
 #include <memory>
 #include <unordered_map>
 #include <cassert>
@@ -717,6 +718,101 @@ private:
     friend struct detail::ArrayAppendFromMake;
     template <typename, typename>
     friend struct detail::ArrayAppendBase;
+};
+
+/**
+ * @brief Represents an MNX array of simple values that must be unique (JSON schema `uniqueItems`).
+ *
+ * Functions that add or change values refuse to create a duplicate and return false instead.
+ * Wrapping existing JSON does not check for duplicates, so semantic validation can still report them.
+ */
+template <typename T>
+class UniqueArray : private Array<T>
+{
+    static_assert(std::is_arithmetic_v<T> || std::is_same_v<T, std::string>,
+                  "UniqueArray is only for simple JSON types.");
+
+    using ArrayType = Array<T>;
+
+public:
+    using typename ArrayType::value_type;
+    using typename ArrayType::iterator;
+    using typename ArrayType::const_iterator;
+
+    using ArrayType::ArrayType;
+    using ArrayType::size;
+    using ArrayType::empty;
+    using ArrayType::clear;
+    using ArrayType::erase;
+    using ArrayType::at;
+    using ArrayType::front;
+    using ArrayType::back;
+    using ArrayType::begin;
+    using ArrayType::end;
+    using ArrayType::toStdVector;
+    using ArrayType::pointer;
+    using ArrayType::dump;
+    using ArrayType::document;
+    using ArrayType::parent;
+
+    /// @brief Returns true if the array contains the value.
+    [[nodiscard]] bool contains(const T& value) const
+    {
+        const json& arr = this->ref();
+        return std::any_of(arr.begin(), arr.end(),
+                           [&value](const json& elem) { return elem.template get<T>() == value; });
+    }
+
+    /// @brief Appends a value if it is not already present.
+    /// @return True if the value was added, false if it was already present.
+    bool push_back(const T& value)
+    {
+        if (contains(value)) {
+            return false;
+        }
+        this->ref().push_back(value);
+        return true;
+    }
+
+    /// @brief Replaces the value at an index, unless the value is present at a different index.
+    /// @return True if the value was set, false if it would create a duplicate.
+    /// @throws std::out_of_range if the index is out of range.
+    bool set(size_t index, const T& value)
+    {
+        this->checkIndex(index);
+        const json& arr = this->ref();
+        for (size_t i = 0; i < arr.size(); i++) {
+            if (i != index && arr[i].template get<T>() == value) {
+                return false;
+            }
+        }
+        this->ref()[index] = value;
+        return true;
+    }
+
+    /// @brief Replaces all elements with values from an iterator range, skipping duplicates.
+    /// @return True if every value was added, false if any duplicates were skipped.
+    template <typename InputIt>
+    bool assign(InputIt first, InputIt last)
+    {
+        this->ref() = json::array();
+        bool allAdded = true;
+        for (; first != last; ++first) {
+            if (!push_back(*first)) {
+                allAdded = false;
+            }
+        }
+        return allAdded;
+    }
+
+    /// @brief Replaces all elements with values from a vector, skipping duplicates.
+    /// @return True if every value was added, false if any duplicates were skipped.
+    bool assign(const std::vector<T>& values)
+    {
+        return assign(values.begin(), values.end());
+    }
+
+    friend class Base;
 };
 
 /**

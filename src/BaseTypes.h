@@ -643,7 +643,9 @@ public:
         ref().push_back(value);
     }
 
-    /** @brief Replace all elements with values from an iterator range. (Available only for primitive types) */
+    /** @brief Replace all elements with values from an iterator range. (Available only for primitive types)
+     *  @pre The range must not refer to this array.
+     */
     template <typename InputIt, typename U = T>
     std::enable_if_t<!std::is_base_of_v<Base, U>, void>
     assign(InputIt first, InputIt last)
@@ -724,7 +726,8 @@ private:
  * @brief Represents an MNX array of simple values that must be unique (JSON schema `uniqueItems`).
  *
  * Functions that add or change values refuse to create a duplicate and return false instead.
- * Wrapping existing JSON does not check for duplicates, so semantic validation can still report them.
+ * Wrapping existing JSON does not check for duplicates, so schema validation can still report them.
+ * Values are compared as JSON values, so elements of other JSON types never match.
  */
 template <typename T>
 class UniqueArray : private Array<T>
@@ -759,8 +762,9 @@ public:
     [[nodiscard]] bool contains(const T& value) const
     {
         const json& arr = this->ref();
+        const json jsonValue = value;
         return std::any_of(arr.begin(), arr.end(),
-                           [&value](const json& elem) { return elem.template get<T>() == value; });
+                           [&jsonValue](const json& elem) { return elem == jsonValue; });
     }
 
     /// @brief Appends a value if it is not already present.
@@ -781,8 +785,12 @@ public:
     {
         this->checkIndex(index);
         const json& arr = this->ref();
+        const json jsonValue = value;
+        if (arr[index] == jsonValue) {
+            return true;
+        }
         for (size_t i = 0; i < arr.size(); i++) {
-            if (i != index && arr[i].template get<T>() == value) {
+            if (i != index && arr[i] == jsonValue) {
                 return false;
             }
         }
@@ -791,6 +799,7 @@ public:
     }
 
     /// @brief Replaces all elements with values from an iterator range, skipping duplicates.
+    /// @pre The range must not refer to this array.
     /// @return True if every value was added, false if any duplicates were skipped.
     template <typename InputIt>
     bool assign(InputIt first, InputIt last)

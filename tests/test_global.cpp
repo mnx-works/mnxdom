@@ -176,18 +176,21 @@ TEST(Global, LyricLineOrderUnique)
     EXPECT_TRUE(validation::schemaValidate(doc));
 }
 
-TEST(Global, LyricLineOrderDuplicatesInInput)
+TEST(Global, UniqueArrayMixedJsonTypes)
 {
-    std::istringstream input(R"({
-        "mnx": {"version": 1},
-        "global": {"lyrics": {"lineOrder": ["1", "2", "1"]}, "measures": []},
-        "parts": []
-    })");
-    Document doc(input);
-    auto lineOrder = doc.global().lyrics().value().lineOrder();
-    EXPECT_EQ(lineOrder.size(), 3u) << "wrapping existing JSON does not remove duplicates";
+    auto root = std::make_shared<json>(json::parse(R"([1, "2", 1.5])"));
+    UniqueArray<std::string> strings(root, json_pointer{});
+    EXPECT_TRUE(strings.contains("2"));
+    EXPECT_FALSE(strings.contains("1")) << "a number never matches a string";
+    EXPECT_TRUE(strings.push_back("3"));
+    EXPECT_FALSE(strings.push_back("2"));
+    EXPECT_TRUE(strings.set(1, "4")) << "existing elements of other types do not block a write";
 
-    EXPECT_FALSE(validation::schemaValidate(doc)) << "schema should reject duplicate lineOrder values";
+    auto numbers = std::make_shared<json>(json::parse(R"([1.5, "1"])"));
+    UniqueArray<int> ints(numbers, json_pointer{});
+    EXPECT_FALSE(ints.contains(1)) << "1.5 must not be truncated to 1";
+    EXPECT_TRUE(ints.push_back(1));
+    EXPECT_FALSE(ints.push_back(1));
 }
 
 TEST(Global, EndingTest)

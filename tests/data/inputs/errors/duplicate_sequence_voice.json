@@ -75,7 +75,7 @@
                     "sources": [
                         {
                             "part": "P1",
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ]
                 }
@@ -89,7 +89,7 @@
                     "sources": [
                         {
                             "part": "P1",
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ]
                 }

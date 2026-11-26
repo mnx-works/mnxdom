@@ -192,6 +192,26 @@ flattenLayoutStaves(const Layout& layout)
 }
 
 /**
+ * @struct LayoutSpanLabelRef
+ * @brief A value-type summary of a layout::LabelRef, independent of the source document.
+ */
+struct LayoutSpanLabelRef
+{
+    LabelRefType ref = LabelRefType::Auto;  ///< Which part name to display.
+    std::optional<std::string> target;      ///< The ID of the part whose name is displayed.
+
+    /// @brief Default constructor.
+    LayoutSpanLabelRef() = default;
+
+    /// @brief Copies the values of a layout::LabelRef.
+    /// @param src The label ref to copy.
+    explicit LayoutSpanLabelRef(const layout::LabelRef& src)
+        : ref(src.ref()), target(src.target())
+    {
+    }
+};
+
+/**
  * @struct LayoutSpan
  * @brief Describes a visual span in a flattened MNX layout.
  *
@@ -262,10 +282,18 @@ struct LayoutSpan
     /**
      * @brief Optional label reference associated with this span.
      *
-     * When present, this refers to a shared or externally defined
-     * label and is used instead of #label.
+     * For staff spans, this corresponds to Staff::labelRef. For group
+     * spans, it corresponds to Group::labelRef. When present, it refers
+     * to a part's name or shortName. MNX recommends it over #label to avoid
+     * duplicating part names; the specification does not define precedence
+     * if both are present.
+     *
+     * For staff spans whose label ref omits a target, the target is set
+     * to the part of the staff's first source, as specified by MNX. For
+     * group spans, the target is as encoded; MNX leaves an omitted group
+     * target to the consuming application.
      */
-    std::optional<LabelRef> labelref;
+    std::optional<LayoutSpanLabelRef> labelRef;
 
     /**
      * @brief Layout symbol associated with this span.
@@ -357,7 +385,13 @@ buildLayoutSpans(const mnx::Layout& layout)
                 span.endIndex   = i;
                 span.symbol     = s.symbol();
                 span.label      = s.label();
-                span.labelref   = s.labelref();
+                if (const auto labelRef = s.labelRef()) {
+                    LayoutSpanLabelRef value(*labelRef);
+                    if (!value.target && !s.sources().empty()) {
+                        value.target = s.sources()[0].part(); // MNX fallback for staves
+                    }
+                    span.labelRef = std::move(value);
+                }
                 span.barlineOverride = StaffGroupBarlineOverride::None;
                 span.sources    = util::analyzeLayoutStaffVoices(s);
 
@@ -384,6 +418,9 @@ buildLayoutSpans(const mnx::Layout& layout)
                 span.endIndex   = cLast;
                 span.symbol     = g.symbol();
                 span.label      = g.label();
+                if (const auto labelRef = g.labelRef()) {
+                    span.labelRef = LayoutSpanLabelRef(*labelRef);
+                }
                 span.barlineOverride = g.calcBarlineOverride();
 
                 tagged.push_back({ std::move(span), SortKey{cFirst, depth, encounter++} });
@@ -431,7 +468,11 @@ buildLayoutSpans(const mnx::Layout& layout)
 /// enclosing group span when spans are ordered by start index and depth. This mirrors the explicit
 /// layout semantics: group spans live at the container depth, and staff spans are one level deeper
 /// (so single-staff parts still produce staff spans at depth 1). For single-staff parts, only a
-/// staff span is produced, and the part name is applied directly to that staff.
+/// staff span is produced, and the part's label is applied directly to that staff.
+///
+/// The part's label is a #LayoutSpan::labelRef with LabelRefType::Auto targeting the part's id,
+/// so consuming software chooses between the part's name and shortName. If the part has no id,
+/// the label ref cannot identify it, so #LayoutSpan::label is set to the part's name instead.
 ///
 /// Parts that declare zero staves are ignored.
 ///
@@ -448,6 +489,16 @@ buildDefaultLayoutSpans(const Array<Part>& parts)
         if (numStaves == 0) {
             continue;
         }
+        const auto applyPartLabel = [&](LayoutSpan& span) {
+            if (const auto partId = part.id()) {
+                LayoutSpanLabelRef labelRef;
+                labelRef.ref = LabelRefType::Auto;
+                labelRef.target = partId;
+                span.labelRef = std::move(labelRef);
+            } else {
+                span.label = part.name();
+            }
+        };
         size_t staffDepth = 1;
         bool staffNameNeeded = true;
         if (numStaves > 1) {
@@ -457,7 +508,7 @@ buildDefaultLayoutSpans(const Array<Part>& parts)
             groupSpan.symbol = LayoutSymbol::Brace;
             groupSpan.startIndex = staffIdx;
             groupSpan.endIndex = staffIdx + numStaves - 1;
-            groupSpan.label = part.name();
+            applyPartLabel(groupSpan);
             groupSpan.barlineOverride = StaffGroupBarlineOverride::Unified;
             staffNameNeeded = false;
             result.emplace_back(std::move(groupSpan));
@@ -471,7 +522,7 @@ buildDefaultLayoutSpans(const Array<Part>& parts)
             staffSpan.symbol = LayoutSymbol::NoSymbol;
             staffSpan.barlineOverride = StaffGroupBarlineOverride::None;
             if (staffNameNeeded) {
-                staffSpan.label = part.name();
+                applyPartLabel(staffSpan);
             }
             result.emplace_back(std::move(staffSpan));
             staffIdx++;

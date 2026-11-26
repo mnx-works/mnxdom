@@ -682,7 +682,7 @@
                         {
                             "part": "P1",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -692,7 +692,7 @@
                         {
                             "part": "P2",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -702,7 +702,7 @@
                         {
                             "part": "P3",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -712,7 +712,7 @@
                         {
                             "part": "P4",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -727,7 +727,7 @@
                         {
                             "part": "P1",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -737,7 +737,7 @@
                         {
                             "part": "P2",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -747,7 +747,7 @@
                         {
                             "part": "P3",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -757,7 +757,7 @@
                         {
                             "part": "P4",
                             "staff": 1,
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -772,7 +772,7 @@
                         {
                             "part": "P1",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -782,7 +782,7 @@
                         {
                             "part": "P2",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -792,7 +792,7 @@
                         {
                             "part": "P3",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -802,7 +802,7 @@
                         {
                             "part": "P4",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -817,7 +817,7 @@
                         {
                             "part": "P1",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -827,7 +827,7 @@
                         {
                             "part": "P2",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -837,7 +837,7 @@
                         {
                             "part": "P3",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"
@@ -847,7 +847,7 @@
                         {
                             "part": "P4",
                             "staff": 1,
-                            "labelref": "shortName"
+                            "labelRef": {"ref": "shortName"}
                         }
                     ],
                     "type": "staff"

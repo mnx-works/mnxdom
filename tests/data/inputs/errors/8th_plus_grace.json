@@ -197,7 +197,7 @@
                     "sources": [
                         {
                             "part": "P1",
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"
@@ -211,7 +211,7 @@
                     "sources": [
                         {
                             "part": "P1",
-                            "labelref": "name"
+                            "labelRef": {"ref": "name"}
                         }
                     ],
                     "type": "staff"

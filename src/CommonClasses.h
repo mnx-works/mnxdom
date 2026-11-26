@@ -445,7 +445,7 @@ public:
  * @class IdPair
  * @brief Represents a start and end id pair.
  */
-class IdPair : public Object
+class IdPair : public PlainObject
 {
 public:
     /// @brief initializer class for #IdPair
@@ -457,7 +457,7 @@ public:
 
     /// @brief Constructor for existing id pairs
     IdPair(const std::shared_ptr<json>& root, json_pointer pointer)
-        : Object(root, pointer)
+        : PlainObject(root, pointer)
     {
     }
     
@@ -467,7 +467,7 @@ public:
     /// @param startId The start id.
     /// @param endId The end id.
     IdPair(Base& parent, std::string_view key, const std::string& startId, const std::string& endId)
-        : Object(parent, key)
+        : PlainObject(parent, key)
     {
         set_start(startId);
         set_end(endId);

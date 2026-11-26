@@ -95,7 +95,7 @@
                             "sources": [
                                 {
                                     "part": "P1",
-                                    "labelref": "name"
+                                    "labelRef": {"ref": "name"}
                                 }
                             ],
                             "type": "staff",
@@ -111,7 +111,8 @@
                                         }
                                     ],
                                     "type": "staff",
-                                    "label": "S1"
+                                    "label": "S1",
+                                    "labelRef": {"ref": "shortName"}
                                 },
                                 {
                                     "sources": [
@@ -126,7 +127,8 @@
                             ],
                             "type": "group",
                             "symbol": "brace",
-                            "label": "B"
+                            "label": "B",
+                            "labelRef": {}
                         },
                         {
                             "content": [],
@@ -138,7 +140,7 @@
                                 {
                                     "part": "P3",
                                     "staff": 1,
-                                    "labelref": "name"
+                                    "labelRef": {"ref": "name"}
                                 }
                             ],
                             "type": "staff",
@@ -147,7 +149,8 @@
                     ],
                     "type": "group",
                     "symbol": "bracket",
-                    "label": "A"
+                    "label": "A",
+                    "labelRef": {"ref": "shortName", "target": "P1"}
                 }
             ],
             "id": "S0-ScrVw"

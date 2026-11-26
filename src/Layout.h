@@ -35,6 +35,30 @@ namespace layout {
 class Group;
 class Staff;
 
+/**
+ * @class LabelRef
+ * @brief Displays a part's name or shortName as the label for a staff, staff source, or staff group.
+ *
+ * Using a label ref instead of a hard-coded label avoids duplicating a part's name in an MNX document.
+ * Any label ref that is provided should be displayed; consuming software decides how best to position it.
+ */
+class LabelRef : public Object
+{
+public:
+    using Object::Object;
+
+    MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LabelRefType, ref, LabelRefType::Auto); ///< Which name to display.
+
+    /// @brief The ID of the part whose name is displayed.
+    ///
+    /// If omitted on a staff source, use the source's own part. If omitted on a staff, use the part of
+    /// the staff's first source. If omitted on a staff group, consuming software determines the target
+    /// according to its own algorithm. (MNX recommends always supplying the target for staff groups.)
+    MNX_OPTIONAL_PROPERTY(std::string, target);
+
+    inline static constexpr std::string_view JsonSchemaTypeName = "label-ref";     ///< required for mapping
+};
+
 class LayoutContentObject : public ContentObject<LayoutContentObject>
 {
 public:
@@ -87,7 +111,7 @@ public:
     static Required make(const std::string& partId) { return { partId }; }
 
     MNX_OPTIONAL_PROPERTY(std::string, label);          ///< Text to appear to the left of the staff
-    MNX_OPTIONAL_PROPERTY(LabelRef, labelref);          ///< The labelref to use (rather than label)
+    MNX_OPTIONAL_CHILD(LabelRef, labelRef);             ///< Part name to render to the left of the staff (rather than label). If its target is omitted, use this source's part.
     MNX_REQUIRED_PROPERTY(std::string, part);           ///< Id of the part to draw from
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(int, staff, 1);  ///< The staff number within the part.
     MNX_OPTIONAL_PROPERTY(StemDirection, stem);         ///< The stem direction for this staff source.
@@ -116,7 +140,7 @@ public:
     }
 
     MNX_OPTIONAL_PROPERTY(std::string, label);                  ///< Label to be rendered to the left of the staff
-    MNX_OPTIONAL_PROPERTY(LabelRef, labelref);                  ///< The labelref to use (rather than label)
+    MNX_OPTIONAL_CHILD(LabelRef, labelRef);                     ///< Part name to render to the left of the staff (rather than label). If its target is omitted, use the part of the first source.
     MNX_REQUIRED_CHILD(Array<StaffSource>, sources);            ///< The sources for this staff.
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LayoutSymbol, symbol, LayoutSymbol::NoSymbol); ///< The symbol down the left side.
 
@@ -147,6 +171,7 @@ public:
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(StaffGroupBarlineStyle, barlineStyle, StaffGroupBarlineStyle::Instrument); ///< barline override settings
     MNX_REQUIRED_CHILD(LayoutContent, content);      ///< Required child containing the layout content (groups and staves).
     MNX_OPTIONAL_PROPERTY(std::string, label);      ///< Label to be rendered to the left of the group
+    MNX_OPTIONAL_CHILD(LabelRef, labelRef);         ///< Part name to render to the left of the group (rather than label).
     MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(LayoutSymbol, symbol, LayoutSymbol::NoSymbol); ///< The symbol down the left side.
 
     /// @brief Calculates whether all staves in this group subtree use the same part id.

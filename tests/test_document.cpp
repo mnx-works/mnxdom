@@ -189,3 +189,36 @@ TEST(Document, MissingRequiredFields)
     EXPECT_EQ(part.staves(), 3) << "detached instance should reflect changed value from doc";
     EXPECT_TRUE(validation::schemaValidate(doc)) << "after adding comment, schema should validate";
 }
+
+namespace {
+template <typename T>
+concept HasGlobalAttributes = requires(const T& t) {
+    t._c();
+    t._x();
+    t.id();
+};
+} // namespace
+
+TEST(Document, GlobalAttributes)
+{
+    // Schema objects without global-attrs do not expose _c, _x, or id.
+    static_assert(!HasGlobalAttributes<PlainObject>);
+    static_assert(!HasGlobalAttributes<IdPair>);
+    static_assert(!HasGlobalAttributes<Dictionary<part::KitComponent>>);
+    static_assert(std::is_same_v<decltype(std::declval<const Object&>()._x()), std::optional<PlainObject>>);
+    static_assert(HasGlobalAttributes<Object>);
+    static_assert(std::is_default_constructible_v<PlainObject>);
+    static_assert(std::is_default_constructible_v<Object>); // implicit; calls PlainObject()
+    EXPECT_TRUE(Object().empty()); // detached, empty JSON object
+    static_assert(HasGlobalAttributes<Part>);
+
+    Document doc;
+    auto part = doc.parts().append();
+    EXPECT_FALSE(part.getExtension("vendor"));
+    part.setExtension("vendor", json{{"key", 1}});
+    ASSERT_TRUE(part._x());
+    EXPECT_EQ(part.getExtension("vendor"), (json{{"key", 1}}));
+    part.clearExtension("vendor");
+    EXPECT_FALSE(part.getExtension("vendor"));
+    EXPECT_FALSE(part._x()); // empty _x is removed
+}

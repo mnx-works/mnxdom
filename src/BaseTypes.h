@@ -75,6 +75,7 @@ inline const int MNX_VERSION = getMnxSchemaVersion();
 using json = nlohmann::json;                ///< JSON class for MNX
 using json_pointer = json::json_pointer;    ///< JSON pointer class for MNX
 
+class PlainObject;
 class Object;
 class Document;
 class Base;
@@ -258,7 +259,7 @@ public:
     /// @param indents Number of indents or -1 for no indents 
     [[nodiscard]] std::string dump(int indents = -1) const
     {
-        return ref().dump(indents);
+        return jsonRef().dump(indents);
     }
 
     /// @brief Returns the parent object for this node
@@ -285,7 +286,7 @@ public:
     [[nodiscard]] Document document() const;
 
     /// @brief Returns true if the object is empty.
-    [[nodiscard]] bool empty() const { return ref().empty(); }
+    [[nodiscard]] bool empty() const { return jsonRef().empty(); }
 
 protected:
     /**
@@ -293,13 +294,13 @@ protected:
      *
      * @return A reference to the JSON node.
      */
-    [[nodiscard]] json& ref() const { return resolve_pointer(); }
+    [[nodiscard]] json& jsonRef() const { return resolve_pointer(); }
 
     /**
      * @brief Access the JSON node for modification.
      * @return A reference to the JSON node.
      */
-    [[nodiscard]] json& ref() { return resolve_pointer(); }
+    [[nodiscard]] json& jsonRef() { return resolve_pointer(); }
 
     /// @brief Returns the root.
     [[nodiscard]] const std::shared_ptr<json>& root() const { return m_root; }
@@ -314,14 +315,14 @@ protected:
 
     /**
      * @brief Construct a Base reference as a child inside a parent node.
-     * @param jsonRef Rvalue reference to a new JSON object or array.
+     * @param initialJson Rvalue reference to a new JSON object or array.
      * @param parent Reference to the parent instance.
      * @param key The key under which the new node is stored.
      */
-    Base(json&& jsonRef, Base& parent, std::string_view key)
+    Base(json&& initialJson, Base& parent, std::string_view key)
         : m_root(parent.m_root), m_pointer(parent.m_pointer / std::string(key))
     {
-        (*m_root)[m_pointer] = std::move(jsonRef);
+        (*m_root)[m_pointer] = std::move(initialJson);
     }
 
     /**
@@ -357,7 +358,7 @@ protected:
         static_assert(std::is_base_of_v<Base, T>, "template type must be derived from Base");
 
         json_pointer childPointer = m_pointer / std::string(key);
-        (*m_root)[childPointer] = value.ref();
+        (*m_root)[childPointer] = value.jsonRef();
         return T(m_root, childPointer);
     }
 
@@ -398,7 +399,7 @@ private:
 
         const json& node = (*m_root).at(pointer);
 
-        if constexpr (std::is_base_of_v<Object, T>) {
+        if constexpr (std::is_base_of_v<PlainObject, T>) {
             if (!node.is_object()) {
                 throw std::runtime_error("Expected an object for: " + pointer.to_string());
             }
@@ -431,48 +432,63 @@ private:
 using ErrorHandler = std::function<void(const std::string& message, const Base& location)>;
 
 /**
- * @brief Represents an MNX object, encapsulating property access.
+ * @brief Represents a JSON object without the MNX global attributes.
+ *
+ * Use this for schema objects that do not include `global-attrs`, such as
+ * id pairs, dictionaries, and vendor extensions. Most MNX objects derive from #Object instead.
  */
-class Object : public Base
+class PlainObject : public Base
 {
 public:
     /// @brief Constructor fresh document or detached instance
-    Object() : Object(std::make_shared<json>(json::object()), json_pointer{})
+    PlainObject() : PlainObject(std::make_shared<json>(json::object()), json_pointer{})
     {}
-        
-    /// @brief Wraps an Object class around an existing JSON object node
+
+    /// @brief Wraps a PlainObject class around an existing JSON object node
     /// @param root Reference to the document root
     /// @param pointer The json_pointer value for the node
-    Object(const std::shared_ptr<json>& root, json_pointer pointer) : Base(root, pointer)
+    PlainObject(const std::shared_ptr<json>& root, json_pointer pointer) : Base(root, pointer)
     {
-        if (!ref().is_object()) {
-            throw std::invalid_argument("mnx::Object must wrap a JSON object.");
+        if (!jsonRef().is_object()) {
+            throw std::invalid_argument("mnx::PlainObject must wrap a JSON object.");
         }
     }
 
-    /// @brief Creates a new Object class as a child of a JSON node
+    /// @brief Creates a new PlainObject class as a child of a JSON node
     /// @param parent The parent class instance
     /// @param key The JSON key to use for embedding in parent.
-    Object(Base& parent, std::string_view key)
+    PlainObject(Base& parent, std::string_view key)
         : Base(json::object(), parent, key) {}
 
+private:
+    friend class Object; // allows Object's vendor-extension helpers to access _x
+};
+
+/**
+ * @brief Represents an MNX object with the global attributes (`_c`, `_x`, `id`).
+ */
+class Object : public PlainObject
+{
+public:
+    using PlainObject::PlainObject;
+
     MNX_OPTIONAL_PROPERTY(std::string, _c);     ///< An optional comment. This serves a similar function as XML or HTML comments.
-    MNX_OPTIONAL_CHILD(Object, _x);             ///< Vendor-defined dictionary.
+    MNX_OPTIONAL_CHILD(PlainObject, _x);        ///< Vendor-defined dictionary.
     MNX_OPTIONAL_PROPERTY(std::string, id);     ///< Uniquely identifies the object
 
     /// @brief Sets a vendor extension value in `_x`, creating `_x` when needed.
     void setExtension(const std::string_view key, const json& value)
     {
         auto extensions = ensure__x();
-        extensions.ref()[key] = value;
+        extensions.jsonRef()[key] = value;
     }
 
     /// @brief Gets a vendor extension value from `_x`.
     [[nodiscard]] std::optional<json> getExtension(const std::string_view key) const
     {
         if (auto extensions = _x()) {
-            const auto it = extensions->ref().find(key);
-            if (it != extensions->ref().end()) {
+            const auto it = extensions->jsonRef().find(key);
+            if (it != extensions->jsonRef().end()) {
                 return *it;
             }
         }
@@ -483,7 +499,7 @@ public:
     void clearExtension(const std::string_view key)
     {
         if (auto extensions = _x()) {
-            extensions->ref().erase(key);
+            extensions->jsonRef().erase(key);
             if (extensions->empty()) {
                 clear__x();
             }
@@ -511,21 +527,21 @@ public:
     /// @brief Implicit conversion to simple type
     operator T() const
     {
-        return ref().template get<T>();
+        return jsonRef().template get<T>();
     }
 
     /// @brief Allow assignment to underlying json reference
     /// @param src The simple type to assign.
     SimpleType& operator=(const T& src)
     {
-        ref() = src;
+        jsonRef() = src;
         return *this;
     }
 
     /// @brief Equality comparison with value type
     [[nodiscard]] bool operator==(const T& src) const
     {
-        return src == ref().template get<T>();
+        return src == jsonRef().template get<T>();
     }
 };
 
@@ -577,7 +593,7 @@ public:
     /// @param pointer The json_pointer value for the node
     Array(const std::shared_ptr<json>& root, json_pointer pointer) : Base(root, pointer)
     {
-        if (!ref().is_array()) {
+        if (!jsonRef().is_array()) {
             throw std::invalid_argument("mnx::Array must wrap a JSON array.");
         }
     }
@@ -589,13 +605,13 @@ public:
         : Base(json::array(), parent, key) {}
 
     /** @brief Get the size of the array. */
-    [[nodiscard]] size_t size() const { return ref().size(); }
+    [[nodiscard]] size_t size() const { return jsonRef().size(); }
 
     /** @brief Check if the array is empty. */
-    [[nodiscard]] bool empty() const { return ref().empty(); }
+    [[nodiscard]] bool empty() const { return jsonRef().empty(); }
 
     /** @brief Clear all elements. */
-    void clear() { ref().clear(); }
+    void clear() { jsonRef().clear(); }
 
     /** @brief Direct getter for a particular element. */
     [[nodiscard]] T at(size_t index) const
@@ -640,7 +656,7 @@ public:
     std::enable_if_t<!std::is_base_of_v<Base, U>, void>
     push_back(const U& value)
     {
-        ref().push_back(value);
+        jsonRef().push_back(value);
     }
 
     /** @brief Replace all elements with values from an iterator range. (Available only for primitive types)
@@ -650,9 +666,9 @@ public:
     std::enable_if_t<!std::is_base_of_v<Base, U>, void>
     assign(InputIt first, InputIt last)
     {
-        ref() = json::array();
+        jsonRef() = json::array();
         for (; first != last; ++first) {
-            ref().push_back(*first);
+            jsonRef().push_back(*first);
         }
     }
 
@@ -668,7 +684,7 @@ public:
     void erase(size_t index)
     {
         checkIndex(index);
-        ref().erase(ref().begin() + index);
+        jsonRef().erase(jsonRef().begin() + index);
     }
 
     /// @brief Converts the Array to an owning std::vector.
@@ -697,8 +713,8 @@ protected:
     /// @throws std::out_of_range if the index is out of range
     void checkIndex(size_t index) const
     {
-        assert(index < ref().size());
-        if (index >= ref().size()) {
+        assert(index < jsonRef().size());
+        if (index >= jsonRef().size()) {
             throw std::out_of_range("Index out of range");
         }
     }
@@ -708,12 +724,12 @@ private:
     U appendImpl(Args&&... args)
     {
         static_assert(std::is_base_of_v<Base, U>, "Array::appendImpl requires a Base-derived element type.");
-        if constexpr (std::is_base_of_v<Object, U>) {
-            ref().push_back(json::object());
+        if constexpr (std::is_base_of_v<PlainObject, U>) {
+            jsonRef().push_back(json::object());
         } else {
-            ref().push_back(json::array());
+            jsonRef().push_back(json::array());
         }
-        return U(*this, std::to_string(ref().size() - 1), std::forward<Args>(args)...);
+        return U(*this, std::to_string(jsonRef().size() - 1), std::forward<Args>(args)...);
     }
 
     template <typename, auto>
@@ -761,7 +777,7 @@ public:
     /// @brief Returns true if the array contains the value.
     [[nodiscard]] bool contains(const T& value) const
     {
-        const json& arr = this->ref();
+        const json& arr = this->jsonRef();
         const json jsonValue = value;
         return std::any_of(arr.begin(), arr.end(),
                            [&jsonValue](const json& elem) { return elem == jsonValue; });
@@ -774,7 +790,7 @@ public:
         if (contains(value)) {
             return false;
         }
-        this->ref().push_back(value);
+        this->jsonRef().push_back(value);
         return true;
     }
 
@@ -784,7 +800,7 @@ public:
     bool set(size_t index, const T& value)
     {
         this->checkIndex(index);
-        const json& arr = this->ref();
+        const json& arr = this->jsonRef();
         const json jsonValue = value;
         if (arr[index] == jsonValue) {
             return true;
@@ -794,7 +810,7 @@ public:
                 return false;
             }
         }
-        this->ref()[index] = value;
+        this->jsonRef()[index] = value;
         return true;
     }
 
@@ -804,7 +820,7 @@ public:
     template <typename InputIt>
     bool assign(InputIt first, InputIt last)
     {
-        this->ref() = json::array();
+        this->jsonRef() = json::array();
         bool allAdded = true;
         for (; first != last; ++first) {
             if (!push_back(*first)) {
@@ -923,7 +939,7 @@ struct EnumStringMapping
  * @brief Represents an MNX dictionary, where each key is a user-defined string.
  */
 template <typename T>
-class Dictionary : public Object,
+class Dictionary : public PlainObject,
                    public detail::DictionaryAppendOverloads<Dictionary<T>, T>
 {
     static_assert(std::is_arithmetic_v<T> || std::is_same_v<T, std::string> ||
@@ -947,7 +963,7 @@ private:
         void update_pair() const
         {
             m_pair.reset();
-            if (m_it != m_ptr->ref().end()) {
+            if (m_it != m_ptr->jsonRef().end()) {
                 m_pair.emplace(m_it.key(), m_ptr->valueForKey(m_it.key()));
             }
         }
@@ -980,7 +996,7 @@ public:
     /// @param root Reference to the document root
     /// @param pointer The json_pointer value for the node
     Dictionary(const std::shared_ptr<json>& root, json_pointer pointer)
-        : Object(root, pointer)
+        : PlainObject(root, pointer)
     {
     }
 
@@ -988,16 +1004,16 @@ public:
     /// @param parent The parent class instance
     /// @param key The JSON key to use for embedding in parent.
     Dictionary(Base& parent, std::string_view key)
-        : Object(parent, key) {}
+        : PlainObject(parent, key) {}
 
     /** @brief Get the size of the array. */
-    [[nodiscard]] size_t size() const { return ref().size(); }
+    [[nodiscard]] size_t size() const { return jsonRef().size(); }
 
     /** @brief Check if the array is empty. */
-    [[nodiscard]] bool empty() const { return ref().empty(); }
+    [[nodiscard]] bool empty() const { return jsonRef().empty(); }
 
     /** @brief Clear all elements. */
-    void clear() { ref().clear(); }
+    void clear() { jsonRef().clear(); }
 
     /** @brief Direct getter for a particular element.
      *  @throws std::out_of_range when the key does not exist.
@@ -1010,13 +1026,13 @@ public:
     std::enable_if_t<!std::is_base_of_v<Base, U>, void>
     emplace(std::string_view key, const U& value)
     {
-        ref()[key] = value;
+        jsonRef()[key] = value;
     }
 
     /** @brief Remove an element at a given key. */
     void erase(std::string_view key)
     {
-        ref().erase(key);
+        jsonRef().erase(key);
     }
 
     /// @brief Finds an element by key and returns an iterator.
@@ -1024,8 +1040,8 @@ public:
     /// @return Iterator to the found element or end() if not found.
     [[nodiscard]] auto find(std::string_view key)
     {
-        auto it = ref().find(key);
-        return (it != ref().end()) ? iterator(this, it) : end();
+        auto it = jsonRef().find(key);
+        return (it != jsonRef().end()) ? iterator(this, it) : end();
     }
 
     /// @brief Finds an element by key and returns a const iterator.
@@ -1033,8 +1049,8 @@ public:
     /// @return Const iterator to the found element or end() if not found.
     [[nodiscard]] auto find(std::string_view key) const
     {
-        auto it = ref().find(key);
-        return (it != ref().end()) ? const_iterator(this, it) : end();
+        auto it = jsonRef().find(key);
+        return (it != jsonRef().end()) ? const_iterator(this, it) : end();
     }
 
     /// @brief Returns true if the key exists in in the dictionary.
@@ -1043,16 +1059,16 @@ public:
     { return find(key) != end(); }
 
     /// @brief Returns an iterator to the beginning of the dictionary.
-    [[nodiscard]] auto begin() { return iterator(this, ref().begin()); }
+    [[nodiscard]] auto begin() { return iterator(this, jsonRef().begin()); }
 
     /// @brief Returns an iterator to the end of the dictionary.
-    [[nodiscard]] auto end() { return iterator(this, ref().end()); }
+    [[nodiscard]] auto end() { return iterator(this, jsonRef().end()); }
 
     /// @brief Returns a const iterator to the beginning of the dictionary.
-    [[nodiscard]] auto begin() const { return const_iterator(this, ref().begin()); }
+    [[nodiscard]] auto begin() const { return const_iterator(this, jsonRef().begin()); }
 
     /// @brief Returns a const iterator to the end of the dictionary.
-    [[nodiscard]] auto end() const { return const_iterator(this, ref().end()); }
+    [[nodiscard]] auto end() const { return const_iterator(this, jsonRef().end()); }
 
 private:
     /// @brief Returns the dictionary element for the given key.
@@ -1069,10 +1085,10 @@ private:
     U appendImpl(std::string_view key, Args&&... args)
     {
         static_assert(std::is_base_of_v<Base, U>, "Dictionary::appendImpl requires a Base-derived element type.");
-        if constexpr (std::is_base_of_v<Object, U>) {
-            ref()[key] = json::object();
+        if constexpr (std::is_base_of_v<PlainObject, U>) {
+            jsonRef()[key] = json::object();
         } else {
-            ref()[key] = json::array();
+            jsonRef()[key] = json::array();
         }
         return U(*this, key, std::forward<Args>(args)...);
     }

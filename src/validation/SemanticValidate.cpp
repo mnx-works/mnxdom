@@ -106,7 +106,7 @@ public:
 
     void addError(const std::string& message, const Base& location)
     {
-        result.errors.emplace_back(location.pointer(), location.ref(), message);
+        result.errors.emplace_back(location.pointer(), location.jsonRef(), message);
     }
 
 private:
@@ -167,7 +167,7 @@ void SemanticValidator::validateExtenders(const sequence::Event& event)
         const bool sameVoice = samePart && sourceSequence.voice() && targetSequence.voice()
             && !sourceSequence.voice()->empty() && sourceSequence.voice() == targetSequence.voice();
         if (sameSequence || sameVoice) {
-            result.warnings.emplace_back(extender->pointer(), extender->ref(),
+            result.warnings.emplace_back(extender->pointer(), extender->jsonRef(),
                 "Lyric extender target \"" + targetId + "\" has a syllable in the same lyric line \"" + lineId + "\".");
         }
     }
@@ -840,6 +840,13 @@ void SemanticValidator::validateParts()
 void SemanticValidator::validateLayouts()
 {
     if (auto layouts = document.layouts()) {  // layouts are *not* required in MNX
+        const auto validateLabelRef = [&](const std::optional<mnx::layout::LabelRef>& labelRef) {
+            if (labelRef) {
+                if (const auto target = labelRef->target()) {
+                    tryGetValue<mnx::Part>(target.value(), labelRef.value()); // adds error if part not found.
+                }
+            }
+        };
         for (const auto layout : layouts.value()) {
             auto validateContent = [&](auto&& self, const mnx::ContentArray<mnx::layout::LayoutContentObject>& content) -> void {
                 for (const auto element : content) {
@@ -848,11 +855,12 @@ void SemanticValidator::validateLayouts()
                         if (group.content().empty()) {
                             addError("Layout group contains no content.", group);
                         }
+                        validateLabelRef(group.labelRef());
                         self(self, group.content());
                     } else if (element.type() == mnx::layout::Staff::ContentTypeValue) {
                         auto staff = element.get<mnx::layout::Staff>();
                         bool hasEmptyPartId = false;
-                        /// @todo validate "labelref"?
+                        validateLabelRef(staff.labelRef());
                         for (const auto source : staff.sources()) {
                             if (source.part().empty()) {
                                 addError("Layout staff \"" + staff.id_or("<no-id>") + "\" has empty part id in source.", source);
@@ -867,7 +875,7 @@ void SemanticValidator::validateLayouts()
                                         + std::to_string(staffNum) + ") for part " + source.part(), source);
                                 }
                             }
-                            /// @todo validate "labelref"?
+                            validateLabelRef(source.labelRef());
                             /// @todo validate "voice"?
                         }
                         if (!hasEmptyPartId && !util::analyzeLayoutStaffVoices(staff)) {

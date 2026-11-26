@@ -61,6 +61,9 @@ that JSON Schema cannot express.
   method names for JSON properties.
 - Prefer the existing `MNX_*_PROPERTY`, child, array, and content macros when
   adding model members so accessors behave consistently.
+- Derive schema objects that include `global-attrs` (`_c`, `_x`, `id`) from
+  `Object` (or `ArrayElementObject`/`ContentObject`). Derive objects without
+  `global-attrs`, such as `id-pair` and dictionaries, from `PlainObject`.
 - Preserve the lightweight-wrapper model. Return DOM objects by value; do not
   introduce references to temporary wrapper objects.
 - Use `MNX_OPTIONAL_PROPERTY_WITH_DEFAULT` when the MNX specification defines a

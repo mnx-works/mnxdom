@@ -128,6 +128,29 @@
     static_assert(true, "") // require semicolon after macro
 
 /**
+ * @brief creates an optional property with a simple type that can be read but not set through the property.
+ *
+ * Use it for a property whose value must stay consistent with state outside the JSON, so that only the code
+ * that maintains that state writes it. For example, `id` is set by #mnx::Document::assignId, which also maps it.
+ *
+ * It creates the following class methods.
+ *
+ * - `NAME()` returns a std::optional<TYPE> containing the value of the property.
+ * - `NAME_or(value)` returns the property value if it exists or the input value if not.
+ *
+ * @param TYPE the type of the property
+ * @param NAME the name of the property (no quotes)
+ */
+#define MNX_READ_ONLY_OPTIONAL_PROPERTY(TYPE, NAME) \
+    [[nodiscard]] std::optional<TYPE> NAME() const { \
+        return jsonRef().contains(#NAME) ? std::optional<TYPE>(jsonRef()[#NAME].get<TYPE>()) : std::nullopt; \
+    } \
+    [[nodiscard]] TYPE NAME##_or(const TYPE& defaultVal) const { \
+        return jsonRef().contains(#NAME) ? jsonRef()[#NAME].get<TYPE>() : defaultVal; \
+    } \
+    static_assert(true, "") // require semicolon after macro
+
+/**
  * @brief creates an optional property with a simple type.
  *
  * It creates the following class methods.

@@ -142,6 +142,9 @@ private:
     /// @brief Not really shared, but std::unique_ptr creates unacceptable dependencies in the headers
     std::shared_ptr<util::EntityMap> m_entityMapping;
 
+    /// @brief Returns the entity mapping, creating an empty one if there is none.
+    util::EntityMap& ensureEntityMap();
+
 public:
     /**
      * @brief Constructs an empty MNX document. The resulting instance contains all
@@ -249,13 +252,27 @@ public:
     [[nodiscard]] const util::EntityMap& getEntityMap() const
     {
         MNX_ASSERT_IF(!m_entityMapping) {
-            throw std::logic_error("Call buildEntityMapFromIndex before calling getEntityMap.");
+            throw std::logic_error("Call buildEntityMapFromIndex or assignId before calling getEntityMap.");
         }
         return *m_entityMapping;
     }
 
     /// @brief Returns whether an entity mapping currently exists
     [[nodiscard]] bool hasEntityMap() const { return static_cast<bool>(m_entityMapping); }
+
+    /// @brief Sets the id of @p object and adds it to the entity mapping, creating the mapping if there is none.
+    ///
+    /// This is the only way to set an id through the API, so every id set while building a document is mapped and
+    /// its objects can be looked up with #getEntityMap before the document is validated. The object is mapped as type @p T, so pass it as its concrete type.
+    /// The mapping records the object's location, which stays valid only while no array that contains the
+    /// object has elements inserted or removed ahead of it. Appending to arrays is safe.
+    /// @tparam T The object's type. It must carry the MNX global attributes and name its schema type.
+    /// @param object The object whose id is set.
+    /// @param id The id to set.
+    /// @throws util::mapping_error if @p id is already mapped. The object is then left unchanged.
+    /// @throws std::invalid_argument if @p object belongs to a different document.
+    template <typename T>
+    void assignId(T& object, const std::string& id);
 
     /// @brief Finds a layout that matches the canonical full score layout, where each part staff
     /// appears in order on a single corresponding layout staff.

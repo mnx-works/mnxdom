@@ -29,9 +29,10 @@ using namespace mnx;
 TEST(Parts, StaffConfigs)
 {
     Document doc;
-    doc.global().measures().append().set_id("m1");
+    auto globalMeasure = doc.global().measures().append();
+    doc.assignId(globalMeasure, "m1");
     auto part = doc.parts().append();
-    part.set_id("P1");
+    doc.assignId(part, "P1");
     part.set_staves(2);
     auto measure = part.measures().append();
     EXPECT_FALSE(measure.staffConfigs()) << "staffConfigs should be omitted until created";
@@ -61,9 +62,10 @@ TEST(Parts, StaffConfigs)
 TEST(Parts, ClefSignAndHide)
 {
     Document doc;
-    doc.global().measures().append().set_id("m1");
+    auto globalMeasure = doc.global().measures().append();
+    doc.assignId(globalMeasure, "m1");
     auto part = doc.parts().append();
-    part.set_id("P1");
+    doc.assignId(part, "P1");
     auto measure = part.measures().append();
 
     auto clef = measure.ensure_clefs().append(ClefSign::PercussionClef, 0).clef();
@@ -81,9 +83,10 @@ TEST(Parts, ClefSignAndHide)
 TEST(Parts, Placements)
 {
     Document doc;
-    doc.global().measures().append().set_id("m1");
+    auto globalMeasure = doc.global().measures().append();
+    doc.assignId(globalMeasure, "m1");
     auto part = doc.parts().append();
-    part.set_id("P1");
+    doc.assignId(part, "P1");
     auto measure = part.measures().append();
 
     auto ottava = measure.ensure_ottavas().append(OttavaAmount::OctaveUp, FractionValue(0),
@@ -103,20 +106,21 @@ TEST(Parts, Placements)
 TEST(Parts, DynamicsByType)
 {
     Document doc;
-    doc.global().measures().append().set_id("m1");
+    auto globalMeasure = doc.global().measures().append();
+    doc.assignId(globalMeasure, "m1");
     auto part = doc.parts().append();
-    part.set_id("P1");
+    doc.assignId(part, "P1");
     auto dynamics = part.measures().append().ensure_dynamics();
 
     auto immediate = dynamics.appendImmediate(DynamicValue::p, FractionValue(0));
-    immediate.set_id("dImmediate");
+    doc.assignId(immediate, "dImmediate");
     immediate.ensure_glyphs().push_back("dynamicPiano");
     EXPECT_EQ(immediate.value(), DynamicValue::p);
     EXPECT_TRUE(immediate.calcHasImmediateText());
 
     auto gradual = dynamics.appendGradual(DynamicWedgeType::Increasing, FractionValue(1, 4),
         MeasureRhythmicPosition::make("m1", FractionValue(3, 4)));
-    gradual.set_id("dGradual");
+    doc.assignId(gradual, "dGradual");
     EXPECT_FALSE(gradual.value()) << "gradual value is optional";
     EXPECT_FALSE(gradual.calcHasImmediateText()) << "bare hairpin has no immediate text";
     gradual.set_value(DynamicValue::p);
@@ -124,12 +128,12 @@ TEST(Parts, DynamicsByType)
     gradual.set_visuallyContinues("dImmediate");
 
     auto relative = dynamics.appendRelative(DynamicRelativeValue::Softer, FractionValue(3, 4));
-    relative.set_id("dRelative");
+    doc.assignId(relative, "dRelative");
     relative.set_prefix("più");
     EXPECT_TRUE(relative.calcHasImmediateText());
 
     auto accent = dynamics.appendAccent(DynamicValue::f, FractionValue(3, 4));
-    accent.set_id("dAccent");
+    doc.assignId(accent, "dAccent");
     accent.set_residualValue(DynamicValue::p);
     EXPECT_EQ(accent.value(), DynamicValue::f);
     EXPECT_TRUE(accent.calcHasImmediateText());
@@ -165,7 +169,7 @@ TEST(Parts, PositionedText)
     auto measure = part.measures().append();
     EXPECT_FALSE(measure.text());
     auto positioned = measure.ensure_text().append();
-    positioned.set_id("t1");
+    doc.assignId(positioned, "t1");
     EXPECT_EQ(positioned.type(), TextType::General);
     EXPECT_EQ(positioned.staff(), 1);
     EXPECT_EQ(positioned.placement(), Placement::Auto);
@@ -176,9 +180,9 @@ TEST(Parts, PositionedText)
 
     auto chunks = positioned.text();
     auto plain = chunks.appendText("Allegro ");
-    plain.set_id("plain");
+    doc.assignId(plain, "plain");
     auto glyph = chunks.appendSmufl({"metNoteQuarterUp"});
-    glyph.set_id("glyph");
+    doc.assignId(glyph, "glyph");
     EXPECT_FALSE(glyph.glyphs().empty());
     EXPECT_EQ(json::parse(plain.dump()), (json{{"id", "plain"}, {"text", "Allegro "}}));
     EXPECT_EQ(json::parse(glyph.dump())["type"], "smufl");

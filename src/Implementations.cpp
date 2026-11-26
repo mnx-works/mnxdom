@@ -141,6 +141,14 @@ MnxdomGeneratorInfo::MnxdomGeneratorInfo(Base& parent, std::string_view key)
     }
 }
 
+util::EntityMap& Document::ensureEntityMap()
+{
+    if (!m_entityMapping) {
+        m_entityMapping = std::make_shared<util::EntityMap>(root());
+    }
+    return *m_entityMapping;
+}
+
 void Document::buildEntityMapFromIndex(const DocumentIdIndex& ids, EntityMapPolicies policies,
                                        const std::optional<ErrorHandler>& errorHandler)
 {

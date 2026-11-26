@@ -234,10 +234,10 @@ TEST(Layouts, BuildDefaultLayoutSpans)
 {
     auto doc = mnx::Document();
     auto flute = doc.parts().append();
-    flute.set_id("flute");
+    doc.assignId(flute, "flute");
     flute.set_name("Flute");
     auto piano = doc.parts().append();
-    piano.set_id("piano");
+    doc.assignId(piano, "piano");
     piano.set_name("Piano");
     piano.set_staves(2);
     auto noId = doc.parts().append();

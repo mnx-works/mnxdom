@@ -77,7 +77,7 @@ TEST(EventTiming, CachedInfoAndLookup)
     EXPECT_FALSE(map.tryGetEventInfo("p0"));
     EXPECT_THROW((void)map.getEventInfo("p0"), util::mapping_error);
     auto anonymous = eventAt(doc, 0, 0, 0);
-    anonymous.clear_id();
+    (*doc.root())[anonymous.pointer()].erase("id"); // the API has no way to clear an id
     doc.buildEntityMapFromIndex(mnx::validation::schemaValidate(doc, withIdCollection).ids.value());
     EXPECT_EQ(doc.getEntityMap().getEventInfo(anonymous).elapsedTime, FractionValue(0));
     sequence::Event detached(std::make_shared<json>(json::object()), json_pointer{});
@@ -96,7 +96,7 @@ TEST(Extenders, AllowedTargets)
     sourceExtender(doc).clear_target();
     expectValid(doc);
     sourceExtender(doc).set_target("p0m1e0");
-    eventAt(doc, 0, 0, 1).clear_id();
+    (*doc.root())[eventAt(doc, 0, 0, 1).pointer()].erase("id"); // the API has no way to clear an id
     expectValid(doc);
 }
 
@@ -119,7 +119,7 @@ TEST(Extenders, InvalidTargetsAndHiddenTargets)
     }
     auto doc = extenderDocument();
     auto note = eventAt(doc, 0, 0, 0).notes()->at(0);
-    note.set_id("noteId");
+    doc.assignId(note, "noteId");
     sourceExtender(doc).set_target("noteId");
     const auto result = validation::semanticValidate(doc, validation::schemaValidate(doc, withIdCollection).ids.value());
     ASSERT_EQ(result.errors.size(), 1u);

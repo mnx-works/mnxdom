@@ -320,9 +320,10 @@ TEST(TestSequences, WalkFullMeasureRest)
 TEST(TestSequences, PlacementsAndCaesura)
 {
     Document doc;
-    doc.global().measures().append().set_id("m1");
+    auto globalMeasure = doc.global().measures().append();
+    doc.assignId(globalMeasure, "m1");
     auto part = doc.parts().append();
-    part.set_id("P1");
+    doc.assignId(part, "P1");
     auto measure = part.measures().append();
     auto sequence = measure.sequences().append();
 
@@ -332,7 +333,7 @@ TEST(TestSequences, PlacementsAndCaesura)
     EXPECT_EQ(nlohmann::json::parse(sequence.dump())["directionHint"], "lower");
 
     auto event = sequence.content().appendEvent(NoteValueBase::Quarter);
-    event.set_id("e1");
+    doc.assignId(event, "e1");
     event.ensure_rest();
     auto markings = event.ensure_markings();
 

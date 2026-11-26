@@ -578,3 +578,18 @@ private:
     }
 };
 } // namespace mnx::util
+
+namespace mnx {
+
+template <typename T>
+void Document::assignId(T& object, const std::string& id)
+{
+    static_assert(std::is_base_of_v<Object, T>, "assignId requires an object with the MNX global attributes.");
+    if (object.document().root() != root()) {
+        throw std::invalid_argument("assignId requires an object in this document.");
+    }
+    ensureEntityMap().add(id, object.pointer(), std::string(T::JsonSchemaTypeName)); // throws before the id is set
+    (*root())[object.pointer() / "id"] = id;
+}
+
+} // namespace mnx

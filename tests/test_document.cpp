@@ -56,7 +56,8 @@ TEST(Document, Minimal)
     EXPECT_EQ(measures.size(), 0u);
     measures.append();
     ASSERT_EQ(doc.global().measures().size(), 1u);
-    measures[0].set_id("m3");  // use non const operator[]
+    auto firstMeasure = measures[0]; // use non const operator[]
+    doc.assignId(firstMeasure, "m3");
     const auto measuresConst = doc.global().measures();
     const auto measure = measuresConst[0]; // use const operator[]
     EXPECT_EQ(measure.id(), "m3");
@@ -102,7 +103,7 @@ TEST(Document, MinimalFromScratch)
     layouts.append();
     auto layout = layouts[0];
     EXPECT_TRUE(validation::schemaValidate(doc)) << "schema should validate after adding a layout, even with no layout id";
-    layout.set_id("layout0");
+    doc.assignId(layout, "layout0");
     auto content = layout.content();
     auto staff = content.appendStaff();
     staff.set_symbol(LayoutSymbol::Bracket);
@@ -221,4 +222,60 @@ TEST(Document, GlobalAttributes)
     part.clearExtension("vendor");
     EXPECT_FALSE(part.getExtension("vendor"));
     EXPECT_FALSE(part._x()); // empty _x is removed
+}
+
+TEST(Document, AssignIdMapsObjectsWhileBuilding)
+{
+    Document doc;
+    EXPECT_FALSE(doc.hasEntityMap());
+
+    auto part = doc.parts().append();
+    doc.assignId(part, "P1");
+    EXPECT_EQ(part.id(), "P1");
+    ASSERT_TRUE(doc.hasEntityMap()) << "assignId creates the mapping";
+
+    auto event = part.create_measures().append().sequences().append().content().appendEvent(NoteValueBase::Quarter);
+    doc.assignId(event, "e1");
+    auto note = event.ensure_notes().append(sequence::Pitch::make(NoteStep::C, 4));
+    doc.assignId(note, "n1");
+    auto kitNote = event.ensure_kitNotes().append("snare");
+    doc.assignId(kitNote, "k1");
+
+    const auto& entities = doc.getEntityMap();
+    EXPECT_EQ(entities.idCount(), 4u);
+    ASSERT_TRUE(entities.tryGet<Part>("P1"));
+    EXPECT_EQ(entities.tryGet<Part>("P1")->pointer(), part.pointer());
+    EXPECT_FALSE(entities.tryGet<Layout>("P1")) << "the id is mapped with its object's type";
+    EXPECT_TRUE(entities.tryGet<sequence::Event>("e1"));
+    EXPECT_TRUE(entities.tryGet<sequence::Note>("n1"));
+    EXPECT_FALSE(entities.tryGet<sequence::KitNote>("n1"));
+    EXPECT_TRUE(entities.tryGet<sequence::KitNote>("k1"));
+    EXPECT_TRUE(entities.tryGet<sequence::NoteBase>("n1")) << "a note base matches either kind of note";
+    EXPECT_TRUE(entities.tryGet<sequence::NoteBase>("k1"));
+    EXPECT_FALSE(entities.tryGet<Part>("missing"));
+
+    auto secondPart = doc.parts().append();
+    EXPECT_THROW(doc.assignId(secondPart, "P1"), util::mapping_error) << "a duplicate id is reported where it is assigned";
+    EXPECT_FALSE(secondPart.id()) << "a rejected id is not set";
+
+    Document otherDoc;
+    auto otherPart = otherDoc.parts().append();
+    EXPECT_THROW(doc.assignId(otherPart, "P2"), std::invalid_argument) << "an object of another document is rejected";
+    EXPECT_FALSE(otherPart.id());
+}
+
+TEST(Document, AssignIdMappingIsReplacedByValidation)
+{
+    Document doc;
+    auto part = doc.parts().append();
+    doc.assignId(part, "P1");
+
+    const auto schemaResult = validation::schemaValidate(doc, {.collectIds = true});
+    ASSERT_TRUE(schemaResult) << schemaResult.errors.size();
+    ASSERT_TRUE(schemaResult.ids.has_value());
+    const auto semanticResult = validation::semanticValidate(doc, *schemaResult.ids);
+    EXPECT_TRUE(semanticResult.errors.empty()) << "an id mapped while building is not reported as a duplicate";
+
+    doc.buildEntityMapFromIndex(*schemaResult.ids);
+    EXPECT_TRUE(doc.getEntityMap().tryGet<Part>("P1"));
 }

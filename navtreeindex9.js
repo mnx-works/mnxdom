@@ -1,5 +1,7 @@
 var NAVTREEINDEX9 =
 {
+"structmnx_1_1util_1_1SequenceWalkHooks.html#a8a8bf22e8a195bbc2fa71205b5cb8f6b":[2,0,0,7,7,2],
+"structmnx_1_1util_1_1SequenceWalkHooks.html#ae1220f57b3c8bbf5a7fed03d47c468af":[2,0,0,7,7,3],
 "structmnx_1_1util_1_1SequenceWalkHooks.html#ae7b922956f13127d72ade222320c432b":[2,0,0,7,7,0],
 "structmnx_1_1util_1_1StaffKey.html":[2,0,0,7,2],
 "structmnx_1_1util_1_1StaffKey.html#a1809d5ea22ea5711474d48333194611b":[2,0,0,7,2,1],

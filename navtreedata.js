@@ -57,15 +57,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BaseTypes_8h_source.html",
-"classmnx_1_1Interval.html",
-"classmnx_1_1TimeSignature.html",
-"classmnx_1_1layout_1_1Staff.html#ab5268728610521d15c3245c1838f5aec",
-"classmnx_1_1part_1_1Ottava.html#a6abff35cf845081b9041adbb967c025c",
-"classmnx_1_1sequence_1_1EventMarkings.html#a8a4c128b4d247fcec7ed7de64fd6d7d0",
-"classmnx_1_1sequence_1_1Unstress.html",
-"namespacemnx.html#a86e00ac3489b813478b7985b491a9ae9",
-"structmnx_1_1detail_1_1DictionaryAppendBase.html#a07015d1d2eb4e0b055ed0936a1471b09",
-"structmnx_1_1util_1_1SequenceWalkHooks.html#ae7b922956f13127d72ade222320c432b"
+"classmnx_1_1IdPair.html#affcfb7add976b9a91681112e4e0c6c79",
+"classmnx_1_1StaffConfig.html#ab7402796eff82d2783542bf3997771b6",
+"classmnx_1_1layout_1_1Staff.html#a44f1cfd148e7cecad2fe3ae0712e694d",
+"classmnx_1_1part_1_1Ottava.html#a574f3e05cb558ae3c5494686b5094e79",
+"classmnx_1_1sequence_1_1EventMarkings.html#a7bbcdcab3cd37ea1e94cecb38912bb42",
+"classmnx_1_1sequence_1_1Tuplet.html#ae6743f584d10b519ceeb8ca27c7e665e",
+"namespacemnx.html#a7cd0ba846ca3299297f341bc77185832",
+"structmnx_1_1detail_1_1ArrayAppendOverloads_3_01Derived_00_01T_00_01std_1_1void__t_3_01decltype_07_6T_1_1make_08_4_01_4.html",
+"structmnx_1_1util_1_1SequenceWalkHooks.html#a8a8bf22e8a195bbc2fa71205b5cb8f6b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

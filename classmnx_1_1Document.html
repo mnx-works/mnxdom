@@ -149,6 +149,9 @@ const <a class="el" href="classmnx_1_1util_1_1EntityMap.html">util::EntityMap</a
 <tr class="memitem:aaac7e336390a2f643de194fa12bbd085" id="r_aaac7e336390a2f643de194fa12bbd085"><td class="memItemLeft" align="right" valign="top"><a id="aaac7e336390a2f643de194fa12bbd085" name="aaac7e336390a2f643de194fa12bbd085"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasEntityMap</b> () const</td></tr>
 <tr class="memdesc:aaac7e336390a2f643de194fa12bbd085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether an entity mapping currently exists. <br /></td></tr>
+<tr class="memitem:a73f83b77d669ca5eee98160364804e5a" id="r_a73f83b77d669ca5eee98160364804e5a"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a73f83b77d669ca5eee98160364804e5a template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73f83b77d669ca5eee98160364804e5a">assignId</a> (T &amp;object, const std::string &amp;id)</td></tr>
+<tr class="memdesc:a73f83b77d669ca5eee98160364804e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the id of <code class="param">object</code> and adds it to the entity mapping, creating the mapping if there is none.  <br /></td></tr>
 <tr class="memitem:acc9df934e0a3c244614177bca1078579" id="r_acc9df934e0a3c244614177bca1078579"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="classmnx_1_1Layout.html">Layout</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc9df934e0a3c244614177bca1078579">findFullScoreLayout</a> () const</td></tr>
 <tr class="memdesc:acc9df934e0a3c244614177bca1078579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a layout that matches the canonical full score layout, where each part staff appears in order on a single corresponding layout staff.  <br /></td></tr>
 <tr class="memitem:afacc705368b873d604044f3628a74f3c" id="r_afacc705368b873d604044f3628a74f3c"><td class="memItemLeft" align="right" valign="top"><a id="afacc705368b873d604044f3628a74f3c" name="afacc705368b873d604044f3628a74f3c"></a>
@@ -161,9 +164,9 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
 <tr class="memitem:a4de84f58a0755291688b97d466afcabf inherit pub_methods_classmnx_1_1Object" id="r_a4de84f58a0755291688b97d466afcabf"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_CHILD</b> (<a class="el" href="classmnx_1_1Object.html#abe2e63344966ffb964a9e42b96b76bfc">PlainObject</a>, _x)</td></tr>
 <tr class="memdesc:a4de84f58a0755291688b97d466afcabf inherit pub_methods_classmnx_1_1Object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vendor-defined dictionary. <br /></td></tr>
-<tr class="memitem:aba3107608d5f547dbca6d864ffb5d7b5 inherit pub_methods_classmnx_1_1Object" id="r_aba3107608d5f547dbca6d864ffb5d7b5"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_OPTIONAL_PROPERTY</b> (std::string, id)</td></tr>
-<tr class="memdesc:aba3107608d5f547dbca6d864ffb5d7b5 inherit pub_methods_classmnx_1_1Object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniquely identifies the object. <br /></td></tr>
+<tr class="memitem:a10983894cd288a2f67ef3993bc5671b9 inherit pub_methods_classmnx_1_1Object" id="r_a10983894cd288a2f67ef3993bc5671b9"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>MNX_READ_ONLY_OPTIONAL_PROPERTY</b> (std::string, id)</td></tr>
+<tr class="memdesc:a10983894cd288a2f67ef3993bc5671b9 inherit pub_methods_classmnx_1_1Object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniquely identifies the object. Set it with <a class="el" href="#a73f83b77d669ca5eee98160364804e5a" title="Sets the id of object and adds it to the entity mapping, creating the mapping if there is none.">Document::assignId</a>. <br /></td></tr>
 <tr class="memitem:a4f083c0967954c364a91ee5b748f40cc inherit pub_methods_classmnx_1_1Object" id="r_a4f083c0967954c364a91ee5b748f40cc"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setExtension</b> (const std::string_view key, const <a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;value)</td></tr>
 <tr class="memdesc:a4f083c0967954c364a91ee5b748f40cc inherit pub_methods_classmnx_1_1Object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a vendor extension value in <span class="tt">_x</span>, creating <span class="tt">_x</span> when needed. <br /></td></tr>
@@ -327,6 +330,51 @@ const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca09
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a73f83b77d669ca5eee98160364804e5a" name="a73f83b77d669ca5eee98160364804e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f83b77d669ca5eee98160364804e5a">&#9670;&#160;</a></span>assignId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void mnx::Document::assignId </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>object</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the id of <code class="param">object</code> and adds it to the entity mapping, creating the mapping if there is none. </p>
+<p>This is the only way to set an id through the API, so every id set while building a document is mapped and its objects can be looked up with <a class="el" href="#a90f5175ea60f1965a03c1a47ffa2f552" title="Gets a reference to the entity mapping instance for the document.">getEntityMap</a> before the document is validated. The object is mapped as type <code class="param">T</code>, so pass it as its concrete type. The mapping records the object's location, which stays valid only while no array that contains the object has elements inserted or removed ahead of it. Appending to arrays is safe. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The object's type. It must carry the MNX global attributes and name its schema type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>The object whose id is set. </td></tr>
+    <tr><td class="paramname">id</td><td>The id to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmnx_1_1util_1_1mapping__error.html" title="base class for mapping error exceptions">util::mapping_error</a></td><td>if <code class="param">id</code> is already mapped. The object is then left unchanged. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>if <code class="param">object</code> belongs to a different document. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8feeb16526d31406a1a76a75546f24f1" name="a8feeb16526d31406a1a76a75546f24f1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8feeb16526d31406a1a76a75546f24f1">&#9670;&#160;</a></span>buildEntityMapFromIndex()</h2>
 

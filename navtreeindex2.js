@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classmnx_1_1StaffConfig.html#ab7402796eff82d2783542bf3997771b6":[1,0,0,28,0],
+"classmnx_1_1StaffConfig.html#ab7402796eff82d2783542bf3997771b6":[2,0,0,31,0],
 "classmnx_1_1TimeSignature.html":[1,0,0,29],
 "classmnx_1_1TimeSignature.html":[2,0,0,32],
 "classmnx_1_1TimeSignature.html#a26c8ed7f5660a079066d229b97b168ee":[1,0,0,29,5],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "classmnx_1_1layout_1_1Staff.html":[1,0,0,1,4],
 "classmnx_1_1layout_1_1Staff.html":[2,0,0,1,4],
 "classmnx_1_1layout_1_1Staff.html#a1b8a3d09c6c6ded0280ea949b1b4ae1e":[1,0,0,1,4,4],
-"classmnx_1_1layout_1_1Staff.html#a1b8a3d09c6c6ded0280ea949b1b4ae1e":[2,0,0,1,4,4],
-"classmnx_1_1layout_1_1Staff.html#a44f1cfd148e7cecad2fe3ae0712e694d":[1,0,0,1,4,0],
-"classmnx_1_1layout_1_1Staff.html#a44f1cfd148e7cecad2fe3ae0712e694d":[2,0,0,1,4,0]
+"classmnx_1_1layout_1_1Staff.html#a1b8a3d09c6c6ded0280ea949b1b4ae1e":[2,0,0,1,4,4]
 };

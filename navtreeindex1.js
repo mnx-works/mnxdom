@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classmnx_1_1IdPair.html#affcfb7add976b9a91681112e4e0c6c79":[1,0,0,21,2],
+"classmnx_1_1IdPair.html#affcfb7add976b9a91681112e4e0c6c79":[2,0,0,24,2],
 "classmnx_1_1Interval.html":[1,0,0,24],
 "classmnx_1_1Interval.html":[2,0,0,27],
 "classmnx_1_1Interval.html#a3df83ba2ff620b6759afee47d55749c6":[1,0,0,24,5],
@@ -142,6 +144,8 @@ var NAVTREEINDEX1 =
 "classmnx_1_1NoteValueQuantity.html#ae7f23d2c5ff8c7485a7413ae77d59e18":[2,0,0,30,1],
 "classmnx_1_1Object.html":[1,0,0,12],
 "classmnx_1_1Object.html":[2,0,0,15],
+"classmnx_1_1Object.html#a10983894cd288a2f67ef3993bc5671b9":[1,0,0,12,4],
+"classmnx_1_1Object.html#a10983894cd288a2f67ef3993bc5671b9":[2,0,0,15,4],
 "classmnx_1_1Object.html#a3a0783bc924ab1d2fcb4b97f5c28e893":[1,0,0,12,0],
 "classmnx_1_1Object.html#a3a0783bc924ab1d2fcb4b97f5c28e893":[2,0,0,15,0],
 "classmnx_1_1Object.html#a3f532392b8549f4828a54f0d15a77229":[1,0,0,12,3],
@@ -154,8 +158,6 @@ var NAVTREEINDEX1 =
 "classmnx_1_1Object.html#a614e2ddca9f863f5d44f57535cadf6ed":[2,0,0,15,1],
 "classmnx_1_1Object.html#a899d48452ce6f84f5a168101b35e286d":[1,0,0,12,6],
 "classmnx_1_1Object.html#a899d48452ce6f84f5a168101b35e286d":[2,0,0,15,6],
-"classmnx_1_1Object.html#aba3107608d5f547dbca6d864ffb5d7b5":[1,0,0,12,4],
-"classmnx_1_1Object.html#aba3107608d5f547dbca6d864ffb5d7b5":[2,0,0,15,4],
 "classmnx_1_1Object.html#abe2e63344966ffb964a9e42b96b76bfc":[1,0,0,12,5],
 "classmnx_1_1Object.html#abe2e63344966ffb964a9e42b96b76bfc":[2,0,0,15,5],
 "classmnx_1_1Object.html#ae4a48fb43462a80207ab672ecbdf9996":[1,0,0,12,7],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classmnx_1_1SimpleType.html#af09204dd398150f8f0b401f8cd025bbc":[1,0,0,13,3],
 "classmnx_1_1SimpleType.html#af09204dd398150f8f0b401f8cd025bbc":[2,0,0,16,3],
 "classmnx_1_1StaffConfig.html":[1,0,0,28],
-"classmnx_1_1StaffConfig.html":[2,0,0,31],
-"classmnx_1_1StaffConfig.html#ab7402796eff82d2783542bf3997771b6":[1,0,0,28,0],
-"classmnx_1_1StaffConfig.html#ab7402796eff82d2783542bf3997771b6":[2,0,0,31,0]
+"classmnx_1_1StaffConfig.html":[2,0,0,31]
 };

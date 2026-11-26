@@ -4,6 +4,7 @@ var classmnx_1_1Document =
     [ "Document", "classmnx_1_1Document.html#a7e49faff01e8ac8b4a5abc7332288df1", null ],
     [ "Document", "classmnx_1_1Document.html#a6c2fbca65b30cc988fee5f14abab54cf", null ],
     [ "Document", "classmnx_1_1Document.html#a9b8e5e026b252e965c8eb5de72198e53", null ],
+    [ "assignId", "classmnx_1_1Document.html#a73f83b77d669ca5eee98160364804e5a", null ],
     [ "buildEntityMapFromIndex", "classmnx_1_1Document.html#a8feeb16526d31406a1a76a75546f24f1", null ],
     [ "findFullScoreLayout", "classmnx_1_1Document.html#acc9df934e0a3c244614177bca1078579", null ],
     [ "getEntityMap", "classmnx_1_1Document.html#a90f5175ea60f1965a03c1a47ffa2f552", null ],

@@ -120,8 +120,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:acabcc139dd420fefbb53d9f61de447e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nesting depth of this span within the layout hierarchy.  <br /></td></tr>
 <tr class="memitem:aba19b3a5bc74d921503f1cc30595b5bd" id="r_aba19b3a5bc74d921503f1cc30595b5bd"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba19b3a5bc74d921503f1cc30595b5bd">label</a></td></tr>
 <tr class="memdesc:aba19b3a5bc74d921503f1cc30595b5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional label text associated with this span.  <br /></td></tr>
-<tr class="memitem:a557e4d4f0c57bc69a6ec22a618d4a0a3" id="r_a557e4d4f0c57bc69a6ec22a618d4a0a3"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="namespacemnx.html#aa6490743c39363c827cdf32264ea5b62">LabelRef</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a557e4d4f0c57bc69a6ec22a618d4a0a3">labelref</a></td></tr>
-<tr class="memdesc:a557e4d4f0c57bc69a6ec22a618d4a0a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional label reference associated with this span.  <br /></td></tr>
+<tr class="memitem:aeaacd4f0520d10fbd647b678aa7dc245" id="r_aeaacd4f0520d10fbd647b678aa7dc245"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="structmnx_1_1util_1_1LayoutSpanLabelRef.html">LayoutSpanLabelRef</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeaacd4f0520d10fbd647b678aa7dc245">labelRef</a></td></tr>
+<tr class="memdesc:aeaacd4f0520d10fbd647b678aa7dc245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional label reference associated with this span.  <br /></td></tr>
 <tr class="memitem:a46bd3ffb9bb468f29dbc27c06280d01f" id="r_a46bd3ffb9bb468f29dbc27c06280d01f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485">LayoutSymbol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46bd3ffb9bb468f29dbc27c06280d01f">symbol</a> = <a class="el" href="namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d">LayoutSymbol::NoSymbol</a></td></tr>
 <tr class="memdesc:a46bd3ffb9bb468f29dbc27c06280d01f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classmnx_1_1Layout.html" title="Represents the element of the layout array in an MNX document.">Layout</a> symbol associated with this span.  <br /></td></tr>
 <tr class="memitem:ad5577003cec395f94264c4a61f0d7c5b" id="r_ad5577003cec395f94264c4a61f0d7c5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#a07e43dee64d5f909f672da5ec99921a9">StaffGroupBarlineOverride</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5577003cec395f94264c4a61f0d7c5b">barlineOverride</a> = <a class="el" href="namespacemnx.html#a07e43dee64d5f909f672da5ec99921a9a6adf97f83acf6453d4a6a4b1070f3754">StaffGroupBarlineOverride::None</a></td></tr>
@@ -233,20 +233,21 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a557e4d4f0c57bc69a6ec22a618d4a0a3" name="a557e4d4f0c57bc69a6ec22a618d4a0a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a557e4d4f0c57bc69a6ec22a618d4a0a3">&#9670;&#160;</a></span>labelref</h2>
+<a id="aeaacd4f0520d10fbd647b678aa7dc245" name="aeaacd4f0520d10fbd647b678aa7dc245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaacd4f0520d10fbd647b678aa7dc245">&#9670;&#160;</a></span>labelRef</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;<a class="el" href="namespacemnx.html#aa6490743c39363c827cdf32264ea5b62">LabelRef</a>&gt; mnx::util::LayoutSpan::labelref</td>
+          <td class="memname">std::optional&lt;<a class="el" href="structmnx_1_1util_1_1LayoutSpanLabelRef.html">LayoutSpanLabelRef</a>&gt; mnx::util::LayoutSpan::labelRef</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional label reference associated with this span. </p>
-<p>When present, this refers to a shared or externally defined label and is used instead of <a class="el" href="#aba19b3a5bc74d921503f1cc30595b5bd" title="Optional label text associated with this span.">label</a>. </p>
+<p>For staff spans, this corresponds to Staff::labelRef. For group spans, it corresponds to Group::labelRef. When present, it refers to a part's name or shortName. MNX recommends it over <a class="el" href="#aba19b3a5bc74d921503f1cc30595b5bd" title="Optional label text associated with this span.">label</a> to avoid duplicating part names; the specification does not define precedence if both are present.</p>
+<p>For staff spans whose label ref omits a target, the target is set to the part of the staff's first source, as specified by MNX. For group spans, the target is as encoded; MNX leaves an omitted group target to the consuming application. </p>
 
 </div>
 </div>

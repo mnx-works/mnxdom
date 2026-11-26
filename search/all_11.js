@@ -4,7 +4,7 @@ var searchData=
   ['ratio_1',['ratio',['../classmnx_1_1sequence_1_1Tuplet.html#a60569c9f7774dee5259e584d147e7100',1,'mnx::sequence::Tuplet']]],
   ['reduce_2',['reduce',['../structmnx_1_1FractionValue.html#a3eb0c759610ff9f271af6a67312262a1',1,'mnx::FractionValue']]],
   ['reduced_3',['reduced',['../structmnx_1_1FractionValue.html#ac146febfa2afe0a4bd95c045d3d24dd4',1,'mnx::FractionValue']]],
-  ['ref_4',['ref',['../classmnx_1_1Base.html#a033e93ec071a36612d1fa26c39ff75e0',1,'mnx::Base::ref() const'],['../classmnx_1_1Base.html#a7398dba4f9250e3993f4aef10eeedc91',1,'mnx::Base::ref()']]],
+  ['ref_4',['ref',['../structmnx_1_1util_1_1LayoutSpanLabelRef.html#a88eac8ea4c9174ef95fcec84830f36d2',1,'mnx::util::LayoutSpanLabelRef']]],
   ['regular_5',['Regular',['../namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9ad2203cb1237cb6460cbad94564e39345',1,'mnx']]],
   ['relativevalue_6',['relativeValue',['../structmnx_1_1part_1_1DynamicRelative_1_1Required.html#a016015140eb72489aae51ce916d7823c',1,'mnx::part::DynamicRelative::Required']]],
   ['remainder_7',['remainder',['../structmnx_1_1FractionValue.html#a82a89143349329c7c3abf798662ac2dd',1,'mnx::FractionValue']]],

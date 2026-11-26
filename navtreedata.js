@@ -57,15 +57,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BaseTypes_8h_source.html",
-"classmnx_1_1Global.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
-"classmnx_1_1Score.html#a1f534783d8f5e9e0c0993fe34bd53843",
-"classmnx_1_1global_1_1RepeatStart.html#ae22e4613f2e67d4fb6c0951f1cf86a74",
-"classmnx_1_1part_1_1Measure.html#a1043e8ea608ff6a0c77fc3935fcc80ce",
-"classmnx_1_1sequence_1_1Event.html#a5570a8b269e37b3b6f71bf4d1bb3b799",
-"classmnx_1_1sequence_1_1Rest.html#affccc745dc1ec6560b127d600086e1ae",
-"functions_vars_f.html",
-"namespacemusic__theory.html#a9c6d3371d0dbd13ad22c18e667a6d384",
-"structmnx_1_1score_1_1System_1_1Required.html#a65291c3ae91e8979ed34658d6fc9420f"
+"classmnx_1_1Interval.html",
+"classmnx_1_1TimeSignature.html",
+"classmnx_1_1layout_1_1Staff.html#ab5268728610521d15c3245c1838f5aec",
+"classmnx_1_1part_1_1Ottava.html#a6abff35cf845081b9041adbb967c025c",
+"classmnx_1_1sequence_1_1EventMarkings.html#a8a4c128b4d247fcec7ed7de64fd6d7d0",
+"classmnx_1_1sequence_1_1Unstress.html",
+"namespacemnx.html#a86e00ac3489b813478b7985b491a9ae9",
+"structmnx_1_1detail_1_1DictionaryAppendBase.html#a07015d1d2eb4e0b055ed0936a1471b09",
+"structmnx_1_1util_1_1SequenceWalkHooks.html#ae7b922956f13127d72ade222320c432b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

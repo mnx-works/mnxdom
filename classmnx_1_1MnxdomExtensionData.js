@@ -7,8 +7,5 @@ var classmnx_1_1MnxdomExtensionData =
     [ "MNX_REQUIRED_CHILD", "classmnx_1_1MnxdomExtensionData.html#a2de3296e508081c81b6a734b3b7cf365", null ],
     [ "MNX_REQUIRED_PROPERTY", "classmnx_1_1MnxdomExtensionData.html#a2eec29bc5cff336ec662daa9c5f4ea03", null ],
     [ "MNX_REQUIRED_PROPERTY", "classmnx_1_1MnxdomExtensionData.html#acfed64e4dbb013660374810b7dcd02d7", null ],
-    [ "MNX_REQUIRED_PROPERTY", "classmnx_1_1MnxdomExtensionData.html#a79079cbf1d0f6b55343cefb75b6cac1e", null ],
-    [ "Object", "classmnx_1_1MnxdomExtensionData.html#a52b65416bd31d8dfe6c884db79f71995", null ],
-    [ "Object", "classmnx_1_1MnxdomExtensionData.html#ae22e4613f2e67d4fb6c0951f1cf86a74", null ],
-    [ "Object", "classmnx_1_1MnxdomExtensionData.html#a4988843f33731e91af29f49660111eb6", null ]
+    [ "MNX_REQUIRED_PROPERTY", "classmnx_1_1MnxdomExtensionData.html#a79079cbf1d0f6b55343cefb75b6cac1e", null ]
 ];

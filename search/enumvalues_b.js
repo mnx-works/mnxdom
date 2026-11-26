@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['Name',['../namespacemnx.html#aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987',1,'mnx']]],
+  ['name_0',['Name',['../namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987',1,'mnx']]],
   ['nextnote_1',['NextNote',['../namespacemnx.html#a961d9beb0e598614b7157949964d33efada34e2b724bdb42347569c86723e76f0',1,'mnx']]],
   ['nobarline_2',['NoBarline',['../namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9a0576bb41c8036600a810cf711f9316d6',1,'mnx']]],
   ['none_3',['None',['../namespacemnx.html#a4e27a0be5614c80a05ffa0c8283ac0fba6adf97f83acf6453d4a6a4b1070f3754',1,'mnx::None'],['../namespacemnx.html#a6bde9b92bdb7e56a96cce03dfbebbb03a6adf97f83acf6453d4a6a4b1070f3754',1,'mnx::None'],['../namespacemnx.html#ac47100f45e293be73a048ddd73d529d1a6adf97f83acf6453d4a6a4b1070f3754',1,'mnx::None'],['../namespacemnx.html#a07e43dee64d5f909f672da5ec99921a9a6adf97f83acf6453d4a6a4b1070f3754',1,'mnx::None']]],

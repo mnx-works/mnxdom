@@ -5,7 +5,8 @@ var searchData=
   ['parttransposition_2',['PartTransposition',['../classmnx_1_1part_1_1PartTransposition.html',1,'mnx::part']]],
   ['performoptions_3',['PerformOptions',['../classmnx_1_1sequence_1_1PerformOptions.html',1,'mnx::sequence']]],
   ['pitch_4',['Pitch',['../classmnx_1_1sequence_1_1Pitch.html',1,'mnx::sequence::Pitch'],['../structmusic__theory_1_1Pitch.html',1,'music_theory::Pitch']]],
-  ['positionedclef_5',['PositionedClef',['../classmnx_1_1part_1_1PositionedClef.html',1,'mnx::part']]],
-  ['positionedstaffconfig_6',['PositionedStaffConfig',['../classmnx_1_1part_1_1PositionedStaffConfig.html',1,'mnx::part']]],
-  ['positionedtext_7',['PositionedText',['../classmnx_1_1part_1_1PositionedText.html',1,'mnx::part']]]
+  ['plainobject_5',['PlainObject',['../classmnx_1_1PlainObject.html',1,'mnx']]],
+  ['positionedclef_6',['PositionedClef',['../classmnx_1_1part_1_1PositionedClef.html',1,'mnx::part']]],
+  ['positionedstaffconfig_7',['PositionedStaffConfig',['../classmnx_1_1part_1_1PositionedStaffConfig.html',1,'mnx::part']]],
+  ['positionedtext_8',['PositionedText',['../classmnx_1_1part_1_1PositionedText.html',1,'mnx::part']]]
 ];

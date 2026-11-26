@@ -2,7 +2,7 @@ var searchData=
 [
   ['tab_0',['Tab',['../namespacemusic__theory.html#a815d2a1e748a138127d59c252e4fa946a5c6ba25104401c9ee0650230fc6ba413',1,'music_theory']]],
   ['tabserif_1',['TabSerif',['../namespacemusic__theory.html#a815d2a1e748a138127d59c252e4fa946a4cb9cfa22009948bec6cd029cb616e00',1,'music_theory']]],
-  ['target_2',['target',['../structmnx_1_1sequence_1_1Slur_1_1Required.html#a9d9c072545b4e4de055a647b0f9d2bde',1,'mnx::sequence::Slur::Required']]],
+  ['target_2',['target',['../structmnx_1_1sequence_1_1Slur_1_1Required.html#a9d9c072545b4e4de055a647b0f9d2bde',1,'mnx::sequence::Slur::Required::target'],['../structmnx_1_1util_1_1LayoutSpanLabelRef.html#a7e7e08bf01a830c6d2e71e683b3c6c2d',1,'mnx::util::LayoutSpanLabelRef::target']]],
   ['tempo_3',['Tempo',['../classmnx_1_1global_1_1Tempo.html',1,'mnx::global::Tempo'],['../classmnx_1_1global_1_1Tempo.html#aba0da4eeb69f31dae4e3b4ae3d612e03',1,'mnx::global::Tempo::Tempo(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1global_1_1Tempo.html#a9ac59d21496e2948cef3b81fab128785',1,'mnx::global::Tempo::Tempo(Base &amp;parent, std::string_view key, double bpm, const NoteValue::Required &amp;noteValue)']]],
   ['tenuto_4',['Tenuto',['../classmnx_1_1sequence_1_1Tenuto.html',1,'mnx::sequence']]],
   ['text_5',['Text',['../classmnx_1_1text_1_1Text.html',1,'mnx::text::Text'],['../classmnx_1_1text_1_1Text.html#a81fb6c3ea3e99152d98de17039ca0581',1,'mnx::text::Text::Text(const std::shared_ptr&lt; json &gt; &amp;root, json_pointer pointer)'],['../classmnx_1_1text_1_1Text.html#a7296ad17f7f85082d25a42ce76493fe6',1,'mnx::text::Text::Text(Base &amp;parent, std::string_view key, const std::string &amp;text)']]],

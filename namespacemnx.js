@@ -11,6 +11,7 @@ var namespacemnx =
     [ "Array", "classmnx_1_1Array.html", "classmnx_1_1Array" ],
     [ "Dictionary", "classmnx_1_1Dictionary.html", "classmnx_1_1Dictionary" ],
     [ "Base", "classmnx_1_1Base.html", "classmnx_1_1Base" ],
+    [ "PlainObject", "classmnx_1_1PlainObject.html", "classmnx_1_1PlainObject" ],
     [ "Object", "classmnx_1_1Object.html", "classmnx_1_1Object" ],
     [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
     [ "UniqueArray", "classmnx_1_1UniqueArray.html", "classmnx_1_1UniqueArray" ],
@@ -143,9 +144,10 @@ var namespacemnx =
       [ "Segno", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a6fc84132823756493e629bc57d118535", null ],
       [ "ToCoda", "namespacemnx.html#a20eecc3eed798a3f30f6c488465deca8a2f058d6780f7a341640eca733f227e3b", null ]
     ] ],
-    [ "LabelRef", "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62", [
-      [ "Name", "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987", null ],
-      [ "ShortName", "namespacemnx.html#aa6490743c39363c827cdf32264ea5b62ad26b007baa81cc3cd38d8d6c93e6df42", null ]
+    [ "LabelRefType", "namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4", [
+      [ "Auto", "namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4a06b9281e396db002010bde1de57262eb", null ],
+      [ "Name", "namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987", null ],
+      [ "ShortName", "namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4ad26b007baa81cc3cd38d8d6c93e6df42", null ]
     ] ],
     [ "LayoutSymbol", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485", [
       [ "NoSymbol", "namespacemnx.html#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d", null ],
@@ -182,11 +184,14 @@ var namespacemnx =
     ] ],
     [ "NoteheadShape", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1", [
       [ "Oval", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61", null ],
+      [ "BackSlashed", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a985a9119468700cc1b4d70ce3aa9a508", null ],
+      [ "Circled", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1af3418dabcfe84335f739eed58e40a481", null ],
       [ "CircleX", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf", null ],
       [ "Custom", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af", null ],
       [ "Diamond", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699", null ],
       [ "Plus", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4", null ],
       [ "Slash", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc", null ],
+      [ "Slashed", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1ab988c882233b8b72cdd03525a1ff41fc", null ],
       [ "Square", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304", null ],
       [ "Triangle", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b", null ],
       [ "TriangleDown", "namespacemnx.html#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8", null ],

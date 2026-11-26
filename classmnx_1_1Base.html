@@ -114,7 +114,7 @@ $(function(){initNavTree('classmnx_1_1Base.html','','classmnx_1_1Base-members');
 <area href="classmnx_1_1Array.html" alt="mnx::Array&lt; part::DynamicGroupBase &gt;" shape="rect" coords="247,336,484,360"/>
 <area href="classmnx_1_1Array.html" alt="mnx::Array&lt; SequenceContentObject &gt;" shape="rect" coords="247,392,484,416"/>
 <area href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access." alt="mnx::Array&lt; T &gt;" shape="rect" coords="247,448,484,472"/>
-<area href="classmnx_1_1Object.html" title="Represents an MNX object, encapsulating property access." alt="mnx::Object" shape="rect" coords="247,504,484,528"/>
+<area href="classmnx_1_1PlainObject.html" title="Represents a JSON object without the MNX global attributes." alt="mnx::PlainObject" shape="rect" coords="247,504,484,528"/>
 <area href="classmnx_1_1SimpleType.html" title="Allows access to a fundamental type (number, boolean, string) in a JSON node." alt="mnx::SimpleType&lt; T, &gt;" shape="rect" coords="247,560,484,584"/>
   </map>
 </div></div>
@@ -153,17 +153,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const</t
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a033e93ec071a36612d1fa26c39ff75e0" id="r_a033e93ec071a36612d1fa26c39ff75e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a033e93ec071a36612d1fa26c39ff75e0">ref</a> () const</td></tr>
-<tr class="memdesc:a033e93ec071a36612d1fa26c39ff75e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this node for retrieval.  <br /></td></tr>
-<tr class="memitem:a7398dba4f9250e3993f4aef10eeedc91" id="r_a7398dba4f9250e3993f4aef10eeedc91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7398dba4f9250e3993f4aef10eeedc91">ref</a> ()</td></tr>
-<tr class="memdesc:a7398dba4f9250e3993f4aef10eeedc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the JSON node for modification.  <br /></td></tr>
+<tr class="memitem:af8fa70c8126f921ccb8a3838be2960d8" id="r_af8fa70c8126f921ccb8a3838be2960d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8fa70c8126f921ccb8a3838be2960d8">jsonRef</a> () const</td></tr>
+<tr class="memdesc:af8fa70c8126f921ccb8a3838be2960d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this node for retrieval.  <br /></td></tr>
+<tr class="memitem:a004935a55973417e197cbddaa7875978" id="r_a004935a55973417e197cbddaa7875978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a004935a55973417e197cbddaa7875978">jsonRef</a> ()</td></tr>
+<tr class="memdesc:a004935a55973417e197cbddaa7875978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the JSON node for modification.  <br /></td></tr>
 <tr class="memitem:afacc705368b873d604044f3628a74f3c" id="r_afacc705368b873d604044f3628a74f3c"><td class="memItemLeft" align="right" valign="top"><a id="afacc705368b873d604044f3628a74f3c" name="afacc705368b873d604044f3628a74f3c"></a>
 const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>root</b> () const</td></tr>
 <tr class="memdesc:afacc705368b873d604044f3628a74f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the root. <br /></td></tr>
 <tr class="memitem:a473f70457687cdc1f46af66f4368e79b" id="r_a473f70457687cdc1f46af66f4368e79b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a473f70457687cdc1f46af66f4368e79b">Base</a> (const std::shared_ptr&lt; <a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &gt; &amp;<a class="el" href="#afacc705368b873d604044f3628a74f3c">root</a>, <a class="el" href="namespacemnx.html#a457dbaf3b64a0013d028909dce89952d">json_pointer</a> <a class="el" href="#a1ef198706551096c7bbd023a3fae3406">pointer</a>)</td></tr>
 <tr class="memdesc:a473f70457687cdc1f46af66f4368e79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrap a <a class="el" href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes.">Base</a> instance around a specific JSON reference using a <a class="el" href="namespacemnx.html#a457dbaf3b64a0013d028909dce89952d" title="JSON pointer class for MNX.">json_pointer</a>.  <br /></td></tr>
-<tr class="memitem:a0bd1084c2a090fb4a3a97b71cca86831" id="r_a0bd1084c2a090fb4a3a97b71cca86831"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bd1084c2a090fb4a3a97b71cca86831">Base</a> (<a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&amp;jsonRef, Base &amp;<a class="el" href="#a4bbd397a39dc2f5db959ac639d954335">parent</a>, std::string_view key)</td></tr>
-<tr class="memdesc:a0bd1084c2a090fb4a3a97b71cca86831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes.">Base</a> reference as a child inside a parent node.  <br /></td></tr>
+<tr class="memitem:aa8d2ff64e2888180d7c012a97d431a01" id="r_aa8d2ff64e2888180d7c012a97d431a01"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8d2ff64e2888180d7c012a97d431a01">Base</a> (<a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&amp;initialJson, Base &amp;<a class="el" href="#a4bbd397a39dc2f5db959ac639d954335">parent</a>, std::string_view key)</td></tr>
+<tr class="memdesc:aa8d2ff64e2888180d7c012a97d431a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes.">Base</a> reference as a child inside a parent node.  <br /></td></tr>
 <tr class="memitem:a716986623a990dc5e8335e8ddfc9b004" id="r_a716986623a990dc5e8335e8ddfc9b004"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a716986623a990dc5e8335e8ddfc9b004 template"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a716986623a990dc5e8335e8ddfc9b004">getChild</a> (std::string_view key) const</td></tr>
 <tr class="memdesc:a716986623a990dc5e8335e8ddfc9b004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves and validates a required child node.  <br /></td></tr>
@@ -220,8 +220,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>validation::Semantic
 
 </div>
 </div>
-<a id="a0bd1084c2a090fb4a3a97b71cca86831" name="a0bd1084c2a090fb4a3a97b71cca86831"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bd1084c2a090fb4a3a97b71cca86831">&#9670;&#160;</a></span>Base() <span class="overload">[2/2]</span></h2>
+<a id="aa8d2ff64e2888180d7c012a97d431a01" name="aa8d2ff64e2888180d7c012a97d431a01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8d2ff64e2888180d7c012a97d431a01">&#9670;&#160;</a></span>Base() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,7 +232,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>validation::Semantic
         <tr>
           <td class="memname">mnx::Base::Base </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>jsonRef</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>initialJson</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -255,7 +255,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>validation::Semantic
 <p>Construct a <a class="el" href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes.">Base</a> reference as a child inside a parent node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">jsonRef</td><td>Rvalue reference to a new JSON object or array. </td></tr>
+    <tr><td class="paramname">initialJson</td><td>Rvalue reference to a new JSON object or array. </td></tr>
     <tr><td class="paramname">parent</td><td>Reference to the parent instance. </td></tr>
     <tr><td class="paramname">key</td><td>The key under which the new node is stored. </td></tr>
   </table>
@@ -326,7 +326,7 @@ template&lt;typename T&gt; </div>
 <p>Retrieves and validates a required child node. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object, encapsulating property access.">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
+    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object with the global attributes (_c, _x, id).">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -410,7 +410,7 @@ template&lt;typename T&gt; </div>
 <p>Retrieves an optional child node. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object, encapsulating property access.">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
+    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object with the global attributes (_c, _x, id).">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -427,6 +427,62 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a004935a55973417e197cbddaa7875978" name="a004935a55973417e197cbddaa7875978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a004935a55973417e197cbddaa7875978">&#9670;&#160;</a></span>jsonRef() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp; mnx::Base::jsonRef </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access the JSON node for modification. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the JSON node. </dd></dl>
+
+</div>
+</div>
+<a id="af8fa70c8126f921ccb8a3838be2960d8" name="af8fa70c8126f921ccb8a3838be2960d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8fa70c8126f921ccb8a3838be2960d8">&#9670;&#160;</a></span>jsonRef() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp; mnx::Base::jsonRef </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert this node for retrieval. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the JSON node. </dd></dl>
 
 </div>
 </div>
@@ -471,62 +527,6 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a7398dba4f9250e3993f4aef10eeedc91" name="a7398dba4f9250e3993f4aef10eeedc91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7398dba4f9250e3993f4aef10eeedc91">&#9670;&#160;</a></span>ref() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp; mnx::Base::ref </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Access the JSON node for modification. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the JSON node. </dd></dl>
-
-</div>
-</div>
-<a id="a033e93ec071a36612d1fa26c39ff75e0" name="a033e93ec071a36612d1fa26c39ff75e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a033e93ec071a36612d1fa26c39ff75e0">&#9670;&#160;</a></span>ref() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacemnx.html#afb51b93e20cca098a1db80a77d8e0714">json</a> &amp; mnx::Base::ref </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert this node for retrieval. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the JSON node. </dd></dl>
-
-</div>
-</div>
 <a id="a9e9cecbea5088d0c63fb0f92eb71556c" name="a9e9cecbea5088d0c63fb0f92eb71556c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e9cecbea5088d0c63fb0f92eb71556c">&#9670;&#160;</a></span>setChild()</h2>
 
@@ -559,7 +559,7 @@ template&lt;typename T&gt; </div>
 <p>Sets a child node. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object, encapsulating property access.">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
+    <tr><td class="paramname">T</td><td>The expected MNX type (<span class="tt"><a class="el" href="classmnx_1_1Object.html" title="Represents an MNX object with the global attributes (_c, _x, id).">Object</a></span> or <span class="tt"><a class="el" href="classmnx_1_1Array.html" title="Represents an MNX array, encapsulating property access.">Array</a>&lt;T&gt;</span>). </td></tr>
   </table>
   </dd>
 </dl>

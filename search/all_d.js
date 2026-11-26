@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['Name',['../namespacemnx.html#aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987',1,'mnx']]],
+  ['name_0',['Name',['../namespacemnx.html#a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987',1,'mnx']]],
   ['nextnote_1',['NextNote',['../namespacemnx.html#a961d9beb0e598614b7157949964d33efada34e2b724bdb42347569c86723e76f0',1,'mnx']]],
   ['nobarline_2',['NoBarline',['../namespacemnx.html#ae84b6182879de97de8c8d9d891a61bf9a0576bb41c8036600a810cf711f9316d6',1,'mnx']]],
   ['nonarpeggio_3',['NonArpeggio',['../classmnx_1_1part_1_1NonArpeggio.html',1,'mnx::part']]],

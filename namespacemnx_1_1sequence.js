@@ -24,7 +24,7 @@ var namespacemnx_1_1sequence =
     [ "Pitch", "classmnx_1_1sequence_1_1Pitch.html", "classmnx_1_1sequence_1_1Pitch" ],
     [ "Slur", "classmnx_1_1sequence_1_1Slur.html", "classmnx_1_1sequence_1_1Slur" ],
     [ "Tie", "classmnx_1_1sequence_1_1Tie.html", "classmnx_1_1sequence_1_1Tie" ],
-    [ "PerformOptions", "classmnx_1_1sequence_1_1PerformOptions.html", "classmnx_1_1sequence_1_1PerformOptions" ],
+    [ "PerformOptions", "classmnx_1_1sequence_1_1PerformOptions.html", null ],
     [ "SlideIntoNote", "classmnx_1_1sequence_1_1SlideIntoNote.html", "classmnx_1_1sequence_1_1SlideIntoNote" ],
     [ "SlideOutOfNote", "classmnx_1_1sequence_1_1SlideOutOfNote.html", "classmnx_1_1sequence_1_1SlideOutOfNote" ],
     [ "NoteMarkings", "classmnx_1_1sequence_1_1NoteMarkings.html", "classmnx_1_1sequence_1_1NoteMarkings" ],

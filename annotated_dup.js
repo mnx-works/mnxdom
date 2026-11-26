@@ -26,7 +26,7 @@ var annotated_dup =
         [ "Pitch", "classmnx_1_1sequence_1_1Pitch.html", "classmnx_1_1sequence_1_1Pitch" ],
         [ "Slur", "classmnx_1_1sequence_1_1Slur.html", "classmnx_1_1sequence_1_1Slur" ],
         [ "Tie", "classmnx_1_1sequence_1_1Tie.html", "classmnx_1_1sequence_1_1Tie" ],
-        [ "PerformOptions", "classmnx_1_1sequence_1_1PerformOptions.html", "classmnx_1_1sequence_1_1PerformOptions" ],
+        [ "PerformOptions", "classmnx_1_1sequence_1_1PerformOptions.html", null ],
         [ "SlideIntoNote", "classmnx_1_1sequence_1_1SlideIntoNote.html", "classmnx_1_1sequence_1_1SlideIntoNote" ],
         [ "SlideOutOfNote", "classmnx_1_1sequence_1_1SlideOutOfNote.html", "classmnx_1_1sequence_1_1SlideOutOfNote" ],
         [ "NoteMarkings", "classmnx_1_1sequence_1_1NoteMarkings.html", "classmnx_1_1sequence_1_1NoteMarkings" ],
@@ -45,6 +45,7 @@ var annotated_dup =
         [ "FullMeasureRest", "classmnx_1_1sequence_1_1FullMeasureRest.html", "classmnx_1_1sequence_1_1FullMeasureRest" ]
       ] ],
       [ "layout", "namespacemnx_1_1layout.html", [
+        [ "LabelRef", "classmnx_1_1layout_1_1LabelRef.html", "classmnx_1_1layout_1_1LabelRef" ],
         [ "LayoutContentObject", "classmnx_1_1layout_1_1LayoutContentObject.html", null ],
         [ "LayoutContent", "classmnx_1_1layout_1_1LayoutContent.html", null ],
         [ "StaffSource", "classmnx_1_1layout_1_1StaffSource.html", "classmnx_1_1layout_1_1StaffSource" ],
@@ -106,6 +107,7 @@ var annotated_dup =
         [ "EntityMap", "classmnx_1_1util_1_1EntityMap.html", "classmnx_1_1util_1_1EntityMap" ],
         [ "StaffKey", "structmnx_1_1util_1_1StaffKey.html", "structmnx_1_1util_1_1StaffKey" ],
         [ "StaffKeyHash", "structmnx_1_1util_1_1StaffKeyHash.html", "structmnx_1_1util_1_1StaffKeyHash" ],
+        [ "LayoutSpanLabelRef", "structmnx_1_1util_1_1LayoutSpanLabelRef.html", "structmnx_1_1util_1_1LayoutSpanLabelRef" ],
         [ "LayoutSpan", "structmnx_1_1util_1_1LayoutSpan.html", "structmnx_1_1util_1_1LayoutSpan" ],
         [ "SequenceWalkContext", "structmnx_1_1util_1_1SequenceWalkContext.html", "structmnx_1_1util_1_1SequenceWalkContext" ],
         [ "SequenceWalkHooks", "structmnx_1_1util_1_1SequenceWalkHooks.html", "structmnx_1_1util_1_1SequenceWalkHooks" ]
@@ -117,7 +119,7 @@ var annotated_dup =
         [ "Fine", "classmnx_1_1global_1_1Fine.html", "classmnx_1_1global_1_1Fine" ],
         [ "Jump", "classmnx_1_1global_1_1Jump.html", "classmnx_1_1global_1_1Jump" ],
         [ "RepeatEnd", "classmnx_1_1global_1_1RepeatEnd.html", "classmnx_1_1global_1_1RepeatEnd" ],
-        [ "RepeatStart", "classmnx_1_1global_1_1RepeatStart.html", "classmnx_1_1global_1_1RepeatStart" ],
+        [ "RepeatStart", "classmnx_1_1global_1_1RepeatStart.html", null ],
         [ "Segno", "classmnx_1_1global_1_1Segno.html", "classmnx_1_1global_1_1Segno" ],
         [ "Sound", "classmnx_1_1global_1_1Sound.html", "classmnx_1_1global_1_1Sound" ],
         [ "Tempo", "classmnx_1_1global_1_1Tempo.html", "classmnx_1_1global_1_1Tempo" ],
@@ -135,6 +137,7 @@ var annotated_dup =
       [ "Array", "classmnx_1_1Array.html", "classmnx_1_1Array" ],
       [ "Dictionary", "classmnx_1_1Dictionary.html", "classmnx_1_1Dictionary" ],
       [ "Base", "classmnx_1_1Base.html", "classmnx_1_1Base" ],
+      [ "PlainObject", "classmnx_1_1PlainObject.html", "classmnx_1_1PlainObject" ],
       [ "Object", "classmnx_1_1Object.html", "classmnx_1_1Object" ],
       [ "SimpleType", "classmnx_1_1SimpleType.html", "classmnx_1_1SimpleType" ],
       [ "UniqueArray", "classmnx_1_1UniqueArray.html", "classmnx_1_1UniqueArray" ],

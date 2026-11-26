@@ -6,7 +6,7 @@ var namespacemnx_1_1global =
     [ "Fine", "classmnx_1_1global_1_1Fine.html", "classmnx_1_1global_1_1Fine" ],
     [ "Jump", "classmnx_1_1global_1_1Jump.html", "classmnx_1_1global_1_1Jump" ],
     [ "RepeatEnd", "classmnx_1_1global_1_1RepeatEnd.html", "classmnx_1_1global_1_1RepeatEnd" ],
-    [ "RepeatStart", "classmnx_1_1global_1_1RepeatStart.html", "classmnx_1_1global_1_1RepeatStart" ],
+    [ "RepeatStart", "classmnx_1_1global_1_1RepeatStart.html", null ],
     [ "Segno", "classmnx_1_1global_1_1Segno.html", "classmnx_1_1global_1_1Segno" ],
     [ "Sound", "classmnx_1_1global_1_1Sound.html", "classmnx_1_1global_1_1Sound" ],
     [ "Tempo", "classmnx_1_1global_1_1Tempo.html", "classmnx_1_1global_1_1Tempo" ],

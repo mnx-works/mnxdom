@@ -125,8 +125,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an MNX dictionary, where each key is a user-defined string.  <a href="classmnx_1_1Dictionary.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Base" id="r_Base"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1Base.html">Base</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classmnx_1_1Base.html" title="Base class wrapper for all MNX JSON nodes.">Base</a> class wrapper for all MNX JSON nodes.  <a href="classmnx_1_1Base.html#details">More...</a><br /></td></tr>
+<tr class="memitem:PlainObject" id="r_PlainObject"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1PlainObject.html">PlainObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a JSON object without the MNX global attributes.  <a href="classmnx_1_1PlainObject.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Object" id="r_Object"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1Object.html">Object</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an MNX object, encapsulating property access.  <a href="classmnx_1_1Object.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an MNX object with the global attributes (<span class="tt">_c</span>, <span class="tt">_x</span>, <span class="tt">id</span>).  <a href="classmnx_1_1Object.html#details">More...</a><br /></td></tr>
 <tr class="memitem:SimpleType" id="r_SimpleType"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1SimpleType.html">SimpleType</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows access to a fundamental type (number, boolean, string) in a JSON node.  <a href="classmnx_1_1SimpleType.html#details">More...</a><br /></td></tr>
 <tr class="memitem:UniqueArray" id="r_UniqueArray"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmnx_1_1UniqueArray.html">UniqueArray</a></td></tr>
@@ -347,10 +349,11 @@ Enumerations</h2></td></tr>
 , <b>Doit</b>
  }</td></tr>
 <tr class="memdesc:aed82770c077b55a2e1903a57edf54788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of indeterminate slides out of a note. <br /></td></tr>
-<tr class="memitem:aa6490743c39363c827cdf32264ea5b62" id="r_aa6490743c39363c827cdf32264ea5b62"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6490743c39363c827cdf32264ea5b62">LabelRef</a> { <a class="el" href="#aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987">Name</a>
-, <a class="el" href="#aa6490743c39363c827cdf32264ea5b62ad26b007baa81cc3cd38d8d6c93e6df42">ShortName</a>
+<tr class="memitem:a0944b98b56e6935cdc5a21fb171e1aa4" id="r_a0944b98b56e6935cdc5a21fb171e1aa4"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0944b98b56e6935cdc5a21fb171e1aa4">LabelRefType</a> { <a class="el" href="#a0944b98b56e6935cdc5a21fb171e1aa4a06b9281e396db002010bde1de57262eb">Auto</a>
+, <a class="el" href="#a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987">Name</a>
+, <a class="el" href="#a0944b98b56e6935cdc5a21fb171e1aa4ad26b007baa81cc3cd38d8d6c93e6df42">ShortName</a>
  }</td></tr>
-<tr class="memdesc:aa6490743c39363c827cdf32264ea5b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">The values available in a labelref.  <a href="#aa6490743c39363c827cdf32264ea5b62">More...</a><br /></td></tr>
+<tr class="memdesc:a0944b98b56e6935cdc5a21fb171e1aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which part name a label ref displays.  <a href="#a0944b98b56e6935cdc5a21fb171e1aa4">More...</a><br /></td></tr>
 <tr class="memitem:a9c22ef7bf22146e15d2d10c0bf3da485" id="r_a9c22ef7bf22146e15d2d10c0bf3da485"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c22ef7bf22146e15d2d10c0bf3da485">LayoutSymbol</a> { <a class="el" href="#a9c22ef7bf22146e15d2d10c0bf3da485a7d1aa7eb23d311fee8051a1d74bc3c8d">NoSymbol</a>
 , <a class="el" href="#a9c22ef7bf22146e15d2d10c0bf3da485a7d55ac077f11ad55a67924103d450612">Brace</a>
 , <a class="el" href="#a9c22ef7bf22146e15d2d10c0bf3da485ab5c644787d66a37b2d0e7eefaf11506b">Bracket</a>
@@ -386,17 +389,21 @@ Enumerations</h2></td></tr>
 <tr class="memdesc:a1cbd33e240b0ad4078c0bfba9043ddae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the vertical placement of a symbol with respect to its part's staves.  <a href="#a1cbd33e240b0ad4078c0bfba9043ddae">More...</a><br /></td></tr>
 <tr class="memitem:a87df00778c2acae557839d9ef283f5a1" id="r_a87df00778c2acae557839d9ef283f5a1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87df00778c2acae557839d9ef283f5a1">NoteheadShape</a> { <br />
 &#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61">Oval</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a985a9119468700cc1b4d70ce3aa9a508">BackSlashed</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1af3418dabcfe84335f739eed58e40a481">Circled</a>
 , <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf">CircleX</a>
-, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af">Custom</a>
-, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699">Diamond</a>
 , <br />
-&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4">Plus</a>
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af">Custom</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a8f7671185d590914ac21c7511767b699">Diamond</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4">Plus</a>
 , <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc">Slash</a>
+, <br />
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1ab988c882233b8b72cdd03525a1ff41fc">Slashed</a>
 , <a class="el" href="#a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304">Square</a>
 , <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a5e5500cb2b82eb72d550de644bd1b64b">Triangle</a>
+, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8">TriangleDown</a>
 , <br />
-&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a84d5dab02246a5db0018fac6251bfeb8">TriangleDown</a>
-, <a class="el" href="#a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383">X</a>
+&#160;&#160;<a class="el" href="#a87df00778c2acae557839d9ef283f5a1a02129bb861061d1a052c592e2dc6b383">X</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a87df00778c2acae557839d9ef283f5a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The semantic shape family of a notehead; does not affect pitch, duration, or performance.  <a href="#a87df00778c2acae557839d9ef283f5a1">More...</a><br /></td></tr>
@@ -484,7 +491,7 @@ Enumerations</h2></td></tr>
 <tr class="memitem:acf37722bc87abf052775661825640121" id="r_acf37722bc87abf052775661825640121"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf37722bc87abf052775661825640121">StemDirection</a> { <a class="el" href="#acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53">Down</a>
 , <a class="el" href="#acf37722bc87abf052775661825640121a258f49887ef8d14ac268c92b02503aaa">Up</a>
  }</td></tr>
-<tr class="memdesc:acf37722bc87abf052775661825640121"><td class="mdescLeft">&#160;</td><td class="mdescRight">The values available in a labelref.  <a href="#acf37722bc87abf052775661825640121">More...</a><br /></td></tr>
+<tr class="memdesc:acf37722bc87abf052775661825640121"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stem directions available for a staff source.  <a href="#acf37722bc87abf052775661825640121">More...</a><br /></td></tr>
 <tr class="memitem:aa6debc4d37db9e8cbce996f20eca7a48" id="r_aa6debc4d37db9e8cbce996f20eca7a48"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6debc4d37db9e8cbce996f20eca7a48">TextType</a> { <a class="el" href="#aa6debc4d37db9e8cbce996f20eca7a48a0db377921f4ce762c62526131097968f">General</a>
 , <a class="el" href="#aa6debc4d37db9e8cbce996f20eca7a48aa1a6657be79cc0fc1e9b23b9e108f043">Expression</a>
  }</td></tr>
@@ -1067,8 +1074,8 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 
 </div>
 </div>
-<a id="aa6490743c39363c827cdf32264ea5b62" name="aa6490743c39363c827cdf32264ea5b62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6490743c39363c827cdf32264ea5b62">&#9670;&#160;</a></span>LabelRef</h2>
+<a id="a0944b98b56e6935cdc5a21fb171e1aa4" name="a0944b98b56e6935cdc5a21fb171e1aa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0944b98b56e6935cdc5a21fb171e1aa4">&#9670;&#160;</a></span>LabelRefType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1077,7 +1084,7 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="#aa6490743c39363c827cdf32264ea5b62">mnx::LabelRef</a></td>
+          <td class="memname">enum class <a class="el" href="#a0944b98b56e6935cdc5a21fb171e1aa4">mnx::LabelRefType</a></td>
         </tr>
       </table>
   </td>
@@ -1087,11 +1094,13 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 </table>
 </div><div class="memdoc">
 
-<p>The values available in a labelref. </p>
+<p>Which part name a label ref displays. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987" name="aa6490743c39363c827cdf32264ea5b62a49ee3087348e8d44e1feda1917443987"></a>Name&#160;</td><td class="fielddoc"><p>the full name from the part (the default) </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0944b98b56e6935cdc5a21fb171e1aa4a06b9281e396db002010bde1de57262eb" name="a0944b98b56e6935cdc5a21fb171e1aa4a06b9281e396db002010bde1de57262eb"></a>Auto&#160;</td><td class="fielddoc"><p>consuming software chooses between name and shortName (the default) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aa6490743c39363c827cdf32264ea5b62ad26b007baa81cc3cd38d8d6c93e6df42" name="aa6490743c39363c827cdf32264ea5b62ad26b007baa81cc3cd38d8d6c93e6df42"></a>ShortName&#160;</td><td class="fielddoc"><p>the abbreviated name from the part </p>
+<tr><td class="fieldname"><a id="a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987" name="a0944b98b56e6935cdc5a21fb171e1aa4a49ee3087348e8d44e1feda1917443987"></a>Name&#160;</td><td class="fielddoc"><p>the full name from the part </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0944b98b56e6935cdc5a21fb171e1aa4ad26b007baa81cc3cd38d8d6c93e6df42" name="a0944b98b56e6935cdc5a21fb171e1aa4ad26b007baa81cc3cd38d8d6c93e6df42"></a>ShortName&#160;</td><td class="fielddoc"><p>the abbreviated name from the part </p>
 </td></tr>
 </table>
 
@@ -1319,6 +1328,10 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61" name="a87df00778c2acae557839d9ef283f5a1a01733ae48f19ae284165e55dd2934b61"></a>Oval&#160;</td><td class="fielddoc"><p>Conventional oval notehead. (MNX defines no default shape; this is the value-initialized enum value.). </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a985a9119468700cc1b4d70ce3aa9a508" name="a87df00778c2acae557839d9ef283f5a1a985a9119468700cc1b4d70ce3aa9a508"></a>BackSlashed&#160;</td><td class="fielddoc"><p>Conventional oval notehead with a slash through it, from top left to bottom right. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1af3418dabcfe84335f739eed58e40a481" name="a87df00778c2acae557839d9ef283f5a1af3418dabcfe84335f739eed58e40a481"></a>Circled&#160;</td><td class="fielddoc"><p>Notehead enclosed in a circle. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf" name="a87df00778c2acae557839d9ef283f5a1a2ae34f82726c8d54f2c90e2882b997bf"></a>CircleX&#160;</td><td class="fielddoc"><p>X enclosed in a circle. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af" name="a87df00778c2acae557839d9ef283f5a1a90589c47f06eb971d548591f23c285af"></a>Custom&#160;</td><td class="fielddoc"><p>Otherwise unclassified notehead; requires an explicit glyph. </p>
@@ -1328,6 +1341,8 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 <tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4" name="a87df00778c2acae557839d9ef283f5a1a32ba78fe43257d3e7f88e3935a8ea0d4"></a>Plus&#160;</td><td class="fielddoc"><p>Plus-shaped notehead. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc" name="a87df00778c2acae557839d9ef283f5a1a358cfe58715d680d9ab09f82e4010cbc"></a>Slash&#160;</td><td class="fielddoc"><p>Rhythmic slash notehead. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1ab988c882233b8b72cdd03525a1ff41fc" name="a87df00778c2acae557839d9ef283f5a1ab988c882233b8b72cdd03525a1ff41fc"></a>Slashed&#160;</td><td class="fielddoc"><p>Conventional oval notehead with a slash through it, from bottom left to top right. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304" name="a87df00778c2acae557839d9ef283f5a1aceb46ca115d05c51aa5a16a8867c3304"></a>Square&#160;</td><td class="fielddoc"><p>Square notehead; does not itself select a shape-note system. </p>
 </td></tr>
@@ -1598,7 +1613,7 @@ constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MNXDOM_PROVE
 </table>
 </div><div class="memdoc">
 
-<p>The values available in a labelref. </p>
+<p>The stem directions available for a staff source. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53" name="acf37722bc87abf052775661825640121a08a38277b0309070706f6652eeae9a53"></a>Down&#160;</td><td class="fielddoc"><p>stems down (default) </p>
 </td></tr>

@@ -474,7 +474,7 @@ public:
 
     MNX_OPTIONAL_PROPERTY(std::string, _c);     ///< An optional comment. This serves a similar function as XML or HTML comments.
     MNX_OPTIONAL_CHILD(PlainObject, _x);        ///< Vendor-defined dictionary.
-    MNX_OPTIONAL_PROPERTY(std::string, id);     ///< Uniquely identifies the object
+    MNX_READ_ONLY_OPTIONAL_PROPERTY(std::string, id);    ///< Uniquely identifies the object. Set it with Document::assignId.
 
     /// @brief Sets a vendor extension value in `_x`, creating `_x` when needed.
     void setExtension(const std::string_view key, const json& value)

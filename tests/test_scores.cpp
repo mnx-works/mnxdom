@@ -33,7 +33,7 @@ TEST(Scores, FromScratch)
     static constexpr int numBars = 5;
     for (int x = 0; x < numBars; x++) {
         auto globalMeasure = doc.global().measures().append();
-        globalMeasure.set_id("m" + std::to_string(x + 1));
+        doc.assignId(globalMeasure, "m" + std::to_string(x + 1));
     }
     EXPECT_EQ(doc.global().measures().size(), size_t(numBars));
 

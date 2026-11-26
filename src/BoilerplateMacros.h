@@ -74,12 +74,12 @@
  */
 #define MNX_REQUIRED_PROPERTY(TYPE, NAME) \
     [[nodiscard]] TYPE NAME() const { \
-        if (!ref().contains(#NAME)) { \
+        if (!jsonRef().contains(#NAME)) { \
             throw std::runtime_error("Missing required property: " #NAME); \
         } \
-        return ref()[#NAME].get<TYPE>(); \
+        return jsonRef()[#NAME].get<TYPE>(); \
     } \
-    void set_##NAME(const TYPE& value) { ref()[#NAME] = value; } \
+    void set_##NAME(const TYPE& value) { jsonRef()[#NAME] = value; } \
     static_assert(true, "") // require semicolon after macro
 
 /**
@@ -118,13 +118,13 @@
  */
 #define MNX_OPTIONAL_NAMED_PROPERTY(TYPE, NAME, KEY) \
     [[nodiscard]] std::optional<TYPE> NAME() const { \
-        return ref().contains(KEY) ? std::optional<TYPE>(ref()[KEY].get<TYPE>()) : std::nullopt; \
+        return jsonRef().contains(KEY) ? std::optional<TYPE>(jsonRef()[KEY].get<TYPE>()) : std::nullopt; \
     } \
     [[nodiscard]] TYPE NAME##_or(const TYPE& defaultVal) const { \
-        return ref().contains(KEY) ? ref()[KEY].get<TYPE>() : defaultVal; \
+        return jsonRef().contains(KEY) ? jsonRef()[KEY].get<TYPE>() : defaultVal; \
     } \
-    void set_##NAME(const TYPE& value) { ref()[KEY] = value; } \
-    void clear_##NAME() { ref().erase(KEY); } \
+    void set_##NAME(const TYPE& value) { jsonRef()[KEY] = value; } \
+    void clear_##NAME() { jsonRef().erase(KEY); } \
     static_assert(true, "") // require semicolon after macro
 
 /**
@@ -159,10 +159,10 @@
  */
 #define MNX_OPTIONAL_PROPERTY_WITH_DEFAULT(TYPE, NAME, DEFAULT) \
     [[nodiscard]] TYPE NAME() const { \
-        return ref().contains(#NAME) ? ref()[#NAME].template get<TYPE>() : DEFAULT; \
+        return jsonRef().contains(#NAME) ? jsonRef()[#NAME].template get<TYPE>() : DEFAULT; \
     } \
-    void set_##NAME(const TYPE& value) { ref()[#NAME] = value; } \
-    void clear_##NAME() { ref().erase(#NAME); } \
+    void set_##NAME(const TYPE& value) { jsonRef()[#NAME] = value; } \
+    void clear_##NAME() { jsonRef().erase(#NAME); } \
     void set_or_clear_##NAME(const TYPE& value) { \
         if (value == DEFAULT) clear_##NAME(); \
         else set_##NAME(value); \
@@ -254,7 +254,7 @@
     [[nodiscard]] std::optional<TYPE> NAME() const { return getOptionalChild<TYPE>(#NAME); } \
     TYPE set_##NAME(const TYPE& value) { return setChild(#NAME, value); } \
     ENSURE_BODY \
-    void clear_##NAME() { ref().erase(#NAME); } \
+    void clear_##NAME() { jsonRef().erase(#NAME); } \
     static_assert(true, "") // require semicolon after macro
 
 #define MNX_OPTIONAL_CHILD_2(TYPE, NAME) \

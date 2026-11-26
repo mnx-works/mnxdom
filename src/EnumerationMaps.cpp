@@ -172,9 +172,10 @@ MNX_ENUM_MAPPING(JumpType, {
     { "segno",      JumpType::Segno }
 });
 
-MNX_ENUM_MAPPING(LabelRef, {
-    { "name",       LabelRef::Name },
-    { "shortName",  LabelRef::ShortName }
+MNX_ENUM_MAPPING(LabelRefType, {
+    { "auto",       LabelRefType::Auto },
+    { "name",       LabelRefType::Name },
+    { "shortName",  LabelRefType::ShortName }
 });
 
 MNX_ENUM_MAPPING(LayoutSymbol, {
@@ -217,12 +218,15 @@ MNX_ENUM_MAPPING(MultiStaffPlacement, {
 });
 
 MNX_ENUM_MAPPING(NoteheadShape, {
+    { "backSlashed",  NoteheadShape::BackSlashed },
+    { "circled",      NoteheadShape::Circled },
     { "circleX",      NoteheadShape::CircleX },
     { "custom",       NoteheadShape::Custom },
     { "diamond",      NoteheadShape::Diamond },
     { "oval",         NoteheadShape::Oval },
     { "plus",         NoteheadShape::Plus },
     { "slash",        NoteheadShape::Slash },
+    { "slashed",      NoteheadShape::Slashed },
     { "square",       NoteheadShape::Square },
     { "triangle",     NoteheadShape::Triangle },
     { "triangleDown", NoteheadShape::TriangleDown },

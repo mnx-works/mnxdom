@@ -74,3 +74,31 @@ TEST(Layouts, EmptyGroup)
     auto doc = mnx::Document::create(inputPath);
     expectSemanticError(doc, inputPath, "Layout group contains no content");
 }
+
+TEST(Layouts, LabelRefBadTarget)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "errors" / "labelref_bad_target.json";
+    auto doc = mnx::Document::create(inputPath);
+    expectSemanticErrors(doc, inputPath, {
+        "ID \"P-bad-group\" not found in ID mapping",
+        "ID \"P-bad-staff\" not found in ID mapping",
+        "ID \"P-bad-source\" not found in ID mapping"
+    });
+}
+
+TEST(Layouts, LabelRefStringRejected)
+{
+    setupTestDataPaths();
+    std::filesystem::path inputPath = getInputPath() / "test_cases" / "time-6-8.json";
+    auto doc = mnx::Document::create(inputPath);
+    ASSERT_TRUE(mnx::validation::schemaValidate(doc));
+
+    // Schema v57 replaced the "labelref" string with a "labelRef" object.
+    (*doc.root())[mnx::json_pointer("/layouts/0/content/0/sources/0/labelRef")] = "name";
+    EXPECT_FALSE(mnx::validation::schemaValidate(doc));
+    (*doc.root())[mnx::json_pointer("/layouts/0/content/0/sources/0/labelRef")] = mnx::json{{"ref", "bogus"}};
+    EXPECT_FALSE(mnx::validation::schemaValidate(doc));
+    (*doc.root())[mnx::json_pointer("/layouts/0/content/0/sources/0/labelRef")] = mnx::json{{"ref", "auto"}, {"target", "P1"}};
+    EXPECT_TRUE(mnx::validation::schemaValidate(doc));
+}

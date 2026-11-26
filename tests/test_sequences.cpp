@@ -29,12 +29,15 @@ using namespace mnx;
 TEST(TestSequences, NoteheadShapes)
 {
     const std::pair<NoteheadShape, const char*> shapes[] = {
+        { NoteheadShape::BackSlashed, "backSlashed" },
+        { NoteheadShape::Circled, "circled" },
         { NoteheadShape::CircleX, "circleX" },
         { NoteheadShape::Custom, "custom" },
         { NoteheadShape::Diamond, "diamond" },
         { NoteheadShape::Oval, "oval" },
         { NoteheadShape::Plus, "plus" },
         { NoteheadShape::Slash, "slash" },
+        { NoteheadShape::Slashed, "slashed" },
         { NoteheadShape::Square, "square" },
         { NoteheadShape::Triangle, "triangle" },
         { NoteheadShape::TriangleDown, "triangleDown" },

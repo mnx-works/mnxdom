@@ -245,12 +245,13 @@ enum class SlideIntoNoteType { Scoop, Plop };
 enum class SlideOutOfNoteType { Falloff, Doit };
 
 /**
- * @enum LabelRef
- * @brief The values available in a labelref
+ * @enum LabelRefType
+ * @brief Which part name a label ref displays.
  */
-enum class LabelRef
+enum class LabelRefType
 {
-    Name,           ///< the full name from the part (the default)
+    Auto,           ///< consuming software chooses between name and shortName (the default)
+    Name,           ///< the full name from the part
     ShortName       ///< the abbreviated name from the part
 };
 
@@ -330,11 +331,14 @@ enum class MultiStaffPlacement
 enum class NoteheadShape
 {
     Oval,           ///< Conventional oval notehead. (MNX defines no default shape; this is the value-initialized enum value.)
+    BackSlashed,    ///< Conventional oval notehead with a slash through it, from top left to bottom right.
+    Circled,        ///< Notehead enclosed in a circle.
     CircleX,        ///< X enclosed in a circle.
     Custom,         ///< Otherwise unclassified notehead; requires an explicit glyph.
     Diamond,        ///< Diamond-shaped notehead.
     Plus,           ///< Plus-shaped notehead.
     Slash,          ///< Rhythmic slash notehead.
+    Slashed,        ///< Conventional oval notehead with a slash through it, from bottom left to top right.
     Square,         ///< Square notehead; does not itself select a shape-note system.
     Triangle,       ///< Triangle pointing up, irrespective of stem direction.
     TriangleDown,   ///< Triangle pointing down, irrespective of stem direction.
@@ -471,7 +475,7 @@ enum class StaffGroupBarlineOverride
 
 /**
  * @enum StemDirection
- * @brief The values available in a labelref
+ * @brief The stem directions available for a staff source
  */
 enum class StemDirection
 {
